@@ -179,7 +179,15 @@ export default function LandingPage() {
   const isDark = theme !== 'light'
 
   useEffect(() => {
-    if (isAuthenticated) router.push('/dashboard')
+    if (!isAuthenticated) return
+    // Verifica che il token backend sia ancora valido prima di mandare alla dashboard
+    import('@/lib/api').then(({ default: api }) => {
+      api.get('/auth/me').then(() => {
+        router.push('/dashboard')
+      }).catch(() => {
+        // Token scaduto — rimani sulla landing page (forceLogout già gestisce la pulizia)
+      })
+    })
   }, [isAuthenticated, router])
 
   useEffect(() => {

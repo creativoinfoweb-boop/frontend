@@ -86,9 +86,9 @@ function _forceLogout() {
   localStorage.removeItem('auth-storage')
   // Pulizia store Zustand
   try { useAuthStore.getState().logout() } catch { /* ignore */ }
-  // Reindirizza solo se non siamo già su una pagina auth
+  // Reindirizza alla landing page (non al login — evita loop)
   if (!window.location.pathname.startsWith('/auth')) {
-    window.location.href = '/auth/login'
+    window.location.href = '/'
   }
 }
 
