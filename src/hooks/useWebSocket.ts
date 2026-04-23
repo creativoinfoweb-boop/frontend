@@ -72,7 +72,19 @@ export function useWebSocket() {
       }
 
       const base = WS_HTTP_BASE.replace(/^http/, 'ws')
-      const url = `${base}/ws/${resolvedUserId}?token=${encodeURIComponent(token)}`
+      const wsUrl = `${base}/ws/${resolvedUserId}?token=${encodeURIComponent(token)}`
+
+      // Su HTTPS (Vercel) non si può aprire ws:// — blocco Mixed Content browser.
+      // Serve wss:// (backend dietro nginx/Cloudflare). Skippa silenziosamente.
+      if (
+        typeof window !== 'undefined' &&
+        window.location.protocol === 'https:' &&
+        wsUrl.startsWith('ws://')
+      ) {
+        return
+      }
+
+      const url = wsUrl
       const ws = new WebSocket(url)
       wsRef.current = ws
 
