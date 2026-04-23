@@ -78,6 +78,20 @@ function resolveAuthToken(): string | null {
   return null
 }
 
+/** Pulisce tutti i token e reindirizza al login. */
+function _forceLogout() {
+  if (typeof window === 'undefined') return
+  localStorage.removeItem('auth_token')
+  localStorage.removeItem('refresh_token')
+  localStorage.removeItem('auth-storage')
+  // Pulizia store Zustand
+  try { useAuthStore.getState().logout() } catch { /* ignore */ }
+  // Reindirizza solo se non siamo già su una pagina auth
+  if (!window.location.pathname.startsWith('/auth')) {
+    window.location.href = '/auth/login'
+  }
+}
+
 const instance: AxiosInstance = axios.create({
   baseURL: BASE_URL,
   timeout: 30000,
@@ -133,10 +147,7 @@ instance.interceptors.response.use(
         const refreshToken = localStorage.getItem('refresh_token')
 
         if (!refreshToken) {
-          if (typeof window !== 'undefined') {
-            localStorage.removeItem('auth_token')
-            localStorage.removeItem('refresh_token')
-          }
+          _forceLogout()
           return Promise.reject(error)
         }
 
@@ -154,10 +165,7 @@ instance.interceptors.response.use(
 
         return instance(originalRequest)
       } catch (err) {
-        if (typeof window !== 'undefined') {
-          localStorage.removeItem('auth_token')
-          localStorage.removeItem('refresh_token')
-        }
+        _forceLogout()
         return Promise.reject(err)
       }
     }
