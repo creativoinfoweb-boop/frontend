@@ -1,0 +1,21 @@
+# Next.js
+.next/
+out/
+
+# Dependencies
+node_modules/
+
+# Environment files (secrets)
+.env.local
+.env.production
+.env.*.local
+
+# Build artifacts
+tsconfig.tsbuildinfo
+
+# Claude
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
