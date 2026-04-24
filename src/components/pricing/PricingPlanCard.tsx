@@ -6,10 +6,10 @@ import { Check, ArrowRight, Zap, TrendingUp, CreditCard } from 'lucide-react'
 
 /** Contenuti allineati landing ↔ dashboard abbonamento */
 export const PRICING_FEATURES: { text: string; highlight: boolean }[] = [
-  { text: 'Copy trading 100% automatico su XAU/USD', highlight: true },
-  { text: 'Niente EA da installare — funziona dal broker', highlight: true },
+  { text: 'Automazione 100% su XAU/USD — nulla da installare', highlight: true },
+  { text: 'Piattaforma server-side — il tuo conto rimane sempre protetto', highlight: true },
   { text: 'Dashboard live con posizioni in tempo reale', highlight: false },
-  { text: 'Risk management 1% per trade (fisso)', highlight: false },
+  { text: 'Risk management configurabile — controllo totale', highlight: false },
   { text: 'Verifica giornaliera credenziali automatica', highlight: false },
   { text: 'Supporto email dedicato', highlight: false },
   { text: 'Cancella quando vuoi — zero vincoli', highlight: false },

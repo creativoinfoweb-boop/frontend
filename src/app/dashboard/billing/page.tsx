@@ -13,11 +13,11 @@ import Link from 'next/link'
 import { PricingPlanCard } from '@/components/pricing/PricingPlanCard'
 
 const features = [
-  'Copy trading 100% automatico su XAU/USD',
-  'Niente EA da installare — funziona dal tuo broker',
+  'Automazione 100% configurabile su XAU/USD',
+  'Niente EA da installare — server-side 24/7',
   'Verifica giornaliera delle credenziali',
   'Dashboard live con posizioni in tempo reale',
-  'Risk management 1% per trade (fisso)',
+  'Risk management personalizzabile',
   'Supporto dedicato via email',
   'Cancella quando vuoi — zero vincoli',
 ]
@@ -185,7 +185,7 @@ function BillingContent() {
 
       <div>
         <h1 className="text-2xl font-black text-[var(--text-primary)]">Abbonamento</h1>
-        <p className="text-sm text-[var(--text-secondary)] mt-1">El Dorado Premium — copy trading XAU/USD</p>
+        <p className="text-sm text-[var(--text-secondary)] mt-1">El Dorado Premium — Automazione Trading su XAU/USD</p>
       </div>
 
       {showPricingBlock && (
@@ -273,7 +273,7 @@ function BillingContent() {
               <img src="/eldorado.jpg" alt="El Dorado" style={{ width: 40, height: 40, borderRadius: '50%', border: '1.5px solid rgba(240,180,41,0.35)', objectFit: 'cover', objectPosition: 'top center' }} />
               <div>
                 <div className="font-bold text-[var(--text-primary)]">El Dorado Premium</div>
-                <div className="text-xs text-[var(--text-secondary)] mt-0.5">Copy Trading XAU/USD · 1 conto MT5</div>
+                <div className="text-xs text-[var(--text-secondary)] mt-0.5">Automazione Trading XAU/USD · 1 conto MT5</div>
               </div>
             </div>
             <span className="badge-success">Attivo</span>

@@ -8,7 +8,7 @@ import { Check } from 'lucide-react'
 
 const perks = [
   '7 giorni di trial gratuito — nessuna carta richiesta',
-  'Copy trading automatico su XAU/USD',
+  'Automazione trading configurabile su XAU/USD',
   'Performance reali e verificate',
   'Cancella quando vuoi, senza vincoli',
   'Supporto prioritario incluso',
@@ -56,7 +56,7 @@ export default function RegisterPage() {
           <div>
             <div className="mb-5"><img src="/eldorado.jpg" alt="El Dorado" style={{ width: 64, height: 64, borderRadius: '50%', border: '1.5px solid rgba(240,180,41,0.35)', objectFit: 'cover', objectPosition: 'top center', flexShrink: 0 }} /></div>
             <h1 className="text-3xl font-black text-gradient-gold leading-tight">El Dorado</h1>
-            <p className="text-sm text-[#6B6B8A] mt-2">Copy Trading Professionale su XAU/USD</p>
+            <p className="text-sm text-[#6B6B8A] mt-2">Automazione Trading su XAU/USD</p>
           </div>
           <div className="space-y-4">
             {perks.map(p => (

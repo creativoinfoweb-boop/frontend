@@ -157,9 +157,9 @@ export default function AccountsPage() {
         <AlertTriangle className="w-4 h-4 text-[#FFD166] flex-shrink-0 mt-0.5" />
         <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
           <strong style={{ color: '#FFD166' }}>Conto dedicato:</strong> usa questo conto MT5{' '}
-          <em>esclusivamente</em> per il copy trading automatico. Operare manualmente sullo
+          <em>esclusivamente</em> per la piattaforma di automazione. Operare manualmente sullo
           stesso conto interferirebbe con le statistiche e potrebbe creare conflitti con le
-          posizioni gestite dal bot.
+          posizioni gestite dal sistema.
         </p>
       </div>
 

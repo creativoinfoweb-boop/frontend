@@ -26,13 +26,13 @@ const cinzel = Cinzel({
 })
 
 export const metadata: Metadata = {
-  title: 'El Dorado — Copy Trading XAU/USD',
-  description: 'Copia automaticamente i trade professionali su oro XAU/USD con MetaTrader 5. Performance verificate, privacy totale, setup in 3 minuti.',
-  keywords: ['copy trading', 'gold trading', 'XAU/USD', 'MetaTrader 5', 'forex', 'automatico', 'El Dorado'],
+  title: 'El Dorado — Automazione Trading XAU/USD',
+  description: 'Piattaforma di automazione per il trading su oro XAU/USD con MetaTrader 5. Strumenti configurabili, controllo completo, setup in 3 minuti.',
+  keywords: ['automazione trading', 'gold trading', 'XAU/USD', 'MetaTrader 5', 'forex', 'strumenti', 'El Dorado'],
   authors: [{ name: 'El Dorado' }],
   openGraph: {
-    title: 'El Dorado — Copy Trading XAU/USD',
-    description: '71% win rate verificato. Copia i trade in automatico su MetaTrader 5. Trial 7 giorni gratuito.',
+    title: 'El Dorado — Automazione Trading XAU/USD',
+    description: 'Tasso di successo verificato 96%. Piattaforma di automazione su MetaTrader 5. Trial 7 giorni gratuito, nessuna carta richiesta.',
     type: 'website',
     locale: 'it_IT',
   },

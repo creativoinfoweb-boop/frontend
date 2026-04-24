@@ -73,30 +73,30 @@ const tickerFallback = [
 const faqItems = [
   {
     id: 'how-works',
-    question: 'Come funziona il copy trading?',
-    answer: 'Registrati, inserisci le credenziali del tuo conto MT5 nel pannello Account, e il gioco è fatto. Il nostro server si collega direttamente al tuo broker e copia ogni trade in automatico — senza che tu debba aprire MT5, installare nulla o avere Windows.',
+    question: 'Come funziona la piattaforma?',
+    answer: 'Registrati, inserisci le credenziali del tuo conto MT5 nel pannello Account, e il gioco è fatto. Il nostro server si collega direttamente al tuo broker e replica automaticamente ogni operazione — senza che tu debba aprire MT5, installare nulla o avere Windows.',
   },
   {
     id: 'safety',
-    question: 'Il mio account è al sicuro?',
-    answer: 'Sì. Le tue credenziali MT5 vengono cifrate con Fernet AES-128 prima di essere salvate nel database. Non le leggiamo mai in chiaro. I pagamenti vengono gestiti da Stripe — non salviamo mai i dati della tua carta.',
+    question: 'Come proteggi i miei dati?',
+    answer: 'Le tue credenziali MT5 vengono cifrate con Fernet AES-128 prima di essere salvate nel database. Non le leggiamo mai in chiaro. I pagamenti vengono gestiti da Stripe — non salviamo mai i dati della tua carta.',
   },
   {
     id: 'risks',
-    question: 'C\'è un rischio nel trading automatizzato?',
-    answer: 'Sì — come qualsiasi attività sui mercati finanziari. Il sistema opera con strategie testate e gestione del rischio integrata (stop loss su ogni trade, rischio configurabile per operazione). Le performance storiche sono positive, ma non garantiscono risultati futuri. Ti consigliamo di partire con un conto demo e di non investire capitali che non puoi permetterti di perdere.',
+    question: 'Ci sono rischi nell\'utilizzo della piattaforma?',
+    answer: 'Sì — come qualsiasi attività sui mercati finanziari. La piattaforma fornisce strumenti di automazione e supporto decisionale, ma non garantisce risultati. Dispone di controlli di rischio configurabili (stop loss, gestione posizione) che rimangono sempre sotto il tuo controllo. Non forniamo consulenza finanziaria. Ti consigliamo di partire con un conto demo e di non investire capitali che non puoi permetterti di perdere.',
     learnMoreUrl: '/legal/terms',
     learnMoreLabel: 'Leggi Termini e Rischi completi →',
   },
   {
     id: 'mt5-needed',
     question: 'Devo avere MT5 aperto sul mio computer?',
-    answer: 'No. Il copy trading avviene 100% lato server. Non serve MT5 sul tuo PC, non serve Windows, non serve nessun EA da installare. Hai bisogno solo di un conto MT5 attivo presso un broker — tutto il resto lo facciamo noi.',
+    answer: 'No. La piattaforma opera 100% lato server. Non serve MT5 sul tuo PC, non serve Windows, non serve nessun EA da installare. Hai bisogno solo di un conto MT5 attivo presso un broker — tutto il resto lo facciamo noi.',
   },
   {
     id: 'trades-per-day',
-    question: 'Quanti trade al giorno?',
-    answer: "In media 1-4 trade al giorno, solo su setup confermati e ad alta probabilità su XAU/USD (Oro). L'operatività è dalle 10:30 alle 14:00. La qualità è sempre prioritaria rispetto alla quantità.",
+    question: 'Qual è la frequenza operativa?',
+    answer: "La piattaforma è impostata per identificare setup su XAU/USD generalmente in una fascia oraria dalle 10:30 alle 14:00, con frequenza variabile in base alle condizioni di mercato. La configurazione è sempre personalizzabile. Nessuna operazione è garantita.",
   },
   {
     id: 'cancel',
@@ -119,42 +119,42 @@ const faqItems = [
 const features = [
   {
     icon: Shield,
-    title: 'Privacy Totale',
-    desc: 'Le tue credenziali MT5 vengono cifrate con AES-128. Non le leggiamo mai in chiaro. I pagamenti via Stripe non toccano i nostri server.',
+    title: 'Nessun Accesso ai Fondi',
+    desc: 'La piattaforma non gestisce né detiene fondi. Le tue credenziali MT5 sono cifrate AES-128. Tu mantieni il controllo completo.',
   },
   {
     icon: Zap,
-    title: 'Esecuzione Istantanea',
-    desc: 'Ogni segnale viene trasmesso in meno di 100ms. Nessun ritardo, nessuna latenza, nessuna slippage artificiale.',
+    title: 'Automazione Configurabile',
+    desc: 'Imposti tu i parametri: rischio, orari, strumenti. Il sistema esegue esattamente quello che hai configurato — niente di più.',
   },
   {
     icon: BarChart3,
-    title: 'Performance Trasparenti',
-    desc: 'Statistiche complete in tempo reale. Win rate, profit factor e storico completo sempre visibili prima di abbonarti.',
+    title: 'Analisi Dati Trasparenti',
+    desc: 'Dashboard con statistiche complete in tempo reale. Comprendi ogni metrica prima di attivare qualsiasi automazione.',
   },
   {
-    icon: Clock,
-    title: '24/5 Trading',
-    desc: 'Accedi ai mercati del gold dal lunedì al venerdì, 24 ore su 24. Operatività massima senza che tu faccia nulla.',
+    icon: Globe,
+    title: 'Account Demo Supportato',
+    desc: 'Collega prima un conto demo. Osserva, studia, comprendi il comportamento del sistema senza rischiare capitale reale.',
   },
   {
     icon: TrendingUp,
-    title: 'Risk Management',
-    desc: 'Risk consigliato 1-3% per trade. Stop loss e take profit su ogni segnale trasmesso automaticamente.',
+    title: 'Risk Management Utente',
+    desc: 'Sei tu a impostare il rischio: 1%, 2% o 3% per operazione. Stop loss, take profit e break-even sempre sotto il tuo controllo.',
   },
   {
     icon: Layers,
-    title: 'Nessun Vincolo',
-    desc: 'Cancella quando vuoi. Nessun lock-in, nessun costo nascosto. La libertà è tua, sempre.',
+    title: 'Libertà Totale',
+    desc: 'Attiva, pausa, disattiva quando vuoi. Nessun lock-in, nessun costo nascosto. Il software lavora per te, non il contrario.',
   },
 ]
 
 /* ─── Stats — Indicativi, aggiornati periodicamente dal Master account ───── */
 const stats = [
-  { value: 312, suffix: '', label: 'Trade Eseguiti', isGold: true },
-  { value: 96, suffix: '%', label: 'Win Rate', isGold: false },
-  { value: 28, suffix: 'x', label: 'Profit Factor ×10', isGold: true },
-  { value: 12, suffix: ' min', label: 'Durata Media Trade', isGold: true },
+  { value: 312, suffix: '', label: 'Operazioni Completate', isGold: true },
+  { value: 96, suffix: '%', label: 'Tasso di Successo', isGold: false },
+  { value: 28, suffix: 'x', label: 'Fattore di Profitto', isGold: true },
+  { value: 12, suffix: ' min', label: 'Durata Media', isGold: true },
 ]
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
@@ -268,13 +268,14 @@ export default function LandingPage() {
             <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
             <div>
               <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>El Dorado</span>
-              <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>Copy Trading</div>
+              <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>Automazione Trading</div>
             </div>
           </div>
 
           {/* Center links */}
           <div className="hidden md:flex items-center gap-8">
             {[
+              { label: 'Metodo', href: '/metodo' },
               { label: 'Come Funziona', href: '#how' },
               { label: 'Performance', href: '#performance' },
               { label: 'Pricing', href: '#pricing' },
@@ -379,7 +380,7 @@ export default function LandingPage() {
           {/* Live badge */}
           <div className="eldorado-badge">
             <div className="live-dot" style={{ width: 6, height: 6 }} />
-            Live · 12 trader attivi ora
+            Software AI · Controllo Totale Utente
           </div>
 
           {/* ── Refined title ── */}
@@ -393,8 +394,12 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <p className="eldorado-subtitle mt-2 mb-9">
-            Copy Trading Professionale · XAU/USD
+          <p className="eldorado-subtitle mt-2 mb-3">
+            Comprendi il mercato. Automatizza il processo. Mantieni il controllo.
+          </p>
+          <p className="text-sm mb-9 max-w-lg mx-auto text-center" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+            Strumenti AI configurabili per analisi e automazione su XAU/USD.{' '}
+            <span style={{ color: 'var(--gold)', opacity: 0.9 }}>Tu decidi tutto.</span>
           </p>
 
           {/* Live gold price */}
@@ -419,17 +424,17 @@ export default function LandingPage() {
               Inizia 7 Giorni Gratis
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <a href="#performance" className="btn-eldorado btn-eldorado-secondary">
-              Vedi Performance
+            <Link href="/metodo" className="btn-eldorado btn-eldorado-secondary">
+              Scopri il Metodo
               <BarChart3 className="w-5 h-5" />
-            </a>
+            </Link>
           </div>
 
           {/* Trust row */}
           <div className="flex flex-wrap gap-6 justify-center items-center mt-8">
             {[
-              { icon: Shield, text: 'Credenziali crittografate' },
-              { icon: Lock, text: 'Server-side 24/7' },
+              { icon: Shield, text: 'Nessuna gestione fondi' },
+              { icon: Lock, text: 'Controllo totale utente' },
               { icon: Award, text: 'No carta richiesta' },
             ].map(({ icon: Icon, text }) => (
               <div key={text} className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>
@@ -522,8 +527,8 @@ export default function LandingPage() {
               },
               {
                 num: '03', icon: Activity,
-                title: 'Copia i Trade',
-                desc: 'Il tuo account inizia a copiare ogni segnale automaticamente. Tutto trasparente, tutto controllato.',
+                title: 'Ricevi le Operazioni',
+                desc: 'Il tuo account riceve automaticamente ogni operazione dalla piattaforma. Tutto trasparente, tutto controllato.',
               },
             ].map((step, i) => (
               <div key={i} className="card-premium p-8 animate-fade-in-up" style={{ animationDelay: `${i * 150}ms` }}>
@@ -645,7 +650,7 @@ export default function LandingPage() {
               Perché El Dorado
             </h2>
             <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Una piattaforma costruita per i trader che vogliono risultati, non complicazioni.
+              Software AI che automatizza l'esecuzione dei parametri da te impostati. Nessuna consulenza, nessuna gestione fondi — solo strumenti tecnici.
             </p>
           </div>
 
@@ -659,6 +664,72 @@ export default function LandingPage() {
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{feat.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Demo Section ───────────────────────────────── */}
+      <section id="demo" className="py-24 px-4 sm:px-6 lg:px-8 relative">
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--surface-overlay)' }} />
+        <div className="relative max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="section-label mb-3">Inizia in Sicurezza</div>
+            <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
+              Comprendi Prima. Testa in Demo. Poi Decidi.
+            </h2>
+            <p className="max-w-2xl mx-auto text-base" style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+              Non devi rischiare capitale reale per capire come funziona la piattaforma.
+              Collega un account demo del tuo broker e osserva il comportamento del sistema in condizioni reali di mercato — senza alcun impatto finanziario.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              {
+                icon: Globe,
+                step: '01',
+                title: 'Collega Account Demo',
+                desc: 'Usa le credenziali di un conto demo MT5 del tuo broker. Tutto funziona in modo identico al conto reale, senza rischio.',
+                color: 'var(--gold)',
+              },
+              {
+                icon: BarChart3,
+                step: '02',
+                title: 'Osserva e Studia',
+                desc: 'Monitora ogni operazione dalla dashboard. Analizza le logiche, i parametri di rischio, i timing. Comprendi prima di decidere.',
+                color: 'var(--green)',
+              },
+              {
+                icon: Shield,
+                step: '03',
+                title: 'Decidi in Autonomia',
+                desc: 'Solo quando hai piena comprensione del funzionamento, sei libero di passare al conto reale — o di restare in demo. La scelta è solo tua.',
+                color: 'var(--gold)',
+              },
+            ].map((item, i) => (
+              <div key={i} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 120}ms` }}>
+                <div className="flex items-start justify-between mb-6">
+                  <div className="feature-icon-wrap">
+                    <item.icon className="w-5 h-5" style={{ color: item.color }} />
+                  </div>
+                  <span className="text-4xl font-black font-mono" style={{ opacity: 0.1, color: item.color }}>{item.step}</span>
+                </div>
+                <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)' }}>{item.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 rounded-2xl p-6 text-center"
+            style={{ background: 'rgba(240,180,41,0.05)', border: '1px solid rgba(240,180,41,0.15)' }}>
+            <p className="text-sm font-semibold mb-1" style={{ color: 'var(--gold)' }}>
+              Disclaimer — Non Forniamo Consulenza Finanziaria
+            </p>
+            <p className="text-xs max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+              El Dorado è un software di automazione. Non forniamo consulenza finanziaria, servizi di investimento o gestione patrimoniale.
+              Tutte le decisioni operative e i parametri di utilizzo sono impostati e controllati direttamente dall'utente.
+              Il trading sui mercati finanziari comporta rischi reali di perdita del capitale.
+            </p>
           </div>
         </div>
       </section>
@@ -691,9 +762,9 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-3 gap-5">
             {[
-              { name: 'Marco R.', role: 'Trader privato', avatar: 'MR', text: 'In 3 mesi ho copiato oltre 200 trade senza perdere ore davanti allo schermo. Il setup è stato velocissimo.', stars: 5, profit: '+312 pips' },
-              { name: 'Sofia L.', role: 'Investitore retail', avatar: 'SL', text: 'Finalmente un servizio dove posso provare e testarlo gratis e vedere statistiche reali prima di abbonarmi. Massima trasparenza.', stars: 5, profit: '+198 pips' },
-              { name: 'Andrea M.', role: 'Part-time trader', avatar: 'AM', text: 'Il El Dorado lavora mentre io sono in ufficio. Risultati consistenti e risk management preciso.', stars: 5, profit: '+445 pips' },
+              { name: 'Marco R.', role: 'Trader privato', avatar: 'MR', text: 'In 3 mesi ho usato la piattaforma per oltre 200 operazioni senza perdere ore davanti allo schermo. Il setup è stato velocissimo.', stars: 5, profit: '+312 pips*' },
+              { name: 'Sofia L.', role: 'Investitore retail', avatar: 'SL', text: 'Finalmente un servizio dove posso provare gratis e vedere statistiche reali prima di abbonarmi. Massima trasparenza e controllo totale.', stars: 5, profit: '+198 pips*' },
+              { name: 'Andrea M.', role: 'Part-time trader', avatar: 'AM', text: 'La piattaforma lavora mentre io sono in ufficio. Apprezzo il controllo del rischio e la personalizzazione completa.', stars: 5, profit: '+445 pips*' },
             ].map((t, i) => (
               <div key={t.name} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
                 <div className="flex gap-1 mb-4">
@@ -800,8 +871,8 @@ export default function LandingPage() {
           </h2>
 
           <p className="text-lg mb-10 max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            Unisciti a centinaia di trader che già copiano i segnali di El Dorado ogni giorno.
-            Il primo trial è completamente gratuito.
+            Unisciti a centinaia di trader che utilizzano la piattaforma di automazione El Dorado.
+            Il primo trial è completamente gratuito. Nessuna carta richiesta.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -832,11 +903,11 @@ export default function LandingPage() {
                 <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
                 <div>
                   <span className="font-bold text-gradient-gold">El Dorado</span>
-                  <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>Copy Trading</div>
+                  <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>Automazione Trading</div>
                 </div>
               </div>
               <p className="text-sm leading-relaxed max-w-xs" style={{ color: 'var(--text-secondary)' }}>
-                Copia il trading professionale su XAU/USD. Performance reali, privacy totale, libertà completa.
+                Piattaforma di automazione per il trading su XAU/USD. Strumenti configurabili, privacy totale, controllo completo.
               </p>
               <div className="flex items-center gap-2 mt-4">
                 <div className="live-dot" />
@@ -850,6 +921,7 @@ export default function LandingPage() {
                 {[
                   { label: 'Accedi', href: '/auth/login' },
                   { label: 'Registrati', href: '/auth/register' },
+                  { label: 'Metodo & Strategia', href: '/metodo' },
                   { label: 'Come Funziona', href: '#how' },
                   { label: 'Performance', href: '#performance' },
                   { label: 'Termini di Servizio', href: '/legal/terms' },
@@ -883,12 +955,23 @@ export default function LandingPage() {
 
           <div className="divider mb-8" />
 
+          {/* Legal disclaimer strip */}
+          <div className="rounded-xl p-4 mb-6 text-center"
+            style={{ background: 'rgba(255,61,113,0.03)', border: '1px solid rgba(255,61,113,0.1)' }}>
+            <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+              <strong style={{ color: 'rgba(255,90,120,0.8)' }}>Non forniamo consulenza finanziaria.</strong>{' '}
+              El Dorado è un software SaaS di automazione. Non gestiamo fondi, non offriamo servizi di investimento né gestione patrimoniale.
+              Tutte le decisioni operative e i parametri sono impostati direttamente dall'utente.
+              Il trading comporta rischi reali di perdita del capitale. Nessun risultato è garantito.
+            </p>
+          </div>
+
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
               &copy; 2025 El Dorado. Tutti i diritti riservati.
             </p>
             <p className="text-xs text-center sm:text-right max-w-md leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              Il trading comporta rischi significativi di perdita. Le performance passate non sono garanzia di risultati futuri.{' '}
+              Performance passate non garantiscono risultati futuri.{' '}
               <Link href="/legal/terms" className="underline underline-offset-2 transition-opacity hover:opacity-70" style={{ color: 'var(--text-muted)' }}>
                 Termini di Servizio
               </Link>

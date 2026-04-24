@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Termini di Servizio e Privacy — El Dorado',
-  description: 'Termini di utilizzo, rischi del trading, funzionamento del sistema, capitale minimo, privacy policy e condizioni di abbonamento di El Dorado Copy Trading su XAU/USD.',
+  description: 'Termini di utilizzo, rischi finanziari, funzionamento del sistema di automazione, capitale minimo, privacy policy e condizioni di abbonamento di El Dorado su XAU/USD.',
 }
 import { ArrowLeft, Shield, AlertTriangle, Lock, CreditCard, RefreshCw, FileText, Mail } from 'lucide-react'
 
@@ -135,8 +135,8 @@ export default function TermsPage() {
           </h2>
           <div className="text-sm leading-relaxed space-y-3" style={{ color: 'var(--text-secondary)' }}>
             <p>
-              El Dorado si basa sulla <strong style={{ color: 'var(--text-primary)' }}>copia automatica delle operazioni</strong> eseguite
-              su un conto master. Ogni trade viene replicato sul tuo conto con un lotto proporzionato al tuo capitale e alla
+              El Dorado si basa sulla <strong style={{ color: 'var(--text-primary)' }}>replica automatica delle operazioni</strong> da
+              una strategia master. Ogni operazione viene trasmessa al tuo conto con una dimensione proporzionata al tuo capitale e alla
               percentuale di rischio che hai selezionato. Il sistema include:
             </p>
             <ul className="space-y-1.5 pl-2">

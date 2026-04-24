@@ -13,8 +13,8 @@ const steps = [
   { num: 1, title: 'Abbonamento', icon: CreditCard, color: '#F0B429',  desc: 'Verifica che la tua subscription sia attiva' },
   { num: 2, title: 'Account MT5', icon: Database,   color: '#00C2FF',  desc: 'Inserisci le credenziali del tuo conto broker' },
   { num: 3, title: 'Sicurezza',   icon: Shield,     color: '#9B5DE5',  desc: 'Come proteggiamo i tuoi dati' },
-  { num: 4, title: 'Come Funziona', icon: BarChart3, color: '#00C2FF', desc: 'Il sistema di copy trading, rischio e take profit' },
-  { num: 5, title: 'Pronto!',     icon: Zap,        color: '#00E676',  desc: 'Il copy trading è attivo — zero azioni richieste' },
+  { num: 4, title: 'Come Funziona', icon: BarChart3, color: '#00C2FF', desc: 'La piattaforma, rischio e take profit' },
+  { num: 5, title: 'Pronto!',     icon: Zap,        color: '#00E676',  desc: 'La piattaforma è attiva — zero azioni richieste' },
 ]
 
 function StepInstruction({ n, text }: { n: number; text: string }) {
@@ -59,7 +59,7 @@ export default function SetupGuidePage() {
       <div>
         <h1 className="text-2xl font-black text-[var(--text-primary)]">Setup Guide</h1>
         <p className="text-sm text-[var(--text-secondary)] mt-1">
-          Inizia a copiare i trade in 4 semplici passaggi — nessun software da installare
+          Attiva la piattaforma in 4 semplici passaggi — nessun software da installare
         </p>
       </div>
 
@@ -162,7 +162,7 @@ export default function SetupGuidePage() {
         {step === 1 && (
           <div className="space-y-5 animate-fade-in">
             <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-              Per usare il copy trading serve un accesso attivo (trial o pagamento). Nella pagina abbonamento puoi:{' '}
+              Per usare la piattaforma serve un accesso attivo (trial o pagamento). Nella pagina abbonamento puoi:{' '}
               <strong className="text-[var(--text-primary)]">avviare 7 giorni gratis</strong> senza carta, oppure{' '}
               <strong className="text-[var(--text-primary)]">pagare subito</strong> con Stripe (piano mensile promo o annuale).
             </p>
@@ -307,12 +307,12 @@ export default function SetupGuidePage() {
               El Dorado replica automaticamente le operazioni eseguite sul conto master sul tuo conto MT5. Ecco come funziona nel dettaglio.
             </p>
 
-            {/* Copy Trading */}
+            {/* Automazione */}
             <div className="rounded-xl p-4 space-y-2"
               style={{ background: 'rgba(0,194,255,0.05)', border: '1px solid rgba(0,194,255,0.15)' }}>
-              <p className="text-xs font-semibold text-[#00C2FF]">Copy Trading Automatico</p>
+              <p className="text-xs font-semibold text-[#00C2FF]">Automazione Operativa</p>
               <div className="text-xs text-[var(--text-secondary)] leading-relaxed space-y-1.5">
-                <p>Quando il master apre un trade su XAU/USD, il sistema apre la <strong className="text-[var(--text-primary)]">stessa posizione sul tuo conto</strong> con un lotto proporzionato al tuo capitale e alla percentuale di rischio che hai scelto.</p>
+                <p>Quando il sistema identifica un'operazione su XAU/USD, viene trasmessa al tuo conto con una dimensione proporzionata al tuo capitale e alla percentuale di rischio che hai scelto.</p>
                 <p>Il sistema include: apertura con size proporzionale, <strong className="text-[var(--text-primary)]">take profit progressivi e frazionati</strong>, stop loss automatico e break-even.</p>
               </div>
             </div>
@@ -386,7 +386,7 @@ export default function SetupGuidePage() {
               <div>
                 <p className="font-black text-[#00E676] text-base">Sei pronto — zero azioni richieste</p>
                 <p className="text-xs text-[var(--text-secondary)] mt-1 leading-relaxed">
-                  Da questo momento il sistema copia automaticamente ogni trade che apriamo su XAU/USD sul tuo conto MT5. Nessun software aggiuntivo, nessuna finestra aperta, nessun EA.
+                  Da questo momento il sistema trasmette automaticamente ogni operazione identificata su XAU/USD al tuo conto MT5. Nessun software aggiuntivo, nessuna finestra aperta, nessun EA.
                 </p>
               </div>
             </div>
