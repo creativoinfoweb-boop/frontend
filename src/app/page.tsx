@@ -22,6 +22,9 @@ import {
   Award,
   Sun,
   Moon,
+  BookOpen,
+  GraduationCap,
+  Play,
 } from 'lucide-react'
 import { PricingPlanCard } from '@/components/pricing/PricingPlanCard'
 
@@ -74,7 +77,7 @@ const faqItems = [
   {
     id: 'what-is',
     question: 'Cos\'è El Dorado e a cosa serve?',
-    answer: 'El Dorado è una piattaforma educativa e tecnologica per chi vuole comprendere i mercati finanziari e applicare una strategia operativa strutturata. Unisce formazione sulla visione Smart Money con strumenti che consentono di osservare e — su scelta dell\'utente — applicare la strategia in modo sistematico. Non è un bot, non è un servizio di investimento.',
+    answer: 'El Dorado è una piattaforma educativa e tecnologica per chi vuole comprendere i mercati finanziari e applicare una strategia operativa strutturata. Unisce formazione sulla visione Smart Money con strumenti che consentono all\'utente di osservare e applicare la strategia in modo sistematico, utilizzando il nostro sistema per eseguirla anche in maniera automatizzata. Non è un servizio di investimento.',
   },
   {
     id: 'smart-money',
@@ -158,6 +161,52 @@ const features = [
     icon: TrendingUp,
     title: 'Processo, Non Profitto',
     desc: 'Non promettiamo guadagni. Promettiamo coerenza operativa. Il risultato di lungo periodo dipende dall\'applicazione disciplinata di un metodo — non da previsioni o fortuna.',
+  },
+]
+
+/* ─── Learning Modules ──────────────────────────────────── */
+const learningModules = [
+  {
+    num: '01', free: true, level: 'Principiante', lessons: 8,
+    title: 'Fondamenti del Mercato',
+    desc: 'Le basi per leggere il mercato prima di qualsiasi operazione.',
+    topics: ['XAU/USD e il mercato dell\'oro', 'Sessioni di mercato (Londra, New York)', 'Lettura del grafico a candele', 'Spread, leva e margine'],
+  },
+  {
+    num: '02', free: true, level: 'Principiante', lessons: 10,
+    title: 'Smart Money Concept',
+    desc: 'Capisci come operano gli istituzionali e perché il retail perde.',
+    topics: ['Chi sono gli Smart Money', 'Market Structure: HH, HL, LH, LL', 'Break of Structure e CHoCH', 'Retail vs Istituzionale: la differenza reale'],
+  },
+  {
+    num: '03', free: false, level: 'Intermedio', lessons: 9,
+    title: 'Liquidità e Order Flow',
+    desc: 'I meccanismi che muovono davvero i prezzi.',
+    topics: ['Equal Highs e Lows: dove sono gli stop', 'Stop Hunt e falsi breakout', 'Fair Value Gap e imbalance', 'Order Block: la zona istituzionale'],
+  },
+  {
+    num: '04', free: false, level: 'Intermedio', lessons: 8,
+    title: 'Punti di Entrata ad Alto R/R',
+    desc: 'Identificare le entrate con il miglior rapporto rischio/rendimento.',
+    topics: ['Premium e Discount Zone', 'Confluenza multi-timeframe', 'Point of Interest (POI)', 'Ottimizzare il rapporto R/R'],
+  },
+  {
+    num: '05', free: false, level: 'Intermedio', lessons: 7,
+    title: 'Risk Management',
+    desc: 'La componente più importante — indipendentemente dalla strategia.',
+    topics: ['Dimensionamento della posizione', 'Stop Loss basato sulla struttura', 'Take Profit multipli e Break Even', 'Gestione del drawdown'],
+  },
+  {
+    num: '06', free: false, level: 'Avanzato', lessons: 8,
+    title: 'Gold Scalping — Applicazione',
+    desc: 'Scalping su XAU/USD con setup ad alta probabilità.',
+    topics: ['Timing sulle sessioni operative', 'Setup su XAU/USD in dettaglio', 'Gestione dell\'operazione in live', 'Analisi post-trade e statistiche'],
+  },
+  {
+    num: '07', free: false, level: 'Pratica', lessons: 5,
+    title: 'Il Sistema El Dorado',
+    desc: 'Dalla teoria alla pratica reale, con la piattaforma.',
+    topics: ['Collegare il conto demo', 'Monitorare dalla dashboard', 'Win rate, equity curve, performance', 'Da demo a live: quando fare il passo'],
   },
 ]
 
@@ -280,7 +329,7 @@ export default function LandingPage() {
             <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
             <div>
               <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>El Dorado</span>
-              <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>Metodo · Disciplina · XAU/USD</div>
+              <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>EA Solution</div>
             </div>
           </div>
 
@@ -288,10 +337,10 @@ export default function LandingPage() {
           <div className="hidden md:flex items-center gap-8">
             {[
               { label: 'Metodo', href: '/metodo' },
+              { label: 'Impara', href: '#impara' },
               { label: 'Come Funziona', href: '#how' },
               { label: 'Performance', href: '#performance' },
               { label: 'Pricing', href: '#pricing' },
-              { label: 'FAQ', href: '#faq' },
             ].map((link) => (
               <a key={link.href} href={link.href}
                 className="text-sm font-medium transition-all duration-200 hover:opacity-100"
@@ -392,7 +441,7 @@ export default function LandingPage() {
           {/* Live badge */}
           <div className="eldorado-badge">
             <div className="live-dot" style={{ width: 6, height: 6 }} />
-            Team di Trader · Disciplina Operativa · XAU/USD
+            EA Solution · AI-Powered · XAU/USD
           </div>
 
           {/* ── Refined title ── */}
@@ -407,11 +456,11 @@ export default function LandingPage() {
           </div>
 
           <p className="eldorado-subtitle mt-2 mb-3">
-            Elimina l&apos;emotività. Esegui con disciplina.
+            Un nuovo approccio al trading.
           </p>
           <p className="text-sm mb-9 max-w-lg mx-auto text-center" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-            Creato da un team di trader per risolvere il problema principale del trading:{' '}
-            <span style={{ color: 'var(--gold)', opacity: 0.9 }}>l&apos;essere umano è il punto debole nell&apos;esecuzione della strategia.</span>
+            Tecnologia, metodo e intelligenza artificiale per affrontare i mercati{' '}
+            <span style={{ color: 'var(--gold)', opacity: 0.9 }}>in modo moderno, disciplinato e consapevole.</span>
           </p>
 
           {/* Live gold price */}
@@ -616,6 +665,115 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ─── Learning System ────────────────────────────── */}
+      <section id="impara" className="py-24 px-4 sm:px-6 lg:px-8 relative">
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--surface-overlay)' }} />
+        <div className="relative max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="section-label mb-3">Sistema di Apprendimento</div>
+            <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
+              Impara davvero a fare trading.
+            </h2>
+            <p className="max-w-2xl mx-auto text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              Un percorso strutturato e progressivo — dalle basi ai concetti avanzati.
+              Pensa come gli istituzionali. Approccio Smart Money.
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center mt-6">
+              {['Approccio Smart Money', 'Pensa come gli istituzionali', 'Dai fondamenti all\'applicazione reale'].map(tag => (
+                <span key={tag} className="text-xs font-semibold px-3 py-1 rounded-full"
+                  style={{ background: 'rgba(240,180,41,0.1)', border: '1px solid rgba(240,180,41,0.2)', color: 'var(--gold)' }}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {learningModules.map((mod, i) => (
+              <div key={mod.num}
+                className="card-premium p-5 flex flex-col animate-fade-in-up"
+                style={{ animationDelay: `${i * 60}ms`, opacity: mod.free ? 1 : 0.85 }}>
+                {/* Header */}
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{ background: 'rgba(240,180,41,0.1)', border: '1px solid rgba(240,180,41,0.2)' }}>
+                      <BookOpen className="w-4 h-4" style={{ color: 'var(--gold)' }} />
+                    </div>
+                    <span className="text-[10px] font-bold tracking-widest uppercase"
+                      style={{ color: mod.free ? 'var(--green)' : 'var(--text-muted)' }}>
+                      {mod.free ? 'Gratuito' : 'Accesso'}
+                    </span>
+                  </div>
+                  <span className="text-2xl font-black font-mono" style={{ opacity: 0.1, color: 'var(--gold)' }}>
+                    {mod.num}
+                  </span>
+                </div>
+
+                {/* Level badge */}
+                <span className="self-start text-[9px] font-bold tracking-widest uppercase px-2 py-0.5 rounded mb-3"
+                  style={{
+                    background: mod.level === 'Principiante' ? 'rgba(0,230,118,0.1)' : mod.level === 'Avanzato' ? 'rgba(240,180,41,0.1)' : mod.level === 'Pratica' ? 'rgba(155,93,229,0.1)' : 'rgba(240,180,41,0.08)',
+                    color: mod.level === 'Principiante' ? 'var(--green)' : 'var(--gold)',
+                    border: `1px solid ${mod.level === 'Principiante' ? 'rgba(0,230,118,0.2)' : 'rgba(240,180,41,0.2)'}`,
+                  }}>
+                  {mod.level}
+                </span>
+
+                {/* Title & desc */}
+                <h3 className="font-bold mb-1" style={{ color: 'var(--text-primary)' }}>{mod.title}</h3>
+                <p className="text-xs leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>{mod.desc}</p>
+
+                {/* Topics */}
+                <ul className="space-y-1.5 flex-1">
+                  {mod.topics.map((t, j) => (
+                    <li key={j} className="flex items-start gap-1.5 text-[11px]" style={{ color: 'var(--text-muted)' }}>
+                      <span className="mt-0.5 flex-shrink-0" style={{ color: 'var(--gold)', opacity: 0.6 }}>·</span>
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Footer */}
+                <div className="flex items-center justify-between mt-4 pt-3" style={{ borderTop: '1px solid var(--border)' }}>
+                  <span className="text-[10px]" style={{ color: 'var(--text-muted)' }}>
+                    {mod.lessons} lezioni
+                  </span>
+                  {mod.free
+                    ? <span className="text-[10px] font-semibold flex items-center gap-1" style={{ color: 'var(--green)' }}>
+                        <Play className="w-3 h-3" /> Inizia
+                      </span>
+                    : <span className="text-[10px] flex items-center gap-1" style={{ color: 'var(--text-muted)' }}>
+                        <Lock className="w-3 h-3" /> Sblocca
+                      </span>
+                  }
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTAs */}
+          <div className="text-center mt-12 space-y-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/auth/register" className="btn-gold text-sm px-8 py-3 rounded-xl">
+                <GraduationCap className="w-4 h-4" />
+                Inizia a Imparare Gratuitamente
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link href="/metodo"
+                className="inline-flex items-center gap-2 text-sm font-semibold px-8 py-3 rounded-xl transition-all"
+                style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
+                <BookOpen className="w-4 h-4" />
+                Scopri la Strategia
+              </Link>
+            </div>
+            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+              I primi 2 moduli sono completamente gratuiti. Nessuna carta richiesta.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ─── Performance Section ────────────────────────── */}
       <section id="performance" className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
@@ -717,10 +875,10 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <div className="section-label mb-3">Perché El Dorado</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
-              Non è un bot che guadagna per te.<br className="hidden sm:block" />È la disciplina che ti mancava.
+              Esperienza operativa.<br className="hidden sm:block" />Potenziata dall&apos;intelligenza artificiale.
             </h2>
             <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Riduzione dell&apos;emotività. Disciplina operativa. Approccio sistematico. Educazione + applicazione pratica. Protezione dagli errori più comuni.
+              L&apos;unione tra esperienza reale sui mercati, competenze di programmazione e intelligenza artificiale per creare un sistema con impatto concreto nel trading moderno.
             </p>
           </div>
 
@@ -979,7 +1137,7 @@ export default function LandingPage() {
                 <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
                 <div>
                   <span className="font-bold text-gradient-gold">El Dorado</span>
-                  <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>Metodo · Disciplina · XAU/USD</div>
+                  <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>EA Solution</div>
                 </div>
               </div>
               <p className="text-sm leading-relaxed max-w-xs" style={{ color: 'var(--text-secondary)' }}>
