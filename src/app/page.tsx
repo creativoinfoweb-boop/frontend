@@ -280,7 +280,7 @@ export default function LandingPage() {
             <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
             <div>
               <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>El Dorado</span>
-              <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>Automazione Trading</div>
+              <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>Metodo · Disciplina · XAU/USD</div>
             </div>
           </div>
 
@@ -500,30 +500,31 @@ export default function LandingPage() {
             <div className="section-label mb-3">Il Vero Problema del Trading</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
               Il problema non è la strategia.<br className="hidden sm:block" />
-              Sei tu nell&apos;esecuzione.
+              È la disciplina nell&apos;eseguirla.
             </h2>
             <p className="max-w-2xl mx-auto text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              L&apos;85% dei trader perde non per mancanza di una strategia — ma per incapacità di seguirla
-              in modo coerente. Paura, avidità, impulsività: l&apos;essere umano è il punto debole nell&apos;esecuzione.
+              La ricerca sul trading retail indica che la maggior parte delle perdite deriva
+              dall&apos;interferenza emotiva nell&apos;esecuzione — non dalla qualità della strategia.
+              Emotività, impulsività e incostanza sono le barriere principali al risultato.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-5">
             {[
               {
-                icon: TrendingUp, color: '#FF3D71',
-                title: 'Emotività',
-                desc: 'Chiudi troppo presto per paura. Lasci correre le perdite sperando in un recupero. Ogni decisione presa sotto pressione peggiora il risultato finale.',
+                icon: TrendingUp, color: 'var(--gold)',
+                title: 'Interferenza Emotiva',
+                desc: 'Chiusure anticipate per timore, perdite lasciate correre in attesa di recupero. Le decisioni prese sotto pressione emotiva producono sistematicamente risultati inferiori al potenziale della strategia.',
               },
               {
                 icon: Zap, color: 'var(--gold)',
-                title: 'Impulsività',
-                desc: 'Overtrading, revenge trading, inseguire il mercato dopo un\'entrata mancata. Comportamenti prevedibili e devastanti — che nessuna strategia può compensare.',
+                title: 'Comportamento Impulsivo',
+                desc: 'Overtrading e inseguimento del mercato sono le cause più documentate di performance negative. Ogni operazione fuori dal piano introduce un edge atteso negativo sul risultato complessivo.',
               },
               {
-                icon: Activity, color: 'var(--green)',
-                title: 'Incostanza',
-                desc: 'Una strategia cambiata ogni settimana non è una strategia. L\'edge statistico esiste solo se la strategia viene applicata con coerenza su centinaia di operazioni.',
+                icon: Activity, color: 'var(--gold)',
+                title: 'Incostanza Operativa',
+                desc: 'L\'edge statistico di un metodo si manifesta su centinaia di operazioni coerenti, non su singoli trade. Una strategia modificata frequentemente non può esprimere il proprio potenziale.',
               },
             ].map((item, i) => (
               <div key={i} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
@@ -576,25 +577,28 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 relative">
-            <div className="hidden md:block absolute top-12 left-[calc(33.33%+1.5rem)] right-[calc(33.33%+1.5rem)] h-px"
-              style={{ background: 'linear-gradient(90deg, transparent, var(--border-gold), transparent)' }} />
+          <div className="grid md:grid-cols-4 gap-6 relative">
 
             {[
               {
                 num: '01', icon: Globe,
                 title: 'Studia il Metodo',
-                desc: 'Accedi alla sezione educativa: liquidità, Smart Money, sessioni, risk management. Comprendi prima di agire.',
+                desc: 'Accedi alla sezione educativa: liquidità, Smart Money, sessioni, risk management. Comprendi le logiche prima di agire.',
               },
               {
                 num: '02', icon: Layers,
                 title: 'Osserva in Demo',
-                desc: 'Collega un conto demo MT5. Vedi la strategia applicata in condizioni reali, senza rischio. Studia ogni operazione.',
+                desc: 'Collega un conto demo MT5. Osserva la strategia applicata in condizioni reali di mercato senza rischio di capitale.',
               },
               {
                 num: '03', icon: Activity,
                 title: 'Decidi in Autonomia',
-                desc: 'Quando hai piena comprensione, sei libero di passare al conto live configurando rischio e parametri come vuoi tu.',
+                desc: 'Quando hai piena comprensione del funzionamento, configuri rischio e parametri. Sei tu a decidere se e quando passare al live.',
+              },
+              {
+                num: '04', icon: BarChart3,
+                title: 'Monitora dalla Dashboard',
+                desc: 'La tua dashboard personale mostra in tempo reale: operazioni eseguite, win rate, equity curve, performance storiche. Tutti i dati per crescere e diventare progressivamente autonomo.',
               },
             ].map((step, i) => (
               <div key={i} className="card-premium p-8 animate-fade-in-up" style={{ animationDelay: `${i * 150}ms` }}>
@@ -828,9 +832,9 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-3 gap-5">
             {[
-              { name: 'Marco R.', role: 'Smart Trader in formazione', avatar: 'MR', text: 'Ho capito la logica Smart Money studiando il metodo. Vedere la strategia applicata in demo per settimane mi ha dato la chiarezza per passare al live con consapevolezza.', stars: 5, profit: '+312 pips*' },
-              { name: 'Sofia L.', role: 'Apprendista analisi tecnica', avatar: 'SL', text: 'La sezione educativa vale da sola. Finalmente capisco perché il mercato si muove — non mi baso più su indicator senza logica. Trasparenza totale.', stars: 5, profit: '+198 pips*' },
-              { name: 'Andrea M.', role: 'Trader in affinamento', avatar: 'AM', text: 'La strategia viene eseguita coerentemente mentre lavoro. Nessuna emotività, nessuna modifica impulsiva. È quello che mancava alla mia operatività.', stars: 5, profit: '+445 pips*' },
+              { name: 'Marco R.', role: 'Trader — XAU/USD', avatar: 'MR', text: 'Finalmente capisco perché il mercato si muove. La sezione educativa ha cambiato il mio approccio all\'analisi: so quando aprire posizioni e soprattutto quando non farlo.', stars: 5, profit: '+312 pips*' },
+              { name: 'Sofia L.', role: 'Trader — XAU/USD', avatar: 'SL', text: 'Non mi baso più su indicatori senza logica. Ho capito le dinamiche istituzionali e osservo il mercato in modo completamente diverso. Trasparenza totale sul funzionamento.', stars: 5, profit: '+198 pips*' },
+              { name: 'Andrea M.', role: 'Trader — XAU/USD', avatar: 'AM', text: 'La strategia viene applicata in modo coerente. Ho accesso a tutti i dati dalla dashboard: performance, win rate, operazioni. Riesco a monitorare e imparare dalla mia operatività.', stars: 5, profit: '+445 pips*' },
             ].map((t, i) => (
               <div key={t.name} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
                 <div className="flex gap-1 mb-4">
@@ -937,8 +941,9 @@ export default function LandingPage() {
           </h2>
 
           <p className="text-lg mb-10 max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            Abbiamo costruito questo sistema per noi stessi — per eliminare gli errori emotivi dalla nostra operatività.
-            Testato, ottimizzato, poi condiviso. 7 giorni gratuiti — nessuna carta richiesta.
+            Un sistema sviluppato per uso operativo interno, validato su centinaia di operazioni reali
+            e reso accessibile a chi condivide un approccio disciplinato ai mercati.
+            7 giorni gratuiti — nessuna carta richiesta.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -974,7 +979,7 @@ export default function LandingPage() {
                 <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
                 <div>
                   <span className="font-bold text-gradient-gold">El Dorado</span>
-                  <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>Automazione Trading</div>
+                  <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>Metodo · Disciplina · XAU/USD</div>
                 </div>
               </div>
               <p className="text-sm leading-relaxed max-w-xs" style={{ color: 'var(--text-secondary)' }}>

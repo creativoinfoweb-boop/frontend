@@ -85,39 +85,38 @@ export default function MetodoPage() {
           </div>
         </div>
 
-        {/* ── 0. La Storia ── */}
+        {/* ── 0. Origine del Sistema ── */}
         <section className="space-y-6">
           <div>
-            <SectionLabel>00 — Chi Siamo e Perché Esiste Questo Sistema</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-black mb-3">Costruito per noi stessi. Poi condiviso.</h2>
+            <SectionLabel>00 — Origine del Sistema</SectionLabel>
+            <h2 className="text-2xl sm:text-3xl font-black mb-3">Un sistema sviluppato per uso operativo interno</h2>
             <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              El Dorado non nasce come prodotto commerciale. Nasce da un problema reale che noi — un team di trader —
-              avevamo nella nostra operatività quotidiana: l&apos;incapacità di eseguire una strategia in modo coerente
-              quando entravano in gioco paura, avidità e pressione emotiva.
+              El Dorado nasce come strumento interno sviluppato per ottimizzare i processi operativi e ridurre
+              le inefficienze legate alla gestione manuale delle strategie di trading su XAU/USD.
             </p>
             <p className="text-base leading-relaxed mt-3" style={{ color: 'var(--text-secondary)' }}>
-              Conoscevamo la strategia. Sapevamo cosa fare. Ma nell&apos;esecuzione commettevamo gli stessi errori
-              ripetutamente: chiudevamo troppo presto, lasciavamo correre le perdite, modificavamo i piani a mercato
-              aperto. Il problema non era la tecnica — era la psicologia.
+              Nel trading esistono barriere ricorrenti e documentate che influenzano negativamente l&apos;esecuzione:
+              interferenza emotiva, mancanza di disciplina operativa, gestione del rischio errata, incostanza
+              nell&apos;applicazione del metodo. L&apos;obiettivo del sistema era ridurre queste variabili, aumentando
+              la coerenza esecutiva attraverso regole predefinite e parametri strutturati.
             </p>
             <p className="text-base leading-relaxed mt-3" style={{ color: 'var(--text-secondary)' }}>
-              Così abbiamo costruito uno strumento interno per eliminare quella variabile. Abbiamo testato, ottimizzato,
-              misurato i risultati nel tempo. Solo quando il sistema ha dimostrato di funzionare nella nostra operatività
-              reale, abbiamo deciso di renderlo disponibile ad altri trader.
+              Il sistema è stato validato su operatività reale nel tempo, ottimizzato iterativamente, e reso
+              successivamente accessibile a trader che condividono lo stesso approccio disciplinato ai mercati.
             </p>
           </div>
           <div className="grid sm:grid-cols-3 gap-4">
-            <InfoCard title="Creato internamente" accent="blue">
-              Non è un prodotto costruito da sviluppatori senza esperienza di mercato. Nasce dall&apos;operatività
-              reale di un team di trader che ha vissuto in prima persona i problemi che questo sistema risolve.
+            <InfoCard title="Origine operativa" accent="gold">
+              Il sistema nasce dall&apos;esigenza di ottimizzare un&apos;operatività reale su XAU/USD, non come
+              prodotto commerciale. L&apos;approccio è strutturato attorno a regole operative definite e misurabili.
             </InfoCard>
-            <InfoCard title="Testato nel tempo" accent="gold">
-              Prima di essere condiviso, il sistema è stato usato internamente per migliorare disciplina e
-              performance. I risultati sono stati misurati su centinaia di operazioni reali.
+            <InfoCard title="Validazione empirica" accent="gold">
+              Prima di essere reso disponibile, il sistema è stato applicato e misurato su centinaia di operazioni
+              reali. I parametri sono stati ottimizzati sulla base di dati storici verificabili.
             </InfoCard>
-            <InfoCard title="Poi condiviso" accent="green">
-              Solo dopo aver verificato il valore per noi stessi, abbiamo deciso di renderlo accessibile.
-              Non è marketing — è la sequenza cronologica reale di come questo sistema è nato.
+            <InfoCard title="Accesso esteso" accent="gold">
+              Dopo la fase di validazione interna, il sistema è stato reso accessibile a trader che intendono
+              applicare un approccio strutturato e disciplinato ai mercati finanziari.
             </InfoCard>
           </div>
         </section>
@@ -160,14 +159,14 @@ export default function MetodoPage() {
 
           <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { color: '#FF3D71', title: '❌ Chiudere troppo presto', desc: 'Per paura di perdere un profitto già aperto, si chiude prima del target. Il risultato: prendi piccoli guadagni ma lasci intatti i grandi potenziali.' },
-              { color: '#FF3D71', title: '❌ Lasciare correre le perdite', desc: 'La speranza che il mercato torni ti porta a non rispettare lo stop loss. Una piccola perdita diventa grande. È l\'errore più costoso e il più comune.' },
-              { color: '#FF8C00', title: '❌ Overtrading', desc: 'Operare in eccesso per recuperare perdite o per "essere presenti sul mercato". Ogni trade non pianificato è statisticamente in perdita attesa.' },
-              { color: '#FF8C00', title: '❌ Inseguire il mercato', desc: 'Entrare su un movimento già avviato per paura di perderselo. Si compra al massimo, si vende al minimo. L\'impulsività è sempre penalizzata dal mercato.' },
+              { title: 'Chiudere troppo presto', desc: 'Per timore di perdere un profitto già aperto, si esce prima del target. Il risultato statistico: profitti medi ridotti, perdita dei movimenti più significativi.' },
+              { title: 'Lasciare correre le perdite', desc: 'La speranza di un recupero porta a non rispettare lo stop loss predefinito. Una perdita contenuta diventa rilevante. È l\'errore più frequente e più costoso in termini di capitale.' },
+              { title: 'Overtrading', desc: 'Operare al di fuori delle condizioni pianificate — per recuperare perdite o per reazione al mercato. Ogni operazione non pianificata introduce un edge negativo atteso sul risultato finale.' },
+              { title: 'Inseguire il mercato', desc: 'Entrare su un movimento già avviato produce slippage e timing sfavorevole. L\'impulsività nell\'esecuzione è strutturalmente penalizzante rispetto all\'applicazione disciplinata di un piano.' },
             ].map((item) => (
               <div key={item.title} className="rounded-xl p-5"
-                style={{ background: 'rgba(255,61,113,0.04)', border: `1px solid rgba(255,61,113,0.12)` }}>
-                <p className="text-sm font-bold mb-2" style={{ color: item.color }}>{item.title}</p>
+                style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
+                <p className="text-sm font-bold mb-2" style={{ color: 'var(--text-primary)' }}>{item.title}</p>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
               </div>
             ))}
@@ -197,7 +196,7 @@ export default function MetodoPage() {
             {[
               {
                 icon: Target,
-                color: '#00C2FF',
+                color: 'var(--gold)',
                 title: 'Liquidità',
                 desc: 'I mercati si muovono dove c\'è liquidità: livelli di prezzo dove si concentrano ordini di stop loss e take profit. Conoscere questi livelli aiuta a comprendere i movimenti apparentemente irrazionali.',
               },
@@ -215,7 +214,7 @@ export default function MetodoPage() {
               },
               {
                 icon: BarChart3,
-                color: '#9B5DE5',
+                color: 'var(--gold)',
                 title: 'Volatilità e Contesto',
                 desc: 'La volatilità non è casuale: dipende da eventi macro, dati economici, sentiment. Operare nel contesto giusto — e astenersi in quello sbagliato — è parte essenziale della gestione del rischio.',
               },
@@ -247,7 +246,7 @@ export default function MetodoPage() {
           </div>
 
           <div className="space-y-4">
-            <InfoCard title="Analisi del contesto" accent="blue">
+            <InfoCard title="Analisi del contesto" accent="gold">
               Prima di ogni sessione operativa, il sistema verifica le condizioni di mercato: trend di breve periodo,
               livelli di supporto/resistenza significativi, eventi macroeconomici imminenti. In assenza di condizioni
               chiare, il sistema non opera. La qualità è sempre prioritaria sulla quantità.
@@ -301,7 +300,7 @@ export default function MetodoPage() {
           </div>
 
           <div className="grid sm:grid-cols-3 gap-4">
-            <InfoCard title="Rischio 1% — Conservativo" accent="blue">
+            <InfoCard title="Rischio 1% — Conservativo" accent="gold">
               Perdita massima per operazione: 1% del capitale. Adatto a chi vuole crescita lenta e protezione
               del capitale. Capitale consigliato: min. 3.000€ per il corretto funzionamento dei TP multipli.
             </InfoCard>
@@ -309,13 +308,13 @@ export default function MetodoPage() {
               Compromesso tra protezione e rendimento. Perdita max per operazione: 2%. Capitale consigliato:
               min. 2.000€. La scelta più comune per chi inizia con un conto reale dopo la fase demo.
             </InfoCard>
-            <InfoCard title="Rischio 3% — Aggressivo" accent="red">
+            <InfoCard title="Rischio 3% — Aggressivo" accent="gold">
               Rendimento potenziale maggiore ma drawdown più elevato. Non consigliato a chi non ha
               esperienza nella gestione delle perdite emotive. Solo per profili con alta tolleranza al rischio.
             </InfoCard>
           </div>
 
-          <InfoCard title="Capitale insufficiente — cosa succede" accent="red">
+          <InfoCard title="Capitale insufficiente — cosa succede" accent="gold">
             Se il capitale è troppo basso rispetto al rischio impostato, il lotto risultante sarà 0.01
             (il minimo di mercato). In questo caso non è possibile frazionare la posizione per i TP multipli,
             il modello rischio/rendimento cambia e il sistema non replica fedelmente la strategia.
@@ -323,8 +322,8 @@ export default function MetodoPage() {
           </InfoCard>
 
           <div className="rounded-2xl p-6 space-y-4"
-            style={{ background: 'rgba(155,93,229,0.05)', border: '1px solid rgba(155,93,229,0.2)' }}>
-            <p className="font-bold" style={{ color: '#C4A8FF' }}>
+            style={{ background: 'rgba(240,180,41,0.04)', border: '1px solid rgba(240,180,41,0.15)' }}>
+            <p className="font-bold" style={{ color: 'var(--gold)' }}>
               Perché alcuni parametri sono limitati volutamente
             </p>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
@@ -345,7 +344,7 @@ export default function MetodoPage() {
               </div>
               <div className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                 <strong style={{ color: 'var(--text-primary)' }}>1%-2%</strong> per la maggior parte degli utenti.{' '}
-                <strong style={{ color: '#FF8C00' }}>3%</strong> è già considerato aggressivo — il drawdown emotivo
+                <strong style={{ color: 'var(--gold)' }}>3%</strong> è già considerato aggressivo — il drawdown emotivo
                 diventa difficilmente gestibile sopra questa soglia. Inizia conservativo: è più facile aumentare il
                 rischio quando capisci il sistema che ridurlo dopo una perdita importante.
               </div>
@@ -357,20 +356,20 @@ export default function MetodoPage() {
         <section className="space-y-6">
           <div>
             <SectionLabel>05 — Psicologia del Trading</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-black mb-3">L'emotività è il nemico principale</h2>
+            <h2 className="text-2xl sm:text-3xl font-black mb-3">L&apos;interferenza emotiva come variabile critica</h2>
             <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              La maggior parte dei trader non perde per mancanza di una buona strategia —
-              perde per incapacità di seguire il proprio piano. Paura, avidità, revenge trading,
-              overtrading: sono comportamenti umani prevedibili e devastanti per i risultati.
+              La ricerca sul comportamento dei trader retail indica che la componente psicologica —
+              interferenza emotiva, mancanza di disciplina, reazioni impulsive al mercato —
+              rappresenta la principale causa di risultati negativi, indipendentemente dalla qualità della strategia.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { icon: Brain, color: '#9B5DE5', title: 'Il Piano Prima di Tutto', desc: 'Una strategia applicata con coerenza al 70% batte un\'ottima strategia applicata in modo incostante. La disciplina vale più dell\'intelligenza.' },
-              { icon: Shield, color: 'var(--gold)', title: 'Non Cambiare le Regole a Mercato Aperto', desc: 'Le decisioni devono essere prese a mercato chiuso, quando si è lucidi. Mai spostare stop loss per evitare una perdita — è il modo più veloce per trasformare una piccola perdita in una grande.' },
-              { icon: AlertTriangle, color: '#FF3D71', title: 'Il Drawdown È Normale', desc: 'Qualsiasi sistema attraversa periodi negativi. L\'importante non è eliminare il drawdown — impossibile — ma avere un sistema con un edge statistico nel lungo periodo e la disciplina di seguirlo.' },
-              { icon: Target, color: 'var(--green)', title: 'Coerenza Operativa', desc: 'Il valore di un sistema si misura su centinaia di operazioni, non sulle singole. Valutare un metodo su 5 o 10 trade è statisticamente irrilevante. Ci vuole tempo e pazienza.' },
+              { icon: Brain, color: 'var(--gold)', title: 'Il Piano Prima di Tutto', desc: 'Una strategia applicata con coerenza al 70% produce risultati migliori di un\'ottima strategia applicata in modo incostante. La disciplina esecutiva è il fattore differenziale.' },
+              { icon: Shield, color: 'var(--gold)', title: 'Decisioni a Mercato Chiuso', desc: 'Le regole operative devono essere definite prima che il mercato apra, in condizioni di lucidità. Modificare stop loss o target durante la sessione è una risposta emotiva, non strategica.' },
+              { icon: AlertTriangle, color: 'var(--gold)', title: 'Il Drawdown è Fisiologico', desc: 'Qualsiasi sistema registra periodi negativi. La variabile rilevante non è l\'assenza di drawdown — è la presenza di un edge statistico positivo nel lungo periodo e la disciplina di mantenerlo.' },
+              { icon: Target, color: 'var(--gold)', title: 'Coerenza Operativa', desc: 'Il valore di un metodo si misura su centinaia di operazioni, non su singoli trade. Valutare una strategia su 5 o 10 operazioni è statisticamente insufficiente e porta a decisioni errate.' },
             ].map((item) => (
               <div key={item.title} className="rounded-xl p-5"
                 style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
@@ -400,7 +399,7 @@ export default function MetodoPage() {
           </div>
 
           <div className="grid sm:grid-cols-3 gap-4">
-            <InfoCard title="Esegue senza esitazioni" accent="blue">
+            <InfoCard title="Esegue senza esitazioni" accent="gold">
               Il sistema apre, gestisce e chiude le posizioni esattamente come hai configurato,
               senza esitazioni, senza cambiare idea a metà strada, senza lasciarsi influenzare
               dall&apos;andamento momentaneo del mercato. La paura non entra nell&apos;equazione.
@@ -417,7 +416,7 @@ export default function MetodoPage() {
             </InfoCard>
           </div>
 
-          <InfoCard title="Cosa il sistema non può fare" accent="red">
+          <InfoCard title="Cosa il sistema non può fare" accent="gold">
             Il sistema non può prevedere il futuro, garantire profitti, eliminare il rischio di perdita
             o sostituire la comprensione del mercato. Un sistema applicato senza comprensione
             è pericoloso quanto operare manualmente senza un piano. Per questo l&apos;educazione viene prima.
@@ -437,46 +436,46 @@ export default function MetodoPage() {
 
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="rounded-2xl p-6 space-y-4"
-              style={{ background: 'rgba(255,61,113,0.04)', border: '1px solid rgba(255,61,113,0.15)' }}>
-              <p className="font-bold text-sm" style={{ color: '#FF6B6B' }}>❌ Problemi dei segnali</p>
+              style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
+              <p className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>Approccio basato su segnali — criticità strutturali</p>
               <ul className="space-y-3">
                 {[
-                  'Ritardo nell\'esecuzione: entri dopo il segnale, spread e slippage ti penalizzano',
-                  'Mancanza di contesto: ricevi l\'azione ma non capisci perché — e non sai quando uscire',
-                  'Qualità incerta: chi manda il segnale? Con quale edge statistico verificato?',
-                  'Nessuna gestione del rischio integrata: lo stop loss lo devi mettere tu, manualmente',
-                  'Dipendenza totale dall\'utente: ogni decisione di entrata/uscita richiede la tua azione',
+                  'Ritardo nell\'esecuzione: il trader entra dopo il segnale, con slippage e timing sfavorevole',
+                  'Assenza di contesto: si riceve l\'azione operativa senza comprenderne la logica sottostante',
+                  'Qualità non verificabile: l\'edge statistico del fornitore raramente è documentato e auditabile',
+                  'Nessuna gestione del rischio integrata: stop loss e dimensionamento sono a carico dell\'utente',
+                  'Esecuzione totalmente manuale: ogni operazione richiede intervento diretto e tempestivo',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
-                    <span className="flex-shrink-0 mt-0.5" style={{ color: '#FF3D71' }}>—</span>
+                    <span className="flex-shrink-0 mt-0.5" style={{ color: 'var(--text-muted)' }}>–</span>
                     {item}
                   </li>
                 ))}
               </ul>
-              <p className="text-xs font-semibold pt-2" style={{ color: '#FF6B6B' }}>
-                Risultato: spesso si perde anche con segnali corretti, perché l&apos;esecuzione è inconsistente.
+              <p className="text-xs pt-2" style={{ color: 'var(--text-muted)' }}>
+                Risultato: probabilità elevata di errore operativo anche in presenza di segnali corretti.
               </p>
             </div>
 
             <div className="rounded-2xl p-6 space-y-4"
-              style={{ background: 'rgba(0,230,118,0.04)', border: '1px solid rgba(0,230,118,0.15)' }}>
-              <p className="font-bold text-sm" style={{ color: 'var(--green)' }}>✓ Il nostro approccio</p>
+              style={{ background: 'rgba(240,180,41,0.04)', border: '1px solid rgba(240,180,41,0.18)' }}>
+              <p className="font-bold text-sm" style={{ color: 'var(--gold)' }}>Approccio El Dorado — esecuzione disciplinata integrata</p>
               <ul className="space-y-3">
                 {[
-                  'Mostriamo la strategia completa: entrate, uscite, logica, contesto — non solo azioni',
-                  'Permettiamo osservazione reale in demo prima di qualsiasi decisione',
-                  'Applichiamo logiche di esecuzione coerenti su ogni operazione — senza ritardi',
-                  'Gestiamo stop loss, break-even, take profit multipli secondo logica predefinita',
-                  'Non richiediamo esecuzione manuale veloce: il sistema opera per te coerentemente',
+                  'Strategia completa: entrate, uscite, logica di gestione e contesto sono parte del sistema',
+                  'Osservazione reale in demo disponibile prima di qualsiasi utilizzo su conto live',
+                  'Esecuzione coerente su ogni operazione secondo parametri predefiniti, senza ritardi',
+                  'Gestione integrata di stop loss, break-even e take profit multipli secondo logica strategica',
+                  'Nessuna esecuzione manuale richiesta: il sistema applica il piano in modo autonomo',
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
-                    <span className="flex-shrink-0 mt-0.5" style={{ color: 'var(--green)' }}>✓</span>
+                    <span className="flex-shrink-0 mt-0.5" style={{ color: 'var(--gold)' }}>·</span>
                     {item}
                   </li>
                 ))}
               </ul>
-              <p className="text-xs font-semibold pt-2" style={{ color: 'var(--green)' }}>
-                Non forniamo segnali. Non lasciamo l&apos;utente solo nell&apos;esecuzione.
+              <p className="text-xs pt-2" style={{ color: 'var(--text-muted)' }}>
+                Non forniamo segnali. Forniamo un sistema educativo e operativo integrato.
               </p>
             </div>
           </div>

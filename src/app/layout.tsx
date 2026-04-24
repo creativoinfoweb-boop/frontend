@@ -26,13 +26,13 @@ const cinzel = Cinzel({
 })
 
 export const metadata: Metadata = {
-  title: 'El Dorado — Automazione Trading XAU/USD',
-  description: 'Piattaforma di automazione per il trading su oro XAU/USD con MetaTrader 5. Strumenti configurabili, controllo completo, setup in 3 minuti.',
-  keywords: ['automazione trading', 'gold trading', 'XAU/USD', 'MetaTrader 5', 'forex', 'strumenti', 'El Dorado'],
+  title: 'El Dorado — Metodo, Disciplina e Strategia su XAU/USD',
+  description: 'Piattaforma educativa e operativa per trader su XAU/USD. Approccio disciplinato, riduzione interferenza emotiva, monitoraggio completo dalla dashboard personale.',
+  keywords: ['trading disciplinato', 'metodo trading', 'XAU/USD', 'MetaTrader 5', 'gold trading', 'strategia operativa', 'El Dorado'],
   authors: [{ name: 'El Dorado' }],
   openGraph: {
-    title: 'El Dorado — Automazione Trading XAU/USD',
-    description: 'Tasso di successo verificato 96%. Piattaforma di automazione su MetaTrader 5. Trial 7 giorni gratuito, nessuna carta richiesta.',
+    title: 'El Dorado — Metodo, Disciplina e Strategia su XAU/USD',
+    description: 'Piattaforma educativa e operativa su XAU/USD. Strategia applicata, riduzione emotività, dashboard personale con monitoraggio completo. Trial 7 giorni gratuito.',
     type: 'website',
     locale: 'it_IT',
   },

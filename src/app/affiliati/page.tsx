@@ -131,7 +131,7 @@ export default function AffiliatiPage() {
             <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
             <div>
               <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>El Dorado</span>
-              <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>Automazione Trading</div>
+              <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>Metodo · Disciplina · XAU/USD</div>
             </div>
           </Link>
 
@@ -578,7 +578,7 @@ export default function AffiliatiPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 30, height: 30 }} />
             <span className="font-bold" style={{ color: 'var(--text-primary)' }}>El Dorado</span>
-            <span className="text-xs" style={{ color: 'var(--text-muted)' }}>Automazione Trading</span>
+            <span className="text-xs" style={{ color: 'var(--text-muted)' }}>Metodo · Disciplina · XAU/USD</span>
           </div>
           <div className="flex items-center gap-6 text-sm">
             <Link href="/" style={{ color: 'var(--text-muted)' }}>Home</Link>

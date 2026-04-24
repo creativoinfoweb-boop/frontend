@@ -60,7 +60,7 @@ export default function LoginPage() {
           />
           <div className="brand-cinzel text-lg tracking-[0.2em] mb-1">EL DORADO</div>
           <p className="text-xs" style={{ color: 'rgba(110,110,140,0.7)' }}>
-            Automazione Trading su XAU/USD
+            Metodo · Disciplina · XAU/USD
           </p>
         </div>
 

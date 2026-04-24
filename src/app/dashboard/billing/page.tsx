@@ -185,7 +185,7 @@ function BillingContent() {
 
       <div>
         <h1 className="text-2xl font-black text-[var(--text-primary)]">Abbonamento</h1>
-        <p className="text-sm text-[var(--text-secondary)] mt-1">El Dorado Premium — Automazione Trading su XAU/USD</p>
+        <p className="text-sm text-[var(--text-secondary)] mt-1">El Dorado Premium — Piattaforma Educativa e Operativa XAU/USD</p>
       </div>
 
       {showPricingBlock && (
@@ -273,7 +273,7 @@ function BillingContent() {
               <img src="/eldorado.jpg" alt="El Dorado" style={{ width: 40, height: 40, borderRadius: '50%', border: '1.5px solid rgba(240,180,41,0.35)', objectFit: 'cover', objectPosition: 'top center' }} />
               <div>
                 <div className="font-bold text-[var(--text-primary)]">El Dorado Premium</div>
-                <div className="text-xs text-[var(--text-secondary)] mt-0.5">Automazione Trading XAU/USD · 1 conto MT5</div>
+                <div className="text-xs text-[var(--text-secondary)] mt-0.5">Piattaforma Educativa e Operativa XAU/USD · 1 conto MT5</div>
               </div>
             </div>
             <span className="badge-success">Attivo</span>
