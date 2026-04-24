@@ -119,7 +119,7 @@ export default function AccountsPage() {
         <div>
           <h1 className="text-2xl font-black" style={{ color: 'var(--text-primary)' }}>Account MT5</h1>
           <p className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>
-            Collega il tuo conto MetaTrader 5 per ricevere i trade in automatico
+            Collega il tuo conto MetaTrader 5 per applicare la strategia sul conto
           </p>
         </div>
         {!hasAccount && (
@@ -157,9 +157,9 @@ export default function AccountsPage() {
         <AlertTriangle className="w-4 h-4 text-[#FFD166] flex-shrink-0 mt-0.5" />
         <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
           <strong style={{ color: '#FFD166' }}>Conto dedicato:</strong> usa questo conto MT5{' '}
-          <em>esclusivamente</em> per la piattaforma di automazione. Operare manualmente sullo
-          stesso conto interferirebbe con le statistiche e potrebbe creare conflitti con le
-          posizioni gestite dal sistema.
+          <em>esclusivamente</em> per l'applicazione della strategia. Interventi manuali sullo
+          stesso conto possono compromettere la coerenza operativa della strategia e alterare le statistiche.
+          Evita operazioni manuali mentre la strategia è attiva.
         </p>
       </div>
 
@@ -455,7 +455,7 @@ export default function AccountsPage() {
                       )}
                     </button>
                     <p className="text-[10px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-                      Su Mac / senza bot VPS il test spesso fallisce: puoi comunque salvare — la verifica automatica è alle 10:00.
+                      Su Mac / senza sistema VPS il test spesso fallisce: puoi comunque salvare — la verifica automatica è alle 10:00.
                     </p>
                     {testMessage && (
                       <div

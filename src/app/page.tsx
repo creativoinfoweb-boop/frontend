@@ -72,80 +72,82 @@ const tickerFallback = [
 /* ─── FAQ items ───────────────────────────────────────── */
 const faqItems = [
   {
-    id: 'how-works',
-    question: 'Come funziona la piattaforma?',
-    answer: 'Registrati, inserisci le credenziali del tuo conto MT5 nel pannello Account, e il gioco è fatto. Il nostro server si collega direttamente al tuo broker e replica automaticamente ogni operazione — senza che tu debba aprire MT5, installare nulla o avere Windows.',
+    id: 'what-is',
+    question: 'Cos\'è El Dorado e a cosa serve?',
+    answer: 'El Dorado è una piattaforma educativa e tecnologica per chi vuole comprendere i mercati finanziari e applicare una strategia operativa strutturata. Unisce formazione sulla visione Smart Money con strumenti che consentono di osservare e — su scelta dell\'utente — applicare la strategia in modo sistematico. Non è un bot, non è un servizio di investimento.',
   },
   {
-    id: 'safety',
-    question: 'Come proteggi i miei dati?',
-    answer: 'Le tue credenziali MT5 vengono cifrate con Fernet AES-128 prima di essere salvate nel database. Non le leggiamo mai in chiaro. I pagamenti vengono gestiti da Stripe — non salviamo mai i dati della tua carta.',
+    id: 'smart-money',
+    question: 'Cos\'è la visione Smart Money?',
+    answer: 'Smart Money identifica l\'approccio dei grandi operatori istituzionali (banche, hedge fund, market maker) che muovono i mercati attraverso dinamiche di liquidità. Comprendere come si muovono questi player — dove raccolgono liquidità, come creano falsi breakout, quando entrano davvero — è la base della strategia che studiamo e applichiamo su XAU/USD.',
+    learnMoreUrl: '/metodo',
+    learnMoreLabel: 'Approfondisci il Metodo →',
+  },
+  {
+    id: 'demo',
+    question: 'Posso iniziare con un conto demo?',
+    answer: 'Assolutamente sì — ed è il percorso che consigliamo. Collega un conto demo MT5 del tuo broker, osserva come la strategia viene applicata in condizioni reali di mercato, studia le logiche operative e i parametri di rischio. Solo quando hai piena comprensione, decidi in autonomia se passare al conto live.',
   },
   {
     id: 'risks',
-    question: 'Ci sono rischi nell\'utilizzo della piattaforma?',
-    answer: 'Sì — come qualsiasi attività sui mercati finanziari. La piattaforma fornisce strumenti di automazione e supporto decisionale, ma non garantisce risultati. Dispone di controlli di rischio configurabili (stop loss, gestione posizione) che rimangono sempre sotto il tuo controllo. Non forniamo consulenza finanziaria. Ti consigliamo di partire con un conto demo e di non investire capitali che non puoi permetterti di perdere.',
+    question: 'Quali rischi devo considerare?',
+    answer: 'Il trading sui mercati finanziari comporta rischio reale di perdita del capitale. La piattaforma fornisce strumenti di supporto decisionale — non garantisce risultati. I parametri di rischio (stop loss, size, take profit) sono sempre impostati e controllati dall\'utente. Non forniamo consulenza finanziaria. Studia prima, testa in demo, poi decidi con consapevolezza.',
     learnMoreUrl: '/legal/terms',
     learnMoreLabel: 'Leggi Termini e Rischi completi →',
   },
   {
-    id: 'mt5-needed',
-    question: 'Devo avere MT5 aperto sul mio computer?',
-    answer: 'No. La piattaforma opera 100% lato server. Non serve MT5 sul tuo PC, non serve Windows, non serve nessun EA da installare. Hai bisogno solo di un conto MT5 attivo presso un broker — tutto il resto lo facciamo noi.',
+    id: 'how-works',
+    question: 'Come funziona tecnicamente la piattaforma?',
+    answer: 'Colleghi le credenziali del tuo conto MT5 (cifrate AES-128 — non le legge nessuno). La piattaforma applica la strategia sul conto secondo i parametri da te configurati: rischio per operazione, orari, strumenti. Non serve avere MT5 aperto sul PC. Importante: evita interventi manuali sul conto collegato, perché possono compromettere la coerenza operativa della strategia.',
   },
   {
-    id: 'trades-per-day',
-    question: 'Qual è la frequenza operativa?',
-    answer: "La piattaforma è impostata per identificare setup su XAU/USD generalmente in una fascia oraria dalle 10:30 alle 14:00, con frequenza variabile in base alle condizioni di mercato. La configurazione è sempre personalizzabile. Nessuna operazione è garantita.",
+    id: 'frequency',
+    question: 'Con quale frequenza opera la strategia?',
+    answer: 'La strategia opera su XAU/USD principalmente nella sessione di Londra/New York (10:30–14:00 CET), dove la liquidità e la volatilità istituzionale sono più elevate. La frequenza varia in base alle condizioni di mercato: qualità prima di quantità. In assenza di condizioni ottimali, la strategia non entra — e questo è un punto di forza, non un limite.',
   },
   {
     id: 'cancel',
     question: 'Posso cancellare quando voglio?',
-    answer: 'Sì, cancella il tuo abbonamento in qualsiasi momento senza costi nascosti o penalità. I trade già aperti rimangono nel tuo account MT5.',
+    answer: 'Sì, in qualsiasi momento senza penalità. Le operazioni già aperte rimangono sul tuo conto MT5 e puoi gestirle come preferisci. Non c\'è lock-in, non ci sono costi nascosti.',
   },
   {
     id: 'broker',
     question: 'Quale broker devo usare?',
-    answer: 'Qualsiasi broker MetaTrader 5 che offra XAU/USD (Oro). Consigliamo broker ECN con spread bassi come Exness, IC Markets o Pepperstone per ottimizzare i risultati.',
-  },
-  {
-    id: 'start',
-    question: 'Quanto tempo ci vuole per iniziare?',
-    answer: 'Circa 3 minuti: registrazione, inserisci login + password + server del tuo conto MT5 nel pannello Account. La nostra guida passo-passo ti accompagna in tutto.',
+    answer: 'Qualsiasi broker MetaTrader 5 che offra XAU/USD (Oro). Per l\'applicazione ottimale della strategia consigliamo broker ECN con spread ridotti come Exness, IC Markets o Pepperstone. Sia conti demo che live sono supportati.',
   },
 ]
 
 /* ─── Features — gold-only accent palette ──────────────── */
 const features = [
   {
-    icon: Shield,
-    title: 'Nessun Accesso ai Fondi',
-    desc: 'La piattaforma non gestisce né detiene fondi. Le tue credenziali MT5 sono cifrate AES-128. Tu mantieni il controllo completo.',
-  },
-  {
-    icon: Zap,
-    title: 'Automazione Configurabile',
-    desc: 'Imposti tu i parametri: rischio, orari, strumenti. Il sistema esegue esattamente quello che hai configurato — niente di più.',
-  },
-  {
     icon: BarChart3,
-    title: 'Analisi Dati Trasparenti',
-    desc: 'Dashboard con statistiche complete in tempo reale. Comprendi ogni metrica prima di attivare qualsiasi automazione.',
+    title: 'Formazione Smart Money',
+    desc: 'Impari come pensano gli istituzionali: dinamiche di liquidità, movimenti di prezzo, sessioni di mercato. Teoria e pratica reale insieme.',
+  },
+  {
+    icon: Activity,
+    title: 'Strategia Applicata',
+    desc: 'Osservi come la strategia viene applicata in condizioni reali. Non solo teoria — vedi le logiche di entrata, uscita e gestione del rischio in azione.',
   },
   {
     icon: Globe,
-    title: 'Account Demo Supportato',
-    desc: 'Collega prima un conto demo. Osserva, studia, comprendi il comportamento del sistema senza rischiare capitale reale.',
+    title: 'Inizia in Demo',
+    desc: 'Collega prima un conto demo: osserva, studia, comprendi. Nessun rischio reale. Solo quando hai piena consapevolezza, decidi il passo successivo.',
   },
   {
     icon: TrendingUp,
-    title: 'Risk Management Utente',
-    desc: 'Sei tu a impostare il rischio: 1%, 2% o 3% per operazione. Stop loss, take profit e break-even sempre sotto il tuo controllo.',
+    title: 'Risk Management Tuo',
+    desc: 'Sei tu a definire il rischio: 1%, 2% o 3% per operazione. Stop loss, take profit multipli e break-even — sempre sotto il tuo controllo.',
   },
   {
-    icon: Layers,
-    title: 'Libertà Totale',
-    desc: 'Attiva, pausa, disattiva quando vuoi. Nessun lock-in, nessun costo nascosto. Il software lavora per te, non il contrario.',
+    icon: Shield,
+    title: 'Nessuna Gestione Fondi',
+    desc: 'La piattaforma non accede, non gestisce e non detiene fondi. Credenziali cifrate AES-128. Tu controlli tutto, in ogni momento.',
+  },
+  {
+    icon: Zap,
+    title: 'Disciplina Operativa',
+    desc: 'Il sistema applica la strategia senza emotività, senza esitazioni. Tu imposti i parametri — il sistema esegue con coerenza. Niente di più.',
   },
 ]
 
@@ -380,7 +382,7 @@ export default function LandingPage() {
           {/* Live badge */}
           <div className="eldorado-badge">
             <div className="live-dot" style={{ width: 6, height: 6 }} />
-            Software AI · Controllo Totale Utente
+            Formazione Smart Trader · Applicazione Reale
           </div>
 
           {/* ── Refined title ── */}
@@ -395,11 +397,11 @@ export default function LandingPage() {
           </div>
 
           <p className="eldorado-subtitle mt-2 mb-3">
-            Comprendi il mercato. Automatizza il processo. Mantieni il controllo.
+            Comprendi i mercati. Applica strategie reali.
           </p>
           <p className="text-sm mb-9 max-w-lg mx-auto text-center" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-            Strumenti AI configurabili per analisi e automazione su XAU/USD.{' '}
-            <span style={{ color: 'var(--gold)', opacity: 0.9 }}>Tu decidi tutto.</span>
+            Piattaforma educativa e tecnologica per Smart Trader.{' '}
+            <span style={{ color: 'var(--gold)', opacity: 0.9 }}>Teoria + pratica reale, insieme.</span>
           </p>
 
           {/* Live gold price */}
@@ -420,12 +422,12 @@ export default function LandingPage() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 items-center">
-            <Link href="/auth/register" className="btn-eldorado btn-eldorado-primary">
-              Inizia 7 Giorni Gratis
+            <Link href="/metodo" className="btn-eldorado btn-eldorado-primary">
+              Scopri il Metodo
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link href="/metodo" className="btn-eldorado btn-eldorado-secondary">
-              Scopri il Metodo
+            <Link href="/auth/register" className="btn-eldorado btn-eldorado-secondary">
+              Inizia Gratis
               <BarChart3 className="w-5 h-5" />
             </Link>
           </div>
@@ -480,6 +482,59 @@ export default function LandingPage() {
         </div>
       </div>
 
+      {/* ─── Sub-Hero Smart Money ───────────────────────── */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 relative">
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--surface-overlay)' }} />
+        <div className="relative max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="section-label mb-3">Perché la Maggior Parte dei Trader Perde</div>
+            <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
+              Il mercato non è casuale.<br className="hidden sm:block" /> È progettato contro di te.
+            </h2>
+            <p className="max-w-2xl mx-auto text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              L'85% dei trader retail perde perché usa strumenti di analisi pensati per il retail, non per capire cosa fa davvero il mercato.
+              Gli istituzionali operano diversamente — e conoscere la loro logica cambia tutto.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              {
+                icon: TrendingUp, color: '#FF3D71',
+                title: 'Falsi Breakout',
+                desc: 'I "breakout" che vedi sono spesso mosse istituzionali per raccogliere liquidità dagli stop loss del retail prima di muoversi nella direzione reale.',
+              },
+              {
+                icon: BarChart3, color: 'var(--gold)',
+                title: 'Liquidità, Non Prezzo',
+                desc: 'Il mercato non si muove verso supporti e resistenze — si muove dove ci sono più ordini da "mangiare". Comprendere questo cambia la tua lettura del grafico.',
+              },
+              {
+                icon: Clock, color: 'var(--green)',
+                title: 'Timing Istituzionale',
+                desc: 'Non è solo la direzione — è quando. Le sessioni di Londra e New York hanno logiche precise. Operare fuori da questi contesti abbassa drasticamente la probabilità.',
+              },
+            ].map((item, i) => (
+              <div key={i} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
+                <div className="feature-icon-wrap mb-4">
+                  <item.icon className="w-5 h-5" style={{ color: item.color }} />
+                </div>
+                <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)' }}>{item.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link href="/metodo"
+              className="inline-flex items-center gap-2 text-sm font-bold transition-opacity hover:opacity-80"
+              style={{ color: 'var(--gold)' }}>
+              Capisci come funziona davvero il mercato →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ─── Stats Section ──────────────────────────────── */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -501,12 +556,12 @@ export default function LandingPage() {
 
         <div className="relative max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <div className="section-label mb-3">Processo</div>
+            <div className="section-label mb-3">Il Percorso</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
-              Operativo in 3 Minuti
+              Dall'Educazione all'Applicazione Reale
             </h2>
             <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Niente da installare. Solo credenziali MT5 — il nostro server fa tutto il resto.
+              Non basta sapere — devi vedere come funziona nella pratica. Ecco il percorso Smart Trader.
             </p>
           </div>
 
@@ -517,18 +572,18 @@ export default function LandingPage() {
             {[
               {
                 num: '01', icon: Globe,
-                title: 'Registrati',
-                desc: 'Crea il tuo account in 60 secondi. Nessuna carta di credito richiesta per il trial gratuito.',
+                title: 'Studia il Metodo',
+                desc: 'Accedi alla sezione educativa: liquidità, Smart Money, sessioni, risk management. Comprendi prima di agire.',
               },
               {
                 num: '02', icon: Layers,
-                title: 'Collega il tuo MT5',
-                desc: 'Inserisci login, password e server del tuo conto MT5 nel pannello Account. Niente da scaricare.',
+                title: 'Osserva in Demo',
+                desc: 'Collega un conto demo MT5. Vedi la strategia applicata in condizioni reali, senza rischio. Studia ogni operazione.',
               },
               {
                 num: '03', icon: Activity,
-                title: 'Ricevi le Operazioni',
-                desc: 'Il tuo account riceve automaticamente ogni operazione dalla piattaforma. Tutto trasparente, tutto controllato.',
+                title: 'Decidi in Autonomia',
+                desc: 'Quando hai piena comprensione, sei libero di passare al conto live configurando rischio e parametri come vuoi tu.',
               },
             ].map((step, i) => (
               <div key={i} className="card-premium p-8 animate-fade-in-up" style={{ animationDelay: `${i * 150}ms` }}>
@@ -645,12 +700,12 @@ export default function LandingPage() {
 
         <div className="relative max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <div className="section-label mb-3">Vantaggi</div>
+            <div className="section-label mb-3">Perché El Dorado</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
-              Perché El Dorado
+              Non è solo teoria.<br className="hidden sm:block" />Non è solo software.
             </h2>
             <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Software AI che automatizza l'esecuzione dei parametri da te impostati. Nessuna consulenza, nessuna gestione fondi — solo strumenti tecnici.
+              È comprensione reale del mercato + applicazione pratica della strategia. Unisce formazione Smart Money con strumenti tecnici che rispettano la tua autonomia decisionale.
             </p>
           </div>
 
@@ -756,15 +811,15 @@ export default function LandingPage() {
           <div className="text-center mb-12">
             <div className="section-label mb-3">Testimonianze</div>
             <h2 className="text-2xl sm:text-3xl font-black text-gradient-white">
-              Cosa Dicono i Nostri Trader
+              Cosa Dicono i Nostri Smart Trader
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-5">
             {[
-              { name: 'Marco R.', role: 'Trader privato', avatar: 'MR', text: 'In 3 mesi ho usato la piattaforma per oltre 200 operazioni senza perdere ore davanti allo schermo. Il setup è stato velocissimo.', stars: 5, profit: '+312 pips*' },
-              { name: 'Sofia L.', role: 'Investitore retail', avatar: 'SL', text: 'Finalmente un servizio dove posso provare gratis e vedere statistiche reali prima di abbonarmi. Massima trasparenza e controllo totale.', stars: 5, profit: '+198 pips*' },
-              { name: 'Andrea M.', role: 'Part-time trader', avatar: 'AM', text: 'La piattaforma lavora mentre io sono in ufficio. Apprezzo il controllo del rischio e la personalizzazione completa.', stars: 5, profit: '+445 pips*' },
+              { name: 'Marco R.', role: 'Smart Trader in formazione', avatar: 'MR', text: 'Ho capito la logica Smart Money studiando il metodo. Vedere la strategia applicata in demo per settimane mi ha dato la chiarezza per passare al live con consapevolezza.', stars: 5, profit: '+312 pips*' },
+              { name: 'Sofia L.', role: 'Apprendista analisi tecnica', avatar: 'SL', text: 'La sezione educativa vale da sola. Finalmente capisco perché il mercato si muove — non mi baso più su indicator senza logica. Trasparenza totale.', stars: 5, profit: '+198 pips*' },
+              { name: 'Andrea M.', role: 'Trader in affinamento', avatar: 'AM', text: 'La strategia viene eseguita coerentemente mentre lavoro. Nessuna emotività, nessuna modifica impulsiva. È quello che mancava alla mia operatività.', stars: 5, profit: '+445 pips*' },
             ].map((t, i) => (
               <div key={t.name} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
                 <div className="flex gap-1 mb-4">
@@ -865,25 +920,30 @@ export default function LandingPage() {
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-black mb-5">
-            <span className="text-gradient-white">Pronto a Fare Trading</span>
+            <span className="text-gradient-white">Inizia a Capire il Mercato</span>
             <br />
-            <span className="text-gradient-gold">Come un Professionista?</span>
+            <span className="text-gradient-gold">Come uno Smart Trader.</span>
           </h2>
 
           <p className="text-lg mb-10 max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            Unisciti a centinaia di trader che utilizzano la piattaforma di automazione El Dorado.
-            Il primo trial è completamente gratuito. Nessuna carta richiesta.
+            Comprendi le dinamiche reali. Osserva la strategia in demo. Poi decidi in piena autonomia.
+            7 giorni gratuiti — nessuna carta richiesta.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/auth/register" className="btn-gold text-base px-10 py-4 rounded-xl">
-              Inizia 7 Giorni Gratis — Senza Carta
+            <Link href="/metodo" className="btn-gold text-base px-10 py-4 rounded-xl">
+              Scopri il Metodo
               <ArrowRight className="w-5 h-5" />
+            </Link>
+            <Link href="/auth/register"
+              className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded-xl transition-all"
+              style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', color: 'var(--text-secondary)' }}>
+              Inizia Gratis
             </Link>
           </div>
 
           <div className="flex flex-wrap gap-6 justify-center mt-8">
-            {['No carta richiesta', 'Cancella quando vuoi', 'Setup in 3 minuti'].map(text => (
+            {['Inizia in demo — zero rischio', 'Cancella quando vuoi', 'Controllo totale tuo'].map(text => (
               <div key={text} className="flex items-center gap-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
                 <Check className="w-4 h-4" style={{ color: 'var(--green)' }} />
                 <span>{text}</span>
@@ -907,7 +967,7 @@ export default function LandingPage() {
                 </div>
               </div>
               <p className="text-sm leading-relaxed max-w-xs" style={{ color: 'var(--text-secondary)' }}>
-                Piattaforma di automazione per il trading su XAU/USD. Strumenti configurabili, privacy totale, controllo completo.
+                Piattaforma educativa e tecnologica per Smart Trader su XAU/USD. Comprensione reale del mercato + applicazione pratica della strategia.
               </p>
               <div className="flex items-center gap-2 mt-4">
                 <div className="live-dot" />

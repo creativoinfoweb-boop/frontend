@@ -202,7 +202,7 @@ export default function SetupGuidePage() {
           <div className="space-y-5 animate-fade-in">
             <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
               Inserisci le credenziali del tuo conto MT5 nel pannello <strong className="text-[var(--text-primary)]">Account</strong>.
-              Il nostro server si collegherà direttamente al tuo broker e copierà i trade in automatico — senza che tu debba fare nulla.
+              Il sistema applicherà la strategia sul tuo conto secondo i parametri che hai configurato — senza bisogno di avere MT5 aperto.
             </p>
 
             <div className="space-y-3">
@@ -266,7 +266,7 @@ export default function SetupGuidePage() {
                   icon: Server,
                   color: '#00C2FF',
                   title: 'VPS dedicato, rete privata',
-                  desc: 'Il bot gira su VPS Windows in una rete privata. La comunicazione tra bot e database avviene solo su localhost — non esposta a internet.',
+                  desc: 'Il sistema gira su VPS Windows in una rete privata. La comunicazione tra sistema e database avviene solo su localhost — non esposta a internet.',
                 },
                 {
                   icon: Shield,
@@ -334,7 +334,7 @@ export default function SetupGuidePage() {
               style={{ background: 'rgba(255,61,113,0.05)', border: '1px solid rgba(255,61,113,0.15)' }}>
               <p className="text-xs font-semibold" style={{ color: '#FF3D71' }}>Capitale Minimo Consigliato</p>
               <div className="text-xs text-[var(--text-secondary)] leading-relaxed space-y-1.5">
-                <p>Il bot necessita di un <strong className="text-[var(--text-primary)]">capitale sufficiente</strong> per operare correttamente. Con capitali troppo bassi e/o rischio ridotto, il lotto risultante potrebbe essere 0.01 (il minimo) — in questo caso:</p>
+                <p>La strategia necessita di un <strong className="text-[var(--text-primary)]">capitale sufficiente</strong> per essere applicata correttamente. Con capitali troppo bassi e/o rischio ridotto, il lotto risultante potrebbe essere 0.01 (il minimo) — in questo caso:</p>
                 <p>• Non &egrave; possibile <strong className="text-[var(--text-primary)]">frazionare le posizioni</strong> per i take profit progressivi</p>
                 <p>• Il modello di rischio/rendimento risulta alterato</p>
                 <p>• Il sistema non pu&ograve; replicare fedelmente la logica del conto master</p>
@@ -364,8 +364,8 @@ export default function SetupGuidePage() {
                 <p>L&apos;utente &egrave; responsabile di:</p>
                 <p>• Comprendere il funzionamento del sistema prima di utilizzarlo</p>
                 <p>• Disporre di un <strong className="text-[var(--text-primary)]">capitale adeguato</strong> per il livello di rischio scelto</p>
-                <p>• <strong className="text-[var(--text-primary)]">Non operare manualmente</strong> sul conto collegato</p>
-                <p>• Lasciare il sistema operare in automatico senza interferenze</p>
+                <p>• <strong className="text-[var(--text-primary)]">Evita operazioni manuali</strong> sul conto collegato mentre la strategia è attiva</p>
+                <p>• Lascia che la strategia venga eseguita senza interferenze — gli interventi manuali compromettono la coerenza operativa</p>
                 <p className="mt-1">Il trading su strumenti finanziari comporta rischi significativi. Le performance passate non garantiscono risultati futuri. Consulta i <a href="/legal/terms" className="underline" style={{ color: '#9B5DE5' }}>Termini di Servizio</a> per tutti i dettagli.</p>
               </div>
             </div>
@@ -426,11 +426,11 @@ export default function SetupGuidePage() {
               style={{ background: 'rgba(255,61,113,0.05)', border: '1px solid rgba(255,61,113,0.2)' }}>
               <p className="text-sm font-bold" style={{ color: '#FF3D71' }}>⚠️ Cosa NON fare (importante)</p>
               <div className="space-y-2 text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                <p>❌ <strong style={{ color: 'var(--text-primary)' }}>Non chiudere manualmente le posizioni</strong> aperte automaticamente dal sistema — interferirebbe con i take profit frazionati e le statistiche.</p>
-                <p>❌ <strong style={{ color: 'var(--text-primary)' }}>Non aprire trade manuali</strong> sullo stesso conto MT5 collegato — il bot non distingue le tue posizioni da quelle copiate.</p>
-                <p>❌ <strong style={{ color: 'var(--text-primary)' }}>Non modificare SL o TP</strong> delle posizioni aperte dal bot — potresti compromettere la gestione del rischio.</p>
+                <p>❌ <strong style={{ color: 'var(--text-primary)' }}>Evita modifiche manuali alle posizioni aperte</strong> dalla strategia — comprometteresti i take profit frazionati e la coerenza della gestione del rischio.</p>
+                <p>❌ <strong style={{ color: 'var(--text-primary)' }}>Non aprire operazioni manuali</strong> sullo stesso conto MT5 collegato — il sistema non distingue le tue posizioni da quelle della strategia.</p>
+                <p>❌ <strong style={{ color: 'var(--text-primary)' }}>Non modificare SL o TP</strong> delle posizioni aperte dalla strategia — potresti alterare la gestione del rischio prevista.</p>
                 <p>❌ <strong style={{ color: 'var(--text-primary)' }}>Non usare questo conto per altri sistemi</strong> di trading — usa un conto dedicato esclusivamente per El Dorado.</p>
-                <p>✅ <strong style={{ color: '#00E676' }}>Lascia fare al bot</strong> — monitorizza i risultati dalla dashboard e contattaci per qualsiasi dubbio.</p>
+                <p>✅ <strong style={{ color: '#00E676' }}>Lascia che la strategia venga eseguita senza interferenze</strong> — monitora i risultati dalla dashboard e contattaci per qualsiasi dubbio.</p>
               </div>
             </div>
 

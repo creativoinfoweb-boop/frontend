@@ -38,7 +38,7 @@ export default function BotsPage() {
       refetchBots()
     } catch (error: any) {
       console.error('Start bot error:', error.response?.data)
-      alert(error.response?.data?.detail || 'Errore nell\'avvio del bot')
+      alert(error.response?.data?.detail || 'Errore nell\'avvio del sistema')
     } finally {
       setActionLoading(null)
     }
@@ -51,7 +51,7 @@ export default function BotsPage() {
       refetchBots()
     } catch (error: any) {
       console.error('Stop bot error:', error.response?.data)
-      alert(error.response?.data?.detail || 'Errore nello stop del bot')
+      alert(error.response?.data?.detail || 'Errore nello stop del sistema')
     } finally {
       setActionLoading(null)
     }
@@ -64,7 +64,7 @@ export default function BotsPage() {
       refetchBots()
     } catch (error: any) {
       console.error('Pause bot error:', error.response?.data)
-      alert(error.response?.data?.detail || 'Errore nella pausa del bot')
+      alert(error.response?.data?.detail || 'Errore nella pausa del sistema')
     } finally {
       setActionLoading(null)
     }
@@ -77,7 +77,7 @@ export default function BotsPage() {
       refetchBots()
     } catch (error: any) {
       console.error('Resume bot error:', error.response?.data)
-      alert(error.response?.data?.detail || 'Errore nella ripresa del bot')
+      alert(error.response?.data?.detail || 'Errore nella ripresa del sistema')
     } finally {
       setActionLoading(null)
     }
@@ -108,7 +108,7 @@ export default function BotsPage() {
       const errorDetail = error.response?.data?.detail ||
                          error.response?.data?.error ||
                          error.message ||
-                         'Errore nella creazione del bot'
+                         'Errore nella creazione del sistema'
       console.error('Create bot error:', error.response?.data)
       alert(errorDetail)
     } finally {
@@ -122,12 +122,12 @@ export default function BotsPage() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-[#E4E4E7]">I Miei Bot</h1>
+        <h1 className="text-2xl font-bold text-[#E4E4E7]">I Miei Sistemi</h1>
         <button
           onClick={() => setShowModal(true)}
           className="px-4 py-2 bg-[#6366F1] hover:bg-[#4F46E5] text-white font-semibold rounded-lg transition-colors"
         >
-          + Nuovo Bot
+          + Nuovo Sistema
         </button>
       </div>
 
@@ -135,7 +135,7 @@ export default function BotsPage() {
       {isLoading ? (
         <LoadingSkeleton />
       ) : bots.length === 0 ? (
-        <EmptyState message="Nessun bot configurato. Creane uno nuovo!" />
+        <EmptyState message="Nessun sistema configurato. Creane uno nuovo!" />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {bots.map((bot: BotInstance) => (
@@ -163,20 +163,20 @@ export default function BotsPage() {
             onClick={(e) => e.stopPropagation()}
           >
             <h2 className="text-xl font-semibold text-[#E4E4E7] mb-4">
-              Crea Nuovo Bot
+              Crea Nuovo Sistema
             </h2>
 
             <form onSubmit={handleCreateBot} className="space-y-4">
-              {/* Bot Name */}
+              {/* Sistema Name */}
               <div>
                 <label className="block text-sm font-medium text-[#E4E4E7] mb-2">
-                  Nome Bot
+                  Nome Sistema
                 </label>
                 <input
                   type="text"
                   value={botName}
                   onChange={(e) => setBotName(e.target.value)}
-                  placeholder="Es. Bot XAU Demo"
+                  placeholder="Es. Sistema XAU Demo"
                   className="w-full px-4 py-2 bg-[#0A0A0F] border border-[#1E1E2E] rounded-lg text-[#E4E4E7] placeholder-[#71717A] focus:outline-none focus:border-[#6366F1] transition-colors"
                 />
               </div>

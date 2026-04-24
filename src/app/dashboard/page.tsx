@@ -242,16 +242,15 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Banner avvertenza bot — dismissibile, appare solo al primo accesso */}
+      {/* Banner avvertenza strategia — dismissibile, appare solo al primo accesso */}
       {showBotWarning && (
         <div className="flex items-start justify-between gap-3 p-4 rounded-xl"
           style={{ background: 'rgba(155,93,229,0.06)', border: '1px solid rgba(155,93,229,0.15)' }}>
           <div className="flex items-start gap-3">
             <Info className="w-4 h-4 text-[#9B5DE5] flex-shrink-0 mt-0.5" />
             <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              <strong style={{ color: '#C4A8FF' }}>Lascia lavorare il bot.</strong> Non chiudere
-              manualmente le posizioni aperte automaticamente e non operare sullo stesso conto —
-              potrebbe compromettere la gestione dei take profit e le statistiche.
+              <strong style={{ color: '#C4A8FF' }}>Lascia che la strategia venga eseguita senza interferenze.</strong> Evita interventi manuali sulle posizioni aperte dal sistema e non operare sullo stesso conto —
+              potrebbe compromettere la coerenza operativa della strategia e le statistiche.
             </p>
           </div>
           <button
@@ -269,7 +268,7 @@ export default function DashboardPage() {
       {isTrialing && (
         <Banner icon={Clock} color={GOLD}
           title="Trial Attivo"
-          body={`${subscription?.days_remaining} giorni rimanenti — attiva per continuare a ricevere segnali.`}
+          body={`${subscription?.days_remaining} giorni rimanenti — attiva per continuare ad applicare la strategia.`}
           cta="Attiva Ora" href="/dashboard/billing" />
       )}
       {hasNoSub && (
@@ -281,13 +280,13 @@ export default function DashboardPage() {
       {trialExpired && (
         <Banner icon={AlertCircle} color={GOLD}
           title="Trial Scaduto"
-          body="Attiva l'abbonamento per riprendere a ricevere i segnali."
+          body="Attiva l'abbonamento per riprendere l'esecuzione della strategia."
           cta="Riattiva" href="/dashboard/billing" />
       )}
       {isActive && (
         <Banner icon={Zap} color={GOLD}
           title="Completa il Setup"
-          body="Collega il tuo account MetaTrader 5 per ricevere i trade in automatico."
+          body="Collega il tuo account MetaTrader 5 per applicare la strategia sul tuo conto."
           cta="Setup Guide" href="/dashboard/setup-guide" />
       )}
 
@@ -297,7 +296,7 @@ export default function DashboardPage() {
         <KpiCard
           label="Trade Eseguiti"
           value={String(userStats?.trades_executed ?? 0)}
-          sub={`Su ${userStats?.trades_copied ?? 0} segnali ricevuti dal bot`}
+          sub={`Su ${userStats?.trades_copied ?? 0} esecuzioni della strategia`}
           icon={Activity} color={GOLD} sparkData={sparkTrades} delay={0} />
 
         {/* 2. Win Rate — dal master (affidabilità sistema) */}
