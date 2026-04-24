@@ -76,8 +76,8 @@ export default function MetodoPage() {
             </span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            Questa pagina spiega le logiche alla base della piattaforma: come funziona il mercato,
-            come gestiamo il rischio e quale ruolo ha l'AI. Lo scopo è che tu comprenda e decida in autonomia.
+            Perché la maggior parte dei trader perde, come nasce questo sistema, come funziona il mercato,
+            e perché la disciplina nell&apos;esecuzione vale più di qualsiasi strategia.
           </p>
           <div className="inline-block px-4 py-2 rounded-xl text-xs font-semibold"
             style={{ background: 'rgba(255,61,113,0.07)', border: '1px solid rgba(255,61,113,0.2)', color: '#FF6B6B' }}>
@@ -85,24 +85,100 @@ export default function MetodoPage() {
           </div>
         </div>
 
+        {/* ── 0. La Storia ── */}
+        <section className="space-y-6">
+          <div>
+            <SectionLabel>00 — Chi Siamo e Perché Esiste Questo Sistema</SectionLabel>
+            <h2 className="text-2xl sm:text-3xl font-black mb-3">Costruito per noi stessi. Poi condiviso.</h2>
+            <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              El Dorado non nasce come prodotto commerciale. Nasce da un problema reale che noi — un team di trader —
+              avevamo nella nostra operatività quotidiana: l&apos;incapacità di eseguire una strategia in modo coerente
+              quando entravano in gioco paura, avidità e pressione emotiva.
+            </p>
+            <p className="text-base leading-relaxed mt-3" style={{ color: 'var(--text-secondary)' }}>
+              Conoscevamo la strategia. Sapevamo cosa fare. Ma nell&apos;esecuzione commettevamo gli stessi errori
+              ripetutamente: chiudevamo troppo presto, lasciavamo correre le perdite, modificavamo i piani a mercato
+              aperto. Il problema non era la tecnica — era la psicologia.
+            </p>
+            <p className="text-base leading-relaxed mt-3" style={{ color: 'var(--text-secondary)' }}>
+              Così abbiamo costruito uno strumento interno per eliminare quella variabile. Abbiamo testato, ottimizzato,
+              misurato i risultati nel tempo. Solo quando il sistema ha dimostrato di funzionare nella nostra operatività
+              reale, abbiamo deciso di renderlo disponibile ad altri trader.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-4">
+            <InfoCard title="Creato internamente" accent="blue">
+              Non è un prodotto costruito da sviluppatori senza esperienza di mercato. Nasce dall&apos;operatività
+              reale di un team di trader che ha vissuto in prima persona i problemi che questo sistema risolve.
+            </InfoCard>
+            <InfoCard title="Testato nel tempo" accent="gold">
+              Prima di essere condiviso, il sistema è stato usato internamente per migliorare disciplina e
+              performance. I risultati sono stati misurati su centinaia di operazioni reali.
+            </InfoCard>
+            <InfoCard title="Poi condiviso" accent="green">
+              Solo dopo aver verificato il valore per noi stessi, abbiamo deciso di renderlo accessibile.
+              Non è marketing — è la sequenza cronologica reale di come questo sistema è nato.
+            </InfoCard>
+          </div>
+        </section>
+
         {/* ── 1. Introduzione ── */}
         <section className="space-y-6">
           <div>
-            <SectionLabel>01 — Introduzione</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-black mb-3">Lo scopo di questa piattaforma</h2>
+            <SectionLabel>01 — Il Problema Reale</SectionLabel>
+            <h2 className="text-2xl sm:text-3xl font-black mb-3">L&apos;essere umano è il punto debole nell&apos;esecuzione</h2>
             <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              El Dorado è un software SaaS che automatizza l'esecuzione dei parametri operativi da te definiti.
-              Non è un servizio di investimento, non gestisce i tuoi fondi e non prende decisioni al posto tuo.
+              La maggior parte dei trader che perde non manca di una strategia. Manca di disciplina nell&apos;eseguirla.
+              C&apos;è una differenza fondamentale tra <strong style={{ color: 'var(--text-primary)' }}>conoscere una strategia</strong> e{' '}
+              <strong style={{ color: 'var(--text-primary)' }}>saperla eseguire correttamente</strong> in condizioni di mercato reali,
+              sotto pressione emotiva, quando il conto è in perdita o quando il mercato si muove contro di te.
             </p>
             <p className="text-base leading-relaxed mt-3" style={{ color: 'var(--text-secondary)' }}>
-              Il valore della piattaforma sta nella <strong style={{ color: 'var(--text-primary)' }}>coerenza e disciplina esecutiva</strong>:
-              il sistema applica esattamente i parametri che hai impostato, senza emotività, senza esitazioni,
-              senza deviazioni dal piano. Tu definisci la strategia, il software la esegue.
+              El Dorado è un software SaaS che automatizza l&apos;esecuzione dei parametri operativi da te definiti.
+              Non è un servizio di investimento, non gestisce i tuoi fondi e non prende decisioni al posto tuo.
+              Il suo valore sta nella <strong style={{ color: 'var(--text-primary)' }}>riduzione dell&apos;interferenza emotiva</strong>:
+              il sistema applica esattamente il piano che hai configurato — senza paura, senza avidità, senza deviazioni.
             </p>
           </div>
           <InfoCard title="Principio fondamentale" accent="gold">
             Comprendi prima. Testa in demo. Poi decidi in piena autonomia se e come utilizzare la piattaforma
             con un conto reale. Nessuno ti spinge a farlo — e nessun risultato è garantito.
+          </InfoCard>
+        </section>
+
+        {/* ── 1b. Perché i Trader Perdono ── */}
+        <section className="space-y-6">
+          <div>
+            <SectionLabel>Psicologia & Execution</SectionLabel>
+            <h2 className="text-2xl sm:text-3xl font-black mb-3">Perché i trader perdono: psicologia &gt; tecnica</h2>
+            <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              Studi sul trading retail mostrano che la maggior parte delle perdite non deriva da strategie sbagliate —
+              deriva dall&apos;incapacità di eseguire correttamente anche le strategie giuste. Ecco i comportamenti
+              più comuni che distruggono i risultati:
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              { color: '#FF3D71', title: '❌ Chiudere troppo presto', desc: 'Per paura di perdere un profitto già aperto, si chiude prima del target. Il risultato: prendi piccoli guadagni ma lasci intatti i grandi potenziali.' },
+              { color: '#FF3D71', title: '❌ Lasciare correre le perdite', desc: 'La speranza che il mercato torni ti porta a non rispettare lo stop loss. Una piccola perdita diventa grande. È l\'errore più costoso e il più comune.' },
+              { color: '#FF8C00', title: '❌ Overtrading', desc: 'Operare in eccesso per recuperare perdite o per "essere presenti sul mercato". Ogni trade non pianificato è statisticamente in perdita attesa.' },
+              { color: '#FF8C00', title: '❌ Inseguire il mercato', desc: 'Entrare su un movimento già avviato per paura di perderselo. Si compra al massimo, si vende al minimo. L\'impulsività è sempre penalizzata dal mercato.' },
+            ].map((item) => (
+              <div key={item.title} className="rounded-xl p-5"
+                style={{ background: 'rgba(255,61,113,0.04)', border: `1px solid rgba(255,61,113,0.12)` }}>
+                <p className="text-sm font-bold mb-2" style={{ color: item.color }}>{item.title}</p>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <InfoCard title="La differenza che cambia tutto" accent="gold">
+            <strong style={{ color: 'var(--text-primary)' }}>Conoscere una strategia</strong> significa sapere
+            teoricamente cosa fare. <strong style={{ color: 'var(--text-primary)' }}>Saperla eseguire</strong> significa
+            farlo con coerenza anche quando il mercato è contro di te, anche dopo tre perdite consecutive, anche quando
+            hai fretta o sei sotto pressione. Questo secondo livello è dove si vince o si perde — e l&apos;automazione
+            disciplinata è lo strumento che riduce il gap tra i due.
           </InfoCard>
         </section>
 
@@ -245,6 +321,36 @@ export default function MetodoPage() {
             il modello rischio/rendimento cambia e il sistema non replica fedelmente la strategia.
             Questo non è un errore — ma devi esserne consapevole.
           </InfoCard>
+
+          <div className="rounded-2xl p-6 space-y-4"
+            style={{ background: 'rgba(155,93,229,0.05)', border: '1px solid rgba(155,93,229,0.2)' }}>
+            <p className="font-bold" style={{ color: '#C4A8FF' }}>
+              Perché alcuni parametri sono limitati volutamente
+            </p>
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              La piattaforma non ti permette di impostare rischi arbitrari, modificare la struttura degli stop loss
+              o alterare la logica di gestione delle posizioni. Questa non è una limitazione tecnica — è una scelta
+              progettuale deliberata.
+            </p>
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <strong style={{ color: 'var(--text-primary)' }}>Più libertà operativa = più opportunità di errori emotivi.</strong>{' '}
+              Ogni parametro aggiuntivo che puoi modificare è un&apos;opportunità di prendere una decisione impulsiva
+              nel momento sbagliato. Il range 1%-3% è già ampio: la struttura TP/SL/BE segue logiche strategiche
+              precise che non devono essere alterate su base emotiva.
+            </p>
+            <div className="flex items-start gap-3 pt-2">
+              <div className="text-xs font-semibold px-3 py-1.5 rounded-lg flex-shrink-0"
+                style={{ background: 'rgba(240,180,41,0.1)', border: '1px solid rgba(240,180,41,0.2)', color: 'var(--gold)' }}>
+                Range consigliato
+              </div>
+              <div className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                <strong style={{ color: 'var(--text-primary)' }}>1%-2%</strong> per la maggior parte degli utenti.{' '}
+                <strong style={{ color: '#FF8C00' }}>3%</strong> è già considerato aggressivo — il drawdown emotivo
+                diventa difficilmente gestibile sopra questa soglia. Inizia conservativo: è più facile aumentare il
+                rischio quando capisci il sistema che ridurlo dopo una perdita importante.
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* ── 5. Psicologia ── */}
@@ -281,41 +387,99 @@ export default function MetodoPage() {
           </div>
         </section>
 
-        {/* ── 6. Ruolo AI ── */}
+        {/* ── 6. Eliminazione Interferenza Emotiva ── */}
         <section className="space-y-6">
           <div>
-            <SectionLabel>06 — Il Ruolo dell'AI</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-black mb-3">L'automazione come supporto decisionale</h2>
+            <SectionLabel>06 — Eliminazione dell&apos;Interferenza Emotiva</SectionLabel>
+            <h2 className="text-2xl sm:text-3xl font-black mb-3">Il sistema come barriera tra te e i tuoi errori</h2>
             <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              L'AI nella piattaforma non sostituisce la tua capacità di giudizio — la supporta.
-              Il sistema automatizza l'esecuzione dei parametri che hai definito, eliminando
-              il fattore emotivo nella fase esecutiva: la più critica per la maggior parte dei trader.
+              Il sistema non sostituisce la tua intelligenza — elimina le tue reazioni emotive nell&apos;unico momento
+              in cui contano davvero: l&apos;esecuzione. Tutti sanno cosa fare razionalmente. Pochissimi riescono
+              a farlo coerentemente quando il mercato si muove contro di loro.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-3 gap-4">
-            <InfoCard title="Automatizza l'esecuzione" accent="blue">
+            <InfoCard title="Esegue senza esitazioni" accent="blue">
               Il sistema apre, gestisce e chiude le posizioni esattamente come hai configurato,
               senza esitazioni, senza cambiare idea a metà strada, senza lasciarsi influenzare
-              dall'andamento momentaneo del mercato.
+              dall&apos;andamento momentaneo del mercato. La paura non entra nell&apos;equazione.
             </InfoCard>
-            <InfoCard title="Riduce l'impatto emotivo" accent="gold">
+            <InfoCard title="Libera dalla pressione continua" accent="gold">
               Non devi guardare il grafico ore e ore. Non devi prendere decisioni sotto pressione.
-              Il software esegue il piano — tu monitori i risultati nel tempo e aggiusti i parametri
-              se necessario, con lucidità e a mercato chiuso.
+              Il sistema esegue il piano — tu monitori i risultati nel tempo e aggiusti i parametri
+              a mercato chiuso, con lucidità, non sotto stress.
             </InfoCard>
-            <InfoCard title="Applica i tuoi parametri" accent="green">
+            <InfoCard title="Basato su dati, non su intuizioni" accent="green">
               Il sistema non ha preferenze proprie. Esegue esattamente quello che hai impostato:
-              rischio, orari, strumenti. Se i parametri sono sbagliati, i risultati saranno sbagliati.
-              La responsabilità della configurazione è tua.
+              rischio, orari, strumenti. Le decisioni sono prese in anticipo, con la mente fredda —
+              non in reazione al mercato in tempo reale.
             </InfoCard>
           </div>
 
-          <InfoCard title="Cosa l'AI non può fare" accent="red">
-            L'automazione non può prevedere il futuro, garantire profitti, eliminare il rischio di perdita
-            o sostituire la comprensione del mercato. Un sistema automatico applicato senza comprensione
-            è pericoloso quanto operare manualmente senza un piano. Studia prima, automatizza dopo.
+          <InfoCard title="Cosa il sistema non può fare" accent="red">
+            Il sistema non può prevedere il futuro, garantire profitti, eliminare il rischio di perdita
+            o sostituire la comprensione del mercato. Un sistema applicato senza comprensione
+            è pericoloso quanto operare manualmente senza un piano. Per questo l&apos;educazione viene prima.
           </InfoCard>
+        </section>
+
+        {/* ── 6b. Confronto con i Segnali ── */}
+        <section className="space-y-6">
+          <div>
+            <SectionLabel>Confronto</SectionLabel>
+            <h2 className="text-2xl sm:text-3xl font-black mb-3">Perché non siamo un servizio di segnali</h2>
+            <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              I segnali di trading hanno un problema strutturale che pochi riconoscono: anche quando il segnale
+              è corretto, il risultato dipende dall&apos;esecuzione umana. E l&apos;esecuzione umana è il punto debole.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div className="rounded-2xl p-6 space-y-4"
+              style={{ background: 'rgba(255,61,113,0.04)', border: '1px solid rgba(255,61,113,0.15)' }}>
+              <p className="font-bold text-sm" style={{ color: '#FF6B6B' }}>❌ Problemi dei segnali</p>
+              <ul className="space-y-3">
+                {[
+                  'Ritardo nell\'esecuzione: entri dopo il segnale, spread e slippage ti penalizzano',
+                  'Mancanza di contesto: ricevi l\'azione ma non capisci perché — e non sai quando uscire',
+                  'Qualità incerta: chi manda il segnale? Con quale edge statistico verificato?',
+                  'Nessuna gestione del rischio integrata: lo stop loss lo devi mettere tu, manualmente',
+                  'Dipendenza totale dall\'utente: ogni decisione di entrata/uscita richiede la tua azione',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
+                    <span className="flex-shrink-0 mt-0.5" style={{ color: '#FF3D71' }}>—</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-xs font-semibold pt-2" style={{ color: '#FF6B6B' }}>
+                Risultato: spesso si perde anche con segnali corretti, perché l&apos;esecuzione è inconsistente.
+              </p>
+            </div>
+
+            <div className="rounded-2xl p-6 space-y-4"
+              style={{ background: 'rgba(0,230,118,0.04)', border: '1px solid rgba(0,230,118,0.15)' }}>
+              <p className="font-bold text-sm" style={{ color: 'var(--green)' }}>✓ Il nostro approccio</p>
+              <ul className="space-y-3">
+                {[
+                  'Mostriamo la strategia completa: entrate, uscite, logica, contesto — non solo azioni',
+                  'Permettiamo osservazione reale in demo prima di qualsiasi decisione',
+                  'Applichiamo logiche di esecuzione coerenti su ogni operazione — senza ritardi',
+                  'Gestiamo stop loss, break-even, take profit multipli secondo logica predefinita',
+                  'Non richiediamo esecuzione manuale veloce: il sistema opera per te coerentemente',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
+                    <span className="flex-shrink-0 mt-0.5" style={{ color: 'var(--green)' }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-xs font-semibold pt-2" style={{ color: 'var(--green)' }}>
+                Non forniamo segnali. Non lasciamo l&apos;utente solo nell&apos;esecuzione.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* ── 7. Demo ── */}

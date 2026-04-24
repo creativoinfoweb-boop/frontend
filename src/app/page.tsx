@@ -106,6 +106,16 @@ const faqItems = [
     answer: 'La strategia opera su XAU/USD principalmente nella sessione di Londra/New York (10:30–14:00 CET), dove la liquidità e la volatilità istituzionale sono più elevate. La frequenza varia in base alle condizioni di mercato: qualità prima di quantità. In assenza di condizioni ottimali, la strategia non entra — e questo è un punto di forza, non un limite.',
   },
   {
+    id: 'parameters-limited',
+    question: 'Perché alcuni parametri sono limitati e non posso impostarli liberamente?',
+    answer: 'È una scelta deliberata, non una limitazione tecnica. Più libertà operativa significa più opportunità di commettere errori emotivi — e i dati lo confermano. Il range di rischio 1%-3% è già ampio: sotto l\'1% il capitale non permette la struttura TP multipla; sopra il 3% l\'emotività durante i drawdown diventa difficilmente gestibile. La struttura di stop loss, break-even e take profit segue logiche strategiche precise — modificarle arbitrariamente in base alla sensazione del momento è esattamente il comportamento che produce perdite.',
+  },
+  {
+    id: 'vs-signals',
+    question: 'Qual è la differenza rispetto ai classici segnali di trading?',
+    answer: 'I segnali hanno un problema strutturale: anche se il segnale è corretto, l\'utente deve eseguirlo manualmente — e qui entra l\'emotività. Ritardo nell\'esecuzione, slippage, paura di entrare tardi, dubbio sull\'uscita. Spesso si perde anche con segnali corretti perché l\'esecuzione è inconsistente. Noi non mandiamo segnali: applichiamo la strategia in modo coerente, senza ritardi, senza esitazioni, con la stessa logica su ogni operazione. La differenza non è nella strategia — è nell\'esecuzione.',
+  },
+  {
     id: 'cancel',
     question: 'Posso cancellare quando voglio?',
     answer: 'Sì, in qualsiasi momento senza penalità. Le operazioni già aperte rimangono sul tuo conto MT5 e puoi gestirle come preferisci. Non c\'è lock-in, non ci sono costi nascosti.',
@@ -121,33 +131,33 @@ const faqItems = [
 const features = [
   {
     icon: BarChart3,
-    title: 'Formazione Smart Money',
-    desc: 'Impari come pensano gli istituzionali: dinamiche di liquidità, movimenti di prezzo, sessioni di mercato. Teoria e pratica reale insieme.',
-  },
-  {
-    icon: Activity,
-    title: 'Strategia Applicata',
-    desc: 'Osservi come la strategia viene applicata in condizioni reali. Non solo teoria — vedi le logiche di entrata, uscita e gestione del rischio in azione.',
-  },
-  {
-    icon: Globe,
-    title: 'Inizia in Demo',
-    desc: 'Collega prima un conto demo: osserva, studia, comprendi. Nessun rischio reale. Solo quando hai piena consapevolezza, decidi il passo successivo.',
-  },
-  {
-    icon: TrendingUp,
-    title: 'Risk Management Tuo',
-    desc: 'Sei tu a definire il rischio: 1%, 2% o 3% per operazione. Stop loss, take profit multipli e break-even — sempre sotto il tuo controllo.',
+    title: 'Nessuna Emotività',
+    desc: 'Il sistema esegue la strategia esattamente come configurata — senza paura, senza avidità, senza deviazioni. L\'esecuzione coerente è l\'unico modo per sfruttare un edge statistico.',
   },
   {
     icon: Shield,
-    title: 'Nessuna Gestione Fondi',
-    desc: 'La piattaforma non accede, non gestisce e non detiene fondi. Credenziali cifrate AES-128. Tu controlli tutto, in ogni momento.',
+    title: 'Parametri Limitati Volutamente',
+    desc: 'Alcune impostazioni sono intenzionalmente vincolate. Non per restringerti — per proteggerti dagli errori emotivi che ogni trader commette quando ha troppa libertà operativa.',
   },
   {
-    icon: Zap,
-    title: 'Disciplina Operativa',
-    desc: 'Il sistema applica la strategia senza emotività, senza esitazioni. Tu imposti i parametri — il sistema esegue con coerenza. Niente di più.',
+    icon: Globe,
+    title: 'Osserva Prima in Demo',
+    desc: 'Collega un conto demo: vedi la strategia applicata in condizioni reali, senza rischiare capitale. Comprendi le logiche operative prima di prendere qualsiasi decisione.',
+  },
+  {
+    icon: Activity,
+    title: 'Approccio Sistematico',
+    desc: 'Stop loss secondo logica strategica. Break even automatico. Take profit strutturati. Ogni uscita segue un piano predefinito — non una reazione emotiva al mercato.',
+  },
+  {
+    icon: Layers,
+    title: 'Creato per Noi Stessi',
+    desc: 'Questo sistema è stato costruito internamente da un team di trader per migliorare la propria disciplina. Testato, ottimizzato, poi condiviso. Non è teoria — è quello che usiamo noi.',
+  },
+  {
+    icon: TrendingUp,
+    title: 'Processo, Non Profitto',
+    desc: 'Non promettiamo guadagni. Promettiamo coerenza operativa. Il risultato di lungo periodo dipende dall\'applicazione disciplinata di un metodo — non da previsioni o fortuna.',
   },
 ]
 
@@ -382,7 +392,7 @@ export default function LandingPage() {
           {/* Live badge */}
           <div className="eldorado-badge">
             <div className="live-dot" style={{ width: 6, height: 6 }} />
-            Formazione Smart Trader · Applicazione Reale
+            Team di Trader · Disciplina Operativa · XAU/USD
           </div>
 
           {/* ── Refined title ── */}
@@ -397,11 +407,11 @@ export default function LandingPage() {
           </div>
 
           <p className="eldorado-subtitle mt-2 mb-3">
-            Comprendi i mercati. Applica strategie reali.
+            Elimina l&apos;emotività. Esegui con disciplina.
           </p>
           <p className="text-sm mb-9 max-w-lg mx-auto text-center" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-            Piattaforma educativa e tecnologica per Smart Trader.{' '}
-            <span style={{ color: 'var(--gold)', opacity: 0.9 }}>Teoria + pratica reale, insieme.</span>
+            Creato da un team di trader per risolvere il problema principale del trading:{' '}
+            <span style={{ color: 'var(--gold)', opacity: 0.9 }}>l&apos;essere umano è il punto debole nell&apos;esecuzione della strategia.</span>
           </p>
 
           {/* Live gold price */}
@@ -482,18 +492,19 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* ─── Sub-Hero Smart Money ───────────────────────── */}
+      {/* ─── Sub-Hero: Il Vero Problema ─────────────────── */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 relative">
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--surface-overlay)' }} />
         <div className="relative max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <div className="section-label mb-3">Perché la Maggior Parte dei Trader Perde</div>
+            <div className="section-label mb-3">Il Vero Problema del Trading</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
-              Il mercato non è casuale.<br className="hidden sm:block" /> È progettato contro di te.
+              Il problema non è la strategia.<br className="hidden sm:block" />
+              Sei tu nell&apos;esecuzione.
             </h2>
             <p className="max-w-2xl mx-auto text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              L'85% dei trader retail perde perché usa strumenti di analisi pensati per il retail, non per capire cosa fa davvero il mercato.
-              Gli istituzionali operano diversamente — e conoscere la loro logica cambia tutto.
+              L&apos;85% dei trader perde non per mancanza di una strategia — ma per incapacità di seguirla
+              in modo coerente. Paura, avidità, impulsività: l&apos;essere umano è il punto debole nell&apos;esecuzione.
             </p>
           </div>
 
@@ -501,18 +512,18 @@ export default function LandingPage() {
             {[
               {
                 icon: TrendingUp, color: '#FF3D71',
-                title: 'Falsi Breakout',
-                desc: 'I "breakout" che vedi sono spesso mosse istituzionali per raccogliere liquidità dagli stop loss del retail prima di muoversi nella direzione reale.',
+                title: 'Emotività',
+                desc: 'Chiudi troppo presto per paura. Lasci correre le perdite sperando in un recupero. Ogni decisione presa sotto pressione peggiora il risultato finale.',
               },
               {
-                icon: BarChart3, color: 'var(--gold)',
-                title: 'Liquidità, Non Prezzo',
-                desc: 'Il mercato non si muove verso supporti e resistenze — si muove dove ci sono più ordini da "mangiare". Comprendere questo cambia la tua lettura del grafico.',
+                icon: Zap, color: 'var(--gold)',
+                title: 'Impulsività',
+                desc: 'Overtrading, revenge trading, inseguire il mercato dopo un\'entrata mancata. Comportamenti prevedibili e devastanti — che nessuna strategia può compensare.',
               },
               {
-                icon: Clock, color: 'var(--green)',
-                title: 'Timing Istituzionale',
-                desc: 'Non è solo la direzione — è quando. Le sessioni di Londra e New York hanno logiche precise. Operare fuori da questi contesti abbassa drasticamente la probabilità.',
+                icon: Activity, color: 'var(--green)',
+                title: 'Incostanza',
+                desc: 'Una strategia cambiata ogni settimana non è una strategia. L\'edge statistico esiste solo se la strategia viene applicata con coerenza su centinaia di operazioni.',
               },
             ].map((item, i) => (
               <div key={i} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
@@ -529,7 +540,7 @@ export default function LandingPage() {
             <Link href="/metodo"
               className="inline-flex items-center gap-2 text-sm font-bold transition-opacity hover:opacity-80"
               style={{ color: 'var(--gold)' }}>
-              Capisci come funziona davvero il mercato →
+              Scopri come abbiamo risolto questo problema →
             </Link>
           </div>
         </div>
@@ -702,10 +713,10 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <div className="section-label mb-3">Perché El Dorado</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
-              Non è solo teoria.<br className="hidden sm:block" />Non è solo software.
+              Non è un bot che guadagna per te.<br className="hidden sm:block" />È la disciplina che ti mancava.
             </h2>
             <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              È comprensione reale del mercato + applicazione pratica della strategia. Unisce formazione Smart Money con strumenti tecnici che rispettano la tua autonomia decisionale.
+              Riduzione dell&apos;emotività. Disciplina operativa. Approccio sistematico. Educazione + applicazione pratica. Protezione dagli errori più comuni.
             </p>
           </div>
 
@@ -920,14 +931,14 @@ export default function LandingPage() {
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-black mb-5">
-            <span className="text-gradient-white">Inizia a Capire il Mercato</span>
+            <span className="text-gradient-white">Il Problema Non è la Strategia.</span>
             <br />
-            <span className="text-gradient-gold">Come uno Smart Trader.</span>
+            <span className="text-gradient-gold">È la Disciplina nell&apos;Eseguirla.</span>
           </h2>
 
           <p className="text-lg mb-10 max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            Comprendi le dinamiche reali. Osserva la strategia in demo. Poi decidi in piena autonomia.
-            7 giorni gratuiti — nessuna carta richiesta.
+            Abbiamo costruito questo sistema per noi stessi — per eliminare gli errori emotivi dalla nostra operatività.
+            Testato, ottimizzato, poi condiviso. 7 giorni gratuiti — nessuna carta richiesta.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -943,7 +954,7 @@ export default function LandingPage() {
           </div>
 
           <div className="flex flex-wrap gap-6 justify-center mt-8">
-            {['Inizia in demo — zero rischio', 'Cancella quando vuoi', 'Controllo totale tuo'].map(text => (
+            {['Inizia in demo — zero rischio', 'Nessuna promessa di profitto', 'Processo, probabilità, disciplina'].map(text => (
               <div key={text} className="flex items-center gap-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
                 <Check className="w-4 h-4" style={{ color: 'var(--green)' }} />
                 <span>{text}</span>
@@ -967,7 +978,7 @@ export default function LandingPage() {
                 </div>
               </div>
               <p className="text-sm leading-relaxed max-w-xs" style={{ color: 'var(--text-secondary)' }}>
-                Piattaforma educativa e tecnologica per Smart Trader su XAU/USD. Comprensione reale del mercato + applicazione pratica della strategia.
+                Sistema creato da un team di trader per eliminare l&apos;emotività dall&apos;esecuzione. Disciplina operativa su XAU/USD.
               </p>
               <div className="flex items-center gap-2 mt-4">
                 <div className="live-dot" />
