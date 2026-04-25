@@ -329,7 +329,7 @@ export default function LandingPage() {
             <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
             <div>
               <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>El Dorado</span>
-              <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>EA Solution</div>
+              <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
             </div>
           </div>
 
@@ -441,7 +441,7 @@ export default function LandingPage() {
           {/* Live badge */}
           <div className="eldorado-badge">
             <div className="live-dot" style={{ width: 6, height: 6 }} />
-            EA Solution · AI-Powered · XAU/USD
+            AI Solution · XAU/USD · Automated
           </div>
 
           {/* ── Refined title ── */}
@@ -1137,7 +1137,7 @@ export default function LandingPage() {
                 <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
                 <div>
                   <span className="font-bold text-gradient-gold">El Dorado</span>
-                  <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>EA Solution</div>
+                  <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
                 </div>
               </div>
               <p className="text-sm leading-relaxed max-w-xs" style={{ color: 'var(--text-secondary)' }}>

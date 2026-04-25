@@ -56,7 +56,7 @@ export default function RegisterPage() {
           <div>
             <div className="mb-5"><img src="/eldorado.jpg" alt="El Dorado" style={{ width: 64, height: 64, borderRadius: '50%', border: '1.5px solid rgba(240,180,41,0.35)', objectFit: 'cover', objectPosition: 'top center', flexShrink: 0 }} /></div>
             <h1 className="text-3xl font-black text-gradient-gold leading-tight">El Dorado</h1>
-            <p className="text-sm text-[#6B6B8A] mt-2">EA Solution · XAU/USD</p>
+            <p className="text-sm text-[#6B6B8A] mt-2">AI Solution · XAU/USD</p>
           </div>
           <div className="space-y-4">
             {perks.map(p => (
