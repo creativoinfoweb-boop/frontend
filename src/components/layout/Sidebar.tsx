@@ -22,6 +22,8 @@ import {
   X,
   ChevronRight,
   Gift,
+  Compass,
+  GraduationCap,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -37,6 +39,11 @@ interface NavItem {
 const NAV_MAIN: NavItem[] = [
   { label: 'Dashboard', href: '/dashboard',        icon: LayoutDashboard },
   { label: 'Storico',   href: '/dashboard/history', icon: History },
+]
+
+const NAV_METHOD: NavItem[] = [
+  { label: 'Il Nostro Metodo', href: '/metodo',           icon: Compass },
+  { label: 'Impara',           href: '/dashboard/learn',  icon: GraduationCap },
 ]
 
 const NAV_ACCOUNT: NavItem[] = [
@@ -229,6 +236,40 @@ export function Sidebar() {
                       {item.badge}
                     </span>
                   )}
+                  {active && <ChevronRight className="h-3 w-3 opacity-50" style={{ color: 'var(--gold)' }} />}
+                </Link>
+              )
+            })}
+
+            <div className="px-3 pt-5 pb-2">
+              <span className="text-[9px] font-bold tracking-[0.2em] uppercase" style={{ color: 'var(--text-muted)' }}>
+                Il Nostro Metodo
+              </span>
+            </div>
+
+            {NAV_METHOD.map(item => {
+              const Icon = item.icon
+              const active = isActive(item.href)
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  prefetch={false}
+                  scroll
+                  onClick={() => closeMobile()}
+                  className={cn('nav-item w-full text-left', active && 'active')}
+                >
+                  <div
+                    className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{
+                      background: active ? 'var(--gold-subtle)' : 'var(--glass-bg)',
+                      border: `1px solid ${active ? 'var(--border-gold)' : 'var(--border)'}`,
+                      transition: 'all 0.2s ease',
+                    }}
+                  >
+                    <Icon className="h-3.5 w-3.5" style={{ color: active ? 'var(--gold)' : 'var(--text-secondary)' }} />
+                  </div>
+                  <span className="flex-1 text-xs">{item.label}</span>
                   {active && <ChevronRight className="h-3 w-3 opacity-50" style={{ color: 'var(--gold)' }} />}
                 </Link>
               )
