@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation'
 import { getModule } from '@/data/course'
 import { useLearnStore } from '@/store/learn'
 import { useHasActiveSubscription } from '@/hooks/useSubscription'
-import { ChevronRight, Lock, Play } from 'lucide-react'
+import { ChevronRight, Lock } from 'lucide-react'
 
 export default function ModulePage() {
   const params = useParams()

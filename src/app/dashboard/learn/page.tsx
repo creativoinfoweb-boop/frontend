@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { COURSE } from '@/data/course'
 import { useLearnStore } from '@/store/learn'
 import { useHasActiveSubscription } from '@/hooks/useSubscription'
-import { BookOpen, Lock, Play, TrendingUp, Zap, Award } from 'lucide-react'
+import { Lock, Play, Zap, Award } from 'lucide-react'
 
 export default function LearnHub() {
   const store = useLearnStore()
