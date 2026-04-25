@@ -167,43 +167,43 @@ const features = [
 /* ─── Learning Modules ──────────────────────────────────── */
 const learningModules = [
   {
-    num: '01', free: true, level: 'Principiante', lessons: 8,
+    num: '01', slug: '01', free: true, level: 'Principiante', lessons: 8,
     title: 'Fondamenti del Mercato',
     desc: 'Le basi per leggere XAU/USD e le sessioni operative prima di qualsiasi operazione.',
     topics: ['XAU/USD: caratteristiche e volatilità dell\'oro', 'Sessioni: Asia (00–08), Londra (09–12), NY (14:30–17)', 'ATR: misurare la volatilità per calibrare il rischio', 'Spread, leva, margine e struttura del conto MT5'],
   },
   {
-    num: '02', free: true, level: 'Principiante', lessons: 10,
+    num: '02', slug: '02', free: true, level: 'Principiante', lessons: 10,
     title: 'Smart Money Concept',
     desc: 'Come operano gli istituzionali e perché il retail sistematicamente perde.',
     topics: ['BSL e SSL: liquidità sopra i massimi e sotto i minimi', 'BOS (Break of Structure) e MSS (Market Structure Shift)', 'Liquidity Sweep: il falso breakout per raccogliere gli stop', 'Retail vs Istituzionale: chi muove davvero il mercato'],
   },
   {
-    num: '03', free: false, level: 'Intermedio', lessons: 9,
+    num: '03', slug: '03', free: true, level: 'Intermedio', lessons: 9,
     title: 'Liquidità e Blocchi di Prezzo',
     desc: 'I meccanismi algoritmici che muovono i prezzi: MAPS e i 9 tipi di blocchi.',
     topics: ['MAPS: Consolidation → Expansion → Retracement/Reversal', 'Order Block, Breaker Block e Mitigation Block', 'Fair Value Gap (FVG): squilibri di prezzo istituzionali', 'Propulsion Block e Vacuum Block: segnali di accelerazione'],
   },
   {
-    num: '04', free: false, level: 'Intermedio', lessons: 8,
+    num: '04', slug: '04', free: true, level: 'Intermedio', lessons: 8,
     title: 'Punti di Entrata ad Alto R/R',
     desc: 'La tecnica H1→M1 per entrare con logica istituzionale e massimizzare il R/R.',
     topics: ['H1 trigger: identificare la zona di interesse sul timeframe alto', 'M1 micro-struttura e MSS di conferma dopo il sweep', 'Entrata aggressiva (OB candle) vs conservativa (50% OB retest)', 'Premium/Discount Zone e confluenza multi-timeframe'],
   },
   {
-    num: '05', free: false, level: 'Intermedio', lessons: 7,
+    num: '05', slug: '05', free: false, level: 'Intermedio', lessons: 7,
     title: 'Risk Management',
     desc: 'Le regole operative che determinano la sopravvivenza nel lungo periodo.',
     topics: ['Regola 1–2% per operazione, max 3% di perdita giornaliera', 'Stop Loss basato sulla struttura: sotto il fake move low', 'T1 al 50% → Break Even automatico → T2 al livello HTF', 'Kill Switch: stop dopo 2 perdite consecutive, filtro NFP/FOMC/CPI'],
   },
   {
-    num: '06', free: false, level: 'Avanzato', lessons: 8,
+    num: '06', slug: '06', free: false, level: 'Avanzato', lessons: 8,
     title: 'Gold Scalping — Applicazione',
     desc: 'Il setup completo passo per passo su XAU/USD nelle Kill Zone operative.',
     topics: ['Asia session: marcare Asia High e Asia Low come livelli chiave', 'London Kill Zone: sweep del range Asia → conferma MSS su M1', 'Gestione live: T1 50%, BE automatico, T2 al livello HTF', '10 Regole del NO: quando non entrare mai in operazione'],
   },
   {
-    num: '07', free: false, level: 'Pratica', lessons: 5,
+    num: '07', slug: '07', free: false, level: 'Pratica', lessons: 5,
     title: 'Il Sistema El Dorado',
     desc: 'Dalla teoria alla pratica reale con la piattaforma: demo, dashboard, progressione.',
     topics: ['Collegare il conto demo MT5 e configurare il rischio', 'Monitorare ogni operazione dalla dashboard in tempo reale', 'Win rate, equity curve, profit factor: leggere le statistiche', 'Da demo a live: i criteri oggettivi per fare il passo'],
@@ -690,9 +690,13 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {learningModules.map((mod, i) => (
-              <div key={mod.num}
-                className="card-premium p-5 flex flex-col animate-fade-in-up"
-                style={{ animationDelay: `${i * 60}ms`, opacity: mod.free ? 1 : 0.85 }}>
+              <Link
+                key={mod.num}
+                href={`/dashboard/learn/${mod.slug}`}
+                prefetch={false}
+                className="card-premium p-5 flex flex-col animate-fade-in-up transition-transform hover:scale-[1.015]"
+                style={{ animationDelay: `${i * 60}ms`, opacity: mod.free ? 1 : 0.85 }}
+              >
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-2">
@@ -748,7 +752,7 @@ export default function LandingPage() {
                       </span>
                   }
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
