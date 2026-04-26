@@ -21,12 +21,31 @@ export default function ModulePage() {
 
   if (!canAccess) {
     return (
-      <div className="flex-1 flex items-center justify-center px-4">
+      <div className="flex-1 flex items-center justify-center px-4 py-16">
         <div className="text-center max-w-md">
-          <Lock className="w-16 h-16 mx-auto mb-4" style={{ color: 'var(--gold)' }} />
-          <h2 className="text-2xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>Modulo Premium</h2>
-          <p className="text-sm mb-6" style={{ color: 'var(--text-secondary)' }}>Hai completato i moduli free. Attiva il tuo abbonamento per accedere.</p>
-          <Link href="/dashboard/billing" className="btn-gold text-sm px-6 py-2.5">Attiva Sistema AI</Link>
+          <Lock className="w-16 h-16 mx-auto mb-6" style={{ color: 'var(--gold)' }} />
+          <h2 className="text-2xl font-black mb-3" style={{ color: 'var(--text-primary)' }}>Il metodo diventa automatico</h2>
+          <p className="text-sm mb-6" style={{ color: 'var(--text-secondary)' }}>
+            Hai imparato la teoria. Ora vedi il Sistema AI El Dorado applicarlo 24/5 — senza emotività, senza eccezioni.
+          </p>
+          <ul className="text-left text-sm mb-8 space-y-3 inline-block">
+            {[
+              'Strategia SMC eseguita 24/7 su XAU/USD',
+              'Risk management 1–3% automatico',
+              'Nessun software da installare',
+              'Dashboard in tempo reale',
+              'Stop loss e take profit gestiti dal sistema',
+            ].map(item => (
+              <li key={item} className="flex items-center gap-2">
+                <span className="text-base" style={{ color: 'var(--green)' }}>✓</span>
+                <span style={{ color: 'var(--text-secondary)' }}>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <Link href="/dashboard/billing" className="btn-gold text-sm px-8 py-3 block">
+            Attiva il Sistema AI →
+          </Link>
+          <p className="text-xs mt-3" style={{ color: 'var(--text-muted)' }}>Conto demo gratuito disponibile</p>
         </div>
       </div>
     )
