@@ -4,9 +4,10 @@ import { mod04lessons } from './mod04'
 import { mod05lessons } from './mod05'
 import { mod06lessons } from './mod06'
 import { mod07lessons } from './mod07'
+import { mod08lessons } from './mod08'
 
 export type QuizQuestion = { id: string; question: string; options: string[]; correctIndex: number; explanation: string }
-export type DiagramKey = 'liquidity-sweep' | 'bos-mss' | 'order-block' | 'fvg' | 'premium-discount' | 'sessions' | 'risk-reward' | 'take-profit' | 'kill-zone' | 'structure'
+export type DiagramKey = 'liquidity-sweep' | 'bos-mss' | 'order-block' | 'fvg' | 'premium-discount' | 'sessions' | 'risk-reward' | 'take-profit' | 'kill-zone' | 'structure' | 'crt-structure' | 'crt-amd' | 'crt-bullish' | 'crt-bearish'
 export type LessonBlock = { type: 'heading'; text: string } | { type: 'paragraph'; text: string } | { type: 'list'; items: string[] } | { type: 'callout'; variant: 'info' | 'warning' | 'success'; text: string } | { type: 'diagram'; key: DiagramKey; caption?: string } | { type: 'example'; title: string; body: string }
 export type Lesson = { id: string; moduleId: string; order: number; title: string; summary: string; estimatedMinutes: number; blocks: LessonBlock[]; quiz: QuizQuestion[] }
 export type CourseModule = { id: string; slug: string; order: number; title: string; description: string; level: 'Principiante' | 'Intermedio' | 'Avanzato' | 'Pratica'; isPremium: boolean; lessons: Lesson[] }
@@ -30,6 +31,7 @@ export const COURSE: CourseModule[] = [
   { id: '05', slug: '05', order: 5, title: 'Risk Management', description: 'Regola 1-2%, Kill Switch 3%, lotting, BE, TP frazionati, filtri notizie.', level: 'Intermedio', isPremium: true, lessons: mod05lessons },
   { id: '06', slug: '06', order: 6, title: 'Gold Scalping — Applicazione', description: 'Setup completo: Asia range, London KZ, sweep+MSS, gestione live, 10 Regole del NO.', level: 'Avanzato', isPremium: true, lessons: mod06lessons },
   { id: '07', slug: '07', order: 7, title: 'Il Sistema El Dorado', description: 'Dalla teoria alla pratica: conto demo, dashboard, statistiche, criteri per il live.', level: 'Pratica', isPremium: true, lessons: mod07lessons },
+  { id: '08', slug: '08', order: 8, title: 'CRT — Candle Range Theory', description: 'Il modello CRT: AMD, sweep di liquidità su singola candela, setup bullish/bearish e multi-timeframe.', level: 'Avanzato', isPremium: true, lessons: mod08lessons },
 ]
 
 export function getModule(slug: string) { return COURSE.find(m => m.slug === slug) }

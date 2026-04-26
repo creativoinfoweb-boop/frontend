@@ -461,6 +461,254 @@ function StructureDiagram() {
   )
 }
 
+function CrtStructureDiagram() {
+  // Single large reference candle with CRT-High / CRT-Low lines + internal LTF candles
+  const ltfCandles = [
+    { x: 170, o: 155, c: 148, h: 152, l: 157 },
+    { x: 192, o: 148, c: 153, h: 146, l: 155 },
+    { x: 214, o: 153, c: 145, h: 150, l: 148 },
+    { x: 236, o: 145, c: 150, h: 143, l: 152 },
+    { x: 258, o: 150, c: 142, h: 148, l: 144 },
+    { x: 280, o: 142, c: 148, h: 140, l: 150 },
+    { x: 302, o: 148, c: 143, h: 146, l: 145 },
+  ]
+  return (
+    <svg viewBox="0 0 700 240" className="w-full h-auto">
+      <defs>
+        <linearGradient id="crt-range-grad" x1="0%" x2="0%" y1="0%" y2="100%">
+          <stop offset="0%" style={{ stopColor: 'var(--gold)', stopOpacity: 0.08 }} />
+          <stop offset="100%" style={{ stopColor: 'var(--gold)', stopOpacity: 0.03 }} />
+        </linearGradient>
+      </defs>
+      <g stroke="var(--border)" strokeWidth="1" opacity="0.12">
+        {[70, 130, 190].map(y => <line key={y} x1="0" y1={y} x2="700" y2={y} />)}
+      </g>
+      {/* Reference candle (neutral/bearish) */}
+      <line x1="100" y1="55" x2="100" y2="210" stroke="var(--text-secondary)" strokeWidth="2" />
+      <rect x="86" y="90" width="28" height="90" fill="var(--red)" opacity="0.75" rx="2" />
+      <text x="72" y="50" fontSize="10" fill="var(--text-secondary)" fontWeight="600">Candela</text>
+      <text x="68" y="64" fontSize="10" fill="var(--text-secondary)" fontWeight="600">Riferimento</text>
+      {/* CRT Range highlight */}
+      <rect x="114" y="55" width="555" height="155" fill="url(#crt-range-grad)" rx="4" />
+      {/* CRT-High line */}
+      <line x1="86" y1="55" x2="669" y2="55" stroke="var(--gold)" strokeWidth="2" strokeDasharray="6 4" />
+      <rect x="580" y="40" width="90" height="20" fill="var(--gold)" opacity="0.15" rx="3" />
+      <text x="584" y="53" fontSize="10" fill="var(--gold)" fontWeight="800">CRT-High</text>
+      <text x="136" y="50" fontSize="10" fill="var(--gold)">BSL — Stop dei venditori</text>
+      {/* CRT-Low line */}
+      <line x1="86" y1="210" x2="669" y2="210" stroke="var(--gold)" strokeWidth="2" strokeDasharray="6 4" />
+      <rect x="580" y="213" width="90" height="20" fill="var(--gold)" opacity="0.15" rx="3" />
+      <text x="584" y="226" fontSize="10" fill="var(--gold)" fontWeight="800">CRT-Low</text>
+      <text x="136" y="225" fontSize="10" fill="var(--gold)">SSL — Stop dei compratori</text>
+      {/* Internal LTF candles */}
+      {ltfCandles.map(({ x, o, c, h, l }) => (
+        <g key={x}>
+          <line x1={x + 8} y1={h} x2={x + 8} y2={l} stroke={o > c ? 'var(--red)' : 'var(--green)'} strokeWidth="1.5" />
+          <rect x={x} y={Math.min(o, c)} width="16" height={Math.abs(o - c) || 2} fill={o > c ? 'var(--red)' : 'var(--green)'} opacity="0.8" rx="1" />
+        </g>
+      ))}
+      <text x="175" y="108" fontSize="9" fill="var(--text-muted)">candele M5 nel range H1</text>
+      {/* Middle body area label */}
+      <text x="390" y="135" fontSize="12" fill="var(--text-secondary)" textAnchor="middle" fontWeight="600">FAIR VALUE</text>
+      <text x="390" y="150" fontSize="10" fill="var(--text-muted)" textAnchor="middle">zona di equilibrio</text>
+      {/* Arrow label open/close */}
+      <line x1="118" y1="90" x2="145" y2="90" stroke="var(--text-muted)" strokeWidth="1" />
+      <text x="148" y="93" fontSize="9" fill="var(--text-muted)">Open</text>
+      <line x1="118" y1="180" x2="145" y2="180" stroke="var(--text-muted)" strokeWidth="1" />
+      <text x="148" y="183" fontSize="9" fill="var(--text-muted)">Close</text>
+    </svg>
+  )
+}
+
+function CrtAmdDiagram() {
+  return (
+    <svg viewBox="0 0 750 240" className="w-full h-auto">
+      <defs>
+        <linearGradient id="acc-grad" x1="0%" x2="0%" y1="0%" y2="100%">
+          <stop offset="0%" style={{ stopColor: 'var(--border)', stopOpacity: 0.2 }} />
+          <stop offset="100%" style={{ stopColor: 'var(--border)', stopOpacity: 0.05 }} />
+        </linearGradient>
+        <linearGradient id="manip-grad" x1="0%" x2="0%" y1="0%" y2="100%">
+          <stop offset="0%" style={{ stopColor: 'var(--gold)', stopOpacity: 0.15 }} />
+          <stop offset="100%" style={{ stopColor: 'var(--gold)', stopOpacity: 0.03 }} />
+        </linearGradient>
+        <linearGradient id="dist-grad" x1="0%" x2="0%" y1="0%" y2="100%">
+          <stop offset="0%" style={{ stopColor: 'var(--green)', stopOpacity: 0.15 }} />
+          <stop offset="100%" style={{ stopColor: 'var(--green)', stopOpacity: 0.03 }} />
+        </linearGradient>
+      </defs>
+      {/* Phase zones */}
+      <rect x="20" y="20" width="220" height="195" fill="url(#acc-grad)" rx="6" />
+      <rect x="250" y="20" width="180" height="195" fill="url(#manip-grad)" rx="6" />
+      <rect x="440" y="20" width="290" height="195" fill="url(#dist-grad)" rx="6" />
+      {/* Phase labels */}
+      <text x="130" y="45" fontSize="13" fill="var(--text-secondary)" textAnchor="middle" fontWeight="800">ACCUMULATION</text>
+      <text x="130" y="60" fontSize="10" fill="var(--text-muted)" textAnchor="middle">range stretto / laterale</text>
+      <text x="340" y="45" fontSize="13" fill="var(--gold)" textAnchor="middle" fontWeight="800">MANIPULATION</text>
+      <text x="340" y="60" fontSize="10" fill="var(--gold)" textAnchor="middle" opacity="0.8">falso breakout — sweep</text>
+      <text x="585" y="45" fontSize="13" fill="var(--green)" textAnchor="middle" fontWeight="800">DISTRIBUTION</text>
+      <text x="585" y="60" fontSize="10" fill="var(--green)" textAnchor="middle" opacity="0.8">vera direzione istituzionale</text>
+      {/* CRT-High and CRT-Low reference lines */}
+      <line x1="20" y1="85" x2="430" y2="85" stroke="var(--gold)" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.7" />
+      <text x="22" y="80" fontSize="9" fill="var(--gold)">CRT-High</text>
+      <line x1="20" y1="165" x2="430" y2="165" stroke="var(--gold)" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.7" />
+      <text x="22" y="178" fontSize="9" fill="var(--gold)">CRT-Low</text>
+      {/* Accumulation candles — tight range */}
+      {[
+        { x: 35, o: 130, c: 120, h: 128, l: 132 },
+        { x: 65, o: 120, c: 128, h: 118, l: 130 },
+        { x: 95, o: 128, c: 122, h: 126, l: 124 },
+        { x: 125, o: 122, c: 126, h: 120, l: 128 },
+        { x: 155, o: 126, c: 121, h: 124, l: 123 },
+        { x: 185, o: 121, c: 125, h: 119, l: 127 },
+      ].map(({ x, o, c, h, l }) => (
+        <g key={x}>
+          <line x1={x + 6} y1={h} x2={x + 6} y2={l} stroke={o > c ? 'var(--red)' : 'var(--green)'} strokeWidth="1.5" />
+          <rect x={x} y={Math.min(o, c)} width="12" height={Math.abs(o - c) || 2} fill={o > c ? 'var(--red)' : 'var(--green)'} rx="1" />
+        </g>
+      ))}
+      {/* Manipulation — sweep below CRT-Low then closes back inside */}
+      <line x1="265" y1="70" x2="265" y2="200" stroke="var(--gold)" strokeWidth="2" />
+      <rect x="258" y="105" width="14" height="55" fill="var(--gold)" opacity="0.85" rx="2" />
+      <text x="248" y="214" fontSize="10" fill="var(--gold)" fontWeight="700">SWEEP</text>
+      <text x="245" y="226" fontSize="9" fill="var(--gold)">SSL raccolta</text>
+      {/* Dashed line showing sweep below CRT-Low */}
+      <line x1="265" y1="165" x2="265" y2="200" stroke="var(--red)" strokeWidth="1.5" strokeDasharray="3 2" opacity="0.6" />
+      {/* Manipulation second candle — closes back above */}
+      <line x1="305" y1="80" x2="305" y2="155" stroke="var(--green)" strokeWidth="1.5" />
+      <rect x="298" y="92" width="14" height="45" fill="var(--green)" rx="1" />
+      {/* Distribution — big bullish candle */}
+      <line x1="460" y1="65" x2="460" y2="160" stroke="var(--green)" strokeWidth="2" />
+      <rect x="453" y="70" width="16" height="80" fill="var(--green)" opacity="0.9" rx="2" />
+      <line x1="510" y1="55" x2="510" y2="155" stroke="var(--green)" strokeWidth="2" />
+      <rect x="503" y="60" width="16" height="90" fill="var(--green)" opacity="0.9" rx="2" />
+      <line x1="560" y1="50" x2="560" y2="150" stroke="var(--green)" strokeWidth="2" />
+      <rect x="553" y="55" width="16" height="85" fill="var(--green)" opacity="0.9" rx="2" />
+      {/* Arrow */}
+      <path d="M 610 160 L 640 100 L 635 108 M 640 100 L 636 108" stroke="var(--green)" strokeWidth="2.5" fill="none" />
+      <text x="645" y="105" fontSize="11" fill="var(--green)" fontWeight="700">↑</text>
+    </svg>
+  )
+}
+
+function CrtBullishDiagram() {
+  return (
+    <svg viewBox="0 0 760 310" className="w-full h-auto">
+      <defs>
+        <linearGradient id="bull-zone-grad" x1="0%" x2="0%" y1="0%" y2="100%">
+          <stop offset="0%" style={{ stopColor: 'var(--green)', stopOpacity: 0.1 }} />
+          <stop offset="100%" style={{ stopColor: 'var(--green)', stopOpacity: 0.02 }} />
+        </linearGradient>
+      </defs>
+      <g stroke="var(--border)" strokeWidth="1" opacity="0.12">
+        {[80, 140, 200, 260].map(y => <line key={y} x1="0" y1={y} x2="760" y2={y} />)}
+      </g>
+      {/* Step labels */}
+      <text x="100" y="18" fontSize="11" fill="var(--text-muted)" textAnchor="middle" fontWeight="700">① RIFERIMENTO</text>
+      <text x="330" y="18" fontSize="11" fill="var(--gold)" textAnchor="middle" fontWeight="700">② MANIPULATION</text>
+      <text x="570" y="18" fontSize="11" fill="var(--green)" textAnchor="middle" fontWeight="700">③ DISTRIBUTION</text>
+      {/* CRT-High line */}
+      <line x1="60" y1="80" x2="720" y2="80" stroke="var(--gold)" strokeWidth="1.5" strokeDasharray="6 4" />
+      <text x="62" y="74" fontSize="10" fill="var(--gold)" fontWeight="700">CRT-High (BSL)</text>
+      {/* CRT-Low line */}
+      <line x1="60" y1="215" x2="720" y2="215" stroke="var(--gold)" strokeWidth="1.5" strokeDasharray="6 4" />
+      <text x="62" y="229" fontSize="10" fill="var(--gold)" fontWeight="700">CRT-Low (SSL)</text>
+      {/* ① Reference candle — neutral, at support */}
+      <line x1="100" y1="72" x2="100" y2="225" stroke="var(--text-secondary)" strokeWidth="2" />
+      <rect x="84" y="100" width="32" height="100" fill="var(--text-secondary)" opacity="0.4" rx="3" />
+      <text x="68" y="260" fontSize="9" fill="var(--text-secondary)">Chiude su OB/FVG</text>
+      {/* ② Manipulation — wick sweeps below CRT-Low, body closes above */}
+      {/* Background sweep zone */}
+      <rect x="240" y="215" width="180" height="60" fill="var(--red)" opacity="0.06" rx="4" />
+      {/* Candle body and wick */}
+      <line x1="330" y1="95" x2="330" y2="268" stroke="var(--red)" strokeWidth="2" />
+      <rect x="314" y="100" width="32" height="105" fill="var(--red)" opacity="0.5" rx="3" />
+      {/* Sweep annotation */}
+      <line x1="240" y1="268" x2="420" y2="268" stroke="var(--red)" strokeWidth="1.5" strokeDasharray="3 2" opacity="0.7" />
+      <text x="255" y="283" fontSize="10" fill="var(--red)" fontWeight="700">SWEEP SSL ← Stop dei compratori raccolta</text>
+      {/* Closes above CRT-Low annotation */}
+      <path d="M 370 215 L 400 205" stroke="var(--green)" strokeWidth="1.5" fill="none" />
+      <text x="402" y="202" fontSize="10" fill="var(--green)" fontWeight="700">chiude sopra CRT-Low ✓</text>
+      {/* ③ Distribution — strong bullish candle */}
+      <rect x="480" y="80" width="180" height="135" fill="url(#bull-zone-grad)" rx="4" />
+      <line x1="560" y1="38" x2="560" y2="222" stroke="var(--green)" strokeWidth="2" />
+      <rect x="544" y="45" width="32" height="165" fill="var(--green)" opacity="0.85" rx="3" />
+      <text x="530" y="240" fontSize="10" fill="var(--green)" fontWeight="700">rompe sopra CRT-High</text>
+      {/* Entry arrow */}
+      <path d="M 490 220 L 545 210" stroke="var(--green)" strokeWidth="2" fill="none" />
+      <text x="430" y="216" fontSize="10" fill="var(--green)" fontWeight="700">ENTRY →</text>
+      {/* SL line */}
+      <line x1="420" y1="272" x2="720" y2="272" stroke="var(--red)" strokeWidth="2" />
+      <text x="425" y="288" fontSize="10" fill="var(--red)" fontWeight="700">SL — sotto low sweep</text>
+      {/* TP line */}
+      <line x1="480" y1="38" x2="730" y2="38" stroke="var(--green)" strokeWidth="2" strokeDasharray="5 3" />
+      <text x="485" y="32" fontSize="10" fill="var(--green)" fontWeight="700">TP — prossima liquidità</text>
+      {/* R/R bracket */}
+      <path d="M 710 272 L 725 272 L 725 38 L 710 38" stroke="var(--text-secondary)" fill="none" strokeWidth="1.5" />
+      <text x="728" y="160" fontSize="11" fill="var(--green)" fontWeight="700">R/R</text>
+      <text x="728" y="175" fontSize="10" fill="var(--green)">2:1+</text>
+    </svg>
+  )
+}
+
+function CrtBearishDiagram() {
+  return (
+    <svg viewBox="0 0 760 310" className="w-full h-auto">
+      <defs>
+        <linearGradient id="bear-zone-grad" x1="0%" x2="0%" y1="0%" y2="100%">
+          <stop offset="0%" style={{ stopColor: 'var(--red)', stopOpacity: 0.1 }} />
+          <stop offset="100%" style={{ stopColor: 'var(--red)', stopOpacity: 0.02 }} />
+        </linearGradient>
+      </defs>
+      <g stroke="var(--border)" strokeWidth="1" opacity="0.12">
+        {[60, 120, 180, 240].map(y => <line key={y} x1="0" y1={y} x2="760" y2={y} />)}
+      </g>
+      {/* Step labels */}
+      <text x="100" y="18" fontSize="11" fill="var(--text-muted)" textAnchor="middle" fontWeight="700">① RIFERIMENTO</text>
+      <text x="330" y="18" fontSize="11" fill="var(--gold)" textAnchor="middle" fontWeight="700">② MANIPULATION</text>
+      <text x="570" y="18" fontSize="11" fill="var(--red)" textAnchor="middle" fontWeight="700">③ DISTRIBUTION</text>
+      {/* CRT-High line */}
+      <line x1="60" y1="75" x2="720" y2="75" stroke="var(--gold)" strokeWidth="1.5" strokeDasharray="6 4" />
+      <text x="62" y="69" fontSize="10" fill="var(--gold)" fontWeight="700">CRT-High (BSL)</text>
+      {/* CRT-Low line */}
+      <line x1="60" y1="210" x2="720" y2="210" stroke="var(--gold)" strokeWidth="1.5" strokeDasharray="6 4" />
+      <text x="62" y="224" fontSize="10" fill="var(--gold)" fontWeight="700">CRT-Low (SSL)</text>
+      {/* ① Reference candle — neutral, at resistance */}
+      <line x1="100" y1="68" x2="100" y2="220" stroke="var(--text-secondary)" strokeWidth="2" />
+      <rect x="84" y="90" width="32" height="100" fill="var(--text-secondary)" opacity="0.4" rx="3" />
+      <text x="66" y="258" fontSize="9" fill="var(--text-secondary)">Chiude su OB/FVG resist.</text>
+      {/* ② Manipulation — wick sweeps above CRT-High, body closes below */}
+      <rect x="240" y="28" width="180" height="47" fill="var(--green)" opacity="0.06" rx="4" />
+      <line x1="330" y1="28" x2="330" y2="222" stroke="var(--green)" strokeWidth="2" />
+      <rect x="314" y="85" width="32" height="105" fill="var(--green)" opacity="0.45" rx="3" />
+      {/* Sweep annotation above */}
+      <line x1="240" y1="28" x2="420" y2="28" stroke="var(--green)" strokeWidth="1.5" strokeDasharray="3 2" opacity="0.7" />
+      <text x="245" y="22" fontSize="10" fill="var(--green)" fontWeight="700">SWEEP BSL ← Stop dei venditori raccolta</text>
+      {/* Closes below CRT-High */}
+      <path d="M 370 75 L 400 85" stroke="var(--red)" strokeWidth="1.5" fill="none" />
+      <text x="402" y="98" fontSize="10" fill="var(--red)" fontWeight="700">chiude sotto CRT-High ✓</text>
+      {/* ③ Distribution — strong bearish candle */}
+      <rect x="480" y="88" width="180" height="122" fill="url(#bear-zone-grad)" rx="4" />
+      <line x1="560" y1="78" x2="560" y2="285" stroke="var(--red)" strokeWidth="2" />
+      <rect x="544" y="90" width="32" height="185" fill="var(--red)" opacity="0.82" rx="3" />
+      <text x="522" y="300" fontSize="10" fill="var(--red)" fontWeight="700">rompe sotto CRT-Low</text>
+      {/* Entry arrow */}
+      <path d="M 490 76 L 544 82" stroke="var(--red)" strokeWidth="2" fill="none" />
+      <text x="428" y="76" fontSize="10" fill="var(--red)" fontWeight="700">ENTRY SHORT →</text>
+      {/* SL line above sweep */}
+      <line x1="420" y1="24" x2="720" y2="24" stroke="var(--red)" strokeWidth="2" strokeDasharray="4 3" />
+      <text x="425" y="17" fontSize="10" fill="var(--red)" fontWeight="700">SL — sopra high sweep</text>
+      {/* TP line below */}
+      <line x1="480" y1="285" x2="730" y2="285" stroke="var(--green)" strokeWidth="2" strokeDasharray="5 3" />
+      <text x="485" y="299" fontSize="10" fill="var(--green)" fontWeight="700">TP — prossima SSL</text>
+      {/* R/R bracket */}
+      <path d="M 710 24 L 725 24 L 725 285 L 710 285" stroke="var(--text-secondary)" fill="none" strokeWidth="1.5" />
+      <text x="728" y="160" fontSize="11" fill="var(--green)" fontWeight="700">R/R</text>
+      <text x="728" y="175" fontSize="10" fill="var(--green)">2:1+</text>
+    </svg>
+  )
+}
+
 const DIAGRAMS: Record<DiagramKey, React.FC> = {
   'sessions': SessionsDiagram,
   'liquidity-sweep': LiquiditySweepDiagram,
@@ -472,6 +720,10 @@ const DIAGRAMS: Record<DiagramKey, React.FC> = {
   'take-profit': TakeProfitDiagram,
   'kill-zone': KillZoneDiagram,
   'structure': StructureDiagram,
+  'crt-structure': CrtStructureDiagram,
+  'crt-amd': CrtAmdDiagram,
+  'crt-bullish': CrtBullishDiagram,
+  'crt-bearish': CrtBearishDiagram,
 }
 
 export function Diagram({ dKey, caption }: { dKey: DiagramKey; caption?: string }) {

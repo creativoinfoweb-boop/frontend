@@ -208,6 +208,12 @@ const learningModules = [
     desc: 'Dalla teoria alla pratica reale con la piattaforma: demo, dashboard, progressione.',
     topics: ['Collegare il conto demo MT5 e configurare il rischio', 'Monitorare ogni operazione dalla dashboard in tempo reale', 'Win rate, equity curve, profit factor: leggere le statistiche', 'Da demo a live: i criteri oggettivi per fare il passo'],
   },
+  {
+    num: '08', slug: '08', free: false, level: 'Avanzato', lessons: 7,
+    title: 'CRT — Candle Range Theory',
+    desc: 'Il modello CRT: ogni candela è un range completo con sweep di liquidità e setup AMD ad alta probabilità.',
+    topics: ['CRT-High e CRT-Low: i livelli di liquidità di ogni candela', 'Le 3 fasi AMD: Accumulation → Manipulation → Distribution', 'Setup Bullish: sweep SSL + conferma + entry long precisa', 'Setup Bearish: sweep BSL + conferma + entry short + multi-timeframe'],
+  },
 ]
 
 /* ─── Stats — Indicativi, aggiornati periodicamente dal Master account ───── */
