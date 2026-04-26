@@ -326,7 +326,9 @@ export default function LandingPage() {
           WebkitBackdropFilter: 'blur(32px) saturate(1.8)',
           borderBottom: '1px solid var(--glass-border)',
           boxShadow: 'var(--shadow-lg)',
-        } : { background: 'transparent' }}
+        } : {
+          background: 'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, transparent 100%)',
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           {/* Logo */}
@@ -343,23 +345,23 @@ export default function LandingPage() {
           <div className="hidden md:flex items-center gap-8">
             {[
               { label: 'Metodo', href: '/metodo' },
+              { label: 'Chi Siamo', href: '/chi-siamo' },
               { label: 'Impara', href: '#impara' },
-              { label: 'Come Funziona', href: '#how' },
               { label: 'Performance', href: '#performance' },
               { label: 'Pricing', href: '#pricing' },
             ].map((link) => (
               <a key={link.href} href={link.href}
-                className="text-sm font-medium transition-all duration-200 hover:opacity-100"
-                style={{ color: 'var(--text-secondary)', opacity: 0.85 }}
-                onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
-                onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
+                className="text-sm font-medium transition-all duration-200"
+                style={{ color: scrolled ? 'var(--text-secondary)' : 'rgba(255,255,255,0.82)' }}
+                onMouseEnter={e => (e.currentTarget.style.color = scrolled ? 'var(--text-primary)' : '#ffffff')}
+                onMouseLeave={e => (e.currentTarget.style.color = scrolled ? 'var(--text-secondary)' : 'rgba(255,255,255,0.82)')}
               >
                 {link.label}
               </a>
             ))}
             <Link href="/affiliati"
-              className="text-sm font-medium transition-all duration-200 hover:opacity-100"
-              style={{ color: 'var(--text-secondary)', opacity: 0.85 }}
+              className="text-sm font-medium transition-all duration-200"
+              style={{ color: scrolled ? 'var(--text-secondary)' : 'rgba(255,255,255,0.82)' }}
             >
               Affiliati
             </Link>
@@ -487,12 +489,12 @@ export default function LandingPage() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 items-center">
-            <Link href="/metodo" className="btn-eldorado btn-eldorado-primary">
-              Scopri il Metodo
+            <Link href="/auth/register" className="btn-eldorado btn-eldorado-primary">
+              Inizia Gratis
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link href="/auth/register" className="btn-eldorado btn-eldorado-secondary">
-              Inizia Gratis
+            <Link href="/metodo" className="btn-eldorado btn-eldorado-secondary">
+              Scopri il Metodo
               <BarChart3 className="w-5 h-5" />
             </Link>
           </div>
@@ -504,11 +506,33 @@ export default function LandingPage() {
               { icon: Lock, text: 'Controllo totale utente' },
               { icon: Award, text: 'No carta richiesta' },
             ].map(({ icon: Icon, text }) => (
-              <div key={text} className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>
+              <div key={text} className="flex items-center gap-2 text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>
                 <Icon className="w-3.5 h-3.5" style={{ color: 'var(--gold)', opacity: 0.5 }} />
                 <span>{text}</span>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Automatizza il tuo trading — strip */}
+        <div className="absolute bottom-0 left-0 right-0 z-10">
+          <div className="max-w-4xl mx-auto px-4 pb-6">
+            <div className="rounded-2xl px-6 py-4 flex flex-wrap gap-6 justify-center items-center"
+              style={{ background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(20px)', border: '1px solid rgba(240,180,41,0.18)' }}>
+              {[
+                { icon: Zap, label: 'Sistema 100% Automatizzato', sub: 'XAU/USD · 24/5' },
+                { icon: Shield, label: 'Zero Emotività', sub: 'Algoritmo, non istinto' },
+                { icon: TrendingUp, label: 'Risultati Concreti', sub: 'Non solo teoria' },
+              ].map(({ icon: Icon, label, sub }) => (
+                <div key={label} className="flex items-center gap-3">
+                  <Icon className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--gold)' }} />
+                  <div>
+                    <p className="text-xs font-bold leading-none" style={{ color: 'rgba(255,255,255,0.9)' }}>{label}</p>
+                    <p className="text-[10px] mt-0.5" style={{ color: 'rgba(255,255,255,0.45)' }}>{sub}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -770,15 +794,15 @@ export default function LandingPage() {
                 Inizia a Imparare Gratuitamente
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link href="/metodo"
+              <Link href="/dashboard/learn"
                 className="inline-flex items-center gap-2 text-sm font-semibold px-8 py-3 rounded-xl transition-all"
                 style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
                 <BookOpen className="w-4 h-4" />
-                Scopri la Strategia
+                Impara con il corso gratuito
               </Link>
             </div>
             <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-              I primi 2 moduli sono completamente gratuiti. Nessuna carta richiesta.
+              I moduli 01–04 sono completamente gratuiti. Nessuna carta richiesta.
             </p>
           </div>
         </div>
@@ -902,72 +926,6 @@ export default function LandingPage() {
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{feat.desc}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Demo Section ───────────────────────────────── */}
-      <section id="demo" className="py-24 px-4 sm:px-6 lg:px-8 relative">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--surface-overlay)' }} />
-        <div className="relative max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="section-label mb-3">Inizia in Sicurezza</div>
-            <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
-              Comprendi Prima. Testa in Demo. Poi Decidi.
-            </h2>
-            <p className="max-w-2xl mx-auto text-base" style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-              Non devi rischiare capitale reale per capire come funziona la piattaforma.
-              Collega un account demo del tuo broker e osserva il comportamento del sistema in condizioni reali di mercato — senza alcun impatto finanziario.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-5">
-            {[
-              {
-                icon: Globe,
-                step: '01',
-                title: 'Collega Account Demo',
-                desc: 'Usa le credenziali di un conto demo MT5 del tuo broker. Tutto funziona in modo identico al conto reale, senza rischio.',
-                color: 'var(--gold)',
-              },
-              {
-                icon: BarChart3,
-                step: '02',
-                title: 'Osserva e Studia',
-                desc: 'Monitora ogni operazione dalla dashboard. Analizza le logiche, i parametri di rischio, i timing. Comprendi prima di decidere.',
-                color: 'var(--green)',
-              },
-              {
-                icon: Shield,
-                step: '03',
-                title: 'Decidi in Autonomia',
-                desc: 'Solo quando hai piena comprensione del funzionamento, sei libero di passare al conto reale — o di restare in demo. La scelta è solo tua.',
-                color: 'var(--gold)',
-              },
-            ].map((item, i) => (
-              <div key={i} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 120}ms` }}>
-                <div className="flex items-start justify-between mb-6">
-                  <div className="feature-icon-wrap">
-                    <item.icon className="w-5 h-5" style={{ color: item.color }} />
-                  </div>
-                  <span className="text-4xl font-black font-mono" style={{ opacity: 0.1, color: item.color }}>{item.step}</span>
-                </div>
-                <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)' }}>{item.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-10 rounded-2xl p-6 text-center"
-            style={{ background: 'rgba(240,180,41,0.05)', border: '1px solid rgba(240,180,41,0.15)' }}>
-            <p className="text-sm font-semibold mb-1" style={{ color: 'var(--gold)' }}>
-              Disclaimer — Non Forniamo Consulenza Finanziaria
-            </p>
-            <p className="text-xs max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              El Dorado è un software di automazione. Non forniamo consulenza finanziaria, servizi di investimento o gestione patrimoniale.
-              Tutte le decisioni operative e i parametri di utilizzo sono impostati e controllati direttamente dall'utente.
-              Il trading sui mercati finanziari comporta rischi reali di perdita del capitale.
-            </p>
           </div>
         </div>
       </section>
@@ -1115,14 +1073,20 @@ export default function LandingPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/metodo" className="btn-gold text-base px-10 py-4 rounded-xl">
-              Scopri il Metodo
+            <Link href="/auth/register" className="btn-gold text-base px-10 py-4 rounded-xl">
+              Inizia 7 Giorni Gratis
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link href="/auth/register"
+            <Link href="/dashboard/learn"
               className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded-xl transition-all"
               style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', color: 'var(--text-secondary)' }}>
-              Inizia Gratis
+              <GraduationCap className="w-5 h-5" />
+              Impara con il nostro corso gratuito
+            </Link>
+          </div>
+          <div className="mt-4">
+            <Link href="/metodo" className="text-sm font-medium transition-opacity hover:opacity-70" style={{ color: 'var(--gold)' }}>
+              Scopri il Metodo →
             </Link>
           </div>
 
@@ -1166,6 +1130,7 @@ export default function LandingPage() {
                   { label: 'Accedi', href: '/auth/login' },
                   { label: 'Registrati', href: '/auth/register' },
                   { label: 'Metodo & Strategia', href: '/metodo' },
+                  { label: 'Chi Siamo', href: '/chi-siamo' },
                   { label: 'Come Funziona', href: '#how' },
                   { label: 'Performance', href: '#performance' },
                   { label: 'Termini di Servizio', href: '/legal/terms' },
