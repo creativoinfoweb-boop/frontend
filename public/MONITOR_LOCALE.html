@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Dorado - Pannello di Controllo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
+            padding: 20px 25px;
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { color: white; font-size: 24px; font-weight: 700; }
+        .header small { color: rgba(255,255,255,0.8); font-size: 12px; }
+        .header .status { font-weight: bold; display: flex; align-items: center; gap: 8px; font-size: 14px; }
+        .status-ok { color: #00ff88; }
+        .status-error { color: #ff4444; }
+        .status-loading { color: #ffaa00; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: #1a1f3a;
+            border: 1px solid #2a3050;
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 4px solid #ff6b00;
+        }
+        .stat-card h3 { color: #ff6b00; margin-bottom: 8px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-card .value { font-size: 28px; color: #00ff88; font-weight: bold; }
+        .stat-card .sub { font-size: 12px; color: #888; margin-top: 4px; }
+        .tabs {
+            display: flex;
+            gap: 0;
+            margin: 20px 0 0 0;
+            border-bottom: 2px solid #2a3050;
+            background: #0a0e27;
+            border-radius: 8px 8px 0 0;
+            overflow-x: auto;
+            flex-wrap: nowrap;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: #888;
+            padding: 12px 16px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .tab-btn:hover { color: #ff6b00; }
+        .tab-btn.active {
+            color: #ff6b00;
+            border-bottom-color: #ff6b00;
+            background: #1a1f3a;
+        }
+        .tab-content {
+            background: #1a1f3a;
+            border: 1px solid #2a3050;
+            border-top: none;
+            padding: 25px;
+            display: none;
+            border-radius: 0 0 8px 8px;
+            min-height: 300px;
+        }
+        .tab-content.active { display: block; }
+        .tab-content h2 { color: #ff6b00; margin-bottom: 20px; font-size: 18px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #2a3050; }
+        th { background: #0a0e27; color: #ff6b00; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
+        tr:hover { background: #252a3a; }
+        td code { background: #0a0e27; padding: 2px 6px; border-radius: 3px; font-size: 11px; color: #88bbff; }
+        .loading { text-align: center; color: #888; padding: 40px 20px; }
+        .error-box { background: #2d1111; border-left: 4px solid #ff4444; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 13px; }
+        .success-box { background: #112d11; border-left: 4px solid #00ff88; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 13px; }
+        .warn-box { background: #2d2011; border-left: 4px solid #ffaa00; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 13px; }
+        .info-box { background: #111e2d; border-left: 4px solid #4488ff; padding: 12px 15px; margin: 10px 0; border-radius: 4px; font-size: 13px; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+        .badge-green { background: #0d3d1a; color: #00ff88; }
+        .badge-red { background: #3d0d0d; color: #ff4444; }
+        .badge-orange { background: #3d2000; color: #ffaa00; }
+        .badge-blue { background: #0d1e3d; color: #4488ff; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .info-card { background: #0a0e27; border: 1px solid #2a3050; padding: 15px; border-radius: 6px; }
+        .info-card h4 { color: #ff6b00; margin-bottom: 10px; font-size: 13px; }
+        .info-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #1a1f3a; font-size: 12px; }
+        .info-row:last-child { border-bottom: none; }
+        .info-row .label { color: #888; }
+        .info-row .val { color: #e0e0e0; font-family: monospace; }
+        .endpoint-list { display: grid; gap: 8px; }
+        .endpoint-item {
+            background: #0a0e27;
+            padding: 10px 15px;
+            border-radius: 4px;
+            border-left: 3px solid #2a3050;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+        .endpoint-item.ok { border-left-color: #00ff88; }
+        .endpoint-item.error { border-left-color: #ff4444; }
+        .endpoint-item code { font-size: 12px; color: #88bbff; }
+        .refresh-btn {
+            float: right;
+            background: #ff6b00;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        .refresh-btn:hover { background: #ff8c00; }
+        @media (max-width: 600px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1>⚙️ El Dorado — Pannello di Controllo</h1>
+            <small>Solo tu vedi questa pagina &nbsp;|&nbsp; Proxy: localhost:8889 → backend HTTPS</small>
+        </div>
+        <div class="status">
+            <span id="status-dot" class="status-loading">●</span>
+            <span id="status-text" class="status-loading">Connessione...</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Backend</h3>
+                <div id="backend-status" class="value">?</div>
+                <div class="sub" id="backend-sub">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>Utenti Totali</h3>
+                <div id="users-count" class="value">-</div>
+                <div class="sub" id="users-sub">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>Abbonamenti Attivi</h3>
+                <div id="subs-count" class="value">-</div>
+                <div class="sub" id="subs-sub">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>Segnali Oggi</h3>
+                <div id="signals-count" class="value">-</div>
+                <div class="sub" id="signals-sub">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>Account MT5</h3>
+                <div id="accounts-count" class="value">-</div>
+                <div class="sub">attivi nel sistema</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="selectTab('status', this)">📊 Stato</button>
+            <button class="tab-btn" onclick="selectTab('subscriptions', this)">💳 Abbonamenti</button>
+            <button class="tab-btn" onclick="selectTab('accounts', this)">🏦 Account MT5</button>
+            <button class="tab-btn" onclick="selectTab('subscribers', this)">👥 Subscriber</button>
+            <button class="tab-btn" onclick="selectTab('signals', this)">📈 Segnali</button>
+            <button class="tab-btn" onclick="selectTab('channels', this)">📡 Canali</button>
+            <button class="tab-btn" onclick="selectTab('config', this)">⚙️ Config Bot</button>
+            <button class="tab-btn" onclick="selectTab('endpoints', this)">🔧 API Test</button>
+        </div>
+
+        <div id="status" class="tab-content active">
+            <h2>Stato del Sistema <button class="refresh-btn" onclick="loadStatus()">↺ Aggiorna</button></h2>
+            <div id="status-content" class="loading">Caricamento...</div>
+        </div>
+
+        <div id="subscriptions" class="tab-content">
+            <h2>Gestione Abbonamenti <button class="refresh-btn" onclick="loadSubscriptions()">↺ Aggiorna</button></h2>
+            <div id="subscriptions-content" class="loading">Caricamento...</div>
+        </div>
+
+        <div id="accounts" class="tab-content">
+            <h2>Account MT5 <button class="refresh-btn" onclick="loadAccounts()">↺ Aggiorna</button></h2>
+            <div id="accounts-content" class="loading">Caricamento...</div>
+        </div>
+
+        <div id="subscribers" class="tab-content">
+            <h2>Subscriber Attivi (Copy Trading) <button class="refresh-btn" onclick="loadSubscribers()">↺ Aggiorna</button></h2>
+            <div id="subscribers-content" class="loading">Caricamento...</div>
+        </div>
+
+        <div id="signals" class="tab-content">
+            <h2>Segnali Recenti <button class="refresh-btn" onclick="loadSignals()">↺ Aggiorna</button></h2>
+            <div id="signals-content" class="loading">Caricamento...</div>
+        </div>
+
+        <div id="channels" class="tab-content">
+            <h2>Canali Telegram <button class="refresh-btn" onclick="loadChannels()">↺ Aggiorna</button></h2>
+            <div id="channels-content" class="loading">Caricamento...</div>
+        </div>
+
+        <div id="config" class="tab-content">
+            <h2>Configurazione Bot <button class="refresh-btn" onclick="loadConfig()">↺ Aggiorna</button></h2>
+            <div id="config-content" class="loading">Caricamento...</div>
+        </div>
+
+        <div id="endpoints" class="tab-content">
+            <h2>Test Endpoint Backend <button class="refresh-btn" onclick="loadEndpoints()">↺ Aggiorna</button></h2>
+            <div id="endpoints-content" class="loading">Caricamento...</div>
+        </div>
+    </div>
+
+    <script>
+        // PROXY tramite monitor_server.py (evita problemi certificato SSL self-signed)
+        const API_BASE = 'http://localhost:8889/proxy';
+        const BOT_SECRET = 'a8d38f09a6ae54fd050d0213880be0dc35c06cb4f6389cc2ca5cbe505be5261f';
+        // JWT admin long-lived (365gg) - ciros371@gmail.com (is_admin=True)
+        const ADMIN_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4Y2VhNTg1Zi01OGI1LTQ4NGQtOWQ4MS00MzQ0NTk2M2JiZGMiLCJleHAiOjE4MDkxMTMzNDJ9.dK_ZAvrCv38UF1d-VxHK9UM0Hb5br2vMJvT87BErvi4';
+
+        // ── Helpers ─────────────────────────────────────────────────────────────
+        // Tutte le chiamate usano JWT admin (sempre autenticato come admin)
+        async function api(endpoint, opts = {}) {
+            try {
+                const headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${ADMIN_JWT}`,  // JWT admin sempre valido
+                    'X-Bot-Secret': BOT_SECRET,               // BOT_SECRET per endpoint interni
+                };
+
+                const resp = await fetch(API_BASE + endpoint, {
+                    method: opts.method || 'GET',
+                    headers: { ...headers, ...(opts.headers || {}) },
+                    body: opts.body || undefined,
+                });
+                let data = {};
+                try { data = await resp.json(); } catch {}
+                return { ok: resp.ok, status: resp.status, data };
+            } catch (e) {
+                return { ok: false, status: 0, data: {}, error: e.message };
+            }
+        }
+
+        // Alias (stesso comportamento)
+        async function botApi(endpoint) {
+            return api(endpoint);
+        }
+
+        function badge(val, trueLabel, falseLabel, trueClass, falseClass) {
+            if (val) return `<span class="badge ${trueClass || 'badge-green'}">${trueLabel || 'Sì'}</span>`;
+            return `<span class="badge ${falseClass || 'badge-red'}">${falseLabel || 'No'}</span>`;
+        }
+
+        function fmtDate(d) {
+            if (!d) return '-';
+            return new Date(d).toLocaleDateString('it-IT', { day:'2-digit', month:'2-digit', year:'numeric' });
+        }
+
+        // ── Tab routing ─────────────────────────────────────────────────────────
+        function selectTab(name, btn) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(name).classList.add('active');
+            if (btn) btn.classList.add('active');
+
+            const map = {
+                status: loadStatus,
+                subscriptions: loadSubscriptions,
+                accounts: loadAccounts,
+                subscribers: loadSubscribers,
+                signals: loadSignals,
+                channels: loadChannels,
+                config: loadConfig,
+                endpoints: loadEndpoints,
+            };
+            if (map[name]) map[name]();
+        }
+
+        // ── Status tab ─────────────────────────────────────────────────────────
+        async function loadStatus() {
+            const div = document.getElementById('status-content');
+            div.innerHTML = '<div class="loading">Caricamento...</div>';
+
+            const health = await api('/health');
+            const stats = await api('/admin/stats');
+
+            let html = '';
+
+            if (health.ok) {
+                html += `<div class="success-box">✅ Backend online — ${health.data.service || 'Gold Boss Bot'}</div>`;
+                document.getElementById('status-dot').className = 'status-ok';
+                document.getElementById('status-dot').textContent = '●';
+                document.getElementById('status-text').className = 'status-ok';
+                document.getElementById('status-text').textContent = 'Online';
+                document.getElementById('backend-status').textContent = '✅';
+                document.getElementById('backend-sub').textContent = health.data.service || 'running';
+            } else {
+                html += `<div class="error-box">❌ Backend non raggiungibile — HTTP ${health.status} ${health.error || ''}</div>`;
+                document.getElementById('status-dot').className = 'status-error';
+                document.getElementById('status-text').className = 'status-error';
+                document.getElementById('status-text').textContent = 'Offline';
+                document.getElementById('backend-status').textContent = '❌';
+            }
+
+            // Master account check
+            const channels = await api('/admin/monitor-channels');
+            if (channels.ok && channels.data.channels) {
+                const ch = channels.data.channels;
+                html += `<div class="info-box">📡 Master account: <strong>${ch.master_account}</strong> — ${ch.status}</div>`;
+            }
+
+            // Stats grid
+            if (stats.ok) {
+                const s = stats.data;
+                html += `<div class="grid-2" style="margin-top:15px;">
+                    <div class="info-card">
+                        <h4>📊 Statistiche</h4>
+                        <div class="info-row"><span class="label">Utenti totali</span><span class="val">${s.users_total ?? '-'}</span></div>
+                        <div class="info-row"><span class="label">Abbonamenti attivi</span><span class="val">${s.subscriptions_active ?? '-'}</span></div>
+                        <div class="info-row"><span class="label">Segnali oggi</span><span class="val">${s.signals_today ?? '-'}</span></div>
+                        <div class="info-row"><span class="label">Account MT5</span><span class="val">${s.accounts_total ?? '-'}</span></div>
+                    </div>
+                    <div class="info-card">
+                        <h4>🤖 Monitor Copy Trading</h4>
+                        <div class="info-row"><span class="label">Stato monitor</span><span class="val">Attivo (PID Session 0)</span></div>
+                        <div class="info-row"><span class="label">Backend URL</span><span class="val">https://127.0.0.1:8000</span></div>
+                        <div class="info-row"><span class="label">Proxy locale</span><span class="val">http://localhost:8888</span></div>
+                        <div class="info-row"><span class="label">Poll interval</span><span class="val">1 secondo</span></div>
+                    </div>
+                </div>`;
+            }
+
+            div.innerHTML = html;
+        }
+
+        // ── Subscriptions tab ──────────────────────────────────────────────────
+        async function loadSubscriptions() {
+            const div = document.getElementById('subscriptions-content');
+            div.innerHTML = '<div class="loading">Caricamento...</div>';
+            const result = await api('/admin/monitor-subscriptions');
+
+            if (!result.ok) {
+                div.innerHTML = `<div class="error-box">Errore ${result.status}: ${result.data.detail || result.error || 'Richiesta fallita'}</div>
+                    <div class="warn-box">Assicurati di essere loggato come admin. Apri <a href="http://localhost:3000" style="color:#ffaa00">localhost:3000</a>, effettua il login, poi ricarica questa pagina.</div>`;
+                return;
+            }
+
+            const subs = result.data.subscriptions || [];
+            if (!subs.length) {
+                div.innerHTML = '<div class="warn-box">Nessun abbonamento trovato.</div>';
+                return;
+            }
+
+            let html = `<p style="margin-bottom:12px;color:#888;font-size:13px;">Totale: <strong style="color:#e0e0e0">${result.data.total}</strong></p>
+            <table>
+                <tr><th>ID</th><th>User ID</th><th>Piano</th><th>Status</th><th>Stripe Sub</th><th>Inizio</th><th>Scadenza</th></tr>`;
+            subs.forEach(sub => {
+                html += `<tr>
+                    <td><code>${sub.id?.substring(0,8)}…</code></td>
+                    <td><code>${sub.user_id?.substring(0,8)}…</code></td>
+                    <td>${sub.plan_name || '-'}</td>
+                    <td>${badge(sub.is_active, 'Attiva', 'Inattiva')}</td>
+                    <td><code style="font-size:10px">${sub.stripe_subscription_id?.substring(0,20) || '-'}</code></td>
+                    <td>${fmtDate(sub.started_at || sub.created_at)}</td>
+                    <td>${fmtDate(sub.ends_at)}</td>
+                </tr>`;
+            });
+            html += '</table>';
+            div.innerHTML = html;
+        }
+
+        // ── Accounts tab ──────────────────────────────────────────────────────
+        async function loadAccounts() {
+            const div = document.getElementById('accounts-content');
+            div.innerHTML = '<div class="loading">Caricamento...</div>';
+
+            // Usa active-subscribers (ha i dati decriptati: login, server, ecc.)
+            const result = await botApi('/accounts/active-subscribers');
+
+            if (!result.ok) {
+                div.innerHTML = `<div class="error-box">Errore ${result.status}: ${result.data.detail || result.error}</div>`;
+                return;
+            }
+
+            const accs = Array.isArray(result.data) ? result.data : [];
+            document.getElementById('accounts-count').textContent = accs.length;
+
+            if (!accs.length) {
+                div.innerHTML = '<div class="warn-box">Nessun account subscriber attivo nel sistema.</div>';
+                return;
+            }
+
+            let html = `<div class="info-box">Mostrando account con abbonamento attivo (${accs.length} totali)</div><br>
+            <table>
+                <tr><th>Nome</th><th>Login MT5</th><th>Server</th><th>Tipo</th><th>User ID</th><th>Account ID</th></tr>`;
+            accs.forEach(acc => {
+                html += `<tr>
+                    <td><strong>${acc.name || '-'}</strong></td>
+                    <td><code>${acc.login}</code></td>
+                    <td>${acc.server}</td>
+                    <td>${badge(acc.account_type === 'real', 'Real', 'Demo', 'badge-green', 'badge-orange')}</td>
+                    <td><code>${acc.user_id?.substring(0,8)}…</code></td>
+                    <td><code>${acc.account_id?.substring(0,8)}…</code></td>
+                </tr>`;
+            });
+            html += '</table>';
+            div.innerHTML = html;
+        }
+
+        // ── Subscribers tab ─────────────────────────────────────────────────────
+        async function loadSubscribers() {
+            const div = document.getElementById('subscribers-content');
+            div.innerHTML = '<div class="loading">Caricamento...</div>';
+
+            // Try with bot secret (internal endpoint)
+            const result = await botApi('/accounts/active-subscribers');
+
+            if (!result.ok) {
+                div.innerHTML = `<div class="error-box">Errore ${result.status}: ${result.data.detail || result.error}</div>`;
+                return;
+            }
+
+            const subs = Array.isArray(result.data) ? result.data : [];
+            if (!subs.length) {
+                div.innerHTML = '<div class="warn-box">⚠️ Nessun subscriber attivo. Il copy trading non copierà nessun account.</div>';
+                return;
+            }
+
+            let html = `<div class="success-box">✅ ${subs.length} subscriber attivi — il copy trading è operativo</div>
+            <br>
+            <table>
+                <tr><th>Nome</th><th>Login MT5</th><th>Server</th><th>Tipo</th><th>User ID</th><th>Account ID</th></tr>`;
+            subs.forEach(sub => {
+                html += `<tr>
+                    <td><strong>${sub.name || '-'}</strong></td>
+                    <td><code>${sub.login}</code></td>
+                    <td>${sub.server}</td>
+                    <td>${badge(sub.account_type === 'real', 'Real', 'Demo', 'badge-green', 'badge-orange')}</td>
+                    <td><code>${sub.user_id?.substring(0,8)}…</code></td>
+                    <td><code>${sub.account_id?.substring(0,8)}…</code></td>
+                </tr>`;
+            });
+            html += '</table>';
+            div.innerHTML = html;
+        }
+
+        // ── Signals tab ─────────────────────────────────────────────────────────
+        async function loadSignals() {
+            const div = document.getElementById('signals-content');
+            div.innerHTML = '<div class="loading">Caricamento...</div>';
+            const result = await api('/admin/signals');
+
+            if (!result.ok) {
+                div.innerHTML = `<div class="error-box">Errore ${result.status}: ${result.data.detail || result.error}</div>
+                    <div class="warn-box">Effettua il login come admin.</div>`;
+                return;
+            }
+
+            const sigs = result.data.signals || result.data.items || result.data || [];
+            const items = Array.isArray(sigs) ? sigs : (sigs.items || []);
+
+            if (!items.length) {
+                div.innerHTML = '<div class="warn-box">Nessun segnale trovato.</div>';
+                return;
+            }
+
+            let html = '<table><tr><th>Symbol</th><th>Dir</th><th>Entry</th><th>SL</th><th>TP</th><th>Status</th><th>Exec</th><th>Data</th></tr>';
+            items.slice(0, 20).forEach(sig => {
+                const dir = sig.direction === 'BUY' ?
+                    '<span class="badge badge-green">BUY</span>' :
+                    '<span class="badge badge-red">SELL</span>';
+                html += `<tr>
+                    <td><strong>${sig.symbol}</strong></td>
+                    <td>${dir}</td>
+                    <td>${sig.entry_price || '-'}</td>
+                    <td>${sig.sl || sig.stop_loss || '-'}</td>
+                    <td>${sig.tp || sig.take_profit || '-'}</td>
+                    <td><span class="badge badge-blue">${sig.status || '-'}</span></td>
+                    <td>${sig.executions_success ?? '-'}/${sig.executions_total ?? '-'}</td>
+                    <td>${fmtDate(sig.created_at)}</td>
+                </tr>`;
+            });
+            html += '</table>';
+            div.innerHTML = html;
+        }
+
+        // ── Channels tab ────────────────────────────────────────────────────────
+        async function loadChannels() {
+            const div = document.getElementById('channels-content');
+            div.innerHTML = '<div class="loading">Caricamento...</div>';
+            const result = await api('/admin/monitor-channels');
+
+            if (!result.ok) {
+                div.innerHTML = `<div class="error-box">Errore ${result.status}: ${result.data.detail || result.error}</div>`;
+                return;
+            }
+
+            const ch = result.data.channels || {};
+            let html = `<div class="grid-2">
+                <div class="info-card">
+                    <h4>📡 Canali Telegram</h4>
+                    <div class="info-row"><span class="label">Canali</span><span class="val">${ch.telegram || '-'}</span></div>
+                    <div class="info-row"><span class="label">Master Login</span><span class="val">${ch.master_account || '-'}</span></div>
+                    <div class="info-row"><span class="label">Stato bot</span><span class="val">${ch.status || '-'}</span></div>
+                </div>
+                <div class="info-card">
+                    <h4>🎯 Account Master</h4>
+                    <div class="info-row"><span class="label">Login</span><span class="val">7968389</span></div>
+                    <div class="info-row"><span class="label">Server</span><span class="val">ICMarketsSC-MT5-2</span></div>
+                    <div class="info-row"><span class="label">Tipo</span><span class="val">Real</span></div>
+                </div>
+            </div>`;
+            div.innerHTML = html;
+        }
+
+        // ── Config tab ──────────────────────────────────────────────────────────
+        async function loadConfig() {
+            const div = document.getElementById('config-content');
+            div.innerHTML = '<div class="loading">Caricamento...</div>';
+            const result = await api('/admin/monitor-config');
+
+            if (!result.ok) {
+                div.innerHTML = `<div class="error-box">Errore ${result.status}: ${result.data.detail || result.error}</div>`;
+                return;
+            }
+
+            const cfg = result.data;
+            let html = `<div class="grid-2">
+                <div class="info-card">
+                    <h4>🤖 Bot Configuration</h4>
+                    <div class="info-row"><span class="label">Versione bot</span><span class="val">${cfg.bot_version || '-'}</span></div>
+                    <div class="info-row"><span class="label">Environment</span><span class="val">${cfg.environment || '-'}</span></div>
+                    <div class="info-row"><span class="label">Master Login</span><span class="val">${cfg.master_login || '-'}</span></div>
+                    <div class="info-row"><span class="label">Master Server</span><span class="val">${cfg.master_server || '-'}</span></div>
+                    <div class="info-row"><span class="label">Status</span><span class="val">${cfg.status || '-'}</span></div>
+                </div>
+                <div class="info-card">
+                    <h4>🔒 Servizi</h4>
+                    <div class="info-row"><span class="label">Backend</span><span class="val">ElDorado-Backend (Task Scheduler)</span></div>
+                    <div class="info-row"><span class="label">Monitor</span><span class="val">ElDorado-MasterMonitor (Task Scheduler)</span></div>
+                    <div class="info-row"><span class="label">Bot Telegram</span><span class="val">ElDorado-Bot (Task Scheduler)</span></div>
+                    <div class="info-row"><span class="label">Copy Worker</span><span class="val">ElDorado-CopyWorker (Task Scheduler)</span></div>
+                </div>
+            </div>`;
+            div.innerHTML = html;
+        }
+
+        // ── Endpoints test tab ──────────────────────────────────────────────────
+        async function loadEndpoints() {
+            const div = document.getElementById('endpoints-content');
+            div.innerHTML = '<div class="loading">Test in corso...</div>';
+
+            const endpoints = [
+                { path: '/health', label: 'Health check', auth: 'none' },
+                { path: '/admin/stats', label: 'Admin Stats', auth: 'jwt' },
+                { path: '/admin/monitor-subscriptions', label: 'Monitor Subscriptions', auth: 'jwt' },
+                { path: '/admin/monitor-accounts', label: 'Monitor Accounts', auth: 'jwt' },
+                { path: '/admin/monitor-channels', label: 'Monitor Channels', auth: 'jwt' },
+                { path: '/admin/monitor-config', label: 'Monitor Config', auth: 'jwt' },
+                { path: '/admin/monitor-affiliates', label: 'Monitor Affiliates', auth: 'jwt' },
+                { path: '/admin/signals', label: 'Admin Signals', auth: 'jwt' },
+                { path: '/accounts/active-subscribers', label: 'Active Subscribers', auth: 'bot' },
+                { path: '/subscriptions/status', label: 'Subscription Status', auth: 'jwt' },
+            ];
+
+            let html = '<div class="endpoint-list">';
+            for (const ep of endpoints) {
+                let result;
+                if (ep.auth === 'bot') {
+                    result = await botApi(ep.path);
+                } else {
+                    result = await api(ep.path);
+                }
+                const cls = result.ok ? 'ok' : 'error';
+                const icon = result.ok ? '✅' : '❌';
+                const authBadge = ep.auth === 'bot' ?
+                    '<span class="badge badge-orange">BOT SECRET</span>' :
+                    ep.auth === 'jwt' ?
+                    '<span class="badge badge-blue">JWT</span>' :
+                    '<span class="badge badge-green">PUBLIC</span>';
+                html += `<div class="endpoint-item ${cls}">
+                    <span>${icon} <code>${ep.path}</code> — ${ep.label} ${authBadge}</span>
+                    <span style="color:${result.ok ? '#00ff88' : '#ff4444'};font-weight:bold">HTTP ${result.status || 'ERR'}</span>
+                </div>`;
+            }
+            html += '</div>';
+            html += '<p style="margin-top:12px;font-size:12px;color:#888;">Nota: endpoints JWT richiedono login admin. Bot Secret usato per active-subscribers.</p>';
+            div.innerHTML = html;
+        }
+
+        // ── Stats loader (header cards) ─────────────────────────────────────────
+        async function loadStats() {
+            const result = await api('/admin/stats');
+            if (result.ok) {
+                document.getElementById('users-count').textContent = result.data.users_total ?? '-';
+                document.getElementById('users-sub').textContent = 'registrati';
+                document.getElementById('subs-count').textContent = result.data.subscriptions_active ?? '-';
+                document.getElementById('subs-sub').textContent = 'paganti';
+                document.getElementById('signals-count').textContent = result.data.signals_today ?? '-';
+                document.getElementById('signals-sub').textContent = 'nelle ultime 24h';
+            }
+        }
+
+        // ── Init ────────────────────────────────────────────────────────────────
+        window.addEventListener('load', async () => {
+            await loadStats();
+            await loadStatus();
+        });
+
+        // Auto-refresh stats ogni 60 secondi
+        setInterval(loadStats, 60000);
+    </script>
+</body>
+</html>

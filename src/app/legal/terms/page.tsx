@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Termini di Servizio e Privacy — El Dorado',
-  description: 'Termini di utilizzo, rischi finanziari, funzionamento del sistema di automazione, capitale minimo, privacy policy e condizioni di abbonamento di El Dorado su XAU/USD.',
+  title: 'Termini di Servizio e Privacy — Valorox',
+  description: 'Termini di utilizzo, rischi finanziari, funzionamento del sistema di automazione, capitale minimo, privacy policy e condizioni di abbonamento di Valorox su XAU/USD.',
 }
 import { ArrowLeft, Shield, AlertTriangle, Lock, CreditCard, RefreshCw, FileText, Mail } from 'lucide-react'
 
@@ -30,7 +30,7 @@ export default function TermsPage() {
           <div className="flex-1" />
           <span className="text-xs font-medium px-2.5 py-1 rounded-full"
             style={{ background: 'rgba(240,180,41,0.1)', border: '1px solid rgba(240,180,41,0.2)', color: 'var(--gold)' }}>
-            El Dorado
+            Valorox
           </span>
         </div>
       </nav>
@@ -67,7 +67,7 @@ export default function TermsPage() {
           </h2>
           <div className="text-sm leading-relaxed space-y-3" style={{ color: 'var(--text-secondary)' }}>
             <p>
-              <strong style={{ color: 'var(--text-primary)' }}>El Dorado</strong> è una piattaforma di trading automatizzato
+              <strong style={{ color: 'var(--text-primary)' }}>Valorox</strong> è una piattaforma di trading automatizzato
               che esegue operazioni di acquisto e vendita su XAU/USD (oro) tramite conto MetaTrader 5 (MT5) collegato dall'utente.
               Il servizio è erogato interamente lato server: non è necessario installare alcun software, mantenere aperto
               il terminale MT5 o svolgere alcuna azione manuale.
@@ -78,7 +78,7 @@ export default function TermsPage() {
               con un numero limitato di trade giornalieri e gestione integrata del rischio tramite stop loss e take profit.
             </p>
             <p>
-              <strong style={{ color: 'var(--text-primary)' }}>El Dorado non è una società di gestione patrimoniale</strong>,
+              <strong style={{ color: 'var(--text-primary)' }}>Valorox non è una società di gestione patrimoniale</strong>,
               un fondo di investimento, né un consulente finanziario. Il servizio si configura come un tool tecnologico
               di automazione del trading — la decisione finale di utilizzarlo e il rischio di capitale rimangono
               sempre e comunque in capo all'utente.
@@ -107,7 +107,7 @@ export default function TermsPage() {
                 significative — in condizioni di mercato avverse, imprevedibili o anomale.
               </p>
               <p>
-                Utilizzando El Dorado dichiari di essere consapevole che:
+                Utilizzando Valorox dichiari di essere consapevole che:
               </p>
               <ul className="space-y-1 pl-2">
                 <li>• Il capitale investito nel conto MT5 collegato è a rischio</li>
@@ -135,7 +135,7 @@ export default function TermsPage() {
           </h2>
           <div className="text-sm leading-relaxed space-y-3" style={{ color: 'var(--text-secondary)' }}>
             <p>
-              El Dorado si basa sulla <strong style={{ color: 'var(--text-primary)' }}>replica automatica delle operazioni</strong> da
+              Valorox si basa sulla <strong style={{ color: 'var(--text-primary)' }}>replica automatica delle operazioni</strong> da
               una strategia master. Ogni operazione viene trasmessa al tuo conto con una dimensione proporzionata al tuo capitale e alla
               percentuale di rischio che hai selezionato. Il sistema include:
             </p>
@@ -179,7 +179,7 @@ export default function TermsPage() {
               </p>
               <p>
                 La responsabilità di disporre di un <strong style={{ color: 'var(--text-primary)' }}>capitale adeguato</strong> per il livello
-                di rischio scelto è interamente dell'utente. El Dorado non può garantire il corretto funzionamento del sistema
+                di rischio scelto è interamente dell'utente. Valorox non può garantire il corretto funzionamento del sistema
                 di take profit frazionati con capitali insufficienti.
               </p>
             </div>
@@ -202,7 +202,7 @@ export default function TermsPage() {
             <div className="text-sm leading-relaxed space-y-2" style={{ color: 'var(--text-secondary)' }}>
               <p>
                 Inserendo le credenziali del tuo conto MT5 (login, password di trading, server broker),
-                autorizzi El Dorado a utilizzarle <strong style={{ color: 'var(--text-primary)' }}>esclusivamente per eseguire
+                autorizzi Valorox a utilizzarle <strong style={{ color: 'var(--text-primary)' }}>esclusivamente per eseguire
                 operazioni di trading</strong> sul tuo conto, nell'ambito del servizio sottoscritto.
               </p>
               <p>
@@ -226,7 +226,7 @@ export default function TermsPage() {
             style={{ background: 'rgba(0,230,118,0.04)', border: '1px solid rgba(0,230,118,0.12)' }}>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
               <Shield className="w-4 h-4 inline mr-1.5 mb-0.5" style={{ color: '#00E676' }} />
-              <strong style={{ color: '#00E676' }}>Importante:</strong> El Dorado non può prelevare fondi dal tuo conto,
+              <strong style={{ color: '#00E676' }}>Importante:</strong> Valorox non può prelevare fondi dal tuo conto,
               né modificare la leva o trasferire capitali. L'accesso si limita esclusivamente all'apertura
               e chiusura di posizioni di trading su XAU/USD.
             </p>
@@ -248,13 +248,13 @@ export default function TermsPage() {
             </div>
             <div className="text-sm leading-relaxed space-y-2" style={{ color: 'var(--text-secondary)' }}>
               <p>
-                Il servizio El Dorado è disponibile tramite abbonamento mensile o annuale. I pagamenti sono
+                Il servizio Valorox è disponibile tramite abbonamento mensile o annuale. I pagamenti sono
                 gestiti da <strong style={{ color: 'var(--text-primary)' }}>Stripe</strong>, provider certificato
-                PCI-DSS. El Dorado non memorizza mai i dati della tua carta di credito.
+                PCI-DSS. Valorox non memorizza mai i dati della tua carta di credito.
               </p>
               <ul className="space-y-1 pl-2">
-                <li>• <strong style={{ color: 'var(--text-primary)' }}>Trial gratuito di 7 giorni</strong>: nessun addebito. Al termine, se non cancelli, parte il piano mensile a €39/mese.</li>
-                <li>• <strong style={{ color: 'var(--text-primary)' }}>Piano mensile</strong>: €39/mese per i primi 2 cicli di fatturazione, poi €79/mese con rinnovo automatico.</li>
+                <li>• <strong style={{ color: 'var(--text-primary)' }}>Trial gratuito di 5 giorni</strong>: nessun addebito. Al termine, se non cancelli, parte il piano mensile a €89/mese.</li>
+                <li>• <strong style={{ color: 'var(--text-primary)' }}>Piano mensile</strong>: €75.65 il primo mese (sconto 15%), poi €89/mese con rinnovo automatico.</li>
                 <li>• <strong style={{ color: 'var(--text-primary)' }}>Piano annuale</strong>: unica fatturazione anticipata, con sconto applicato sul prezzo mensile equivalente.</li>
                 <li>• I prezzi sono in EUR, IVA inclusa ove applicabile.</li>
                 <li>• Il rinnovo automatico può essere disattivato in qualsiasi momento dalla dashboard senza penali.</li>
@@ -283,7 +283,7 @@ export default function TermsPage() {
                 <p className="text-sm font-semibold" style={{ color: '#00E676' }}>Politica Rimborsi</p>
               </div>
               <p>
-                El Dorado non offre rimborsi per periodi di abbonamento già pagati e utilizzati.
+                Valorox non offre rimborsi per periodi di abbonamento già pagati e utilizzati.
                 Nel caso di problemi tecnici imputabili al nostro servizio (es. impossibilità di eseguire trade
                 per un periodo prolungato), valutiamo caso per caso ogni richiesta inviata via email.
                 Le perdite di trading non sono rimborsabili in quanto dipendenti dall'andamento dei mercati.
@@ -301,17 +301,17 @@ export default function TermsPage() {
           </h2>
           <div className="text-sm leading-relaxed space-y-3" style={{ color: 'var(--text-secondary)' }}>
             <p>
-              El Dorado è uno strumento tecnologico di automazione. Nei limiti consentiti dalla legge applicabile:
+              Valorox è uno strumento tecnologico di automazione. Nei limiti consentiti dalla legge applicabile:
             </p>
             <ul className="space-y-1.5 pl-2">
-              <li>• El Dorado non è responsabile delle perdite subite sul conto MT5 dell'utente, derivanti dall'operatività del sistema o da eventi di mercato.</li>
-              <li>• El Dorado non garantisce risultati positivi né profittabilità continua nel tempo.</li>
-              <li>• El Dorado non è responsabile di interruzioni del servizio causate da malfunzionamenti del broker, del server MT5 o di infrastrutture terze.</li>
-              <li>• El Dorado non è responsabile di perdite causate da credenziali MT5 errate inserite dall'utente.</li>
+              <li>• Valorox non è responsabile delle perdite subite sul conto MT5 dell'utente, derivanti dall'operatività del sistema o da eventi di mercato.</li>
+              <li>• Valorox non garantisce risultati positivi né profittabilità continua nel tempo.</li>
+              <li>• Valorox non è responsabile di interruzioni del servizio causate da malfunzionamenti del broker, del server MT5 o di infrastrutture terze.</li>
+              <li>• Valorox non è responsabile di perdite causate da credenziali MT5 errate inserite dall'utente.</li>
               <li>• L'utente è responsabile della scelta del broker, del livello di rischio impostato e della compatibilità del proprio conto con il servizio.</li>
             </ul>
             <p>
-              Usare El Dorado implica accettare che il rischio finanziario è interamente in capo all'utente.
+              Usare Valorox implica accettare che il rischio finanziario è interamente in capo all'utente.
               Ti incoraggiamo a testare il servizio su conto demo prima di operare con fondi reali.
             </p>
           </div>
@@ -382,7 +382,7 @@ export default function TermsPage() {
 
         {/* Footer */}
         <div className="border-t pt-6 text-center text-xs" style={{ borderColor: 'var(--border)', color: 'var(--text-muted)' }}>
-          <p>© 2025 El Dorado. Tutti i diritti riservati.</p>
+          <p>© 2025 Valorox. Tutti i diritti riservati.</p>
           <p className="mt-1">Il trading comporta rischi. Non investire capitali che non puoi permetterti di perdere.</p>
           <Link href="/" className="mt-3 inline-block font-semibold transition-opacity hover:opacity-80" style={{ color: 'var(--gold)' }}>
             ← Torna alla Home

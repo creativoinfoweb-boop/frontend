@@ -163,22 +163,22 @@ export default function SetupGuidePage() {
           <div className="space-y-5 animate-fade-in">
             <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
               Per usare la piattaforma serve un accesso attivo (trial o pagamento). Nella pagina abbonamento puoi:{' '}
-              <strong className="text-[var(--text-primary)]">avviare 7 giorni gratis</strong> senza carta, oppure{' '}
+              <strong className="text-[var(--text-primary)]">avviare 5 giorni gratis</strong> senza carta, oppure{' '}
               <strong className="text-[var(--text-primary)]">pagare subito</strong> con Stripe (piano mensile promo o annuale).
             </p>
 
             <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(240,180,41,0.15)' }}>
               <div className="px-4 py-2 text-xs font-bold text-[#F0B429]"
                 style={{ background: 'rgba(240,180,41,0.08)' }}>
-                Piano El Dorado
+                Piano Valorox
               </div>
               <div className="px-4 py-3 space-y-0">
-                <InfoRow label="Trial gratuito" value="7 giorni" />
-                <InfoRow label="Prezzo mensile" value="€39 / mese" />
+                <InfoRow label="Trial gratuito" value="5 giorni" />
+                <InfoRow label="Prezzo mensile" value="€89/mese (primo mese €75.65)" />
                 <InfoRow label="Strumento" value="XAU/USD (Oro)" />
                 <InfoRow label="Segnali al giorno" value="1–4 trade" />
-                <InfoRow label="Risk management" value="1-3% per trade (a scelta)" />
-                <InfoRow label="Orario operativo" value="10:30 – 14:00" />
+                <InfoRow label="Risk management" value="0.5–2.5% per trade (a scelta)" />
+                <InfoRow label="Orario operativo" value="10:00 – 16:00" />
               </div>
             </div>
 
@@ -304,7 +304,7 @@ export default function SetupGuidePage() {
         {step === 4 && (
           <div className="space-y-5 animate-fade-in">
             <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-              El Dorado replica automaticamente le operazioni eseguite sul conto master sul tuo conto MT5. Ecco come funziona nel dettaglio.
+              Valorox replica automaticamente le operazioni eseguite sul conto master sul tuo conto MT5. Ecco come funziona nel dettaglio.
             </p>
 
             {/* Automazione */}
@@ -395,8 +395,8 @@ export default function SetupGuidePage() {
             <div className="space-y-3">
               {[
                 { time: 'Ogni mattina 10:00', text: 'Il server verifica automaticamente che le tue credenziali MT5 siano ancora valide' },
-                { time: '10:30 – 14:00',      text: 'Quando apriamo un trade su XAU/USD, il sistema fa login sul tuo conto e apre la stessa posizione in pochi secondi' },
-                { time: 'Risk 1-3%',           text: 'Il lotto viene calcolato automaticamente in base al saldo del conto e alla percentuale di rischio che hai scelto' },
+                { time: '10:00 – 16:00',      text: 'Quando apriamo un trade su XAU/USD, il sistema fa login sul tuo conto e apre la stessa posizione in pochi secondi' },
+                { time: 'Risk 0.5–2.5%',           text: 'Il lotto viene calcolato automaticamente in base al saldo del conto e alla percentuale di rischio che hai scelto' },
                 { time: 'Live Trading',        text: 'Nel pannello "Live Trading" della dashboard vedi in tempo reale tutte le posizioni aperte del master' },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
@@ -429,7 +429,7 @@ export default function SetupGuidePage() {
                 <p>❌ <strong style={{ color: 'var(--text-primary)' }}>Evita modifiche manuali alle posizioni aperte</strong> dalla strategia — comprometteresti i take profit frazionati e la coerenza della gestione del rischio.</p>
                 <p>❌ <strong style={{ color: 'var(--text-primary)' }}>Non aprire operazioni manuali</strong> sullo stesso conto MT5 collegato — il sistema non distingue le tue posizioni da quelle della strategia.</p>
                 <p>❌ <strong style={{ color: 'var(--text-primary)' }}>Non modificare SL o TP</strong> delle posizioni aperte dalla strategia — potresti alterare la gestione del rischio prevista.</p>
-                <p>❌ <strong style={{ color: 'var(--text-primary)' }}>Non usare questo conto per altri sistemi</strong> di trading — usa un conto dedicato esclusivamente per El Dorado.</p>
+                <p>❌ <strong style={{ color: 'var(--text-primary)' }}>Non usare questo conto per altri sistemi</strong> di trading — usa un conto dedicato esclusivamente per Valorox.</p>
                 <p>✅ <strong style={{ color: '#00E676' }}>Lascia che la strategia venga eseguita senza interferenze</strong> — monitora i risultati dalla dashboard e contattaci per qualsiasi dubbio.</p>
               </div>
             </div>

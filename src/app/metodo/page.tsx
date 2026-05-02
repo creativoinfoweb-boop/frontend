@@ -8,8 +8,8 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Metodo & Strategia — El Dorado',
-  description: 'Come funziona il sistema El Dorado: metodo Smart Money, strategia Gold Scalping, automazione AI e risk management strutturato su XAU/USD.',
+  title: 'Metodo & Strategia — Valorox',
+  description: 'Come funziona il sistema Valorox: metodo Smart Money, strategia Gold Scalping, automazione AI e risk management strutturato su XAU/USD.',
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -81,7 +81,7 @@ export default function MetodoPage() {
             </span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            Come funziona il Sistema El Dorado: il metodo Smart Money che sta alla base,
+            Come funziona il Sistema Valorox: il metodo Smart Money che sta alla base,
             la strategia Gold Scalping su XAU/USD, e come l&apos;AI esegue tutto automaticamente — senza che tu debba fare nulla durante i trade.
           </p>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold"
@@ -138,7 +138,7 @@ export default function MetodoPage() {
           <InfoCard title="La Soluzione" accent="green">
             L&apos;unico modo per eliminare l&apos;interferenza emotiva è rimuovere il fattore umano dall&apos;esecuzione.
             Non delegare le decisioni — delegare l&apos;esecuzione di decisioni già prese, basate su regole precise e testate.
-            Questo è esattamente ciò che fa il Sistema El Dorado.
+            Questo è esattamente ciò che fa il Sistema Valorox.
           </InfoCard>
         </section>
 
@@ -192,7 +192,7 @@ export default function MetodoPage() {
           <SectionLabel>03 — La Strategia</SectionLabel>
           <h2 className="text-2xl sm:text-3xl font-black">Gold Scalping su XAU/USD</h2>
           <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            Il Sistema El Dorado applica una strategia di scalping intraday sull&apos;oro (XAU/USD) focalizzata
+            Il Sistema Valorox applica una strategia di scalping intraday sull&apos;oro (XAU/USD) focalizzata
             sulla sessione di Londra — la finestra di massima liquidità istituzionale. Ogni operazione segue
             una logica precisa e ripetibile.
           </p>
@@ -232,7 +232,7 @@ export default function MetodoPage() {
           <SectionLabel>04 — Automazione</SectionLabel>
           <h2 className="text-2xl sm:text-3xl font-black">Il Sistema Automatizzato</h2>
           <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            Il Sistema El Dorado non è un bot generico. È l&apos;implementazione algoritmica precisa della strategia
+            Il Sistema Valorox non è un bot generico. È l&apos;implementazione algoritmica precisa della strategia
             Gold Scalping SMC — ogni regola che hai visto sopra è codificata e viene eseguita automaticamente,
             24/5, senza che tu debba fare nulla durante i trade.
           </p>
@@ -290,7 +290,7 @@ export default function MetodoPage() {
               <div className="p-5">
                 <div className="flex items-center gap-2 mb-4">
                   <CheckCircle2 className="w-4 h-4" style={{ color: 'var(--green)' }} />
-                  <p className="text-sm font-bold" style={{ color: 'var(--green)' }}>Sistema El Dorado</p>
+                  <p className="text-sm font-bold" style={{ color: 'var(--green)' }}>Sistema Valorox</p>
                 </div>
                 <ul className="space-y-2">
                   {['Opera in automatico, anche mentre dormi', 'Zero emotività — pura logica algoritmica', 'Stessa identica logica su ogni trade', '100% disciplina in ogni condizione', 'Continua durante le tue vacanze'].map((t, i) => (
@@ -377,18 +377,18 @@ export default function MetodoPage() {
         <section className="rounded-3xl p-8 sm:p-12 text-center space-y-5"
           style={{ background: 'rgba(240,180,41,0.04)', border: '1px solid rgba(240,180,41,0.15)' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring mx-auto" style={{ width: 64, height: 64 }} />
+          <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring mx-auto" style={{ width: 64, height: 64 }} />
           <h2 className="text-3xl font-black">
             <span style={{ background: 'linear-gradient(135deg, var(--gold-dark), var(--gold))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               Pronto ad automatizzare?
             </span>
           </h2>
           <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            7 giorni gratuiti. Nessuna carta richiesta. Inizia con un conto demo e vedi il sistema in azione.
+            5 giorni gratuiti. Nessuna carta richiesta. Inizia con un conto demo e vedi il sistema in azione.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <Link href="/auth/register" className="btn-gold text-sm px-8 py-3 rounded-xl">
-              Inizia 7 Giorni Gratis
+              Inizia 5 Giorni Gratis
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link href="/dashboard/learn"
@@ -415,7 +415,7 @@ export default function MetodoPage() {
           <Link href="/legal/terms" className="hover:opacity-70 transition-opacity">Termini</Link>
         </div>
         <p className="text-xs mt-4" style={{ color: 'var(--text-muted)' }}>
-          © 2025 El Dorado · Non forniamo consulenza finanziaria · Il trading comporta rischi
+          © 2025 Valorox · Non forniamo consulenza finanziaria · Il trading comporta rischi
         </p>
       </footer>
     </div>

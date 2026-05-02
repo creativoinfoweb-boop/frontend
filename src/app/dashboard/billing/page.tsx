@@ -114,7 +114,7 @@ function BillingContent() {
     }
   }
 
-  // "Inizia 7 giorni di prova" → apre il checkout Stripe (che include il trial di 7 gg)
+  // "Inizia 7 giorni di prova" → apre il checkout Stripe (che include il trial di 5 gg)
   const handleStartTrial = useCallback(() => {
     void handleCheckout('monthly')
   }, [handleCheckout])
@@ -171,7 +171,7 @@ function BillingContent() {
     statusDetail = 'Scegli trial gratuito o pagamento — stesso piano della homepage.'
   } else if (hasNone) {
     statusHeadline = 'Abbonamento non ancora attivo'
-    statusDetail = 'Avvia il trial di 7 giorni oppure paga con carta (mensile o annuale).'
+    statusDetail = 'Avvia il trial di 5 giorni oppure paga con carta (mensile o annuale).'
   } else if (isTrialing) {
     statusHeadline = 'Trial attivo'
     statusDetail = `Hai ancora ${subscription?.days_remaining ?? '—'} giorni gratis. Puoi attivare il pagamento quando vuoi.`
@@ -185,7 +185,7 @@ function BillingContent() {
 
       <div>
         <h1 className="text-2xl font-black text-[var(--text-primary)]">Abbonamento</h1>
-        <p className="text-sm text-[var(--text-secondary)] mt-1">El Dorado Premium — Piattaforma Educativa e Operativa XAU/USD</p>
+        <p className="text-sm text-[var(--text-secondary)] mt-1">Valorox Premium — Piattaforma Educativa e Operativa XAU/USD</p>
       </div>
 
       {showPricingBlock && (
@@ -270,9 +270,9 @@ function BillingContent() {
           <div className="flex items-start justify-between mb-6 relative">
             <div className="flex items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/eldorado.jpg" alt="El Dorado" style={{ width: 40, height: 40, borderRadius: '50%', border: '1.5px solid rgba(240,180,41,0.35)', objectFit: 'cover', objectPosition: 'top center' }} />
+              <img src="/eldorado.jpg" alt="Valorox" style={{ width: 40, height: 40, borderRadius: '50%', border: '1.5px solid rgba(240,180,41,0.35)', objectFit: 'cover', objectPosition: 'top center' }} />
               <div>
-                <div className="font-bold text-[var(--text-primary)]">El Dorado Premium</div>
+                <div className="font-bold text-[var(--text-primary)]">Valorox Premium</div>
                 <div className="text-xs text-[var(--text-secondary)] mt-0.5">Piattaforma Educativa e Operativa XAU/USD · 1 conto MT5</div>
               </div>
             </div>
@@ -310,7 +310,7 @@ function BillingContent() {
                 { label: 'Piano', value: subscription?.plan === 'gold_yearly' ? 'Annuale' : 'Mensile' },
                 {
                   label: 'Prezzo',
-                  value: subscription?.plan === 'gold_yearly' ? '€694,40/anno' : '€39→€79*',
+                  value: subscription?.plan === 'gold_yearly' ? '€907.80/anno' : '€75.65→€89*',
                 },
                 { label: 'Rinnovo', value: subscription?.plan === 'gold_yearly' ? '1× / anno' : 'Mensile' },
               ].map((item) => (
@@ -323,7 +323,7 @@ function BillingContent() {
             </div>
             {subscription?.plan !== 'gold_yearly' && (
               <p className="text-[10px] text-[var(--text-muted)]">
-                *Piano mensile: €39/mese per i primi 2 cicli di fatturazione, poi €79/mese (automatico su Stripe).
+                *Piano mensile: €75.65 il primo mese (sconto 15%), poi €89/mese (automatico su Stripe).
               </p>
             )}
 
@@ -441,7 +441,7 @@ function BillingContent() {
 
       <div className="rounded-xl p-4 text-xs text-[var(--text-muted)] leading-relaxed"
         style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}>
-        Prezzi in EUR IVA inclusa. Trial 7 giorni gratuiti senza carta. Offerta lancio: €39/mese per i primi 2 mesi, poi €79/mese con rinnovo automatico (piano mensile). Piano annuale €694,40/anno. Cancellazione senza penali.
+        Prezzi in EUR IVA inclusa. Trial 5 giorni gratuiti senza carta. Offerta lancio: €75.65 il primo mese (sconto 15%), poi €89/mese con rinnovo automatico (piano mensile). Piano annuale €907.80/anno. Cancellazione senza penali.
         {' '}
         <Link href="/legal/terms" target="_blank" rel="noopener noreferrer" className="text-[var(--gold)] hover:opacity-90 transition-opacity underline-offset-2">Termini di Servizio</Link>
       </div>

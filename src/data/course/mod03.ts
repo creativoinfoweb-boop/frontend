@@ -7,7 +7,7 @@ export const mod03lessons: Lesson[] = [
       { type: 'heading', text: 'MAPS — Market Makers Algorithmic Pricing Systems' },
       { type: 'paragraph', text: 'Il prezzo non si muove casualmente. Segue un ciclo algoritmico preciso: Consolidation (accumulo) → Expansion (spinta) → Retracement (ritorno) → Reversal o Continuation.' },
       { type: 'list', items: ['Consolidation: range stretto, prezzo laterale, volume basso', 'Expansion: rottura direzionale, candele grandi, volume alto', 'Retracement: ritorno verso l\'OB/FVG — opportunità d\'ingresso', 'Reversal: cambio completo di direzione oppure Continuation: ripartenza'] },
-      { type: 'callout', variant: 'info', text: 'Ogni setup del metodo El Dorado sfrutta il Retracement verso l\'OB dopo l\'Expansion.' },
+      { type: 'callout', variant: 'info', text: 'Ogni setup del metodo Valorox sfrutta il Retracement verso l\'OB dopo l\'Expansion.' },
       { type: 'heading', text: 'Punti chiave' },
       { type: 'list', items: ['Non comprare il breakout — aspetta il retracement', 'L\'expansion dà il bias. Il retracement dà l\'entry.', 'Se non c\'è retracement → nessun trade'] }
     ],

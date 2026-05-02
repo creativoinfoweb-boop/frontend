@@ -166,7 +166,7 @@ export function Sidebar() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/eldorado.jpg"
-                  alt="El Dorado"
+                  alt="Valorox"
                   className="gold-avatar-ring"
                   style={{ width: 36, height: 36 }}
                 />
@@ -181,7 +181,7 @@ export function Sidebar() {
               </div>
 
               <div>
-                <div className="brand-cinzel text-[11px] tracking-[0.22em]">EL DORADO</div>
+                <div className="brand-cinzel text-[11px] tracking-[0.22em]">VALOROX</div>
                 <div className="text-[9px] font-medium tracking-[0.15em] uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>
                   Copy Trading
                 </div>

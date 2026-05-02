@@ -14,7 +14,7 @@ function LoadingUI() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/eldorado.jpg"
-          alt="El Dorado"
+          alt="Valorox"
           style={{
             width: 64,
             height: 64,
@@ -94,9 +94,9 @@ function ClerkCallbackContent() {
 
         let nextPath = '/dashboard'
         if (typeof window !== 'undefined') {
-          const stored = sessionStorage.getItem('eldorado_post_auth_path')
+          const stored = sessionStorage.getItem('valorox_post_auth_path')
           if (stored) {
-            sessionStorage.removeItem('eldorado_post_auth_path')
+            sessionStorage.removeItem('valorox_post_auth_path')
             nextPath = stored.startsWith('/') ? stored : '/dashboard'
           }
         }
@@ -130,7 +130,7 @@ function ClerkCallbackContent() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/eldorado.jpg"
-          alt="El Dorado"
+          alt="Valorox"
           style={{
             width: 64,
             height: 64,

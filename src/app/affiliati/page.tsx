@@ -128,9 +128,9 @@ export default function AffiliatiPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
+            <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
             <div>
-              <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>El Dorado</span>
+              <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Valorox</span>
               <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
             </div>
           </Link>
@@ -182,7 +182,7 @@ export default function AffiliatiPage() {
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6">
             <span style={{ color: 'var(--text-primary)' }}>Collabora con </span>
-            <span style={{ background: 'linear-gradient(135deg, var(--gold-dark), var(--gold))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>El Dorado</span>
+            <span style={{ background: 'linear-gradient(135deg, var(--gold-dark), var(--gold))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Valorox</span>
           </h1>
 
           <p className="text-xl sm:text-2xl font-semibold mb-4" style={{ color: 'var(--text-secondary)' }}>
@@ -190,7 +190,7 @@ export default function AffiliatiPage() {
           </p>
 
           <p className="text-base max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-            Hai una community interessata al trading o alla finanza? Entra nel programma affiliati El Dorado e guadagna commissioni ricorrenti per ogni abbonato che porti sulla piattaforma.
+            Hai una community interessata al trading o alla finanza? Entra nel programma affiliati Valorox e guadagna commissioni ricorrenti per ogni abbonato che porti sulla piattaforma.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -223,7 +223,7 @@ export default function AffiliatiPage() {
               {
                 step: '02',
                 title: 'Valutazione',
-                desc: 'Il team El Dorado valuterà la tua candidatura e ti contatterà entro 3-5 giorni lavorativi.',
+                desc: 'Il team Valorox valuterà la tua candidatura e ti contatterà entro 3-5 giorni lavorativi.',
                 icon: Users,
               },
               {
@@ -274,7 +274,7 @@ export default function AffiliatiPage() {
               {
                 icon: Gift,
                 title: 'Sconto Creator 30%',
-                desc: 'Come affiliato approvato hai diritto a uno sconto permanente del 30% sul tuo abbonamento El Dorado, per sempre.',
+                desc: 'Come affiliato approvato hai diritto a uno sconto permanente del 30% sul tuo abbonamento Valorox, per sempre.',
                 color: 'var(--gold)',
                 bg: 'rgba(240,180,41,0.08)',
                 border: 'rgba(240,180,41,0.2)',
@@ -290,7 +290,7 @@ export default function AffiliatiPage() {
               {
                 icon: Headphones,
                 title: 'Supporto Prioritario',
-                desc: 'Accesso diretto al team El Dorado. Le tue richieste vengono gestite con priorità e tempi di risposta garantiti.',
+                desc: 'Accesso diretto al team Valorox. Le tue richieste vengono gestite con priorità e tempi di risposta garantiti.',
                 color: '#38BDF8',
                 bg: 'rgba(56,189,248,0.08)',
                 border: 'rgba(56,189,248,0.2)',
@@ -360,7 +360,7 @@ export default function AffiliatiPage() {
               Candidati al Programma Affiliati
             </h2>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              Il team El Dorado valuterà la tua candidatura e ti contatterà per email entro 3-5 giorni lavorativi.
+              Il team Valorox valuterà la tua candidatura e ti contatterà per email entro 3-5 giorni lavorativi.
             </p>
           </div>
 
@@ -514,7 +514,7 @@ export default function AffiliatiPage() {
                 <textarea
                   maxLength={500}
                   rows={3}
-                  placeholder="Vuoi aggiungere qualcosa? Perché pensi di essere un buon fit con El Dorado?"
+                  placeholder="Vuoi aggiungere qualcosa? Perché pensi di essere un buon fit con Valorox?"
                   value={form.message}
                   onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
                   className="input-premium w-full resize-none"
@@ -542,7 +542,7 @@ export default function AffiliatiPage() {
                   {form.accepted && <Check className="w-3 h-3 text-black" />}
                 </button>
                 <span className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                  Accetto che El Dorado conservi i miei dati per valutare la candidatura al programma affiliati. *
+                  Accetto che Valorox conservi i miei dati per valutare la candidatura al programma affiliati. *
                 </span>
               </div>
 
@@ -576,8 +576,8 @@ export default function AffiliatiPage() {
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 30, height: 30 }} />
-            <span className="font-bold" style={{ color: 'var(--text-primary)' }}>El Dorado</span>
+            <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring" style={{ width: 30, height: 30 }} />
+            <span className="font-bold" style={{ color: 'var(--text-primary)' }}>Valorox</span>
             <span className="text-xs" style={{ color: 'var(--text-muted)' }}>AI Solution</span>
           </div>
           <div className="flex items-center gap-6 text-sm">
@@ -586,7 +586,7 @@ export default function AffiliatiPage() {
             <span style={{ color: 'var(--text-muted)' }}>support@botbosco.com</span>
           </div>
           <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-            © 2026 El Dorado. Tutti i diritti riservati.
+            © 2026 Valorox. Tutti i diritti riservati.
           </p>
         </div>
       </footer>

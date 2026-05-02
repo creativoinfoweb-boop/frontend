@@ -69,7 +69,7 @@ export default function ProfilePage() {
     <div className="space-y-8 max-w-2xl">
       <div>
         <h1 className="text-3xl font-bold text-[var(--text-primary)]">Profilo</h1>
-        <p className="text-[var(--text-muted)] mt-1">Gestisci il tuo account El Dorado</p>
+        <p className="text-[var(--text-muted)] mt-1">Gestisci il tuo account Valorox</p>
       </div>
 
       {/* Avatar + Info */}
@@ -78,7 +78,7 @@ export default function ProfilePage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/eldorado.jpg"
-            alt="El Dorado"
+            alt="Valorox"
             className="gold-avatar-ring"
             style={{ width: 64, height: 64 }}
           />

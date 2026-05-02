@@ -7,7 +7,7 @@ export const mod07lessons: Lesson[] = [
       { type: 'heading', text: 'Hai imparato il metodo. Ora?' },
       { type: 'paragraph', text: 'Conosci SMC, OB, FVG, sweep, MSS, risk management. La domanda è: riesci ad applicarlo con coerenza al 100% delle operazioni, ogni giorno, senza eccezioni?' },
       { type: 'list', items: ['Trading manuale: ogni giornata richiede concentrazione massima', 'L\'emotività entra sempre — anche con il metodo migliore', 'Un\'esecuzione incoerente su 100 trade produce risultati casuali', 'L\'automatizzazione risolve il problema alla radice'] },
-      { type: 'callout', variant: 'info', text: 'Il Sistema El Dorado applica esattamente questo metodo 24/5 — senza stress, senza eccezioni, senza giorni di forma negativa.' }
+      { type: 'callout', variant: 'info', text: 'Il Sistema Valorox applica esattamente questo metodo 24/5 — senza stress, senza eccezioni, senza giorni di forma negativa.' }
     ],
     quiz: [
       { id: 'q1', question: 'Qual è il problema del trading manuale anche con buona strategia?', options: ['La strategia è sbagliata', 'L\'esecuzione incoerente per via dell\'emotività', 'Il broker', 'I costi di spread'], correctIndex: 1, explanation: 'Metodo perfetto + esecuzione inconsistente = risultati casuali nel lungo periodo.' },
@@ -64,7 +64,7 @@ export const mod07lessons: Lesson[] = [
       { type: 'list', items: ['Minimo 50 trade completati in demo', 'Win rate ≥ 55% su quei 50 trade', 'Profit Factor ≥ 1.5', 'Max Drawdown ≤ 15%', 'Nessuna modifica delle 10 Regole del NO nelle ultime 4 settimane', 'Conosci ogni lezione dei moduli 01-06'] },
       { type: 'callout', variant: 'success', text: '🏆 Hai completato il metodo. Se soddisfi questi criteri, il passo al live è una scelta informata — non emotiva.' },
       { type: 'paragraph', text: 'Se non soddisfi ancora tutti i criteri: non preoccuparti. Demo è gratis. Ogni trade in demo è un trade imparato senza rischio reale.' },
-      { type: 'callout', variant: 'info', text: 'Il Sistema El Dorado applica questo stesso metodo automaticamente. Attivare il live significa delegare l\'esecuzione — mantenendo il tuo controllo totale sui parametri.' }
+      { type: 'callout', variant: 'info', text: 'Il Sistema Valorox applica questo stesso metodo automaticamente. Attivare il live significa delegare l\'esecuzione — mantenendo il tuo controllo totale sui parametri.' }
     ],
     quiz: [
       { id: 'q1', question: 'Quanti trade demo minimo prima di passare al live?', options: ['10', '30', '50', '100'], correctIndex: 2, explanation: 'Minimo 50 trade: statisticamente significativo per valutare il sistema.' },

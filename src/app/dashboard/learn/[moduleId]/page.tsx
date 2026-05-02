@@ -26,7 +26,7 @@ export default function ModulePage() {
           <Lock className="w-16 h-16 mx-auto mb-6" style={{ color: 'var(--gold)' }} />
           <h2 className="text-2xl font-black mb-3" style={{ color: 'var(--text-primary)' }}>Il metodo diventa automatico</h2>
           <p className="text-sm mb-6" style={{ color: 'var(--text-secondary)' }}>
-            Hai imparato la teoria. Ora vedi il Sistema AI El Dorado applicarlo 24/5 — senza emotività, senza eccezioni.
+            Hai imparato la teoria. Ora vedi il Sistema AI Valorox applicarlo 24/5 — senza emotività, senza eccezioni.
           </p>
           <ul className="text-left text-sm mb-8 space-y-3 inline-block">
             {[

@@ -255,7 +255,7 @@ function TierGrid({ currentTierId }: { currentTierId: string | null }) {
         })}
       </div>
       <p className="text-[10px] mt-3 text-center" style={{ color: 'var(--text-muted)' }}>
-        La commissione si calcola sul prezzo dell'abbonamento mensile (€39) per ogni referral attivo pagante.
+        La commissione si calcola sul prezzo dell'abbonamento mensile (€89) per ogni referral attivo pagante.
       </p>
     </div>
   )
@@ -618,7 +618,7 @@ function AffiliateContent() {
         <div>
           <h1 className="text-2xl font-black" style={{ color: 'var(--text-primary)' }}>Dashboard Affiliato</h1>
           <p className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>
-            Programma referral El Dorado · Guadagna commissioni su ogni abbonamento
+            Programma referral Valorox · Guadagna commissioni su ogni abbonamento
           </p>
         </div>
         {/* Currency toggle */}

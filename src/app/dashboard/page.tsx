@@ -274,7 +274,7 @@ export default function DashboardPage() {
       {hasNoSub && (
         <Banner icon={AlertCircle} color={RED}
           title="Nessun Abbonamento"
-          body="Inizia il trial gratuito di 7 giorni — nessuna carta richiesta."
+          body="Inizia il trial gratuito di 5 giorni — nessuna carta richiesta."
           cta="Inizia Trial" href="/dashboard/billing" />
       )}
       {trialExpired && (
@@ -354,14 +354,13 @@ export default function DashboardPage() {
             </svg>
           </div>
 
-          {/* Stats row 4 + 2 card vincenti/perdenti */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
+          {/* Stats row — solo metriche reali (Durata Media rimossa, Profit Factor nascosto se assente) */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
             {[
-              { label: 'Win Rate',      value: `${winRateMaster.toFixed(1)}%`,                     color: GREEN },
-              { label: 'Profit Factor', value: n(masterStats?.profit_factor, 0) > 0 ? n(masterStats?.profit_factor).toFixed(2) : '—', color: GOLD },
-              { label: 'Trade Totali',  value: String(masterStats?.trades_total ?? 0),              color: GOLD },
-              { label: 'Durata Media',  value: n(masterStats?.avg_trade_duration_hours) > 0 ? `${n(masterStats?.avg_trade_duration_hours).toFixed(1)}h` : '—', color: GOLD },
-            ].map(s => (
+              { label: 'Win Rate',      value: `${winRateMaster.toFixed(1)}%`,                                                          color: GREEN, show: masterStats?.win_rate_percent != null },
+              { label: 'Profit Factor', value: n(masterStats?.profit_factor).toFixed(2),                                                color: GOLD,  show: n(masterStats?.profit_factor, 0) > 0 },
+              { label: 'Trade Totali',  value: String(masterStats?.trades_total ?? 0),                                                  color: GOLD,  show: masterStats?.trades_total != null },
+            ].filter(s => s.show).map(s => (
               <div key={s.label} className="text-center rounded-lg py-2.5 px-2"
                 style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
                 <div className="text-lg font-black font-mono number-mono" style={{ color: s.color }}>{s.value}</div>
@@ -405,10 +404,10 @@ export default function DashboardPage() {
             <h3 className="text-xs font-bold mb-3" style={{ color: 'var(--text-primary)' }}>Abbonamento</h3>
             <div className="flex items-center gap-2.5 mb-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 32, height: 32 }} />
+              <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring" style={{ width: 32, height: 32 }} />
               <div>
-                <div className="brand-cinzel text-[9.5px] tracking-[0.16em]">EL DORADO</div>
-                <div className="text-[10px] mt-0.5" style={{ color: 'var(--text-secondary)' }}>€39 / mese</div>
+                <div className="brand-cinzel text-[9.5px] tracking-[0.16em]">VALOROX</div>
+                <div className="text-[10px] mt-0.5" style={{ color: 'var(--text-secondary)' }}>€89 / mese</div>
               </div>
             </div>
             <div>

@@ -76,8 +76,8 @@ const tickerFallback = [
 const faqItems = [
   {
     id: 'what-is',
-    question: 'Cos\'è El Dorado e a cosa serve?',
-    answer: 'El Dorado è una piattaforma educativa e tecnologica per chi vuole comprendere i mercati finanziari e applicare una strategia operativa strutturata. Unisce formazione sulla visione Smart Money con strumenti che consentono all\'utente di osservare e applicare la strategia in modo sistematico, utilizzando il nostro sistema per eseguirla anche in maniera automatizzata. Non è un servizio di investimento.',
+    question: 'Cos\'è Valorox e a cosa serve?',
+    answer: 'Valorox è una piattaforma educativa e tecnologica per chi vuole comprendere i mercati finanziari e applicare una strategia operativa strutturata. Unisce formazione sulla visione Smart Money con strumenti che consentono all\'utente di osservare e applicare la strategia in modo sistematico, utilizzando il nostro sistema per eseguirla anche in maniera automatizzata. Non è un servizio di investimento.',
   },
   {
     id: 'smart-money',
@@ -106,7 +106,7 @@ const faqItems = [
   {
     id: 'frequency',
     question: 'Con quale frequenza opera la strategia?',
-    answer: 'La strategia opera su XAU/USD principalmente nella sessione di Londra/New York (10:30–14:00 CET), dove la liquidità e la volatilità istituzionale sono più elevate. La frequenza varia in base alle condizioni di mercato: qualità prima di quantità. In assenza di condizioni ottimali, la strategia non entra — e questo è un punto di forza, non un limite.',
+    answer: 'La strategia opera su XAU/USD principalmente nella sessione di Londra/New York (10:00 – 16:00 CET), dove la liquidità e la volatilità istituzionale sono più elevate. La frequenza varia in base alle condizioni di mercato: qualità prima di quantità. In assenza di condizioni ottimali, la strategia non entra — e questo è un punto di forza, non un limite.',
   },
   {
     id: 'parameters-limited',
@@ -204,7 +204,7 @@ const learningModules = [
   },
   {
     num: '07', slug: '07', free: false, level: 'Pratica', lessons: 5,
-    title: 'Il Sistema El Dorado',
+    title: 'Il Sistema Valorox',
     desc: 'Dalla teoria alla pratica reale con la piattaforma: demo, dashboard, progressione.',
     topics: ['Collegare il conto demo MT5 e configurare il rischio', 'Monitorare ogni operazione dalla dashboard in tempo reale', 'Win rate, equity curve, profit factor: leggere le statistiche', 'Da demo a live: i criteri oggettivi per fare il passo'],
   },
@@ -334,9 +334,9 @@ export default function LandingPage() {
           {/* Logo */}
           <div className="flex items-center gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
+            <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
             <div>
-              <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>El Dorado</span>
+              <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Valorox</span>
               <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
             </div>
           </div>
@@ -406,23 +406,23 @@ export default function LandingPage() {
       )}
 
       {/* ─── Hero ───────────────────────────────────────── */}
-      <section className="eldorado-hero">
+      <section className="valorox-hero">
 
         {/* God rays */}
-        <div className="eldorado-rays">
-          {[0,1,2,3,4].map(i => <div key={i} className="eldorado-ray" />)}
+        <div className="valorox-rays">
+          {[0,1,2,3,4].map(i => <div key={i} className="valorox-ray" />)}
         </div>
 
         {/* Subtle scan */}
-        <div className="eldorado-scanline" />
+        <div className="valorox-scanline" />
 
         {/* Statue */}
-        <div className="eldorado-statue-wrap">
-          <div className="eldorado-statue-inner">
-            <div className="eldorado-halo" />
+        <div className="valorox-statue-wrap">
+          <div className="valorox-statue-inner">
+            <div className="valorox-halo" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.jpg" alt="El Dorado" className="eldorado-statue-img" />
-            <div className="eldorado-shimmer" />
+            <img src="/eldorado.jpg" alt="Valorox" className="valorox-statue-img" />
+            <div className="valorox-shimmer" />
             {[
               { bottom: '30%', left: '10%', delay: '0s', dx: '15px' },
               { bottom: '45%', left: '20%', delay: '0.8s', dx: '-10px' },
@@ -433,37 +433,37 @@ export default function LandingPage() {
               { bottom: '25%', left: '35%', delay: '0.6s', dx: '5px' },
               { bottom: '55%', right: '32%', delay: '1.8s', dx: '-5px' },
             ].map((p, i) => (
-              <div key={i} className="eldorado-particle" style={{ bottom: p.bottom, left: (p as {left?: string}).left, right: (p as {right?: string}).right, animationDelay: p.delay, animationDuration: `${3.5 + i * 0.3}s`, ['--dx' as string]: p.dx }} />
+              <div key={i} className="valorox-particle" style={{ bottom: p.bottom, left: (p as {left?: string}).left, right: (p as {right?: string}).right, animationDelay: p.delay, animationDuration: `${3.5 + i * 0.3}s`, ['--dx' as string]: p.dx }} />
             ))}
           </div>
         </div>
 
         {/* Vignettes */}
-        <div className="eldorado-vignette-left" />
-        <div className="eldorado-vignette-right" />
-        <div className="eldorado-vignette-bottom" />
+        <div className="valorox-vignette-left" />
+        <div className="valorox-vignette-right" />
+        <div className="valorox-vignette-bottom" />
 
         {/* Hero Content */}
         <div className="relative z-10 flex flex-col items-center justify-end text-center px-4 pb-24 pt-[52vh] w-full">
 
           {/* Live badge */}
-          <div className="eldorado-badge">
+          <div className="valorox-badge">
             <div className="live-dot" style={{ width: 6, height: 6 }} />
             AI Solution · XAU/USD · Automated
           </div>
 
           {/* ── Refined title ── */}
-          <div className="eldorado-title-wrap">
-            <div className="eldorado-title-deco">
-              <div className="eldorado-title-diamond" />
+          <div className="valorox-title-wrap">
+            <div className="valorox-title-deco">
+              <div className="valorox-title-diamond" />
             </div>
-            <h1 className="eldorado-title">El Dorado</h1>
-            <div className="eldorado-title-deco">
-              <div className="eldorado-title-diamond" />
+            <h1 className="valorox-title">Valorox</h1>
+            <div className="valorox-title-deco">
+              <div className="valorox-title-diamond" />
             </div>
           </div>
 
-          <p className="eldorado-subtitle mt-2 mb-3">
+          <p className="valorox-subtitle mt-2 mb-3">
             Un nuovo approccio al trading.
           </p>
           <p className="text-sm mb-9 max-w-lg mx-auto text-center" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
@@ -489,24 +489,45 @@ export default function LandingPage() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 items-center">
-            <Link href="/auth/register" className="btn-eldorado btn-eldorado-primary">
+            <Link href="/auth/register" className="btn-valorox btn-valorox-primary">
               Inizia Gratis
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link href="/metodo" className="btn-eldorado btn-eldorado-secondary">
+            <Link href="/metodo" className="btn-valorox btn-valorox-secondary">
               Scopri il Metodo
               <BarChart3 className="w-5 h-5" />
             </Link>
           </div>
 
+          {/* Value pills */}
+          <div className="flex flex-wrap gap-2 sm:gap-3 justify-center items-center mt-6">
+            {['Sistema 100% automatizzato', 'Zero emotività', 'Risultati concreti'].map((claim) => (
+              <div
+                key={claim}
+                className="inline-flex items-center gap-2 rounded-full"
+                style={{
+                  padding: '8px 14px',
+                  background: 'var(--glass-bg)',
+                  border: '1px solid var(--glass-border)',
+                  fontSize: 13,
+                  fontWeight: 500,
+                  color: 'var(--text-primary)',
+                }}
+              >
+                <Check className="w-3.5 h-3.5" style={{ color: 'var(--gold)' }} />
+                <span>{claim}</span>
+              </div>
+            ))}
+          </div>
+
           {/* Trust row */}
-          <div className="flex flex-wrap gap-6 justify-center items-center mt-8">
+          <div className="flex flex-wrap gap-6 justify-center items-center mt-6">
             {[
               { icon: Shield, text: 'Nessuna gestione fondi' },
               { icon: Lock, text: 'Controllo totale utente' },
               { icon: Award, text: 'No carta richiesta' },
             ].map(({ icon: Icon, text }) => (
-              <div key={text} className="flex items-center gap-2 text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>
+              <div key={text} className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>
                 <Icon className="w-3.5 h-3.5" style={{ color: 'var(--gold)', opacity: 0.5 }} />
                 <span>{text}</span>
               </div>
@@ -907,7 +928,7 @@ export default function LandingPage() {
 
         <div className="relative max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <div className="section-label mb-3">Perché El Dorado</div>
+            <div className="section-label mb-3">Perché Valorox</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
               Esperienza operativa.<br className="hidden sm:block" />Potenziata dall&apos;intelligenza artificiale.
             </h2>
@@ -1057,7 +1078,7 @@ export default function LandingPage() {
         <div className="relative max-w-3xl mx-auto text-center">
           <div className="mx-auto mb-6 flex justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 68, height: 68 }} />
+            <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring" style={{ width: 68, height: 68 }} />
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-black mb-5">
@@ -1069,12 +1090,12 @@ export default function LandingPage() {
           <p className="text-lg mb-10 max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
             Un sistema sviluppato per uso operativo interno, validato su centinaia di operazioni reali
             e reso accessibile a chi condivide un approccio disciplinato ai mercati.
-            7 giorni gratuiti — nessuna carta richiesta.
+            5 giorni gratuiti — nessuna carta richiesta.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/auth/register" className="btn-gold text-base px-10 py-4 rounded-xl">
-              Inizia 7 Giorni Gratis
+              Inizia 5 Giorni Gratis
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link href="/dashboard/learn"
@@ -1108,9 +1129,9 @@ export default function LandingPage() {
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
+                <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
                 <div>
-                  <span className="font-bold text-gradient-gold">El Dorado</span>
+                  <span className="font-bold text-gradient-gold">Valorox</span>
                   <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
                 </div>
               </div>
@@ -1169,7 +1190,7 @@ export default function LandingPage() {
             style={{ background: 'rgba(255,61,113,0.03)', border: '1px solid rgba(255,61,113,0.1)' }}>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
               <strong style={{ color: 'rgba(255,90,120,0.8)' }}>Non forniamo consulenza finanziaria.</strong>{' '}
-              El Dorado è un software SaaS di automazione. Non gestiamo fondi, non offriamo servizi di investimento né gestione patrimoniale.
+              Valorox è un software SaaS di automazione. Non gestiamo fondi, non offriamo servizi di investimento né gestione patrimoniale.
               Tutte le decisioni operative e i parametri sono impostati direttamente dall'utente.
               Il trading comporta rischi reali di perdita del capitale. Nessun risultato è garantito.
             </p>
@@ -1177,7 +1198,7 @@ export default function LandingPage() {
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-              &copy; 2025 El Dorado. Tutti i diritti riservati.
+              &copy; 2025 Valorox. Tutti i diritti riservati.
             </p>
             <p className="text-xs text-center sm:text-right max-w-md leading-relaxed" style={{ color: 'var(--text-muted)' }}>
               Performance passate non garantiscono risultati futuri.{' '}

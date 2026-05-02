@@ -54,11 +54,11 @@ export default function LoginPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/eldorado.jpg"
-            alt="El Dorado"
+            alt="Valorox"
             className="gold-avatar-ring mx-auto mb-4"
             style={{ width: 64, height: 64, display: 'block' }}
           />
-          <div className="brand-cinzel text-lg tracking-[0.2em] mb-1">EL DORADO</div>
+          <div className="brand-cinzel text-lg tracking-[0.2em] mb-1">VALOROX</div>
           <p className="text-xs" style={{ color: 'rgba(110,110,140,0.7)' }}>
             AI Solution · XAU/USD
           </p>
@@ -72,7 +72,7 @@ export default function LoginPage() {
 
         {/* Trust row */}
         <div className="flex items-center justify-center gap-4 mt-6">
-          {['Trial 7 giorni', 'No carta richiesta', 'Cancella quando vuoi'].map(t => (
+          {['Trial 5 giorni', 'No carta richiesta', 'Cancella quando vuoi'].map(t => (
             <span key={t} className="text-[9px] font-medium" style={{ color: 'rgba(80,80,105,0.8)' }}>{t}</span>
           ))}
         </div>

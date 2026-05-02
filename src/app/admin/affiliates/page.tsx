@@ -78,7 +78,7 @@ function AddAffiliateForm({ onSuccess, onRefresh }: { onSuccess: (msg: string, o
         style={{ background: 'rgba(240,180,41,0.06)', border: '1px solid rgba(240,180,41,0.2)' }}>
         <Info className="w-3.5 h-3.5 text-[#F0B429] flex-shrink-0 mt-0.5" />
         <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
-          <strong style={{ color: '#F0B429' }}>Prerequisito:</strong> usa l'email con cui l'utente si è registrato su El Dorado (non la email della candidatura se diversa).
+          <strong style={{ color: '#F0B429' }}>Prerequisito:</strong> usa l'email con cui l'utente si è registrato su Valorox (non la email della candidatura se diversa).
         </p>
       </div>
 
@@ -458,7 +458,7 @@ function AdminContent() {
       const isNotFound = msg.toLowerCase().includes('not found') || msg.toLowerCase().includes('non trovato')
       showToast(
         isNotFound
-          ? `❌ "${email}" non trovato nel sistema. L'utente deve prima fare il primo accesso su El Dorado.`
+          ? `❌ "${email}" non trovato nel sistema. L'utente deve prima fare il primo accesso su Valorox.`
           : `❌ ${msg}`,
         false
       )
@@ -531,7 +531,7 @@ function AdminContent() {
         style={{ background: 'rgba(0,194,255,0.05)', border: '1px solid rgba(0,194,255,0.15)' }}>
         <Info className="w-4 h-4 text-[#00C2FF] flex-shrink-0 mt-0.5" />
         <div className="text-xs leading-relaxed space-y-1" style={{ color: 'var(--text-secondary)' }}>
-          <p><strong style={{ color: '#00C2FF' }}>Prerequisito fondamentale:</strong> Per aggiungere qualcuno come affiliato, l'utente deve prima <strong style={{ color: 'var(--text-primary)' }}>aver effettuato il primo accesso</strong> su El Dorado con quell'email, così che il suo account esista nel sistema.</p>
+          <p><strong style={{ color: '#00C2FF' }}>Prerequisito fondamentale:</strong> Per aggiungere qualcuno come affiliato, l'utente deve prima <strong style={{ color: 'var(--text-primary)' }}>aver effettuato il primo accesso</strong> su Valorox con quell'email, così che il suo account esista nel sistema.</p>
           <p>Dopo l'attivazione, l'utente deve <strong style={{ color: 'var(--text-primary)' }}>fare logout e rientrare</strong> per vedere la sezione Affiliato nel menu laterale.</p>
         </div>
       </div>

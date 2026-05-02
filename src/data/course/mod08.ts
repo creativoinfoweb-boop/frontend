@@ -185,12 +185,12 @@ export const mod08lessons: Lesson[] = [
         'NON durante le prime e ultime 30 min di sessione (spread allargato)',
       ] },
       { type: 'callout', variant: 'success', text: '🏆 Hai completato il Modulo 08. Il CRT è ora parte del tuo arsenale: applicalo su demo durante la Kill Zone di Londra cercando H1 CRT su OB o FVG confermati.' },
-      { type: 'callout', variant: 'info', text: 'Il Sistema AI El Dorado integra logica CRT nella selezione dei setup: identifica automaticamente sweep di liquidità su candele H1 durante la Kill Zone e li valuta in confluence con OB/FVG. Attiva il Sistema per vederlo in azione.' },
+      { type: 'callout', variant: 'info', text: 'Il Sistema AI Valorox integra logica CRT nella selezione dei setup: identifica automaticamente sweep di liquidità su candele H1 durante la Kill Zone e li valuta in confluence con OB/FVG. Attiva il Sistema per vederlo in azione.' },
     ],
     quiz: [
       { id: 'q1', question: 'Quale confluenza rende il CRT il più alto in probabilità?', options: ['CRT + round number', 'CRT + OB H1 + Kill Zone + trend H4 allineato', 'CRT su M1 isolato', 'CRT durante NFP'], correctIndex: 1, explanation: 'CRT su OB H1 durante Kill Zone con H4 allineato = massima confluenza. Tutti i livelli confluiscono.' },
       { id: 'q2', question: 'Cosa invalida immediatamente un setup CRT?', options: ['Uno spread leggermente più alto', 'La candela di manipolazione si chiude oltre il livello (vero breakout)', 'Un wick nel body', 'La sessione Asia aperta'], correctIndex: 1, explanation: 'Se la candela si chiude OLTRE il CRT-High/Low, non è manipulation — è un vero breakout. Setup invalido.' },
-      { id: 'q3', question: 'Come il Sistema AI El Dorado usa il CRT?', options: ['Non lo usa', 'Identifica sweep H1 in confluence con OB/FVG durante la Kill Zone automaticamente', 'Fa solo scalping M1', 'Usa solo Daily CRT'], correctIndex: 1, explanation: 'Il sistema automatizza la ricerca di CRT confluenti: valuta sweep H1 + OB/FVG + Kill Zone in tempo reale.' },
+      { id: 'q3', question: 'Come il Sistema AI Valorox usa il CRT?', options: ['Non lo usa', 'Identifica sweep H1 in confluence con OB/FVG durante la Kill Zone automaticamente', 'Fa solo scalping M1', 'Usa solo Daily CRT'], correctIndex: 1, explanation: 'Il sistema automatizza la ricerca di CRT confluenti: valuta sweep H1 + OB/FVG + Kill Zone in tempo reale.' },
     ],
   },
 ]

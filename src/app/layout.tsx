@@ -26,13 +26,13 @@ const cinzel = Cinzel({
 })
 
 export const metadata: Metadata = {
-  title: 'El Dorado — Metodo, Disciplina e Strategia su XAU/USD',
+  title: 'Valorox — Metodo, Disciplina e Strategia su XAU/USD',
   description: 'Piattaforma educativa e operativa per trader su XAU/USD. Approccio disciplinato, riduzione interferenza emotiva, monitoraggio completo dalla dashboard personale.',
-  keywords: ['trading disciplinato', 'metodo trading', 'XAU/USD', 'MetaTrader 5', 'gold trading', 'strategia operativa', 'El Dorado'],
-  authors: [{ name: 'El Dorado' }],
+  keywords: ['trading disciplinato', 'metodo trading', 'XAU/USD', 'MetaTrader 5', 'gold trading', 'strategia operativa', 'Valorox'],
+  authors: [{ name: 'Valorox' }],
   openGraph: {
-    title: 'El Dorado — Metodo, Disciplina e Strategia su XAU/USD',
-    description: 'Piattaforma educativa e operativa su XAU/USD. Strategia applicata, riduzione emotività, dashboard personale con monitoraggio completo. Trial 7 giorni gratuito.',
+    title: 'Valorox — Metodo, Disciplina e Strategia su XAU/USD',
+    description: 'Piattaforma educativa e operativa su XAU/USD. Strategia applicata, riduzione emotività, dashboard personale con monitoraggio completo. Trial 5 giorni gratuito.',
     type: 'website',
     locale: 'it_IT',
   },

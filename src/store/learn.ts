@@ -49,6 +49,6 @@ export const useLearnStore = create<LearnState>()(
       setLastVisited: (lessonId) => set({ lastVisited: lessonId }),
       reset: () => set({ completedLessons: [], quizScores: {}, lastVisited: null, lastStudyDate: null, streak: 0, xp: 0 }),
     }),
-    { name: 'eldorado_learn_progress_v1' }
+    { name: 'valorox_learn_progress_v1' }
   )
 )

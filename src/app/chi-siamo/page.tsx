@@ -7,8 +7,8 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Chi Siamo — El Dorado',
-  description: 'Il team di trader e sviluppatori dietro El Dorado: origine del progetto, missione, tecnologia e approccio al trading automatizzato su XAU/USD.',
+  title: 'Chi Siamo — Valorox',
+  description: 'Il team di trader e sviluppatori dietro Valorox: origine del progetto, missione, tecnologia e approccio al trading automatizzato su XAU/USD.',
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -74,7 +74,7 @@ export default function ChiSiamoPage() {
           <SectionLabel>01 — L&apos;Origine</SectionLabel>
           <h2 className="text-2xl sm:text-3xl font-black">Nato per uso personale</h2>
           <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            El Dorado non nasce come prodotto commerciale. Nasce dall&apos;esigenza concreta di un gruppo di trader
+            Valorox non nasce come prodotto commerciale. Nasce dall&apos;esigenza concreta di un gruppo di trader
             che, dopo anni di trading manuale su XAU/USD, si trovava ad affrontare sempre gli stessi ostacoli:
             emotività, incostanza esecutiva, impossibilità di essere operativi durante tutte le Kill Zone.
           </p>
@@ -125,7 +125,7 @@ export default function ChiSiamoPage() {
           <SectionLabel>02 — Il Team</SectionLabel>
           <h2 className="text-2xl sm:text-3xl font-black">Trader + Tecnologia</h2>
           <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            Il team El Dorado è composto da due componenti complementari che lavorano in sinergia:
+            Il team Valorox è composto da due componenti complementari che lavorano in sinergia:
             l&apos;esperienza operativa sui mercati e le competenze tecniche per automatizzarla.
           </p>
 
@@ -187,7 +187,7 @@ export default function ChiSiamoPage() {
               {
                 icon: GraduationCap, color: 'var(--gold)',
                 title: 'Trader Principianti',
-                desc: 'Evitare gli errori classici che distruggono i conti nei primi anni: overtrading, revenge trading, size eccessiva, trading senza metodo. El Dorado fornisce struttura e disciplina automaticamente.',
+                desc: 'Evitare gli errori classici che distruggono i conti nei primi anni: overtrading, revenge trading, size eccessiva, trading senza metodo. Valorox fornisce struttura e disciplina automaticamente.',
               },
               {
                 icon: Brain, color: 'var(--gold)',
@@ -249,7 +249,7 @@ export default function ChiSiamoPage() {
                 <p className="text-sm font-bold mb-1" style={{ color: '#FF8C00' }}>L&apos;AI nel trading: potente, ma non infallibile</p>
                 <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                   Un sistema automatizzato configurato bene può essere estremamente efficace — ma configurato male
-                  può generare perdite con la stessa efficienza. Per questo El Dorado richiede una configurazione
+                  può generare perdite con la stessa efficienza. Per questo Valorox richiede una configurazione
                   guidata, parametri di rischio vincolati, e percorso obbligatorio in demo prima di passare al live.
                   La tecnologia non sostituisce la comprensione — la amplifica.
                 </p>
@@ -269,7 +269,7 @@ export default function ChiSiamoPage() {
 
           <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { icon: Target, title: 'Registrati', desc: 'Crea il tuo account in 2 minuti. Nessuna carta richiesta per i 7 giorni di prova.' },
+              { icon: Target, title: 'Registrati', desc: 'Crea il tuo account in 2 minuti. Nessuna carta richiesta per i 5 giorni di prova.' },
               { icon: Shield, title: 'Collega il conto MT5', desc: 'Inserisci le credenziali del tuo broker (password investor read-only, mai quella di trading).' },
               { icon: Bot, title: 'Attiva il sistema', desc: 'Scegli la percentuale di rischio (1–3%). Il sistema inizia a monitorare XAU/USD automaticamente.' },
               { icon: TrendingUp, title: 'Monitora dalla dashboard', desc: 'Ogni trade in tempo reale: entry, SL, TP, P/L, storico, statistiche, equity curve.' },
@@ -290,7 +290,7 @@ export default function ChiSiamoPage() {
           <div className="rounded-xl p-5 text-center" style={{ background: 'rgba(255,61,113,0.04)', border: '1px solid rgba(255,61,113,0.15)' }}>
             <p className="text-xs leading-relaxed max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }}>
               <strong style={{ color: '#FF6B6B' }}>Disclaimer.</strong>{' '}
-              El Dorado è un software SaaS di automazione del trading. Non gestiamo fondi altrui, non offriamo
+              Valorox è un software SaaS di automazione del trading. Non gestiamo fondi altrui, non offriamo
               consulenza finanziaria, non siamo un servizio di segnali. Il capitale rimane sempre sul conto
               del broker dell&apos;utente. Tutte le decisioni di rischio sono impostate e controllate dall&apos;utente.
               Il trading comporta rischi reali di perdita del capitale.
@@ -302,18 +302,18 @@ export default function ChiSiamoPage() {
         <section className="rounded-3xl p-8 sm:p-12 text-center space-y-5"
           style={{ background: 'rgba(240,180,41,0.04)', border: '1px solid rgba(240,180,41,0.15)' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/eldorado.jpg" alt="El Dorado" className="gold-avatar-ring mx-auto" style={{ width: 64, height: 64 }} />
+          <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring mx-auto" style={{ width: 64, height: 64 }} />
           <h2 className="text-3xl font-black">
             <span style={{ background: 'linear-gradient(135deg, var(--gold-dark), var(--gold))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               Unisciti al progetto
             </span>
           </h2>
           <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            7 giorni gratuiti. Inizia con un conto demo — zero rischio, sistema completo, dati reali.
+            5 giorni gratuiti. Inizia con un conto demo — zero rischio, sistema completo, dati reali.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <Link href="/auth/register" className="btn-gold text-sm px-8 py-3 rounded-xl">
-              Inizia 7 Giorni Gratis
+              Inizia 5 Giorni Gratis
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link href="/metodo"
@@ -337,7 +337,7 @@ export default function ChiSiamoPage() {
           <Link href="/legal/terms" className="hover:opacity-70 transition-opacity">Termini</Link>
         </div>
         <p className="text-xs mt-4" style={{ color: 'var(--text-muted)' }}>
-          © 2025 El Dorado · Non forniamo consulenza finanziaria · Il trading comporta rischi
+          © 2025 Valorox · Non forniamo consulenza finanziaria · Il trading comporta rischi
         </p>
       </footer>
     </div>

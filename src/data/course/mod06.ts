@@ -104,7 +104,7 @@ export const mod06lessons: Lesson[] = [
     blocks: [
       { type: 'heading', text: 'Hai imparato' },
       { type: 'list', items: ['Asia: marca AH (BSL) e AL (SSL)', 'London KZ (09-12): aspetta sweep del livello Asia', 'Sweep: wick oltre + close dentro range = valido', 'MSS M1: trigger preciso', 'Gestione: TP1→BE→TP2→trailing', '10 Regole del NO: confini non negoziabili', 'Case study Buy: sweep SSL + MSS rialzista', 'Case study Sell: sweep BSL + MSS ribassista'] },
-      { type: 'callout', variant: 'success', text: 'Ora conosci l\'intero setup Gold Scalping. Il prossimo modulo mostra come automatizzarlo con Il Sistema El Dorado.' }
+      { type: 'callout', variant: 'success', text: 'Ora conosci l\'intero setup Gold Scalping. Il prossimo modulo mostra come automatizzarlo con Il Sistema Valorox.' }
     ],
     quiz: [
       { id: 'q1', question: 'L\'ordine del setup Gold Scalping è...?', options: ['MSS → Sweep → Entry', 'Sweep → MSS M1 → Entry', 'Entry → Sweep → MSS', 'MSS → Entry → Sweep'], correctIndex: 1, explanation: 'Prima sweep del livello, poi MSS su M1, poi entry.' },
