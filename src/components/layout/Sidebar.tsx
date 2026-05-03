@@ -161,7 +161,7 @@ export function Sidebar() {
           <div className="holo-scan" />
 
           <div className="px-5 pt-6 pb-5">
-            <div className="flex items-center gap-3">
+            <Link href="/" prefetch={false} onClick={() => closeMobile()} className="flex items-center gap-3 group">
               <div className="relative flex-shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -186,7 +186,7 @@ export function Sidebar() {
                   Copy Trading
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
 
           <div className="divider mx-4 mb-4" />

@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import { SignUp, useAuth } from '@clerk/nextjs'
 import { useSearchParams } from 'next/navigation'
+import { useTheme } from 'next-themes'
 import { ClerkSessionGate } from '@/components/auth/ClerkSessionGate'
 import { Check } from 'lucide-react'
 
@@ -16,6 +17,8 @@ const perks = [
 
 export default function RegisterPage() {
   const { isSignedIn, isLoaded } = useAuth()
+  const { theme } = useTheme()
+  const isDark = theme !== 'light'
   const searchParams = useSearchParams()
 
   useEffect(() => {
@@ -27,22 +30,22 @@ export default function RegisterPage() {
 
   if (!isLoaded) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#04040A]">
-        <p className="text-sm text-[#6B6B8A]">Caricamento…</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--bg)' }}>
+        <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Caricamento…</p>
       </div>
     )
   }
 
   if (isSignedIn) {
     return (
-      <div className="min-h-screen bg-[#04040A]">
+      <div className="min-h-screen" style={{ background: 'var(--bg)' }}>
         <ClerkSessionGate />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#04040A] flex items-center justify-center px-4 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden" style={{ background: 'var(--bg)' }}>
       <div className="aurora-bg">
         <div className="aurora-orb aurora-orb-1" style={{ opacity: 0.1 }} />
         <div className="aurora-orb aurora-orb-2" style={{ opacity: 0.06 }} />
@@ -84,6 +87,17 @@ export default function RegisterPage() {
             signInUrl="/auth/login"
             forceRedirectUrl="/auth/clerk-callback"
             fallbackRedirectUrl="/auth/clerk-callback"
+            appearance={{
+              variables: {
+                colorBackground: isDark ? '#08080F' : '#FFFFFF',
+                colorInputBackground: isDark ? '#10101C' : '#F4F4F0',
+                colorInputText: isDark ? '#E0E0F0' : '#1A1A2E',
+                colorText: isDark ? '#C0C0D8' : '#2A2A3E',
+                colorTextSecondary: isDark ? '#808098' : '#606078',
+                colorPrimary: '#F0B429',
+                colorTextOnPrimaryBackground: '#000000',
+              },
+            }}
           />
         </div>
       </div>

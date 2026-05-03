@@ -1,15 +1,18 @@
 'use client'
 
 import { SignIn, useAuth } from '@clerk/nextjs'
+import { useTheme } from 'next-themes'
 import { ClerkSessionGate } from '@/components/auth/ClerkSessionGate'
 
 export default function LoginPage() {
   const { isSignedIn, isLoaded } = useAuth()
+  const { theme } = useTheme()
+  const isDark = theme !== 'light'
 
   if (!isLoaded) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: '#030308' }}>
-        <p className="text-sm" style={{ color: 'rgba(110,110,140,0.7)' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--bg)' }}>
+        <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
           Caricamento…
         </p>
       </div>
@@ -18,7 +21,7 @@ export default function LoginPage() {
 
   if (isSignedIn) {
     return (
-      <div className="min-h-screen" style={{ background: '#030308' }}>
+      <div className="min-h-screen" style={{ background: 'var(--bg)' }}>
         <ClerkSessionGate />
       </div>
     )
@@ -27,7 +30,7 @@ export default function LoginPage() {
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden"
-      style={{ background: '#030308' }}
+      style={{ background: 'var(--bg)' }}
     >
       {/* Cyber grid */}
       <div
@@ -68,12 +71,23 @@ export default function LoginPage() {
           signUpUrl="/auth/register"
           forceRedirectUrl="/auth/clerk-callback"
           fallbackRedirectUrl="/auth/clerk-callback"
+          appearance={{
+            variables: {
+              colorBackground: isDark ? '#08080F' : '#FFFFFF',
+              colorInputBackground: isDark ? '#10101C' : '#F4F4F0',
+              colorInputText: isDark ? '#E0E0F0' : '#1A1A2E',
+              colorText: isDark ? '#C0C0D8' : '#2A2A3E',
+              colorTextSecondary: isDark ? '#808098' : '#606078',
+              colorPrimary: '#F0B429',
+              colorTextOnPrimaryBackground: '#000000',
+            },
+          }}
         />
 
         {/* Trust row */}
         <div className="flex items-center justify-center gap-4 mt-6">
           {['Trial 5 giorni', 'Zero affiliazioni broker', 'Cancella quando vuoi'].map(t => (
-            <span key={t} className="text-[9px] font-medium" style={{ color: 'rgba(80,80,105,0.8)' }}>{t}</span>
+            <span key={t} className="text-[9px] font-medium" style={{ color: 'var(--text-muted)' }}>{t}</span>
           ))}
         </div>
       </div>

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { useRouter } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import { useAuthStore } from '@/store/auth'
 import Link from 'next/link'
@@ -24,8 +23,12 @@ import {
   BookOpen,
   GraduationCap,
   Play,
+  Menu,
+  X,
+  LayoutDashboard,
 } from 'lucide-react'
 import { PricingPlanCard } from '@/components/pricing/PricingPlanCard'
+import ThemeOnboardingModal from '@/components/ThemeOnboardingModal'
 
 /* ─── Animated counter ─────────────────────────────────── */
 function AnimatedCounter({ to, suffix = '', duration = 1500 }: { to: number; suffix?: string; duration?: number }) {
@@ -234,11 +237,11 @@ const BASE_URL = typeof window !== 'undefined' && window.location.protocol === '
 
 /* ─── Main Component ───────────────────────────────────── */
 export default function LandingPage() {
-  const router = useRouter()
   const { theme, setTheme } = useTheme()
   const { isAuthenticated } = useAuthStore()
   const [expandedFaq, setExpandedFaq] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [tickerItems, setTickerItems] = useState(tickerFallback)
   const [goldPrice, setGoldPrice] = useState<{ price: number | null; change_str: string; up: boolean }>({
     price: null, change_str: '...', up: true,
@@ -247,18 +250,6 @@ export default function LandingPage() {
   const [statsLoading, setStatsLoading] = useState(true)
   const [referralCode, setReferralCode] = useState<string | null>(null)
   const isDark = theme !== 'light'
-
-  useEffect(() => {
-    if (!isAuthenticated) return
-    // Verifica che il token backend sia ancora valido prima di mandare alla dashboard
-    import('@/lib/api').then(({ default: api }) => {
-      api.get('/auth/me').then(() => {
-        router.push('/dashboard')
-      }).catch(() => {
-        // Token scaduto — rimani sulla landing page (forceLogout già gestisce la pulizia)
-      })
-    })
-  }, [isAuthenticated, router])
 
   useEffect(() => {
     // Leggi il parametro ?ref= dall'URL
@@ -311,8 +302,6 @@ export default function LandingPage() {
     return () => clearInterval(interval)
   }, [])
 
-  if (isAuthenticated) return null
-
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ background: 'var(--bg)', color: 'var(--text-primary)' }}>
 
@@ -334,17 +323,17 @@ export default function LandingPage() {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
+          {/* Logo — always links back to landing */}
+          <Link href="/" className="flex items-center gap-3 group">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
             <div>
               <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Valorox</span>
               <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
             </div>
-          </div>
+          </Link>
 
-          {/* Center links */}
+          {/* Center links — desktop only */}
           <div className="hidden md:flex items-center gap-8">
             {[
               { label: 'Metodo', href: '/metodo' },
@@ -379,16 +368,144 @@ export default function LandingPage() {
             >
               {isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
             </button>
-            <Link href="/auth/login" className="hidden sm:inline-flex btn-ghost text-sm px-4 py-2">
-              Accedi
-            </Link>
-            <Link href="/auth/register" className="btn-gold text-sm px-5 py-2.5">
-              Inizia Gratis
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+
+            {isAuthenticated ? (
+              <Link href="/dashboard" className="btn-gold text-sm px-5 py-2.5 hidden sm:inline-flex">
+                <LayoutDashboard className="w-4 h-4" />
+                Dashboard
+              </Link>
+            ) : (
+              <>
+                <Link href="/auth/login" className="hidden sm:inline-flex btn-ghost text-sm px-4 py-2">
+                  Accedi
+                </Link>
+                <Link href="/auth/register" className="hidden sm:inline-flex btn-gold text-sm px-5 py-2.5">
+                  Inizia Gratis
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </>
+            )}
+
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setMobileMenuOpen(v => !v)}
+              className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl transition-all"
+              style={{
+                background: mobileMenuOpen ? 'rgba(240,180,41,0.12)' : 'rgba(255,255,255,0.08)',
+                border: `1px solid ${mobileMenuOpen ? 'rgba(240,180,41,0.4)' : 'rgba(255,255,255,0.15)'}`,
+              }}
+              aria-label="Menu"
+            >
+              {mobileMenuOpen
+                ? <X className="w-4 h-4" style={{ color: '#F0B429' }} />
+                : <Menu className="w-4 h-4" style={{ color: 'rgba(255,255,255,0.85)' }} />
+              }
+            </button>
           </div>
         </div>
       </nav>
+
+      {/* ─── Mobile Menu Drawer ──────────────────────────── */}
+      {mobileMenuOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 z-[44] md:hidden"
+            style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          {/* Drawer */}
+          <div
+            className="fixed top-0 right-0 h-full w-72 z-[45] md:hidden flex flex-col animate-slide-in-left"
+            style={{
+              background: 'var(--glass-bg)',
+              backdropFilter: 'blur(40px) saturate(1.8)',
+              WebkitBackdropFilter: 'blur(40px) saturate(1.8)',
+              borderLeft: '1px solid var(--glass-border)',
+              boxShadow: '-8px 0 40px rgba(0,0,0,0.3)',
+              animationDuration: '0.28s',
+            }}
+          >
+            {/* Drawer header */}
+            <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: '1px solid var(--border)' }}>
+              <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2.5">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring" style={{ width: 28, height: 28 }} />
+                <span className="text-sm font-semibold" style={{ color: 'var(--gold)' }}>Valorox</span>
+              </Link>
+              <button onClick={() => setMobileMenuOpen(false)} className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ color: 'var(--text-muted)', background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            {/* Nav links */}
+            <nav className="flex-1 overflow-y-auto px-4 py-4 space-y-1">
+              {[
+                { label: 'Metodo', href: '/metodo' },
+                { label: 'Chi Siamo', href: '/chi-siamo' },
+                { label: 'Impara', href: '#impara' },
+                { label: 'Performance', href: '#performance' },
+                { label: 'Pricing', href: '#pricing' },
+                { label: 'Affiliati', href: '/affiliati' },
+              ].map(link => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all"
+                  style={{ color: 'var(--text-secondary)' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--text-primary)'; (e.currentTarget as HTMLElement).style.background = 'var(--gold-subtle)' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)'; (e.currentTarget as HTMLElement).style.background = 'transparent' }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
+            {/* Bottom CTAs */}
+            <div className="px-4 py-4 space-y-2.5" style={{ borderTop: '1px solid var(--border)' }}>
+              {/* Theme toggle */}
+              <button
+                onClick={() => setTheme(isDark ? 'light' : 'dark')}
+                className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-all"
+                style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
+              >
+                {isDark ? <Sun className="w-4 h-4" style={{ color: 'var(--gold)' }} /> : <Moon className="w-4 h-4" style={{ color: 'var(--gold)' }} />}
+                {isDark ? 'Modalità chiara' : 'Modalità scura'}
+              </button>
+
+              {isAuthenticated ? (
+                <Link
+                  href="/dashboard"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="btn-gold w-full justify-center text-sm py-3"
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                  Vai alla Dashboard
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    href="/auth/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="btn-ghost w-full justify-center text-sm py-3"
+                  >
+                    Accedi
+                  </Link>
+                  <Link
+                    href="/auth/register"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="btn-gold w-full justify-center text-sm py-3"
+                  >
+                    Inizia Gratis
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
+        </>
+      )}
 
       {/* ─── Ticker Tape (under navbar) ─────────────────── */}
       <div className="fixed top-[58px] w-full z-40 py-1.5 overflow-hidden"
@@ -527,14 +644,23 @@ export default function LandingPage() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 items-center">
-            <Link href="/auth/register" className="btn-valorox btn-valorox-primary">
-              Inizia Gratis
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link href="/metodo" className="btn-valorox btn-valorox-secondary">
-              Scopri il Metodo
-              <BarChart3 className="w-5 h-5" />
-            </Link>
+            {isAuthenticated ? (
+              <Link href="/dashboard" className="btn-valorox btn-valorox-primary">
+                <LayoutDashboard className="w-5 h-5" />
+                Vai alla Dashboard
+              </Link>
+            ) : (
+              <>
+                <Link href="/auth/register" className="btn-valorox btn-valorox-primary">
+                  Inizia Gratis
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link href="/metodo" className="btn-valorox btn-valorox-secondary">
+                  Scopri il Metodo
+                  <BarChart3 className="w-5 h-5" />
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Trust row */}
@@ -1084,6 +1210,9 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* ─── Theme Onboarding Modal ─────────────────────── */}
+      <ThemeOnboardingModal />
 
       {/* ─── Footer ─────────────────────────────────────── */}
       <footer className="py-16 px-4 sm:px-6 lg:px-8" style={{ borderTop: '1px solid var(--border)', background: 'var(--surface)' }}>
