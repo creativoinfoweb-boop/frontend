@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#F9E7A1"/>
+      <stop offset="35%" stop-color="#E5B850"/>
+      <stop offset="65%" stop-color="#C9962A"/>
+      <stop offset="100%" stop-color="#7A5A12"/>
+    </linearGradient>
+    <linearGradient id="goldEdge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#FFF3C4"/>
+      <stop offset="100%" stop-color="#8A6314"/>
+    </linearGradient>
+    <linearGradient id="bullGreen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#3DDC84"/>
+      <stop offset="100%" stop-color="#1A8F4E"/>
+    </linearGradient>
+    <linearGradient id="bearRed" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#FF5A5A"/>
+      <stop offset="100%" stop-color="#A81F1F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer V shape (gold, geometric) -->
+  <path d="M 80 90
+           L 170 90
+           L 256 320
+           L 342 90
+           L 432 90
+           L 296 430
+           L 216 430
+           Z"
+        fill="url(#goldGrad)"
+        stroke="url(#goldEdge)"
+        stroke-width="4"
+        stroke-linejoin="round"/>
+
+  <!-- Inner highlight to give dimension -->
+  <path d="M 110 110
+           L 160 110
+           L 256 360
+           L 352 110
+           L 402 110
+           L 286 410
+           L 226 410
+           Z"
+        fill="none"
+        stroke="#FFE89A"
+        stroke-opacity="0.45"
+        stroke-width="2"
+        stroke-linejoin="round"/>
+
+  <!-- Bearish (red) candle on the left arm -->
+  <!-- wick -->
+  <line x1="200" y1="150" x2="200" y2="290" stroke="url(#bearRed)" stroke-width="4" stroke-linecap="round"/>
+  <!-- body -->
+  <rect x="184" y="180" width="32" height="80" rx="3"
+        fill="url(#bearRed)"
+        stroke="#5A0F0F"
+        stroke-width="1.5"/>
+
+  <!-- Bullish (green) candle on the right arm -->
+  <!-- wick -->
+  <line x1="312" y1="130" x2="312" y2="300" stroke="url(#bullGreen)" stroke-width="4" stroke-linecap="round"/>
+  <!-- body (taller, bullish dominance) -->
+  <rect x="296" y="160" width="32" height="115" rx="3"
+        fill="url(#bullGreen)"
+        stroke="#0B4523"
+        stroke-width="1.5"/>
+
+  <!-- Subtle gold spark at the V vertex -->
+  <circle cx="256" cy="380" r="6" fill="#FFF3C4" opacity="0.85"/>
+  <circle cx="256" cy="380" r="14" fill="url(#goldGrad)" opacity="0.35"/>
+</svg>

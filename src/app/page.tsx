@@ -379,7 +379,7 @@ export default function LandingPage() {
                 <Link href="/auth/login" className="hidden sm:inline-flex btn-ghost text-sm px-4 py-2">
                   Accedi
                 </Link>
-                <Link href="/auth/register" className="hidden sm:inline-flex btn-gold text-sm px-5 py-2.5">
+                <Link href="/auth/register" className="btn-gold text-sm px-5 py-2.5">
                   Inizia Gratis
                   <ArrowRight className="w-4 h-4" />
                 </Link>
