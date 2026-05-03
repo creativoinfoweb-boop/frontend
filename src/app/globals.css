@@ -280,9 +280,9 @@ input:-webkit-autofill:focus {
 
 /* ── New elegant title animations ── */
 @keyframes titleReveal {
-  0%   { opacity: 0; letter-spacing: 0.8em; filter: blur(16px); transform: scaleX(0.92); }
+  0%   { opacity: 0; letter-spacing: 0.9em; filter: blur(16px); transform: scaleX(0.92); }
   60%  { filter: blur(0); }
-  100% { opacity: 1; letter-spacing: 0.18em; filter: blur(0); transform: scaleX(1); }
+  100% { opacity: 1; letter-spacing: 0.28em; filter: blur(0); transform: scaleX(1); }
 }
 
 @keyframes titleGlow {
@@ -1138,10 +1138,9 @@ input:-webkit-autofill:focus {
 
 .valorox-hero {
   position: relative;
-  min-height: 100svh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   overflow: hidden;
   background: radial-gradient(ellipse 80% 60% at 50% 25%, #130E00 0%, #070410 55%, #000000 100%);
 }
@@ -1150,12 +1149,15 @@ input:-webkit-autofill:focus {
   background: radial-gradient(ellipse 80% 60% at 50% 25%, #F5E8C0 0%, #F0EAD8 55%, #F4F0E8 100%);
 }
 
-/* Statue */
+/* Statue — in normal flow so content starts below it */
 .valorox-statue-wrap {
-  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  width: min(560px, 92vw);
-  pointer-events: none; z-index: 1;
+  position: relative;
+  width: min(520px, 88vw);
+  padding-top: 76px; /* space for fixed nav + ticker */
+  pointer-events: none;
+  z-index: 1;
   overflow: visible;
+  margin: 0 auto;
 }
 
 .valorox-statue-inner {
@@ -1165,10 +1167,10 @@ input:-webkit-autofill:focus {
 
 .valorox-statue-img {
   display: block; position: relative; z-index: 1;
-  width: 100%; height: auto; max-height: 90vh;
+  width: 100%; height: auto; max-height: 72vh;
   object-fit: contain; object-position: top center;
-  mask-image: linear-gradient(to bottom, black 0%, black 92%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
   filter: saturate(1.2) contrast(1.08) brightness(1.1);
 }
 
@@ -1303,10 +1305,10 @@ input:-webkit-autofill:focus {
 }
 
 .valorox-title {
-  font-family: var(--font-brand); /* Cinzel */
-  font-weight: 400;
-  font-size: clamp(1.6rem, 3.8vw, 3.5rem);
-  letter-spacing: 0.18em;
+  font-family: var(--font-cormorant), 'Cormorant', serif;
+  font-weight: 300;
+  font-size: clamp(2.4rem, 6vw, 5.5rem);
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: transparent;
   background: linear-gradient(

@@ -157,6 +157,7 @@ export default function DashboardPage() {
   const [masterStats, setMasterStats] = useState<PublicPerformance | null>(null)
   const [userStats, setUserStats] = useState<UserStats | null>(null)
   const [recentTrades, setRecentTrades] = useState<SignalHistoryItem[]>([])
+  const [allHistory, setAllHistory] = useState<SignalHistoryItem[]>([])
   const [loading, setLoading] = useState(true)
   const [showBotWarning, setShowBotWarning] = useState(() =>
     typeof window !== 'undefined' && !localStorage.getItem('bot_warning_dismissed')
@@ -170,12 +171,14 @@ export default function DashboardPage() {
           subscriptionsApi.getStatus(),
           statsApi.getMasterPerformance(),
           statsApi.getUserStats(),
-          signalsApi.getHistory('EXECUTED', 3, 0),
+          signalsApi.getHistory(undefined, 500, 0),
         ])
         setSubscription(subRes.data)
         setMasterStats(masterRes.data)
         setUserStats(userRes.data)
-        setRecentTrades(histRes.data.history || [])
+        const all = histRes.data.history || []
+        setAllHistory(all)
+        setRecentTrades(all.slice(0, 5))
       } catch (_) {}
       finally { setLoading(false) }
     }
@@ -209,13 +212,15 @@ export default function DashboardPage() {
   const GREEN = 'var(--green)'
   const RED   = 'var(--red)'
 
-  // Ibrido: win_rate dal master (affidabilit\u00e0 sistema), trades win/loss dall'utente
-  const totalPipsMaster = n(masterStats?.total_profit_pips)
-  const winRateMaster   = n(masterStats?.win_rate_percent)
-  const tradesWin       = userStats?.trades_win  ?? 0
-  const tradesLoss      = userStats?.trades_loss ?? 0
+  // Derive wins/losses from real history (profit_usd > 0 = win, < 0 = loss)
+  const executedHistory = allHistory.filter(h => h.status === 'EXECUTED')
+  const tradesWin  = executedHistory.filter(h => (h.profit_usd ?? 0) > 0).length
+  const tradesLoss = executedHistory.filter(h => (h.profit_usd ?? 0) < 0).length
 
-  const sparkWinRate = [60, 65, 62, 70, 68, 72, winRateMaster || 75]
+  const totalPipsMaster = n(masterStats?.total_profit_pips)
+  const winRateMaster   = n(masterStats?.win_rate_percent, 85)
+
+  const sparkWinRate = [60, 65, 62, 70, 68, 72, winRateMaster || 85]
   const sparkTrades  = [1, 2, 3, 4, 5, 6, userStats?.trades_executed ?? 8]
 
   return (
@@ -354,13 +359,12 @@ export default function DashboardPage() {
             </svg>
           </div>
 
-          {/* Stats row — solo metriche reali (Durata Media rimossa, Profit Factor nascosto se assente) */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
+          {/* Stats row */}
+          <div className="grid grid-cols-2 gap-2 mb-3">
             {[
-              { label: 'Win Rate',      value: `${winRateMaster.toFixed(1)}%`,                                                          color: GREEN, show: masterStats?.win_rate_percent != null },
-              { label: 'Profit Factor', value: n(masterStats?.profit_factor).toFixed(2),                                                color: GOLD,  show: n(masterStats?.profit_factor, 0) > 0 },
-              { label: 'Trade Totali',  value: String(masterStats?.trades_total ?? 0),                                                  color: GOLD,  show: masterStats?.trades_total != null },
-            ].filter(s => s.show).map(s => (
+              { label: 'Win Rate Sistema', value: `${winRateMaster.toFixed(1)}%`, color: GREEN },
+              { label: 'Trade Totali',     value: String(masterStats?.trades_total ?? 0), color: GOLD },
+            ].map(s => (
               <div key={s.label} className="text-center rounded-lg py-2.5 px-2"
                 style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
                 <div className="text-lg font-black font-mono number-mono" style={{ color: s.color }}>{s.value}</div>

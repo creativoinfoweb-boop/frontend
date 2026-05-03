@@ -223,8 +223,7 @@ const learningModules = [
 /* ─── Stats — Indicativi, aggiornati periodicamente dal Master account ───── */
 const stats = [
   { value: 312, suffix: '', label: 'Operazioni Completate', isGold: true },
-  { value: 96, suffix: '%', label: 'Tasso di Successo', isGold: false },
-  { value: 28, suffix: 'x', label: 'Fattore di Profitto', isGold: true },
+  { value: 85, suffix: '%', label: 'Win Rate', isGold: false },
   { value: 12, suffix: ' min', label: 'Durata Media', isGold: true },
 ]
 
@@ -446,7 +445,7 @@ export default function LandingPage() {
       {/* ─── Hero ───────────────────────────────────────── */}
       <section className="valorox-hero">
 
-        {/* God rays */}
+        {/* God rays — absolute, full section width */}
         <div className="valorox-rays">
           {[0,1,2,3,4].map(i => <div key={i} className="valorox-ray" />)}
         </div>
@@ -454,10 +453,16 @@ export default function LandingPage() {
         {/* Subtle scan */}
         <div className="valorox-scanline" />
 
-        {/* Statue */}
+        {/* Full-width glow beam — NOT inside statue-wrap */}
+        <div className="valorox-halo" />
+
+        {/* Side vignettes */}
+        <div className="valorox-vignette-left" />
+        <div className="valorox-vignette-right" />
+
+        {/* Statue — in normal flow, content follows below */}
         <div className="valorox-statue-wrap">
           <div className="valorox-statue-inner">
-            <div className="valorox-halo" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/eldorado.jpg" alt="Valorox" className="valorox-statue-img" />
             <div className="valorox-shimmer" />
@@ -476,13 +481,11 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Vignettes */}
-        <div className="valorox-vignette-left" />
-        <div className="valorox-vignette-right" />
+        {/* Bottom vignette fade into next section */}
         <div className="valorox-vignette-bottom" />
 
-        {/* Hero Content */}
-        <div className="relative z-10 flex flex-col items-center justify-end text-center px-4 pb-24 pt-[52vh] w-full">
+        {/* Hero Content — flows naturally after statue, no top padding needed */}
+        <div className="relative z-10 flex flex-col items-center text-center px-4 pb-24 w-full" style={{ marginTop: '-3rem' }}>
 
           {/* ── Refined title ── */}
           <div className="valorox-title-wrap">
@@ -609,7 +612,7 @@ export default function LandingPage() {
 
       {/* ─── Stats Section ──────────────────────────────── */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
           {stats.map((stat, i) => (
             <div key={stat.label} className="card-premium p-6 sm:p-8 text-center animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
               <div className={`text-4xl sm:text-5xl font-black font-mono number-mono mb-2 ${stat.isGold ? 'text-gradient-gold' : 'text-gradient-green'}`}>

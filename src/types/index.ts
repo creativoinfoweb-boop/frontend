@@ -235,12 +235,12 @@ export interface UserStats {
   trades_copied: number
   trades_executed: number
   trades_failed: number
-  trades_win: number
-  trades_loss: number
+  trades_win?: number
+  trades_loss?: number
   win_rate_percent: number
   avg_profit_per_trade: number
   total_profit_pips: number
-  avg_trade_duration_hours: number
+  avg_trade_duration_hours?: number
 }
 
 // ─────────────────────────────────────────────────────────────────────────

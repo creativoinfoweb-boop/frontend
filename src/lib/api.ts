@@ -263,12 +263,30 @@ export const signalsApi = {
   getLiveSignals: () =>
     instance.get<any[]>('/signals/my/live'),
 
-  // User execution history
-  getHistory: (status_filter?: string, limit = 100, offset = 0) =>
-    instance.get<{ history: SignalHistoryItem[]; total: number }>(
-      '/signals/my/history',
-      { params: { status_filter, limit, offset } }
-    ),
+  // User execution history — backend returns a plain array; we normalise here.
+  getHistory: async (status_filter?: string, limit = 100, offset = 0) => {
+    const res = await instance.get<any>('/signals/my/history', {
+      params: { status_filter, limit, offset },
+    })
+    // Backend returns array directly (not wrapped). Wrap + map field names.
+    const raw: any[] = Array.isArray(res.data) ? res.data
+      : (res.data?.history ?? [])
+    const mapped: SignalHistoryItem[] = raw.map((item: any) => ({
+      ...item,
+      id: String(item.id),
+      signal_id: String(item.signal_id),
+      // backend uses execution_status, frontend uses status
+      status: item.execution_status ?? item.status ?? 'EXECUTED',
+      signal_status: item.signal_status ?? 'CLOSED',
+      created_at: item.opened_at ?? item.executed_at ?? new Date().toISOString(),
+    }))
+    // Client-side status filter (backend ignores query params for status)
+    const filtered = status_filter && status_filter !== 'ALL'
+      ? mapped.filter((h) => h.status === status_filter)
+      : mapped
+    const paginated = filtered.slice(offset, offset + limit)
+    return { ...res, data: { history: paginated, total: filtered.length } }
+  },
 
   // User equity curve (cumulative pips from executed+closed signals)
   getEquityCurve: () =>
