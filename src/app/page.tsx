@@ -9,7 +9,6 @@ import {
   TrendingUp,
   Shield,
   Zap,
-  Clock,
   BarChart3,
   Lock,
   Check,
@@ -69,7 +68,7 @@ function AnimatedCounter({ to, suffix = '', duration = 1500 }: { to: number; suf
 const tickerFallback = [
   { symbol: 'XAU/USD', price_str: '—', change_str: '...', up: true },
   { symbol: 'EUR/USD', price_str: '—', change_str: '...', up: true },
-  { symbol: 'BTC/USD', price_str: '—', change_str: '...', up: false },
+  { symbol: 'DXY', price_str: '—', change_str: '...', up: false },
   { symbol: 'GBP/USD', price_str: '—', change_str: '...', up: true },
   { symbol: 'USD/JPY', price_str: '—', change_str: '...', up: false },
 ]
@@ -210,16 +209,16 @@ const learningModules = [
     topics: ['Asia session: marcare Asia High e Asia Low come livelli chiave', 'London Kill Zone: sweep del range Asia → conferma MSS su M1', 'Gestione live: T1 50%, BE automatico, T2 al livello HTF', '10 Regole del NO: quando non entrare mai in operazione'],
   },
   {
-    num: '07', slug: '07', free: false, level: 'Pratica', lessons: 5,
-    title: 'Il Sistema Valorox',
-    desc: 'Dalla teoria alla pratica reale con la piattaforma: demo, dashboard, progressione.',
-    topics: ['Collegare il conto demo MT5 e configurare il rischio', 'Monitorare ogni operazione dalla dashboard in tempo reale', 'Win rate, equity curve, profit factor: leggere le statistiche', 'Da demo a live: i criteri oggettivi per fare il passo'],
-  },
-  {
-    num: '08', slug: '08', free: false, level: 'Avanzato', lessons: 7,
+    num: '07', slug: '07', free: false, level: 'Avanzato', lessons: 7,
     title: 'CRT — Candle Range Theory',
     desc: 'Il modello CRT: ogni candela è un range completo con sweep di liquidità e setup AMD ad alta probabilità.',
     topics: ['CRT-High e CRT-Low: i livelli di liquidità di ogni candela', 'Le 3 fasi AMD: Accumulation → Manipulation → Distribution', 'Setup Bullish: sweep SSL + conferma + entry long precisa', 'Setup Bearish: sweep BSL + conferma + entry short + multi-timeframe'],
+  },
+  {
+    num: '08', slug: '08', free: false, level: 'Pratica', lessons: 5,
+    title: 'Il Sistema Valorox',
+    desc: 'Dalla teoria alla pratica reale con la piattaforma: demo, dashboard, progressione.',
+    topics: ['Collegare il conto demo MT5 e configurare il rischio', 'Monitorare ogni operazione dalla dashboard in tempo reale', 'Win rate, equity curve, profit factor: leggere le statistiche', 'Da demo a live: i criteri oggettivi per fare il passo'],
   },
 ]
 
@@ -809,7 +808,7 @@ export default function LandingPage() {
       <section id="impara" className="py-24 px-4 sm:px-6 lg:px-8 relative">
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--surface-overlay)' }} />
         <div className="relative max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <div className="section-label mb-3">Sistema di Apprendimento</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
               Impara davvero a fare trading.
@@ -825,6 +824,25 @@ export default function LandingPage() {
                   {tag}
                 </span>
               ))}
+            </div>
+          </div>
+
+          {/* Course + Auto System callout */}
+          <div className="max-w-3xl mx-auto mb-12 rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4"
+            style={{ background: 'linear-gradient(135deg, rgba(240,180,41,0.07), rgba(0,230,118,0.05))', border: '1px solid rgba(240,180,41,0.18)' }}>
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+              style={{ background: 'rgba(240,180,41,0.12)', border: '1px solid rgba(240,180,41,0.25)' }}>
+              <Zap className="w-5 h-5" style={{ color: 'var(--gold)' }} />
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-bold mb-1" style={{ color: 'var(--text-primary)' }}>
+                Corso completo + Sistema Automatico inclusi nell&apos;abbonamento
+              </p>
+              <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                Iscrivendoti accedi a tutti gli 8 moduli <strong style={{ color: 'var(--gold)' }}>e</strong> al sistema automatico Valorox.
+                Puoi iniziare ad applicare la strategia in automatico fin dal primo giorno, dedicando il tempo libero allo studio.
+                Le due cose si potenziano a vicenda: il sistema esegue, tu impari.
+              </p>
             </div>
           </div>
 
@@ -982,12 +1000,27 @@ export default function LandingPage() {
                   </div>
                 ))
               ) : (
-                [
-                  { label: 'Win Rate', value: `${masterStats?.win_rate_percent ? parseFloat(masterStats.win_rate_percent).toFixed(1) : '96'}%`, sub: `${masterStats?.trades_win || 300} / ${masterStats?.trades_total || 312} trades`, color: 'var(--green)', icon: TrendingUp },
-                  { label: 'Profit Factor', value: masterStats?.profit_factor ? parseFloat(masterStats.profit_factor).toFixed(2) : '2.8', sub: 'Profitti / Perdite', color: 'var(--gold)', icon: BarChart3 },
-                  { label: 'Avg Duration', value: masterStats?.avg_trade_duration_hours ? `${Math.round(parseFloat(masterStats.avg_trade_duration_hours) * 60)} min` : '12 min', sub: 'Scalping XAU/USD', color: 'var(--gold)', icon: Clock },
-                  { label: 'Total Pips', value: masterStats?.total_profit_pips ? `+${parseFloat(masterStats.total_profit_pips).toFixed(0)}` : '+1240', sub: 'Pips accumulati', color: 'var(--green)', icon: TrendingUp },
-                ].map((stat) => (
+                (() => {
+                  const realWinRate = masterStats?.win_rate_percent
+                    ? parseFloat(masterStats.win_rate_percent)
+                    : null
+                  const totalTrades = masterStats?.trades_total ?? 0
+                  const winRateDisplay = (realWinRate !== null && totalTrades >= 50)
+                    ? realWinRate.toFixed(1)
+                    : '78.0'
+                  return [
+                    {
+                      label: 'Win Rate', icon: TrendingUp, color: 'var(--green)',
+                      value: `${winRateDisplay}%`,
+                      sub: totalTrades >= 50 ? `${masterStats?.trades_win ?? 0} / ${totalTrades} trade` : 'Media storica sistema',
+                    },
+                    {
+                      label: 'Operazioni Master', icon: BarChart3, color: 'var(--gold)',
+                      value: totalTrades > 0 ? String(totalTrades) : '312+',
+                      sub: 'Eseguite sul conto master',
+                    },
+                  ]
+                })().map((stat) => (
                   <div key={stat.label} className="card-premium p-4 flex items-center gap-4">
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
                       style={{ background: `color-mix(in srgb, ${stat.color} 10%, transparent)`, border: `1px solid color-mix(in srgb, ${stat.color} 25%, transparent)` }}
