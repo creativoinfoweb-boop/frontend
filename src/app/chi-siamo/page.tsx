@@ -269,7 +269,7 @@ export default function ChiSiamoPage() {
 
           <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { icon: Target, title: 'Registrati', desc: 'Crea il tuo account in 2 minuti. Nessuna carta richiesta per i 5 giorni di prova.' },
+              { icon: Target, title: 'Registrati', desc: 'Crea il tuo account in 2 minuti. 5 giorni di prova inclusi con la registrazione.' },
               { icon: Shield, title: 'Collega il conto MT5', desc: 'Inserisci le credenziali del tuo broker (password investor read-only, mai quella di trading).' },
               { icon: Bot, title: 'Attiva il sistema', desc: 'Scegli la percentuale di rischio (1–3%). Il sistema inizia a monitorare XAU/USD automaticamente.' },
               { icon: TrendingUp, title: 'Monitora dalla dashboard', desc: 'Ogni trade in tempo reale: entry, SL, TP, P/L, storico, statistiche, equity curve.' },

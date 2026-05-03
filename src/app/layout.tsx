@@ -30,6 +30,12 @@ export const metadata: Metadata = {
   description: 'Piattaforma educativa e operativa per trader su XAU/USD. Approccio disciplinato, riduzione interferenza emotiva, monitoraggio completo dalla dashboard personale.',
   keywords: ['trading disciplinato', 'metodo trading', 'XAU/USD', 'MetaTrader 5', 'gold trading', 'strategia operativa', 'Valorox'],
   authors: [{ name: 'Valorox' }],
+  icons: {
+    icon: [
+      { url: '/valorox-icon.png', type: 'image/png' },
+    ],
+    apple: '/valorox-icon.png',
+  },
   openGraph: {
     title: 'Valorox — Metodo, Disciplina e Strategia su XAU/USD',
     description: 'Piattaforma educativa e operativa su XAU/USD. Strategia applicata, riduzione emotività, dashboard personale con monitoraggio completo. Trial 5 giorni gratuito.',

@@ -19,7 +19,6 @@ import {
   Activity,
   Globe,
   Layers,
-  Award,
   Sun,
   Moon,
   BookOpen,
@@ -126,7 +125,12 @@ const faqItems = [
   {
     id: 'broker',
     question: 'Quale broker devo usare?',
-    answer: 'Qualsiasi broker MetaTrader 5 che offra XAU/USD (Oro). Per l\'applicazione ottimale della strategia consigliamo broker ECN con spread ridotti come Exness, IC Markets o Pepperstone. Sia conti demo che live sono supportati.',
+    answer: 'Qualsiasi broker MetaTrader 5 che offra XAU/USD (Oro). Non abbiamo alcuna affiliazione con broker — nessuna commissione, nessun conflitto di interesse. Tu scegli il broker che preferisci. Per l\'applicazione ottimale della strategia consigliamo broker ECN con spread ridotti come Exness, IC Markets o Pepperstone. Sia conti demo che live sono supportati.',
+  },
+  {
+    id: 'broker-independence',
+    question: 'Avete affiliazioni con broker o conflitti di interesse?',
+    answer: 'No. Valorox non ha alcuna affiliazione con broker, non riceve commissioni sul volume di trading degli utenti e non ha alcun conflitto di interesse. Il nostro unico ricavo è l\'abbonamento alla piattaforma. L\'utente sceglie liberamente il proprio broker, senza alcuna restrizione o preferenza forzata da parte nostra.',
   },
 ]
 
@@ -387,6 +391,40 @@ export default function LandingPage() {
         </div>
       </nav>
 
+      {/* ─── Ticker Tape (under navbar) ─────────────────── */}
+      <div className="fixed top-[58px] w-full z-40 py-1.5 overflow-hidden"
+        style={{ borderBottom: '1px solid var(--glass-border)', background: 'var(--glass-bg)', backdropFilter: 'blur(20px)' }}
+      >
+        <div className="ticker-content gap-6">
+          {[...tickerItems, ...tickerItems].map((item, i) => {
+            const isGold = item.symbol === 'XAU/USD'
+            const displayPrice = isGold && goldPrice?.price ? `${goldPrice.price.toFixed(2)}` : item.price_str
+            const displayChange = isGold && goldPrice?.change_str ? goldPrice.change_str : item.change_str
+            const displayUp = isGold ? goldPrice?.up : item.up
+            return (
+              <div key={i} className="inline-flex items-center gap-2 px-4 flex-shrink-0" style={{
+                ...(isGold ? {
+                  background: 'color-mix(in srgb, var(--gold) 8%, transparent)',
+                  border: '1px solid color-mix(in srgb, var(--gold) 20%, transparent)',
+                  borderRadius: '0.5rem',
+                  paddingLeft: '0.625rem',
+                  paddingRight: '0.625rem',
+                } : {})
+              }}>
+                {isGold && <span style={{ color: 'var(--gold)', fontSize: '0.6rem' }}>★</span>}
+                <span className={`tracking-wider ${isGold ? 'font-black text-xs' : 'text-[10px] font-bold'}`} style={{ color: isGold ? 'var(--gold)' : 'var(--text-secondary)' }}>{item.symbol}</span>
+                <span className="text-xs font-mono font-semibold" style={{ color: isGold ? 'var(--gold)' : 'var(--text-primary)' }}>{displayPrice}</span>
+                <span className="text-[10px] font-semibold" style={{ color: displayUp ? 'var(--green)' : 'var(--red)' }}>
+                  {displayChange}
+                </span>
+                {isGold && <span className="ml-0.5 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--gold)', boxShadow: '0 0 4px var(--gold)', animation: 'dotPulse 2s ease-in-out infinite' }} />}
+                <span className="mx-1.5 select-none text-[10px]" style={{ color: 'var(--border)' }}>│</span>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
       {/* ─── Referral Banner ────────────────────────────── */}
       {referralCode && (
         <div className="sticky top-[60px] z-40 border-b" style={{ background: 'linear-gradient(135deg, rgba(240,180,41,0.15), rgba(0,230,118,0.08))', borderColor: 'var(--glass-border)' }}>
@@ -446,21 +484,18 @@ export default function LandingPage() {
         {/* Hero Content */}
         <div className="relative z-10 flex flex-col items-center justify-end text-center px-4 pb-24 pt-[52vh] w-full">
 
-          {/* Live badge */}
-          <div className="valorox-badge">
-            <div className="live-dot" style={{ width: 6, height: 6 }} />
-            AI Solution · XAU/USD · Automated
-          </div>
-
           {/* ── Refined title ── */}
           <div className="valorox-title-wrap">
-            <div className="valorox-title-deco">
-              <div className="valorox-title-diamond" />
-            </div>
             <h1 className="valorox-title">Valorox</h1>
             <div className="valorox-title-deco">
               <div className="valorox-title-diamond" />
             </div>
+          </div>
+
+          {/* Live badge */}
+          <div className="valorox-badge mt-3">
+            <div className="live-dot" style={{ width: 6, height: 6 }} />
+            AI Solution · XAU/USD · Automated
           </div>
 
           <p className="valorox-subtitle mt-2 mb-3">
@@ -499,33 +534,12 @@ export default function LandingPage() {
             </Link>
           </div>
 
-          {/* Value pills */}
-          <div className="flex flex-wrap gap-2 sm:gap-3 justify-center items-center mt-6">
-            {['Sistema 100% automatizzato', 'Zero emotività', 'Risultati concreti'].map((claim) => (
-              <div
-                key={claim}
-                className="inline-flex items-center gap-2 rounded-full"
-                style={{
-                  padding: '8px 14px',
-                  background: 'var(--glass-bg)',
-                  border: '1px solid var(--glass-border)',
-                  fontSize: 13,
-                  fontWeight: 500,
-                  color: 'var(--text-primary)',
-                }}
-              >
-                <Check className="w-3.5 h-3.5" style={{ color: 'var(--gold)' }} />
-                <span>{claim}</span>
-              </div>
-            ))}
-          </div>
-
           {/* Trust row */}
           <div className="flex flex-wrap gap-6 justify-center items-center mt-6">
             {[
               { icon: Shield, text: 'Nessuna gestione fondi' },
               { icon: Lock, text: 'Controllo totale utente' },
-              { icon: Award, text: 'No carta richiesta' },
+              { icon: Globe, text: 'Nessuna affiliazione broker' },
             ].map(({ icon: Icon, text }) => (
               <div key={text} className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>
                 <Icon className="w-3.5 h-3.5" style={{ color: 'var(--gold)', opacity: 0.5 }} />
@@ -535,62 +549,8 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Automatizza il tuo trading — strip */}
-        <div className="absolute bottom-0 left-0 right-0 z-10">
-          <div className="max-w-4xl mx-auto px-4 pb-6">
-            <div className="rounded-2xl px-6 py-4 flex flex-wrap gap-6 justify-center items-center"
-              style={{ background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(20px)', border: '1px solid rgba(240,180,41,0.18)' }}>
-              {[
-                { icon: Zap, label: 'Sistema 100% Automatizzato', sub: 'XAU/USD · 24/5' },
-                { icon: Shield, label: 'Zero Emotività', sub: 'Algoritmo, non istinto' },
-                { icon: TrendingUp, label: 'Risultati Concreti', sub: 'Non solo teoria' },
-              ].map(({ icon: Icon, label, sub }) => (
-                <div key={label} className="flex items-center gap-3">
-                  <Icon className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--gold)' }} />
-                  <div>
-                    <p className="text-xs font-bold leading-none" style={{ color: 'rgba(255,255,255,0.9)' }}>{label}</p>
-                    <p className="text-[10px] mt-0.5" style={{ color: 'rgba(255,255,255,0.45)' }}>{sub}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </section>
 
-      {/* ─── Ticker Tape ────────────────────────────────── */}
-      <div className="py-3 overflow-hidden"
-        style={{ borderTop: '1px solid var(--glass-border)', borderBottom: '1px solid var(--glass-border)', background: 'var(--glass-bg)', backdropFilter: 'blur(20px)' }}
-      >
-        <div className="ticker-content gap-8">
-          {[...tickerItems, ...tickerItems].map((item, i) => {
-            const isGold = item.symbol === 'XAU/USD'
-            const displayPrice = isGold && goldPrice?.price ? `${goldPrice.price.toFixed(2)}` : item.price_str
-            const displayChange = isGold && goldPrice?.change_str ? goldPrice.change_str : item.change_str
-            const displayUp = isGold ? goldPrice?.up : item.up
-            return (
-              <div key={i} className="inline-flex items-center gap-3 px-6 flex-shrink-0" style={{
-                ...(isGold ? {
-                  background: 'color-mix(in srgb, var(--gold) 8%, transparent)',
-                  border: '1px solid color-mix(in srgb, var(--gold) 20%, transparent)',
-                  borderRadius: '0.75rem',
-                  paddingLeft: '0.875rem',
-                  paddingRight: '0.875rem',
-                } : {})
-              }}>
-                {isGold && <span style={{ color: 'var(--gold)', fontSize: '0.75rem' }}>★</span>}
-                <span className={`tracking-wider ${isGold ? 'font-black text-base' : 'text-xs font-bold'}`} style={{ color: isGold ? 'var(--gold)' : 'var(--text-secondary)' }}>{item.symbol}</span>
-                <span className="text-sm font-mono font-semibold" style={{ color: isGold ? 'var(--gold)' : 'var(--text-primary)' }}>{displayPrice}</span>
-                <span className="text-xs font-semibold" style={{ color: displayUp ? 'var(--green)' : 'var(--red)' }}>
-                  {displayChange}
-                </span>
-                {isGold && <span className="ml-1 w-2 h-2 rounded-full" style={{ background: 'var(--gold)', boxShadow: '0 0 6px var(--gold)', animation: 'dotPulse 2s ease-in-out infinite' }} />}
-                <span className="mx-2 select-none" style={{ color: 'var(--border)' }}>│</span>
-              </div>
-            )
-          })}
-        </div>
-      </div>
 
       {/* ─── Sub-Hero: Il Vero Problema ─────────────────── */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 relative">
@@ -823,7 +783,7 @@ export default function LandingPage() {
               </Link>
             </div>
             <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-              I moduli 01–04 sono completamente gratuiti. Nessuna carta richiesta.
+              I moduli 01–04 sono completamente gratuiti e accessibili a tutti.
             </p>
           </div>
         </div>
@@ -1090,7 +1050,7 @@ export default function LandingPage() {
           <p className="text-lg mb-10 max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
             Un sistema sviluppato per uso operativo interno, validato su centinaia di operazioni reali
             e reso accessibile a chi condivide un approccio disciplinato ai mercati.
-            5 giorni gratuiti — nessuna carta richiesta.
+            5 giorni di prova inclusi con la registrazione.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

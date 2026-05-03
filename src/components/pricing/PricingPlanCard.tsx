@@ -218,7 +218,7 @@ export function PricingPlanCard({
             )}
 
             <p className="text-xs mb-6" style={{ color: 'var(--text-muted)' }}>
-              Inizia con <strong style={{ color: 'var(--text-primary)' }}>5 giorni gratuiti</strong> — nessuna carta richiesta
+              Inizia con <strong style={{ color: 'var(--text-primary)' }}>5 giorni di prova</strong> inclusi con la registrazione
             </p>
 
             {intro}
@@ -325,7 +325,7 @@ export function PricingPlanCard({
                     </button>
                   )}
                   <p className="text-center text-[11px]" style={{ color: 'var(--text-muted)' }}>
-                    Nessuna carta · Nessun obbligo · Scegli mensile o annuale dopo il trial
+                    Nessun obbligo · Cancella quando vuoi · Scegli mensile o annuale dopo il trial
                   </p>
                 </>
               )}

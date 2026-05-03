@@ -7,7 +7,7 @@ import { ClerkSessionGate } from '@/components/auth/ClerkSessionGate'
 import { Check } from 'lucide-react'
 
 const perks = [
-  '5 giorni di trial gratuito — nessuna carta richiesta',
+  '5 giorni di trial gratuito inclusi',
   'Automazione trading configurabile su XAU/USD',
   'Performance reali e verificate',
   'Cancella quando vuoi, senza vincoli',

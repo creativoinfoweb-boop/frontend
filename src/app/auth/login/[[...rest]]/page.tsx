@@ -72,7 +72,7 @@ export default function LoginPage() {
 
         {/* Trust row */}
         <div className="flex items-center justify-center gap-4 mt-6">
-          {['Trial 5 giorni', 'No carta richiesta', 'Cancella quando vuoi'].map(t => (
+          {['Trial 5 giorni', 'Zero affiliazioni broker', 'Cancella quando vuoi'].map(t => (
             <span key={t} className="text-[9px] font-medium" style={{ color: 'rgba(80,80,105,0.8)' }}>{t}</span>
           ))}
         </div>

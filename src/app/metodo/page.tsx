@@ -384,7 +384,7 @@ export default function MetodoPage() {
             </span>
           </h2>
           <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            5 giorni gratuiti. Nessuna carta richiesta. Inizia con un conto demo e vedi il sistema in azione.
+            5 giorni di prova inclusi. Inizia con un conto demo e vedi il sistema in azione.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <Link href="/auth/register" className="btn-gold text-sm px-8 py-3 rounded-xl">
