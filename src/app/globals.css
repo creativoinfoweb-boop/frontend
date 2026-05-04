@@ -1346,7 +1346,7 @@ input:-webkit-autofill:focus {
 }
 
 .valorox-title {
-  font-family: var(--font-brand);
+  font-family: var(--font-brand)!important;
   font-weight: 200;
   font-size: clamp(1.6rem, 3.2vw, 3.8rem);
   letter-spacing: 0.28em;
