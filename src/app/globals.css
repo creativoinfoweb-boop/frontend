@@ -59,7 +59,7 @@
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Typography */
-  --font-brand: var(--font-montserrat-alt), 'Montserrat Alternates', sans-serif;
+  --font-brand: var(--font-orbitron), 'Orbitron', sans-serif;
 
   /* Holographic overlay */
   --holo: linear-gradient(105deg,
@@ -1071,9 +1071,18 @@ input:-webkit-autofill:focus {
 .brand-cinzel {
   font-family: var(--font-brand);
   font-weight: 700;
-  letter-spacing: 0.14em;
-  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 38%, var(--gold-light) 62%, var(--gold-dark) 100%);
-  background-size: 200% 100%;
+  letter-spacing: 0.22em;
+  background: linear-gradient(
+    180deg,
+    #C8931A 0%,
+    #F5C842 18%,
+    #FFE48A 35%,
+    #FFFBE0 50%,
+    #FFE48A 62%,
+    #F0B429 78%,
+    #C8931A 100%
+  );
+  background-size: 100% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1322,9 +1331,9 @@ input:-webkit-autofill:focus {
 
 .valorox-title {
   font-family: var(--font-brand);
-  font-weight: 800;
-  font-size: clamp(2.4rem, 6vw, 5.5rem);
-  letter-spacing: 0.18em;
+  font-weight: 700;
+  font-size: clamp(2rem, 5.5vw, 5rem);
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: transparent;
   background: linear-gradient(

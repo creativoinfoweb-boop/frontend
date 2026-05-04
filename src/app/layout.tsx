@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono, Cinzel, Cormorant, Montserrat_Alternates } from 'next/font/google'
+import { Inter, JetBrains_Mono, Cinzel, Cormorant, Orbitron } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 import ClerkWrapper from '@/components/ClerkWrapper'
@@ -33,8 +33,8 @@ const cormorant = Cormorant({
   style: ['normal', 'italic'],
 })
 
-const montserratAlternates = Montserrat_Alternates({
-  variable: '--font-montserrat-alt',
+const orbitron = Orbitron({
+  variable: '--font-orbitron',
   subsets: ['latin'],
   display: 'swap',
   weight: ['400', '500', '600', '700', '800', '900'],
@@ -73,7 +73,7 @@ export default function RootLayout({
   return (
     <html lang="it" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${cinzel.variable} ${cormorant.variable} ${montserratAlternates.variable} antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${cinzel.variable} ${cormorant.variable} ${orbitron.variable} antialiased`}
         suppressHydrationWarning
       >
         <ClerkWrapper>
