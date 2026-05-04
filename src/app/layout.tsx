@@ -2,15 +2,15 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, JetBrains_Mono, Cinzel, Cormorant, Exo_2 } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css'
+import { Providers } from './providers'
+import ClerkWrapper from '@/components/ClerkWrapper'
 
 const braveEightyone = localFont({
-  src: '../../public/fonts/BRAVEEightyone-Regular.ttf',
+  src: './fonts/BRAVEEightyone-Regular.ttf',
   variable: '--font-brave',
   display: 'swap',
   weight: '400',
 })
-import { Providers } from './providers'
-import ClerkWrapper from '@/components/ClerkWrapper'
 
 const inter = Inter({
   variable: '--font-inter',
