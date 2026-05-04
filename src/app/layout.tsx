@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono, Cinzel, Cormorant, Orbitron } from 'next/font/google'
+import { Inter, JetBrains_Mono, Cinzel, Cormorant, Raleway } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 import ClerkWrapper from '@/components/ClerkWrapper'
@@ -33,11 +33,11 @@ const cormorant = Cormorant({
   style: ['normal', 'italic'],
 })
 
-const orbitron = Orbitron({
-  variable: '--font-orbitron',
+const raleway = Raleway({
+  variable: '--font-raleway',
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 })
 
 export const metadata: Metadata = {
@@ -73,7 +73,7 @@ export default function RootLayout({
   return (
     <html lang="it" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${cinzel.variable} ${cormorant.variable} ${orbitron.variable} antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${cinzel.variable} ${cormorant.variable} ${raleway.variable} antialiased`}
         suppressHydrationWarning
       >
         <ClerkWrapper>

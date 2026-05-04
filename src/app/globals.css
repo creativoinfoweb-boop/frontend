@@ -59,7 +59,7 @@
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Typography */
-  --font-brand: var(--font-orbitron), 'Orbitron', sans-serif;
+  --font-brand: var(--font-raleway), 'Raleway', sans-serif;
 
   /* Holographic overlay */
   --holo: linear-gradient(105deg,
@@ -1069,9 +1069,9 @@ input:-webkit-autofill:focus {
 ═══════════════════════════════════════════════════════════ */
 
 .brand-cinzel {
-  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-family: var(--font-raleway), 'Raleway', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.28em;
   background: linear-gradient(
     180deg,
     #C8931A 0%,
@@ -1330,10 +1330,10 @@ input:-webkit-autofill:focus {
 }
 
 .valorox-title {
-  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
-  font-weight: 700;
+  font-family: var(--font-raleway), 'Raleway', sans-serif;
+  font-weight: 300;
   font-size: clamp(2rem, 5.5vw, 5rem);
-  letter-spacing: 0.22em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: transparent;
   background: linear-gradient(
