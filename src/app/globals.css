@@ -1347,8 +1347,8 @@ input:-webkit-autofill:focus {
 
 .valorox-title {
   font-family: var(--font-brand);
-  font-weight: 400;
-  font-size: clamp(1.6rem, 4.2vw, 3.8rem);
+  font-weight: 200;
+  font-size: clamp(1.6rem, 3.2vw, 3.8rem);
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: transparent;
@@ -1379,7 +1379,7 @@ input:-webkit-autofill:focus {
   color: rgba(240,180,41,0.55);
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 200;
   animation: subtitleFadeIn 1.2s ease-out 1.4s both;
 }
 
