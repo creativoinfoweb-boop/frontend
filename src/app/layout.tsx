@@ -1,6 +1,14 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, JetBrains_Mono, Cinzel, Cormorant, Exo_2 } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
+
+const braveEightyone = localFont({
+  src: '../../public/fonts/BRAVEEightyone-Regular.ttf',
+  variable: '--font-brave',
+  display: 'swap',
+  weight: '400',
+})
 import { Providers } from './providers'
 import ClerkWrapper from '@/components/ClerkWrapper'
 
@@ -73,7 +81,7 @@ export default function RootLayout({
   return (
     <html lang="it" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${cinzel.variable} ${cormorant.variable} ${exo2.variable} antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${cinzel.variable} ${cormorant.variable} ${exo2.variable} ${braveEightyone.variable} antialiased`}
         suppressHydrationWarning
       >
         <ClerkWrapper>

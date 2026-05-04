@@ -130,7 +130,7 @@ export default function AffiliatiPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
             <div>
-              <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-exo2)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Valorox</span>
+              <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Valorox</span>
               <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
             </div>
           </Link>
