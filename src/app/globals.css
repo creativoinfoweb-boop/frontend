@@ -1086,7 +1086,7 @@ input:-webkit-autofill:focus {
 
 .brand-cinzel {
   font-family: var(--font-brand);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.28em;
   background: linear-gradient(
     180deg,
@@ -1193,7 +1193,7 @@ input:-webkit-autofill:focus {
 /* Statue — in normal flow so content starts below it */
 .valorox-statue-wrap {
   position: relative;
-  width: min(520px, 88vw);
+  width: min(400px, 72vw);
   padding-top: 76px; /* space for fixed nav + ticker */
   pointer-events: none;
   z-index: 1;
@@ -1208,7 +1208,7 @@ input:-webkit-autofill:focus {
 
 .valorox-statue-img {
   display: block; position: relative; z-index: 1;
-  width: 100%; height: auto; max-height: 72vh;
+  width: 100%; height: auto; max-height: 58vh;
   object-fit: contain; object-position: top center;
   mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
@@ -1347,8 +1347,8 @@ input:-webkit-autofill:focus {
 
 .valorox-title {
   font-family: var(--font-brand);
-  font-weight: 300;
-  font-size: clamp(2rem, 5.5vw, 5rem);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 4.2vw, 3.8rem);
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: transparent;
