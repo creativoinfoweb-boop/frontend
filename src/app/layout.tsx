@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono, Cinzel, Cormorant } from 'next/font/google'
+import { Inter, JetBrains_Mono, Cinzel, Cormorant, Montserrat_Alternates } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 import ClerkWrapper from '@/components/ClerkWrapper'
@@ -31,6 +31,13 @@ const cormorant = Cormorant({
   display: 'swap',
   weight: ['300', '400', '500', '600', '700'],
   style: ['normal', 'italic'],
+})
+
+const montserratAlternates = Montserrat_Alternates({
+  variable: '--font-montserrat-alt',
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800', '900'],
 })
 
 export const metadata: Metadata = {
@@ -66,7 +73,7 @@ export default function RootLayout({
   return (
     <html lang="it" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${cinzel.variable} ${cormorant.variable} antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${cinzel.variable} ${cormorant.variable} ${montserratAlternates.variable} antialiased`}
         suppressHydrationWarning
       >
         <ClerkWrapper>

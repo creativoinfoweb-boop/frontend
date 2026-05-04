@@ -25,6 +25,7 @@ import {
   Menu,
   X,
   LayoutDashboard,
+  ChevronRight,
 } from 'lucide-react'
 import { PricingPlanCard } from '@/components/pricing/PricingPlanCard'
 import ThemeOnboardingModal from '@/components/ThemeOnboardingModal'
@@ -409,13 +410,13 @@ export default function LandingPage() {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 z-[44] md:hidden"
+            className="fixed inset-0 z-[55] md:hidden"
             style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}
             onClick={() => setMobileMenuOpen(false)}
           />
           {/* Drawer */}
           <div
-            className="fixed top-0 right-0 h-full w-72 z-[45] md:hidden flex flex-col animate-slide-in-left"
+            className="fixed top-0 right-0 h-full w-[min(280px,85vw)] z-[60] md:hidden flex flex-col animate-slide-in-right"
             style={{
               background: 'var(--glass-bg)',
               backdropFilter: 'blur(40px) saturate(1.8)',
@@ -426,21 +427,25 @@ export default function LandingPage() {
             }}
           >
             {/* Drawer header */}
-            <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: '1px solid var(--border)' }}>
+            <div className="flex items-center justify-between px-5 pt-5 pb-4" style={{ borderBottom: '1px solid var(--border)' }}>
               <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2.5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 28, height: 28 }} />
-                <span className="text-sm font-semibold" style={{ color: 'var(--gold)' }}>Valorox</span>
+                <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 30, height: 30 }} />
+                <div>
+                  <div className="brand-cinzel text-[12px]" style={{ letterSpacing: '0.14em' }}>VALOROX</div>
+                  <div className="text-[9px] tracking-widest uppercase" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
+                </div>
               </Link>
-              <button onClick={() => setMobileMenuOpen(false)} className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ color: 'var(--text-muted)', background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
-                <X className="w-3.5 h-3.5" />
+              <button onClick={() => setMobileMenuOpen(false)} className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ color: 'var(--text-muted)', background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
+                <X className="w-4 h-4" />
               </button>
             </div>
 
             {/* Nav links */}
-            <nav className="flex-1 overflow-y-auto px-4 py-4 space-y-1">
+            <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-0.5">
+              <p className="px-3 pb-2 text-[9px] font-bold tracking-[0.2em] uppercase" style={{ color: 'var(--text-muted)' }}>Navigazione</p>
               {[
-                { label: 'Metodo', href: '/metodo' },
+                { label: 'Il Metodo', href: '/metodo' },
                 { label: 'Chi Siamo', href: '/chi-siamo' },
                 { label: 'Impara', href: '#impara' },
                 { label: 'Performance', href: '#performance' },
@@ -451,11 +456,12 @@ export default function LandingPage() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all"
+                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium transition-all"
                   style={{ color: 'var(--text-secondary)' }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--text-primary)'; (e.currentTarget as HTMLElement).style.background = 'var(--gold-subtle)' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--gold)'; (e.currentTarget as HTMLElement).style.background = 'var(--gold-subtle)' }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)'; (e.currentTarget as HTMLElement).style.background = 'transparent' }}
                 >
+                  <ChevronRight className="w-3.5 h-3.5 opacity-40 flex-shrink-0" />
                   {link.label}
                 </a>
               ))}

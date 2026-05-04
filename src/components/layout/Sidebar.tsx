@@ -181,7 +181,7 @@ export function Sidebar() {
               </div>
 
               <div>
-                <div className="brand-cinzel text-[11px] tracking-[0.22em]">VALOROX</div>
+                <div className="brand-cinzel text-[11px]">VALOROX</div>
                 <div className="text-[9px] font-medium tracking-[0.15em] uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>
                   AI Solution
                 </div>
