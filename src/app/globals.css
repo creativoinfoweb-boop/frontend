@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
+/* ═══════════════════════════════════════════════════════════
+   BRAND FONT — applied to "Valorox" brand text everywhere.
+   To swap font:
+     1. Drop new TTF/OTF/WOFF2 file into /public/fonts/
+     2. Change the URL below to match the new filename
+     3. (optional) change family name + the var on line ~70
+   That's it. No restart needed in dev (just refresh the browser).
+═══════════════════════════════════════════════════════════ */
+@font-face {
+  font-family: 'BrandFont';
+  src: url('/fonts/BRAVEEightyone-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -59,7 +75,7 @@
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Typography */
-  --font-brand: var(--font-brave), 'BRAVE Eightyone', var(--font-exo2), 'Exo 2', sans-serif;
+  --font-brand: 'BrandFont', var(--font-brave), var(--font-exo2), 'Exo 2', sans-serif;
 
   /* Holographic overlay */
   --holo: linear-gradient(105deg,
