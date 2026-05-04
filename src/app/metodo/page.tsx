@@ -377,7 +377,7 @@ export default function MetodoPage() {
         <section className="rounded-3xl p-8 sm:p-12 text-center space-y-5"
           style={{ background: 'rgba(240,180,41,0.04)', border: '1px solid rgba(240,180,41,0.15)' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring mx-auto" style={{ width: 64, height: 64 }} />
+          <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring mx-auto" style={{ width: 64, height: 64 }} />
           <h2 className="text-3xl font-black">
             <span style={{ background: 'linear-gradient(135deg, var(--gold-dark), var(--gold))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               Pronto ad automatizzare?

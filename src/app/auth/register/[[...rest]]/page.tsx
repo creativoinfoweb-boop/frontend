@@ -57,7 +57,7 @@ export default function RegisterPage() {
         {/* Left panel */}
         <div className="hidden lg:block space-y-8">
           <div>
-            <div className="mb-5"><img src="/eldorado.jpg" alt="Valorox" style={{ width: 64, height: 64, borderRadius: '50%', border: '1.5px solid rgba(240,180,41,0.35)', objectFit: 'cover', objectPosition: 'top center', flexShrink: 0 }} /></div>
+            <div className="mb-5"><img src="/eldorado.svg" alt="Valorox" style={{ width: 64, height: 64, borderRadius: '50%', border: '1.5px solid rgba(240,180,41,0.35)', objectFit: 'cover', objectPosition: 'top center', flexShrink: 0 }} /></div>
             <h1 className="text-3xl font-black text-gradient-gold leading-tight">Valorox</h1>
             <p className="text-sm text-[#6B6B8A] mt-2">AI Solution · XAU/USD</p>
           </div>
@@ -79,7 +79,7 @@ export default function RegisterPage() {
         {/* Right panel */}
         <div>
           <div className="text-center mb-6 lg:hidden">
-            <div className="mx-auto mb-3 flex justify-center"><img src="/eldorado.jpg" alt="Valorox" style={{ width: 56, height: 56, borderRadius: '50%', border: '1.5px solid rgba(240,180,41,0.35)', objectFit: 'cover', objectPosition: 'top center', flexShrink: 0 }} /></div>
+            <div className="mx-auto mb-3 flex justify-center"><img src="/eldorado.svg" alt="Valorox" style={{ width: 56, height: 56, borderRadius: '50%', border: '1.5px solid rgba(240,180,41,0.35)', objectFit: 'cover', objectPosition: 'top center', flexShrink: 0 }} /></div>
             <h1 className="text-xl font-black text-gradient-gold">Valorox</h1>
           </div>
 

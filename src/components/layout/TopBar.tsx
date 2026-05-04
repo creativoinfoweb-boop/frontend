@@ -246,7 +246,7 @@ export function TopBar() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/eldorado.jpg"
+                src="/eldorado.svg"
                 alt="avatar"
                 className="gold-avatar-ring"
                 style={{ width: 28, height: 28, flexShrink: 0 }}

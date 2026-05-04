@@ -40,9 +40,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'Valorox' }],
   icons: {
     icon: [
-      { url: '/valorox-icon.png', type: 'image/png' },
+      { url: '/eldorado.svg', type: 'image/svg+xml' },
     ],
-    apple: '/valorox-icon.png',
+    apple: '/eldorado.svg',
   },
   openGraph: {
     title: 'Valorox — Metodo, Disciplina e Strategia su XAU/USD',

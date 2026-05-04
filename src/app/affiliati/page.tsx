@@ -128,7 +128,7 @@ export default function AffiliatiPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
+            <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
             <div>
               <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Valorox</span>
               <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
@@ -576,7 +576,7 @@ export default function AffiliatiPage() {
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring" style={{ width: 30, height: 30 }} />
+            <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 30, height: 30 }} />
             <span className="font-bold" style={{ color: 'var(--text-primary)' }}>Valorox</span>
             <span className="text-xs" style={{ color: 'var(--text-muted)' }}>AI Solution</span>
           </div>

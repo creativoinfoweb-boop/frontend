@@ -13,7 +13,7 @@ function LoadingUI() {
       <div className="animate-pulse">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/eldorado.jpg"
+          src="/eldorado.svg"
           alt="Valorox"
           style={{
             width: 64,
@@ -129,7 +129,7 @@ function ClerkCallbackContent() {
       <div className={syncError ? '' : 'animate-pulse'}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/eldorado.jpg"
+          src="/eldorado.svg"
           alt="Valorox"
           style={{
             width: 64,

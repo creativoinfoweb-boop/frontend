@@ -10,15 +10,36 @@ import {
   Clock, Wifi, WifiOff, Info,
 } from 'lucide-react'
 
-function ConnectionBadge({ account }: { account: MT5Account & { last_check_at?: string; last_check_ok?: boolean | null; last_check_error?: string | null } }) {
+function ConnectionBadge({ account }: { account: MT5Account }) {
+  // Account is active (executing trades) — show green regardless of last_check
+  if (account.is_active) {
+    if (account.last_check_ok && account.last_check_at) {
+      const date = new Date(account.last_check_at).toLocaleString('it-IT', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
+      return (
+        <div className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--green)' }}>
+          <Wifi className="w-3.5 h-3.5" />
+          <span>Attivo · Verificato {date}</span>
+        </div>
+      )
+    }
+    return (
+      <div className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--green)' }}>
+        <Activity className="w-3.5 h-3.5" />
+        <span>Attivo e operativo</span>
+      </div>
+    )
+  }
+
+  // Account not yet verified by scheduled check
   if (account.last_check_ok === null || account.last_check_ok === undefined || !account.last_check_at) {
     return (
       <div className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--text-muted)' }}>
         <Clock className="w-3.5 h-3.5" />
-        <span>Non ancora verificato</span>
+        <span>In attesa di prima verifica</span>
       </div>
     )
   }
+
   const date = new Date(account.last_check_at).toLocaleString('it-IT', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
   if (account.last_check_ok) {
     return (
@@ -56,6 +77,7 @@ export default function AccountsPage() {
   const addMutation = useMutation({
     mutationFn: (payload: typeof formData) => api.post('/accounts/mt5', payload),
     onSuccess: () => {
+      try { localStorage.setItem(`risk_${formData.mt5_login}`, String(formData.risk_percent)) } catch {}
       setFormData({ name: '', mt5_login: '', mt5_password: '', mt5_server: '', account_type: 'real', risk_percent: 3 })
       setShowModal(false)
       refetch()
@@ -105,6 +127,14 @@ export default function AccountsPage() {
     pct === 1 ? 'Conservativo' : pct === 2 ? 'Moderato' : 'Aggressivo'
   const riskColor = (pct: number) =>
     pct === 1 ? '#00C2FF' : pct === 2 ? '#00E676' : '#F0B429'
+  const getRiskPercent = (acc: any): number => {
+    if (acc.risk_percent != null) return acc.risk_percent
+    try {
+      const cached = localStorage.getItem(`risk_${acc.mt5_login}`)
+      if (cached) return parseInt(cached, 10)
+    } catch {}
+    return 3
+  }
 
   const canSave =
     Boolean(formData.mt5_login.trim()) &&
@@ -193,7 +223,7 @@ export default function AccountsPage() {
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
                     style={
-                      acc.last_check_ok === true
+                      acc.is_active
                         ? { background: 'rgba(0,230,118,0.1)', border: '1px solid rgba(0,230,118,0.25)' }
                         : acc.last_check_ok === false
                         ? { background: 'rgba(255,61,113,0.08)', border: '1px solid rgba(255,61,113,0.2)' }
@@ -202,7 +232,7 @@ export default function AccountsPage() {
                   >
                     <Activity
                       className="w-5 h-5"
-                      style={{ color: acc.last_check_ok === true ? '#00E676' : acc.last_check_ok === false ? '#FF3D71' : '#F0B429' }}
+                      style={{ color: acc.is_active ? '#00E676' : acc.last_check_ok === false ? '#FF3D71' : '#F0B429' }}
                     />
                   </div>
                   <div>
@@ -234,11 +264,11 @@ export default function AccountsPage() {
                 <div className="flex items-center gap-2">
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded-full"
                     style={{
-                      background: `${riskColor(acc.risk_percent ?? 3)}15`,
-                      color: riskColor(acc.risk_percent ?? 3),
-                      border: `1px solid ${riskColor(acc.risk_percent ?? 3)}40`,
+                      background: `${riskColor(getRiskPercent(acc))}15`,
+                      color: riskColor(getRiskPercent(acc)),
+                      border: `1px solid ${riskColor(getRiskPercent(acc))}40`,
                     }}>
-                    Rischio: {acc.risk_percent ?? 3}% · {riskLabel(acc.risk_percent ?? 3)}
+                    Rischio: {getRiskPercent(acc)}% · {riskLabel(getRiskPercent(acc))}
                   </span>
                   <p className="text-[10px]" style={{ color: 'var(--text-muted)' }}>Verifica alle 10:00</p>
                 </div>
@@ -258,7 +288,7 @@ export default function AccountsPage() {
               )}
 
               {/* Prima verifica */}
-              {(acc.last_check_ok === null || acc.last_check_ok === undefined) && (
+              {!acc.is_active && (acc.last_check_ok === null || acc.last_check_ok === undefined) && (
                 <div className="flex items-start gap-2 p-3 rounded-xl"
                   style={{ background: 'rgba(240,180,41,0.05)', border: '1px solid rgba(240,180,41,0.12)' }}>
                   <Clock className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: 'var(--gold)' }} />

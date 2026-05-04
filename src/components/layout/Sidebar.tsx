@@ -165,7 +165,7 @@ export function Sidebar() {
               <div className="relative flex-shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/eldorado.jpg"
+                  src="/eldorado.svg"
                   alt="Valorox"
                   className="gold-avatar-ring"
                   style={{ width: 36, height: 36 }}

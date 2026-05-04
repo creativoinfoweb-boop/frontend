@@ -325,7 +325,7 @@ export default function LandingPage() {
           {/* Logo — always links back to landing */}
           <Link href="/" className="flex items-center gap-3 group">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
+            <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
             <div>
               <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Valorox</span>
               <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
@@ -429,7 +429,7 @@ export default function LandingPage() {
             <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: '1px solid var(--border)' }}>
               <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2.5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring" style={{ width: 28, height: 28 }} />
+                <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 28, height: 28 }} />
                 <span className="text-sm font-semibold" style={{ color: 'var(--gold)' }}>Valorox</span>
               </Link>
               <button onClick={() => setMobileMenuOpen(false)} className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ color: 'var(--text-muted)', background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
@@ -580,7 +580,7 @@ export default function LandingPage() {
         <div className="valorox-statue-wrap">
           <div className="valorox-statue-inner">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.jpg" alt="Valorox" className="valorox-statue-img" />
+            <img src="/eldorado.svg" alt="Valorox" className="valorox-statue-img" />
             <div className="valorox-shimmer" />
             {[
               { bottom: '30%', left: '10%', delay: '0s', dx: '15px' },
@@ -1200,7 +1200,7 @@ export default function LandingPage() {
         <div className="relative max-w-3xl mx-auto text-center">
           <div className="mx-auto mb-6 flex justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring" style={{ width: 68, height: 68 }} />
+            <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 68, height: 68 }} />
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-black mb-5">
@@ -1254,7 +1254,7 @@ export default function LandingPage() {
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/eldorado.jpg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
+                <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
                 <div>
                   <span className="font-bold text-gradient-gold">Valorox</span>
                   <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>

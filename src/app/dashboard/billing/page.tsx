@@ -270,7 +270,7 @@ function BillingContent() {
           <div className="flex items-start justify-between mb-6 relative">
             <div className="flex items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/eldorado.jpg" alt="Valorox" style={{ width: 40, height: 40, borderRadius: '50%', border: '1.5px solid rgba(240,180,41,0.35)', objectFit: 'cover', objectPosition: 'top center' }} />
+              <img src="/eldorado.svg" alt="Valorox" style={{ width: 40, height: 40, borderRadius: '50%', border: '1.5px solid rgba(240,180,41,0.35)', objectFit: 'cover', objectPosition: 'top center' }} />
               <div>
                 <div className="font-bold text-[var(--text-primary)]">Valorox Premium</div>
                 <div className="text-xs text-[var(--text-secondary)] mt-0.5">Piattaforma Educativa e Operativa XAU/USD · 1 conto MT5</div>

@@ -46,7 +46,7 @@ function ResetPasswordForm() {
 
       <div className="relative w-full max-w-md animate-fade-in-up">
         <div className="text-center mb-8">
-          <div className="mx-auto mb-4 w-fit"><img src="/eldorado.jpg" alt="Valorox" style={{ width: 72, height: 72, borderRadius: '50%', border: '1.5px solid rgba(240,180,41,0.35)', objectFit: 'cover', objectPosition: 'top center', flexShrink: 0 }} /></div>
+          <div className="mx-auto mb-4 w-fit"><img src="/eldorado.svg" alt="Valorox" style={{ width: 72, height: 72, borderRadius: '50%', border: '1.5px solid rgba(240,180,41,0.35)', objectFit: 'cover', objectPosition: 'top center', flexShrink: 0 }} /></div>
           <h1 className="text-2xl font-black text-gradient-gold">Valorox</h1>
           <p className="text-sm text-[#6B6B8A] mt-1">Nuova Password</p>
         </div>
