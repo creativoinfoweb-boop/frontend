@@ -1345,7 +1345,7 @@ input:-webkit-autofill:focus {
   flex-shrink: 0;
 }
 .valorox-title {
-font-family: var(--font-brand)!important;
+font-family: var(--font-brand);
     font-size: clamp(1.6rem, 4.2vw, 3.8rem);
     letter-spacing: .28em;
     color: transparent;
