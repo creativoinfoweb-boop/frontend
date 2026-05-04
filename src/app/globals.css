@@ -1344,12 +1344,12 @@ input:-webkit-autofill:focus {
   box-shadow: 0 0 10px var(--gold), 0 0 4px var(--gold-light);
   flex-shrink: 0;
 }
-
+.valorox-title {
 font-family: var(--font-brand)!important;
     font-size: clamp(1.6rem, 4.2vw, 3.8rem);
     letter-spacing: .28em;
     color: transparent;
-    background: linear-gradient(135deg, #7a5c12, #c8931a 18%, #f0b429 35%, #ffd878 50%, #fffae0 55%, #ffd878 60%, #f0b429 72%, #c8931a 88%, #7a5c12);
+    background: linear-gradient(135deg, #7a5c12, #c8931a 18%, #f0b429 35%, #ffd878 50%, #fffae0 55%, ##000000 60%, #f0b429 72%, #c8931a 88%, #7a5c12);
     background-size: 220% auto;
     -webkit-background-clip: text;
     background-clip: text;
