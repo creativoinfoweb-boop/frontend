@@ -130,7 +130,7 @@ export default function AffiliatiPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
             <div>
-              <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-raleway)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Valorox</span>
+              <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-exo2)', letterSpacing: '0.12em', background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Valorox</span>
               <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
             </div>
           </Link>
@@ -235,7 +235,7 @@ export default function AffiliatiPage() {
             ].map((item, i) => (
               <div key={i} className="card-premium p-6 text-center relative">
                 <div className="absolute top-4 right-4 text-5xl font-black opacity-[0.04]"
-                  style={{ color: 'var(--gold)', fontFamily: 'var(--font-raleway)' }}>
+                  style={{ color: 'var(--gold)', fontFamily: 'var(--font-exo2)' }}>
                   {item.step}
                 </div>
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5"
