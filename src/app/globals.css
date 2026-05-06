@@ -1183,6 +1183,7 @@ input:-webkit-autofill:focus {
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  padding-top: 72px;
   background: radial-gradient(ellipse 80% 60% at 50% 25%, #130E00 0%, #070410 55%, #000000 100%);
 }
 
@@ -1193,8 +1194,8 @@ input:-webkit-autofill:focus {
 /* Statue — in normal flow so content starts below it */
 .valorox-statue-wrap {
   position: relative;
-  width: min(400px, 72vw);
-  padding-top: 76px; /* space for fixed nav + ticker */
+  width: min(340px, 62vw);
+  padding-top: 20px;
   pointer-events: none;
   z-index: 1;
   overflow: visible;
@@ -1208,7 +1209,7 @@ input:-webkit-autofill:focus {
 
 .valorox-statue-img {
   display: block; position: relative; z-index: 1;
-  width: 100%; height: auto; max-height: 58vh;
+  width: 100%; height: auto; max-height: 46vh;
   object-fit: contain; object-position: top center;
   mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
@@ -1344,18 +1345,34 @@ input:-webkit-autofill:focus {
   box-shadow: 0 0 10px var(--gold), 0 0 4px var(--gold-light);
   flex-shrink: 0;
 }
+
 .valorox-title {
-font-family: var(--font-brand);
-    font-size: clamp(1.6rem, 4.2vw, 3.8rem);
-    letter-spacing: .28em;
-    color: transparent;
-    background: linear-gradient(135deg, #7a5c12, #c8931a 18%, #f0b429 35%, #ffd878 50%, #fffae0 55%, ##000000 60%, #f0b429 72%, #c8931a 88%, #7a5c12);
-    background-size: 220% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    animation: titleReveal 1.8s cubic-bezier(.16, 1, .3, 1) .8s both, titleGlow 4s ease-in-out 2.8s infinite, holoSlide 6s linear 2.8s infinite;
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 3vw, 2.6rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: transparent;
+  background: linear-gradient(
+    135deg,
+    #7A5C12 0%,
+    #C8931A 18%,
+    #F0B429 35%,
+    #FFD878 50%,
+    #FFFAE0 55%,
+    #FFD878 60%,
+    #F0B429 72%,
+    #C8931A 88%,
+    #7A5C12 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation:
+    titleReveal 1.8s cubic-bezier(0.16,1,0.3,1) 0.8s both,
+    titleGlow 4s ease-in-out 2.8s infinite,
+    holoSlide 6s linear 2.8s infinite;
 }
- 
 
 /* Tagline under the title */
 .valorox-subtitle {
@@ -1363,7 +1380,7 @@ font-family: var(--font-brand);
   color: rgba(240,180,41,0.55);
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  font-weight: 200;
+  font-weight: 400;
   animation: subtitleFadeIn 1.2s ease-out 1.4s both;
 }
 

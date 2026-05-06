@@ -512,40 +512,6 @@ export default function LandingPage() {
         </>
       )}
 
-      {/* ─── Ticker Tape (under navbar) ─────────────────── */}
-      <div className="fixed top-[58px] w-full z-40 py-1.5 overflow-hidden"
-        style={{ borderBottom: '1px solid var(--glass-border)', background: 'var(--glass-bg)', backdropFilter: 'blur(20px)' }}
-      >
-        <div className="ticker-content gap-6">
-          {[...tickerItems, ...tickerItems].map((item, i) => {
-            const isGold = item.symbol === 'XAU/USD'
-            const displayPrice = isGold && goldPrice?.price ? `${goldPrice.price.toFixed(2)}` : item.price_str
-            const displayChange = isGold && goldPrice?.change_str ? goldPrice.change_str : item.change_str
-            const displayUp = isGold ? goldPrice?.up : item.up
-            return (
-              <div key={i} className="inline-flex items-center gap-2 px-4 flex-shrink-0" style={{
-                ...(isGold ? {
-                  background: 'color-mix(in srgb, var(--gold) 8%, transparent)',
-                  border: '1px solid color-mix(in srgb, var(--gold) 20%, transparent)',
-                  borderRadius: '0.5rem',
-                  paddingLeft: '0.625rem',
-                  paddingRight: '0.625rem',
-                } : {})
-              }}>
-                {isGold && <span style={{ color: 'var(--gold)', fontSize: '0.6rem' }}>★</span>}
-                <span className={`tracking-wider ${isGold ? 'font-black text-xs' : 'text-[10px] font-bold'}`} style={{ color: isGold ? 'var(--gold)' : 'var(--text-secondary)' }}>{item.symbol}</span>
-                <span className="text-xs font-mono font-semibold" style={{ color: isGold ? 'var(--gold)' : 'var(--text-primary)' }}>{displayPrice}</span>
-                <span className="text-[10px] font-semibold" style={{ color: displayUp ? 'var(--green)' : 'var(--red)' }}>
-                  {displayChange}
-                </span>
-                {isGold && <span className="ml-0.5 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--gold)', boxShadow: '0 0 4px var(--gold)', animation: 'dotPulse 2s ease-in-out infinite' }} />}
-                <span className="mx-1.5 select-none text-[10px]" style={{ color: 'var(--border)' }}>│</span>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-
       {/* ─── Referral Banner ────────────────────────────── */}
       {referralCode && (
         <div className="sticky top-[60px] z-40 border-b" style={{ background: 'linear-gradient(135deg, rgba(240,180,41,0.15), rgba(0,230,118,0.08))', borderColor: 'var(--glass-border)' }}>
@@ -606,8 +572,8 @@ export default function LandingPage() {
         {/* Bottom vignette fade into next section */}
         <div className="valorox-vignette-bottom" />
 
-        {/* Hero Content — flows naturally after statue, no top padding needed */}
-        <div className="relative z-10 flex flex-col items-center text-center px-4 pb-24 w-full" style={{ marginTop: '-3rem' }}>
+        {/* Hero Content */}
+        <div className="relative z-10 flex flex-col items-center text-center px-4 pb-20 w-full" style={{ marginTop: '1.5rem' }}>
 
           {/* ── Refined title ── */}
           <div className="valorox-title-wrap">
@@ -685,6 +651,39 @@ export default function LandingPage() {
 
       </section>
 
+      {/* ─── Ticker Tape — between hero and content ─────── */}
+      <div className="w-full overflow-hidden py-2"
+        style={{ borderTop: '1px solid var(--glass-border)', borderBottom: '1px solid var(--glass-border)', background: 'var(--glass-bg)', backdropFilter: 'blur(20px)' }}
+      >
+        <div className="ticker-content gap-6">
+          {[...tickerItems, ...tickerItems].map((item, i) => {
+            const isGold = item.symbol === 'XAU/USD'
+            const displayPrice = isGold && goldPrice?.price ? `${goldPrice.price.toFixed(2)}` : item.price_str
+            const displayChange = isGold && goldPrice?.change_str ? goldPrice.change_str : item.change_str
+            const displayUp = isGold ? goldPrice?.up : item.up
+            return (
+              <div key={i} className="inline-flex items-center gap-2 px-4 flex-shrink-0" style={{
+                ...(isGold ? {
+                  background: 'color-mix(in srgb, var(--gold) 8%, transparent)',
+                  border: '1px solid color-mix(in srgb, var(--gold) 20%, transparent)',
+                  borderRadius: '0.5rem',
+                  paddingLeft: '0.625rem',
+                  paddingRight: '0.625rem',
+                } : {})
+              }}>
+                {isGold && <span style={{ color: 'var(--gold)', fontSize: '0.6rem' }}>★</span>}
+                <span className={`tracking-wider ${isGold ? 'font-black text-xs' : 'text-[10px] font-bold'}`} style={{ color: isGold ? 'var(--gold)' : 'var(--text-secondary)' }}>{item.symbol}</span>
+                <span className="text-xs font-mono font-semibold" style={{ color: isGold ? 'var(--gold)' : 'var(--text-primary)' }}>{displayPrice}</span>
+                <span className="text-[10px] font-semibold" style={{ color: displayUp ? 'var(--green)' : 'var(--red)' }}>
+                  {displayChange}
+                </span>
+                {isGold && <span className="ml-0.5 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--gold)', boxShadow: '0 0 4px var(--gold)', animation: 'dotPulse 2s ease-in-out infinite' }} />}
+                <span className="mx-1.5 select-none text-[10px]" style={{ color: 'var(--border)' }}>│</span>
+              </div>
+            )
+          })}
+        </div>
+      </div>
 
       {/* ─── Sub-Hero: Il Vero Problema ─────────────────── */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 relative">
