@@ -163,14 +163,6 @@ const organizationSchema = {
   description: 'Valorox è il sistema di AI trading automatizzato su XAU/USD. Copy trading sull\'oro con intelligenza artificiale e risk management avanzato.',
   foundingDate: '2024',
   inLanguage: 'it-IT',
-  contactPoint: {
-    '@type': 'ContactPoint',
-    contactType: 'customer support',
-    availableLanguage: 'Italian',
-  },
-  sameAs: [
-    SITE_URL,
-  ],
 }
 
 const websiteSchema = {
@@ -183,14 +175,6 @@ const websiteSchema = {
   publisher: { '@id': `${SITE_URL}/#organization` },
   inLanguage: 'it-IT',
   copyrightYear: new Date().getFullYear(),
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: `${SITE_URL}/?q={search_term_string}`,
-    },
-    'query-input': 'required name=search_term_string',
-  },
 }
 
 const softwareSchema = {
@@ -225,23 +209,11 @@ const softwareSchema = {
       price: '39',
       priceCurrency: 'EUR',
       billingDuration: 'P1M',
-      referenceQuantity: {
-        '@type': 'QuantitativeValue',
-        value: '1',
-        unitCode: 'MON',
-      },
     },
   },
   publisher: { '@id': `${SITE_URL}/#organization` },
   inLanguage: 'it-IT',
   isAccessibleForFree: false,
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    bestRating: '5',
-    worstRating: '1',
-    ratingCount: '47',
-  },
 }
 
 const faqSchema = {
