@@ -43,8 +43,10 @@ function SignalStatusBadge({ status }: { status: string }) {
 
 function PipsCell({ pips }: { pips?: number }) {
   if (pips == null) return <span className="text-[#52525B]">—</span>
-  const color = pips >= 0 ? '#22C55E' : '#EF4444'
-  return <span style={{ color }} className="font-semibold">{pips >= 0 ? '+' : ''}{pips.toFixed(1)}</span>
+  const v = Number(pips)
+  if (!Number.isFinite(v)) return <span className="text-[#52525B]">—</span>
+  const color = v >= 0 ? '#22C55E' : '#EF4444'
+  return <span style={{ color }} className="font-semibold">{v >= 0 ? '+' : ''}{v.toFixed(1)}</span>
 }
 
 
@@ -100,7 +102,7 @@ export default function AdminSignalsPage() {
   const totalExec     = signals.reduce((a, s) => a + s.executions_total, 0)
   const totalSuccess  = signals.reduce((a, s) => a + s.executions_success, 0)
   const avgWinRate    = totalExec > 0 ? Math.round((totalSuccess / totalExec) * 100) : 0
-  const totalPips     = signals.reduce((a, s) => a + (s.profit_pips ?? 0), 0)
+  const totalPips     = signals.reduce((a, s) => a + (s.profit_pips != null ? Number(s.profit_pips) || 0 : 0), 0)
 
   if (!isAuthenticated || !user?.is_admin) return null
 
@@ -239,7 +241,7 @@ export default function AdminSignalsPage() {
                         <DirectionBadge direction={signal.direction} />
                       </td>
                       <td className="px-4 py-3 font-mono text-xs text-[#F4F4F5]">
-                        {signal.entry_price.toFixed(2)}
+                        {Number(signal.entry_price).toFixed(2)}
                       </td>
                       <td className="px-4 py-3">
                         <PipsCell pips={signal.profit_pips} />

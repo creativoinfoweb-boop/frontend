@@ -68,8 +68,10 @@ function formatDate(iso?: string) {
 
 function PnlCell({ pnlUsd }: { pnlUsd?: number }) {
   if (pnlUsd == null) return <span className="text-[#52525B]">—</span>
-  const color = pnlUsd >= 0 ? '#22C55E' : '#EF4444'
-  return <span style={{ color }} className="font-semibold">{pnlUsd >= 0 ? '+' : ''}{pnlUsd.toFixed(2)}</span>
+  const v = Number(pnlUsd)
+  if (!Number.isFinite(v)) return <span className="text-[#52525B]">—</span>
+  const color = v >= 0 ? '#22C55E' : '#EF4444'
+  return <span style={{ color }} className="font-semibold">{v >= 0 ? '+' : ''}{v.toFixed(2)}</span>
 }
 
 export default function HistoryPage() {
@@ -117,7 +119,7 @@ export default function HistoryPage() {
   const closedTrades = history.filter(h => h.signal_status === 'CLOSED').length
   const totalUsd = history
     .filter(h => h.signal_status === 'CLOSED' && h.profit_usd !== undefined && h.profit_usd !== null)
-    .reduce((acc, h) => acc + (h.profit_usd ?? 0), 0)
+    .reduce((acc, h) => acc + (Number(h.profit_usd) || 0), 0)
 
   return (
     <div className="space-y-6">
@@ -248,26 +250,26 @@ export default function HistoryPage() {
                       <DirectionBadge direction={item.direction} />
                     </td>
                     <td className="px-4 py-3 font-mono text-xs" style={{ color: 'var(--text-primary)' }}>
-                      {item.entry_price.toFixed(2)}
+                      {Number(item.entry_price).toFixed(2)}
                     </td>
                     <td className="px-4 py-3 font-mono text-xs text-[#EF4444]">
-                      {item.sl.toFixed(2)}
+                      {Number(item.sl).toFixed(2)}
                     </td>
                     <td className="px-4 py-3 font-mono text-xs" style={{ color: 'var(--text-primary)' }}>
                       {item.close_price != null
-                        ? item.close_price.toFixed(2)
+                        ? Number(item.close_price).toFixed(2)
                         : item.signal_status === 'OPEN'
                           ? <span style={{ color: 'var(--text-muted)' }}>Aperto</span>
                           : <span style={{ color: 'var(--text-muted)' }}>—</span>
                       }
                     </td>
                     <td className="px-4 py-3 text-xs" style={{ color: 'var(--text-secondary)' }}>
-                      {item.lot_size != null ? item.lot_size.toFixed(2) : '—'}
+                      {item.lot_size != null ? Number(item.lot_size).toFixed(2) : '—'}
                     </td>
                     <td className="px-4 py-3 font-mono text-xs font-semibold"
-                      style={{ color: item.profit_pips != null ? (item.profit_pips >= 0 ? 'var(--green)' : 'var(--red)') : 'var(--text-muted)' }}>
+                      style={{ color: item.profit_pips != null ? (Number(item.profit_pips) >= 0 ? 'var(--green)' : 'var(--red)') : 'var(--text-muted)' }}>
                       {item.profit_pips != null
-                        ? `${item.profit_pips >= 0 ? '+' : ''}${item.profit_pips} pips`
+                        ? `${Number(item.profit_pips) >= 0 ? '+' : ''}${item.profit_pips} pips`
                         : '—'}
                     </td>
                     <td className="px-4 py-3">

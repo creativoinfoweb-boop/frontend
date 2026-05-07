@@ -443,8 +443,9 @@ export default function DashboardPage() {
                 </p>
               ) : (
                 recentTrades.map((trade) => {
-                  const isWin = trade.profit_pips != null && trade.profit_pips > 0
-                  const isLoss = trade.profit_pips != null && trade.profit_pips < 0
+                  const pips = trade.profit_pips != null ? Number(trade.profit_pips) : null
+                  const isWin = pips != null && pips > 0
+                  const isLoss = pips != null && pips < 0
                   const isOpen = trade.signal_status === 'OPEN'
                   const dotColor = isOpen ? 'var(--gold)' : isWin ? 'var(--green)' : isLoss ? 'var(--red)' : 'var(--text-muted)'
                   const DirectionIcon = trade.direction === 'BUY' ? TrendingUp : TrendingDown
@@ -456,9 +457,9 @@ export default function DashboardPage() {
                         <p className="text-[11px] font-medium flex items-center gap-1" style={{ color: 'var(--text-primary)' }}>
                           <DirectionIcon className="w-3 h-3 flex-shrink-0" style={{ color: trade.direction === 'BUY' ? 'var(--green)' : 'var(--red)' }} />
                           {trade.direction} {trade.symbol}
-                          {trade.profit_pips != null && (
+                          {pips != null && Number.isFinite(pips) && (
                             <span className="font-mono text-[10px]" style={{ color: isWin ? 'var(--green)' : 'var(--red)' }}>
-                              {trade.profit_pips >= 0 ? '+' : ''}{trade.profit_pips.toFixed(0)} pip
+                              {pips >= 0 ? '+' : ''}{pips.toFixed(0)} pip
                             </span>
                           )}
                         </p>
