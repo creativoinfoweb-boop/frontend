@@ -19,3 +19,7 @@ tsconfig.tsbuildinfo
 # OS
 .DS_Store
 Thumbs.db
+
+# Monitor locale admin — non va su GitHub né su Vercel
+public/MONITOR_LOCALE.html
+public/MONITOR_*.html
