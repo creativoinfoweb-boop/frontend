@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Termini di Servizio e Privacy — Valorox',
-  description: 'Termini di utilizzo, rischi finanziari, funzionamento del sistema di automazione, capitale minimo, privacy policy e condizioni di abbonamento di Valorox su XAU/USD.',
+  title: 'Termini di Servizio e Privacy Policy | Valorox',
+  description: 'Termini di utilizzo, privacy policy, rischi finanziari e condizioni di abbonamento di Valorox AI Trading System. Sistema di copy trading automatizzato su XAU/USD.',
+  robots: { index: true, follow: false },
 }
 import { ArrowLeft, Shield, AlertTriangle, Lock, CreditCard, RefreshCw, FileText, Mail } from 'lucide-react'
 
