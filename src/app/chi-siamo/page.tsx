@@ -6,14 +6,40 @@ import {
   Target, GraduationCap,
 } from 'lucide-react'
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://valoroxai.com'
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Chi Siamo', item: `${SITE_URL}/chi-siamo` },
+  ],
+}
+
+const aboutSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'Chi Siamo | Valorox AI Trading System',
+  description: 'Il team di trader e sviluppatori AI dietro Valorox, il sistema di copy trading automatizzato su XAU/USD.',
+  url: `${SITE_URL}/chi-siamo`,
+  inLanguage: 'it-IT',
+  publisher: { '@type': 'Organization', name: 'Valorox', url: SITE_URL },
+}
+
 export const metadata: Metadata = {
   title: 'Chi Siamo | Il Team Valorox AI Trading',
-  description: 'Scopri il team dietro Valorox: trader esperti e sviluppatori AI che hanno creato il sistema di copy trading automatizzato su XAU/USD più avanzato d\'Italia.',
-  keywords: ['Valorox team', 'Valorox chi siamo', 'AI trading company', 'copy trading Italia'],
+  description: 'Il team di trader professionisti e sviluppatori AI dietro Valorox. Scopri la missione, la tecnologia e il metodo che ha creato il sistema di copy trading su XAU/USD.',
+  keywords: [
+    'Valorox chi siamo', 'Valorox team', 'AI trading company Italia',
+    'copy trading XAU/USD team', 'sistema trading automatico fondatori',
+  ],
+  alternates: { canonical: `${SITE_URL}/chi-siamo` },
   openGraph: {
     title: 'Chi Siamo | Valorox AI Trading System',
-    description: 'Il team di trader e sviluppatori AI dietro Valorox, il sistema di copy trading su XAU/USD.',
+    description: 'Trader professionisti e sviluppatori AI: il team che ha creato Valorox, il sistema di copy trading automatizzato su XAU/USD.',
     type: 'website',
+    url: `${SITE_URL}/chi-siamo`,
   },
 }
 
@@ -29,6 +55,8 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 export default function ChiSiamoPage() {
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text-primary)' }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }} />
 
       {/* Gold top rule */}
       <div className="fixed top-0 w-full h-[2px] z-[60]"
