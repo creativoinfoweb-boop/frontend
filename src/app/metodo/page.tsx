@@ -7,14 +7,44 @@ import {
   BookOpen,
 } from 'lucide-react'
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://valoroxai.com'
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Come Funziona', item: `${SITE_URL}/metodo` },
+  ],
+}
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Come funziona Valorox AI Trading System su XAU/USD',
+  description: 'Guida completa al sistema di AI trading automatizzato di Valorox: metodo Smart Money, strategia Gold Scalping, risk management e automazione.',
+  author: { '@type': 'Organization', name: 'Valorox', url: SITE_URL },
+  publisher: { '@type': 'Organization', name: 'Valorox', logo: { '@type': 'ImageObject', url: `${SITE_URL}/valorox-icon.png` } },
+  url: `${SITE_URL}/metodo`,
+  inLanguage: 'it-IT',
+  mainEntityOfPage: `${SITE_URL}/metodo`,
+}
+
 export const metadata: Metadata = {
-  title: 'Sistema AI Trading | Come Funziona Valorox',
-  description: 'Come funziona Valorox: AI trading automatizzato su XAU/USD, metodo Smart Money, copy trading sull\'oro con risk management strutturato e MetaTrader 5.',
-  keywords: ['Valorox come funziona', 'AI trading XAU/USD', 'copy trading oro metodo', 'Smart Money trading', 'gold scalping automatico'],
+  title: 'Come Funziona il Sistema AI Trading | Valorox',
+  description: 'Scopri come Valorox automatizza il trading su XAU/USD con AI e metodo Smart Money. Copy trading automatico sull\'oro, risk management strutturato, MetaTrader 5. Inizia gratis.',
+  keywords: [
+    'Valorox come funziona', 'AI trading XAU/USD come funziona',
+    'copy trading oro automatico', 'Smart Money trading automatizzato',
+    'sistema trading automatico oro', 'MetaTrader 5 copy trading',
+    'Valorox metodo', 'gold trading AI Italia',
+  ],
+  alternates: { canonical: `${SITE_URL}/metodo` },
   openGraph: {
-    title: 'Sistema AI Trading Valorox | Come Funziona',
-    description: 'Scopri come Valorox automatizza il trading su XAU/USD con intelligenza artificiale e copy trading.',
-    type: 'website',
+    title: 'Come Funziona Valorox AI Trading System',
+    description: 'Metodo Smart Money + AI per il trading automatizzato su XAU/USD. Scopri come funziona il sistema di copy trading di Valorox.',
+    type: 'article',
+    url: `${SITE_URL}/metodo`,
   },
 }
 
@@ -46,6 +76,8 @@ function InfoCard({ title, children, accent = 'gold' }: { title: string; childre
 export default function MetodoPage() {
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text-primary)' }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
 
       {/* Gold top rule */}
       <div className="fixed top-0 w-full h-[2px] z-[60]"

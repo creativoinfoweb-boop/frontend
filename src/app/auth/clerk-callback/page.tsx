@@ -146,12 +146,6 @@ function ClerkCallbackContent() {
         <div className="max-w-md text-center space-y-4">
           <p className="text-sm text-[#FF3D71] font-medium">Impossibile completare l&apos;accesso</p>
           <p className="text-xs text-[#6B6B8A] leading-relaxed">{syncError}</p>
-          <p className="text-[10px] text-[#3D3D5C] leading-relaxed">
-            Dopo aver creato una <strong className="text-[#A1A1AA]">nuova app</strong> su Clerk, aggiorna{' '}
-            <code className="text-[#F0B429]">NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY</code> nel frontend e{' '}
-            <code className="text-[#F0B429]">CLERK_SECRET_KEY</code> +{' '}
-            <code className="text-[#F0B429]">CLERK_JWKS_URL</code> nel backend (stessa istanza Development).
-          </p>
           <div className="flex flex-col sm:flex-row gap-2 justify-center">
             <button
               type="button"
