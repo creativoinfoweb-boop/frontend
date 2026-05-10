@@ -163,7 +163,7 @@ export default function SetupGuidePage() {
           <div className="space-y-5 animate-fade-in">
             <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
               Per usare la piattaforma serve un accesso attivo (trial o pagamento). Nella pagina abbonamento puoi:{' '}
-              <strong className="text-[var(--text-primary)]">avviare 5 giorni gratis</strong> senza carta, oppure{' '}
+              <strong className="text-[var(--text-primary)]">avviare 5 giorni gratis</strong>, oppure{' '}
               <strong className="text-[var(--text-primary)]">pagare subito</strong> con Stripe (piano mensile promo o annuale).
             </p>
 

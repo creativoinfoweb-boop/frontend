@@ -441,7 +441,7 @@ function BillingContent() {
 
       <div className="rounded-xl p-4 text-xs text-[var(--text-muted)] leading-relaxed"
         style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}>
-        Prezzi in EUR IVA inclusa. Trial 5 giorni gratuiti senza carta. Offerta lancio: €75.65 il primo mese (sconto 15%), poi €89/mese con rinnovo automatico (piano mensile). Piano annuale €907.80/anno. Cancellazione senza penali.
+        Prezzi in EUR IVA inclusa. Trial 5 giorni gratuiti. Offerta lancio: €75.65 il primo mese (sconto 15%), poi €89/mese con rinnovo automatico (piano mensile). Piano annuale €907.80/anno. Cancellazione senza penali.
         {' '}
         <Link href="/legal/terms" target="_blank" rel="noopener noreferrer" className="text-[var(--gold)] hover:opacity-90 transition-opacity underline-offset-2">Termini di Servizio</Link>
       </div>

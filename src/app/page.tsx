@@ -593,8 +593,7 @@ export default function LandingPage() {
             Un nuovo approccio al trading.
           </p>
           <p className="text-sm mb-9 max-w-lg mx-auto text-center" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-            Tecnologia, metodo e intelligenza artificiale per affrontare i mercati{' '}
-            <span style={{ color: 'var(--gold)', opacity: 0.9 }}>in modo moderno, disciplinato e consapevole.</span>
+            Tecnologia, metodo e intelligenza artificiale per affrontare i mercati.
           </p>
 
           {/* Live gold price */}
@@ -695,10 +694,8 @@ export default function LandingPage() {
               Il problema non è la strategia.<br className="hidden sm:block" />
               È la disciplina nell&apos;eseguirla.
             </h2>
-            <p className="max-w-2xl mx-auto text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              La ricerca sul trading retail indica che la maggior parte delle perdite deriva
-              dall&apos;interferenza emotiva nell&apos;esecuzione — non dalla qualità della strategia.
-              Emotività, impulsività e incostanza sono le barriere principali al risultato.
+            <p className="max-w-xl mx-auto text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              La maggior parte delle perdite nel trading retail deriva dall&apos;interferenza emotiva, non dalla qualità della strategia.
             </p>
           </div>
 
@@ -707,17 +704,17 @@ export default function LandingPage() {
               {
                 icon: TrendingUp, color: 'var(--gold)',
                 title: 'Interferenza Emotiva',
-                desc: 'Chiusure anticipate per timore, perdite lasciate correre in attesa di recupero. Le decisioni prese sotto pressione emotiva producono sistematicamente risultati inferiori al potenziale della strategia.',
+                desc: 'Chiusure anticipate per timore, perdite lasciate correre. Le decisioni sotto pressione emotiva producono sistematicamente risultati inferiori al potenziale della strategia.',
               },
               {
                 icon: Zap, color: 'var(--gold)',
                 title: 'Comportamento Impulsivo',
-                desc: 'Overtrading e inseguimento del mercato sono le cause più documentate di performance negative. Ogni operazione fuori dal piano introduce un edge atteso negativo sul risultato complessivo.',
+                desc: 'Overtrading e inseguimento del mercato sono le cause più documentate di performance negative. Ogni operazione fuori dal piano introduce un edge negativo sul risultato.',
               },
               {
                 icon: Activity, color: 'var(--gold)',
                 title: 'Incostanza Operativa',
-                desc: 'L\'edge statistico di un metodo si manifesta su centinaia di operazioni coerenti, non su singoli trade. Una strategia modificata frequentemente non può esprimere il proprio potenziale.',
+                desc: 'L\'edge statistico si manifesta su centinaia di operazioni coerenti. Una strategia modificata frequentemente non può esprimere il proprio potenziale.',
               },
             ].map((item, i) => (
               <div key={i} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
@@ -814,45 +811,17 @@ export default function LandingPage() {
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--surface-overlay)' }} />
         <div className="relative max-w-6xl mx-auto">
           <div className="text-center mb-10">
-            <div className="section-label mb-3">Sistema di Apprendimento</div>
+            <div className="section-label mb-3">Corsi Gratuiti</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
-              Impara davvero a fare trading.
+              Impara con i nostri corsi gratuiti.
             </h2>
-            <p className="max-w-2xl mx-auto text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              Un percorso strutturato e progressivo — dalle basi ai concetti avanzati.
-              Pensa come gli istituzionali. Approccio Smart Money.
+            <p className="max-w-xl mx-auto text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              Un percorso strutturato dal metodo Smart Money all&apos;applicazione reale su XAU/USD.
             </p>
-            <div className="flex flex-wrap gap-3 justify-center mt-6">
-              {['Approccio Smart Money', 'Pensa come gli istituzionali', 'Dai fondamenti all\'applicazione reale'].map(tag => (
-                <span key={tag} className="text-xs font-semibold px-3 py-1 rounded-full"
-                  style={{ background: 'rgba(240,180,41,0.1)', border: '1px solid rgba(240,180,41,0.2)', color: 'var(--gold)' }}>
-                  {tag}
-                </span>
-              ))}
-            </div>
           </div>
 
-          {/* Course + Auto System callout */}
-          <div className="max-w-3xl mx-auto mb-12 rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4"
-            style={{ background: 'linear-gradient(135deg, rgba(240,180,41,0.07), rgba(0,230,118,0.05))', border: '1px solid rgba(240,180,41,0.18)' }}>
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-              style={{ background: 'rgba(240,180,41,0.12)', border: '1px solid rgba(240,180,41,0.25)' }}>
-              <Zap className="w-5 h-5" style={{ color: 'var(--gold)' }} />
-            </div>
-            <div className="flex-1">
-              <p className="text-sm font-bold mb-1" style={{ color: 'var(--text-primary)' }}>
-                Corso completo + Sistema Automatico inclusi nell&apos;abbonamento
-              </p>
-              <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                Iscrivendoti accedi a tutti gli 8 moduli <strong style={{ color: 'var(--gold)' }}>e</strong> al sistema automatico Valorox.
-                Puoi iniziare ad applicare la strategia in automatico fin dal primo giorno, dedicando il tempo libero allo studio.
-                Le due cose si potenziano a vicenda: il sistema esegue, tu impari.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {learningModules.map((mod, i) => (
+          <div className="grid md:grid-cols-3 gap-4">
+            {learningModules.slice(0, 3).map((mod, i) => (
               <Link
                 key={mod.num}
                 href={`/dashboard/learn/${mod.slug}`}
@@ -920,23 +889,15 @@ export default function LandingPage() {
           </div>
 
           {/* CTAs */}
-          <div className="text-center mt-12 space-y-4">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/auth/register" className="btn-gold text-sm px-8 py-3 rounded-xl">
-                <GraduationCap className="w-4 h-4" />
-                Inizia a Imparare Gratuitamente
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link href="/dashboard/learn"
-                className="inline-flex items-center gap-2 text-sm font-semibold px-8 py-3 rounded-xl transition-all"
-                style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
-                <BookOpen className="w-4 h-4" />
-                Impara con il corso gratuito
-              </Link>
-            </div>
-            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-              I moduli 01–04 sono completamente gratuiti e accessibili a tutti.
+          <div className="text-center mt-10 space-y-3">
+            <p className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
+              Accedi a tutti gli 8 moduli, i primi 4 completamente gratuiti.
             </p>
+            <Link href="/auth/register" className="btn-gold text-sm px-8 py-3 rounded-xl inline-flex">
+              <GraduationCap className="w-4 h-4" />
+              Inizia a imparare gratuitamente
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -1220,9 +1181,12 @@ export default function LandingPage() {
             5 giorni di prova inclusi con la registrazione.
           </p>
 
+          <p className="text-sm mb-4 font-medium" style={{ color: 'var(--text-secondary)' }}>
+            Inizia ad usare il nostro sistema AI trading automatico
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/auth/register" className="btn-gold text-base px-10 py-4 rounded-xl">
-              Inizia 5 Giorni Gratis
+              Inizia Gratis — 5 Giorni
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link href="/dashboard/learn"
