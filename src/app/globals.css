@@ -74,14 +74,23 @@
   --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Typography */
-  --font-brand: 'BrandFont', var(--font-brave), var(--font-exo2), 'Exo 2', sans-serif;
+  /* Typography — placeholder; effective definition is on `body` below
+     where next/font CSS vars (--font-valorox-brand, --font-brave, --font-exo2)
+     are actually defined. Declared here just for documentation. */
+  --font-brand: 'Exo 2', sans-serif;
 
   /* Holographic overlay */
   --holo: linear-gradient(105deg,
     transparent 0%, rgba(240,180,41,0.03) 25%,
     rgba(255,255,255,0.04) 50%, rgba(240,180,41,0.03) 75%,
     transparent 100%);
+}
+
+/* Effective brand font cascade — defined on body where next/font
+   CSS variables are actually injected. Resolves correctly because
+   --font-valorox-brand / --font-brave / --font-exo2 are present here. */
+body {
+  --font-brand: var(--font-valorox-brand), var(--font-brave), var(--font-exo2), 'Exo 2', sans-serif;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1347,10 +1356,10 @@ input:-webkit-autofill:focus {
 }
 
 .valorox-title {
-  font-family: var(--font-brand);
-  font-weight: 400;
-  font-size: clamp(1.4rem, 3vw, 2.6rem);
-  letter-spacing: 0.28em;
+  font-family: var(--font-brand) !important;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: transparent;
   background: linear-gradient(
@@ -1402,4 +1411,128 @@ input:-webkit-autofill:focus {
   color: var(--gold);
   margin-bottom: 1.5rem;
   animation: fadeIn 1s ease-out 0.3s both;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO HORIZONTAL LAYOUT — DESKTOP ONLY (≥1024px)
+   Mobile (<1024px) stays vertical and inalterato:
+   the container is a column with statue first (top) and
+   content second (bottom), matching the previous behavior.
+═══════════════════════════════════════════════════════════ */
+
+.valorox-hero-container {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.valorox-hero-visual,
+.valorox-hero-content {
+  width: 100%;
+}
+
+/* ── Desktop horizontal layout ───────────────────── */
+@media (min-width: 1024px) {
+  .valorox-hero-container {
+    flex-direction: row-reverse; /* statue right, content left */
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+  }
+
+  .valorox-hero-visual {
+    flex: 0 0 38%;
+    width: 38%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .valorox-hero-visual .valorox-statue-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    margin: 0;
+    padding-top: 0;
+    top: auto;
+    left: auto;
+  }
+
+  .valorox-hero-visual .valorox-statue-img {
+    max-height: 60vh;
+  }
+
+  .valorox-hero-content {
+    flex: 0 0 58%;
+    width: 58%;
+    align-items: flex-start;
+    text-align: left;
+    margin-top: 0 !important;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+
+  /* Title left-aligned on desktop */
+  .valorox-hero-content .valorox-title-wrap {
+    align-items: flex-start;
+  }
+
+  .valorox-hero-content .valorox-title {
+    text-align: left;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1;
+  }
+
+  /* Decorative lines: hide left side, keep right of diamond */
+  .valorox-hero-content .valorox-title-deco {
+    justify-content: flex-start;
+    max-width: 220px;
+  }
+  .valorox-hero-content .valorox-title-deco::before {
+    display: none;
+  }
+
+  .valorox-hero-content .valorox-subtitle,
+  .valorox-hero-content .valorox-hero-desc {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .valorox-hero-content .valorox-badge {
+    margin-bottom: 1rem;
+  }
+
+  .valorox-hero-content .valorox-gold-price {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .valorox-hero-content .valorox-hero-ctas {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .valorox-hero-content .valorox-hero-trust {
+    justify-content: flex-start;
+  }
+}
+
+/* Wider screens: enlarge title further */
+@media (min-width: 1440px) {
+  .valorox-hero-container {
+    max-width: 1440px;
+    gap: 4rem;
+  }
+  .valorox-hero-content .valorox-title {
+    font-size: clamp(4rem, 6vw, 6.5rem);
+  }
 }

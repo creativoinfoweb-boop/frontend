@@ -548,105 +548,112 @@ export default function LandingPage() {
         <div className="valorox-vignette-left" />
         <div className="valorox-vignette-right" />
 
-        {/* Statue — in normal flow, content follows below */}
-        <div className="valorox-statue-wrap">
-          <div className="valorox-statue-inner">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.svg" alt="Valorox" className="valorox-statue-img" />
-            <div className="valorox-shimmer" />
-            {[
-              { bottom: '30%', left: '10%', delay: '0s', dx: '15px' },
-              { bottom: '45%', left: '20%', delay: '0.8s', dx: '-10px' },
-              { bottom: '60%', left: '15%', delay: '1.6s', dx: '20px' },
-              { bottom: '35%', right: '10%', delay: '0.4s', dx: '-15px' },
-              { bottom: '50%', right: '18%', delay: '1.2s', dx: '10px' },
-              { bottom: '65%', right: '12%', delay: '2s', dx: '-20px' },
-              { bottom: '25%', left: '35%', delay: '0.6s', dx: '5px' },
-              { bottom: '55%', right: '32%', delay: '1.8s', dx: '-5px' },
-            ].map((p, i) => (
-              <div key={i} className="valorox-particle" style={{ bottom: p.bottom, left: (p as {left?: string}).left, right: (p as {right?: string}).right, animationDelay: p.delay, animationDuration: `${3.5 + i * 0.3}s`, ['--dx' as string]: p.dx }} />
-            ))}
+        {/* NEW: Hero container — column on mobile (statue top, content bottom — IDENTICAL to before), row-reverse on desktop (content left, statue right) */}
+        <div className="valorox-hero-container">
+
+          {/* Statue — first in DOM so mobile keeps statue ABOVE content */}
+          <div className="valorox-hero-visual">
+            <div className="valorox-statue-wrap">
+              <div className="valorox-statue-inner">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/eldorado.svg" alt="Valorox" className="valorox-statue-img" />
+                <div className="valorox-shimmer" />
+                {[
+                  { bottom: '30%', left: '10%', delay: '0s', dx: '15px' },
+                  { bottom: '45%', left: '20%', delay: '0.8s', dx: '-10px' },
+                  { bottom: '60%', left: '15%', delay: '1.6s', dx: '20px' },
+                  { bottom: '35%', right: '10%', delay: '0.4s', dx: '-15px' },
+                  { bottom: '50%', right: '18%', delay: '1.2s', dx: '10px' },
+                  { bottom: '65%', right: '12%', delay: '2s', dx: '-20px' },
+                  { bottom: '25%', left: '35%', delay: '0.6s', dx: '5px' },
+                  { bottom: '55%', right: '32%', delay: '1.8s', dx: '-5px' },
+                ].map((p, i) => (
+                  <div key={i} className="valorox-particle" style={{ bottom: p.bottom, left: (p as {left?: string}).left, right: (p as {right?: string}).right, animationDelay: p.delay, animationDuration: `${3.5 + i * 0.3}s`, ['--dx' as string]: p.dx }} />
+                ))}
+              </div>
+            </div>
           </div>
+
+          {/* Hero Content — second in DOM; on desktop flex row-reverse moves it to LEFT column */}
+          <div className="valorox-hero-content relative z-10 flex flex-col items-center text-center px-4 pb-20 w-full" style={{ marginTop: '1.5rem' }}>
+
+            {/* ── Refined title ── */}
+            <div className="valorox-title-wrap">
+              <h1 className="valorox-title">Valorox</h1>
+              <div className="valorox-title-deco">
+                <div className="valorox-title-diamond" />
+              </div>
+            </div>
+
+            {/* Live badge */}
+            <div className="valorox-badge mt-3">
+              <div className="live-dot" style={{ width: 6, height: 6 }} />
+              AI Solution · XAU/USD · Automated
+            </div>
+
+            <p className="valorox-subtitle mt-2 mb-3">
+              Un nuovo approccio al trading.
+            </p>
+            <p className="valorox-hero-desc text-sm mb-9 max-w-lg mx-auto text-center" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+              Tecnologia, metodo e intelligenza artificiale per affrontare i mercati.
+            </p>
+
+            {/* Live gold price */}
+            <div className="valorox-gold-price inline-flex items-center gap-4 rounded-xl px-6 py-3 mb-9"
+              style={{ background: 'var(--gold-subtle)', border: '1px solid var(--border-gold)', backdropFilter: 'blur(16px)' }}
+            >
+              <div className="live-dot" />
+              <span className="text-xs font-medium tracking-widest uppercase" style={{ color: 'var(--text-secondary)' }}>XAU/USD</span>
+              <span className="text-xl font-black font-mono number-mono" style={{ color: 'var(--gold)' }}>
+                {goldPrice.price
+                  ? goldPrice.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                  : '—'}
+              </span>
+              <span className="text-sm font-semibold" style={{ color: goldPrice.up ? 'var(--green)' : 'var(--red)' }}>
+                {goldPrice.change_str}
+              </span>
+            </div>
+
+            {/* CTAs */}
+            <div className="valorox-hero-ctas flex flex-col sm:flex-row gap-4 items-center">
+              {isAuthenticated ? (
+                <Link href="/dashboard" className="btn-valorox btn-valorox-primary">
+                  <LayoutDashboard className="w-5 h-5" />
+                  Vai alla Dashboard
+                </Link>
+              ) : (
+                <>
+                  <Link href="/auth/register" className="btn-valorox btn-valorox-primary">
+                    Inizia Gratis
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                  <Link href="/metodo" className="btn-valorox btn-valorox-secondary">
+                    Scopri il Metodo
+                    <BarChart3 className="w-5 h-5" />
+                  </Link>
+                </>
+              )}
+            </div>
+
+            {/* Trust row */}
+            <div className="valorox-hero-trust flex flex-wrap gap-6 justify-center items-center mt-6">
+              {[
+                { icon: Shield, text: 'Nessuna gestione fondi' },
+                { icon: Lock, text: 'Controllo totale utente' },
+                { icon: Globe, text: 'Nessuna affiliazione broker' },
+              ].map(({ icon: Icon, text }) => (
+                <div key={text} className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>
+                  <Icon className="w-3.5 h-3.5" style={{ color: 'var(--gold)', opacity: 0.5 }} />
+                  <span>{text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
 
         {/* Bottom vignette fade into next section */}
         <div className="valorox-vignette-bottom" />
-
-        {/* Hero Content */}
-        <div className="relative z-10 flex flex-col items-center text-center px-4 pb-20 w-full" style={{ marginTop: '1.5rem' }}>
-
-          {/* ── Refined title ── */}
-          <div className="valorox-title-wrap">
-            <h1 className="valorox-title">Valorox</h1>
-            <div className="valorox-title-deco">
-              <div className="valorox-title-diamond" />
-            </div>
-          </div>
-
-          {/* Live badge */}
-          <div className="valorox-badge mt-3">
-            <div className="live-dot" style={{ width: 6, height: 6 }} />
-            AI Solution · XAU/USD · Automated
-          </div>
-
-          <p className="valorox-subtitle mt-2 mb-3">
-            Un nuovo approccio al trading.
-          </p>
-          <p className="text-sm mb-9 max-w-lg mx-auto text-center" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-            Tecnologia, metodo e intelligenza artificiale per affrontare i mercati.
-          </p>
-
-          {/* Live gold price */}
-          <div className="inline-flex items-center gap-4 rounded-xl px-6 py-3 mb-9"
-            style={{ background: 'var(--gold-subtle)', border: '1px solid var(--border-gold)', backdropFilter: 'blur(16px)' }}
-          >
-            <div className="live-dot" />
-            <span className="text-xs font-medium tracking-widest uppercase" style={{ color: 'var(--text-secondary)' }}>XAU/USD</span>
-            <span className="text-xl font-black font-mono number-mono" style={{ color: 'var(--gold)' }}>
-              {goldPrice.price
-                ? goldPrice.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-                : '—'}
-            </span>
-            <span className="text-sm font-semibold" style={{ color: goldPrice.up ? 'var(--green)' : 'var(--red)' }}>
-              {goldPrice.change_str}
-            </span>
-          </div>
-
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 items-center">
-            {isAuthenticated ? (
-              <Link href="/dashboard" className="btn-valorox btn-valorox-primary">
-                <LayoutDashboard className="w-5 h-5" />
-                Vai alla Dashboard
-              </Link>
-            ) : (
-              <>
-                <Link href="/auth/register" className="btn-valorox btn-valorox-primary">
-                  Inizia Gratis
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-                <Link href="/metodo" className="btn-valorox btn-valorox-secondary">
-                  Scopri il Metodo
-                  <BarChart3 className="w-5 h-5" />
-                </Link>
-              </>
-            )}
-          </div>
-
-          {/* Trust row */}
-          <div className="flex flex-wrap gap-6 justify-center items-center mt-6">
-            {[
-              { icon: Shield, text: 'Nessuna gestione fondi' },
-              { icon: Lock, text: 'Controllo totale utente' },
-              { icon: Globe, text: 'Nessuna affiliazione broker' },
-            ].map(({ icon: Icon, text }) => (
-              <div key={text} className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>
-                <Icon className="w-3.5 h-3.5" style={{ color: 'var(--gold)', opacity: 0.5 }} />
-                <span>{text}</span>
-              </div>
-            ))}
-          </div>
-        </div>
 
       </section>
 
@@ -1225,7 +1232,7 @@ export default function LandingPage() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
                 <div>
-                  <span className="font-bold text-gradient-gold">Valorox</span>
+                  <span className="font-bold text-gradient-gold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em' }}>Valorox</span>
                   <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
                 </div>
               </div>
