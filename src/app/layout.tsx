@@ -247,7 +247,7 @@ const faqSchema = {
       name: 'Posso provare Valorox gratuitamente?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Sì. Valorox offre un trial gratuito di 5 giorni senza carta di credito. Puoi iniziare con un conto demo MT5 per osservare il sistema in azione prima di collegare un conto live.',
+        text: 'Sì. Valorox offre un trial gratuito di 5 giorni. Puoi iniziare con un conto demo MT5 per osservare il sistema in azione prima di collegare un conto live.',
       },
     },
     {
