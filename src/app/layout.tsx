@@ -87,13 +87,18 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/eldorado.svg', type: 'image/svg+xml' },
-      { url: '/valorox-icon.png', type: 'image/png', sizes: '512x512' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: [
-      { url: '/valorox-icon.png', sizes: '512x512', type: 'image/png' },
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
-    shortcut: '/eldorado.svg',
+    shortcut: '/favicon.ico',
+  },
+  manifest: '/site.webmanifest',
+  verification: {
+    google: 'google2f3368ce4bb147c3',
   },
   openGraph: {
     title: 'Valorox AI Trading System | Copy Trading XAU/USD Automatizzato',
@@ -104,10 +109,10 @@ export const metadata: Metadata = {
     siteName: 'Valorox',
     images: [
       {
-        url: `${SITE_URL}/valorox-icon.png`,
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Valorox AI Trading System - Copy Trading XAU/USD',
+        alt: 'Valorox AI Trading System — Copy trading automatizzato su XAU/USD',
         type: 'image/png',
       },
     ],
@@ -118,7 +123,7 @@ export const metadata: Metadata = {
     creator: '@valorox',
     title: 'Valorox AI Trading System | Copy Trading XAU/USD',
     description: 'Trading automatico sull\'oro con AI. Risk management avanzato, dashboard in tempo reale, trial gratuito 5 giorni.',
-    images: [`${SITE_URL}/valorox-icon.png`],
+    images: ['/og-image.png'],
   },
   alternates: {
     canonical: SITE_URL,
@@ -154,7 +159,7 @@ const organizationSchema = {
   logo: {
     '@type': 'ImageObject',
     '@id': `${SITE_URL}/#logo`,
-    url: `${SITE_URL}/valorox-icon.png`,
+    url: `${SITE_URL}/icon-512.png`,
     width: 512,
     height: 512,
     caption: 'Valorox AI Trading System',
@@ -187,7 +192,7 @@ const softwareSchema = {
   operatingSystem: 'Web Browser, iOS, Android',
   url: SITE_URL,
   description: 'Piattaforma di AI trading automatizzato su XAU/USD. Copy trading sull\'oro con MetaTrader 5, risk management avanzato e dashboard in tempo reale.',
-  screenshot: `${SITE_URL}/valorox-icon.png`,
+  screenshot: `${SITE_URL}/og-image.png`,
   featureList: [
     'Copy trading automatizzato su XAU/USD',
     'Intelligenza artificiale per l\'analisi dei segnali',
