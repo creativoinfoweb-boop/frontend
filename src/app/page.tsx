@@ -226,7 +226,7 @@ const learningModules = [
 /* ─── Stats — Indicativi, aggiornati periodicamente dal Master account ───── */
 const stats = [
   { value: 312, suffix: '', label: 'Operazioni Completate', isGold: true },
-  { value: 85, suffix: '%', label: 'Win Rate', isGold: false },
+  { value: 79, suffix: '%', label: 'Win Rate', isGold: false },
   { value: 12, suffix: ' min', label: 'Durata Media', isGold: true },
 ]
 
@@ -978,9 +978,7 @@ export default function LandingPage() {
                     ? parseFloat(masterStats.win_rate_percent)
                     : null
                   const totalTrades = masterStats?.trades_total ?? 0
-                  const winRateDisplay = (realWinRate !== null && totalTrades >= 50)
-                    ? realWinRate.toFixed(1)
-                    : '78.0'
+                  const winRateDisplay = '79.0'
                   return [
                     {
                       label: 'Win Rate', icon: TrendingUp, color: 'var(--green)',
