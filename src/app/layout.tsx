@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono, Cinzel, Cormorant, Exo_2 } from 'next/font/google'
+import { Inter, JetBrains_Mono, Cinzel, Cormorant, Exo_2, Chakra_Petch } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css'
 import { Providers } from './providers'
@@ -46,6 +46,13 @@ const exo2 = Exo_2({
   subsets: ['latin'],
   display: 'swap',
   weight: ['200', '300', '400', '500', '600', '700', '800', '900'],
+})
+
+const valoroxBrand = Chakra_Petch({
+  variable: '--font-valorox-brand',
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['500', '600', '700'],
 })
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://valoroxai.com'
@@ -317,7 +324,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${cinzel.variable} ${cormorant.variable} ${exo2.variable} ${braveEightyone.variable} antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${cinzel.variable} ${cormorant.variable} ${exo2.variable} ${braveEightyone.variable} ${valoroxBrand.variable} antialiased`}
         suppressHydrationWarning
       >
         <ClerkWrapper>
