@@ -8,8 +8,14 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Metodo & Strategia — Valorox',
-  description: 'Come funziona il sistema Valorox: metodo Smart Money, strategia Gold Scalping, automazione AI e risk management strutturato su XAU/USD.',
+  title: 'Sistema AI Trading | Come Funziona Valorox',
+  description: 'Come funziona Valorox: AI trading automatizzato su XAU/USD, metodo Smart Money, copy trading sull\'oro con risk management strutturato e MetaTrader 5.',
+  keywords: ['Valorox come funziona', 'AI trading XAU/USD', 'copy trading oro metodo', 'Smart Money trading', 'gold scalping automatico'],
+  openGraph: {
+    title: 'Sistema AI Trading Valorox | Come Funziona',
+    description: 'Scopri come Valorox automatizza il trading su XAU/USD con intelligenza artificiale e copy trading.',
+    type: 'website',
+  },
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {

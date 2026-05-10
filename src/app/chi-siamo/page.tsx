@@ -7,8 +7,14 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Chi Siamo — Valorox',
-  description: 'Il team di trader e sviluppatori dietro Valorox: origine del progetto, missione, tecnologia e approccio al trading automatizzato su XAU/USD.',
+  title: 'Chi Siamo | Il Team Valorox AI Trading',
+  description: 'Scopri il team dietro Valorox: trader esperti e sviluppatori AI che hanno creato il sistema di copy trading automatizzato su XAU/USD più avanzato d\'Italia.',
+  keywords: ['Valorox team', 'Valorox chi siamo', 'AI trading company', 'copy trading Italia'],
+  openGraph: {
+    title: 'Chi Siamo | Valorox AI Trading System',
+    description: 'Il team di trader e sviluppatori AI dietro Valorox, il sistema di copy trading su XAU/USD.',
+    type: 'website',
+  },
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
