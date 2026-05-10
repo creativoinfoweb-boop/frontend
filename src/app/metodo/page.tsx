@@ -24,7 +24,7 @@ const articleSchema = {
   headline: 'Come funziona Valorox AI Trading System su XAU/USD',
   description: 'Guida completa al sistema di AI trading automatizzato di Valorox: metodo Smart Money, strategia Gold Scalping, risk management e automazione.',
   author: { '@type': 'Organization', name: 'Valorox', url: SITE_URL },
-  publisher: { '@type': 'Organization', name: 'Valorox', logo: { '@type': 'ImageObject', url: `${SITE_URL}/valorox-icon.png` } },
+  publisher: { '@type': 'Organization', name: 'Valorox', logo: { '@type': 'ImageObject', url: `${SITE_URL}/icon-512.png` } },
   url: `${SITE_URL}/metodo`,
   inLanguage: 'it-IT',
   mainEntityOfPage: `${SITE_URL}/metodo`,
