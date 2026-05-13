@@ -974,16 +974,12 @@ export default function LandingPage() {
                 ))
               ) : (
                 (() => {
-                  const realWinRate = masterStats?.win_rate_percent
-                    ? parseFloat(masterStats.win_rate_percent)
-                    : null
                   const totalTrades = masterStats?.trades_total ?? 0
-                  const winRateDisplay = '79.0'
                   return [
                     {
                       label: 'Win Rate', icon: TrendingUp, color: 'var(--green)',
-                      value: `${winRateDisplay}%`,
-                      sub: totalTrades >= 50 ? `${masterStats?.trades_win ?? 0} / ${totalTrades} trade` : 'Media storica sistema',
+                      value: '79.0%',
+                      sub: 'Media storica sistema',
                     },
                     {
                       label: 'Operazioni Master', icon: BarChart3, color: 'var(--gold)',
