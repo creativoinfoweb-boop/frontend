@@ -102,12 +102,18 @@ function BillingContent() {
   }, [isAuthenticated, loading, searchParams, refreshStatus, router])
 
   const handleCancel = async () => {
-    if (!confirm('Sei sicuro di voler cancellare l\'abbonamento?')) return
+    if (!confirm('Sei sicuro di voler cancellare l\'abbonamento?\n\nLa cancellazione è immediata su Stripe (cancel_at_period_end): l\'accesso resta attivo fino alla fine del periodo già pagato e poi viene chiuso automaticamente. Nessun ulteriore addebito.')) return
     setActionLoading(true)
     try {
       await subscriptionsApi.cancel()
       const res = await subscriptionsApi.getStatus()
       setSubscription(res.data)
+      // Apre client email pre-compilato verso il supporto per conferma scritta
+      const subject = encodeURIComponent('Disdetta abbonamento Valorox')
+      const body = encodeURIComponent(
+        'Ciao team Valorox,\n\nConfermo la disdetta del mio abbonamento. Non desidero ulteriori addebiti né mantenere accesso alla piattaforma oltre la fine del periodo già pagato.\n\nGrazie.'
+      )
+      window.location.href = `mailto:valoroxinfo@gmail.com?subject=${subject}&body=${body}`
     } catch (_) {}
     finally {
       setActionLoading(false)
@@ -444,6 +450,21 @@ function BillingContent() {
         Prezzi in EUR IVA inclusa. Trial 5 giorni gratuiti. Offerta lancio: €75.65 il primo mese (sconto 15%), poi €89/mese con rinnovo automatico (piano mensile). Piano annuale €907.80/anno. Cancellazione senza penali.
         {' '}
         <Link href="/legal/terms" target="_blank" rel="noopener noreferrer" className="text-[var(--gold)] hover:opacity-90 transition-opacity underline-offset-2">Termini di Servizio</Link>
+      </div>
+
+      <div className="rounded-xl p-4 flex items-start gap-3"
+        style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}>
+        <AlertCircle className="w-4 h-4 text-[var(--gold)] flex-shrink-0 mt-0.5" />
+        <div className="text-xs text-[var(--text-secondary)] leading-relaxed">
+          <strong className="text-[var(--text-primary)]">Hai bisogno di aiuto o vuoi disdire?</strong> Scrivici a{' '}
+          <a
+            href="mailto:valoroxinfo@gmail.com?subject=Richiesta%20supporto%20Valorox"
+            className="text-[var(--gold)] hover:opacity-90 underline-offset-2 underline"
+          >
+            valoroxinfo@gmail.com
+          </a>
+          {' '}— rispondiamo entro 24h lavorative. La cancellazione è disponibile in autonomia dal pulsante qui sopra ed è immediata su Stripe.
+        </div>
       </div>
     </div>
   )

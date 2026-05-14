@@ -116,10 +116,14 @@ export default function HistoryPage() {
 
   // Summary per la pagina corrente
   const openTrades = history.filter(h => h.signal_status === 'OPEN').length
-  const closedTrades = history.filter(h => h.signal_status === 'CLOSED').length
+  const winTrades = history.filter(h => h.signal_status === 'CLOSED' && (Number(h.profit_usd) || 0) > 0).length
+  const lossTrades = history.filter(h => h.signal_status === 'CLOSED' && (Number(h.profit_usd) || 0) < 0).length
   const totalUsd = history
     .filter(h => h.signal_status === 'CLOSED' && h.profit_usd !== undefined && h.profit_usd !== null)
     .reduce((acc, h) => acc + (Number(h.profit_usd) || 0), 0)
+  const totalPips = history
+    .filter(h => h.signal_status === 'CLOSED' && h.profit_pips !== undefined && h.profit_pips !== null)
+    .reduce((acc, h) => acc + (Number(h.profit_pips) || 0), 0)
 
   return (
     <div className="space-y-6">
@@ -146,25 +150,41 @@ export default function HistoryPage() {
 
       {/* Summary cards */}
       {!loading && history.length > 0 && (
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
           <div className="rounded-xl p-4" style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
             <div className="flex items-center gap-2 mb-1">
-              <CheckCircle2 className="h-4 w-4 text-[#3B82F6]" />
-              <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>Aperti</span>
+              <Clock className="h-4 w-4 text-[#3B82F6]" />
+              <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Aperti</span>
             </div>
             <p className="text-2xl font-bold text-[#3B82F6]">{openTrades}</p>
           </div>
           <div className="rounded-xl p-4" style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
             <div className="flex items-center gap-2 mb-1">
-              <CheckCircle2 className="h-4 w-4 text-[#22C55E]" />
-              <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>Chiusi</span>
+              <TrendingUp className="h-4 w-4 text-[#22C55E]" />
+              <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>In profitto</span>
             </div>
-            <p className="text-2xl font-bold text-[#22C55E]">{closedTrades}</p>
+            <p className="text-2xl font-bold text-[#22C55E]">{winTrades}</p>
           </div>
           <div className="rounded-xl p-4" style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
             <div className="flex items-center gap-2 mb-1">
+              <TrendingDown className="h-4 w-4 text-[#EF4444]" />
+              <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>In perdita</span>
+            </div>
+            <p className="text-2xl font-bold text-[#EF4444]">{lossTrades}</p>
+          </div>
+          <div className="rounded-xl p-4" style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
+            <div className="flex items-center gap-2 mb-1">
+              <CheckCircle2 className="h-4 w-4" style={{ color: totalPips >= 0 ? '#22C55E' : '#EF4444' }} />
+              <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Pips totali</span>
+            </div>
+            <p className={`text-2xl font-bold ${totalPips >= 0 ? 'text-[#22C55E]' : 'text-[#EF4444]'}`}>
+              {totalPips >= 0 ? '+' : ''}{totalPips.toFixed(0)}
+            </p>
+          </div>
+          <div className="rounded-xl p-4 col-span-2 md:col-span-1" style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
+            <div className="flex items-center gap-2 mb-1">
               <TrendingUp className="h-4 w-4" style={{ color: totalUsd >= 0 ? '#22C55E' : '#EF4444' }} />
-              <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>Profitto totale ($)</span>
+              <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>P/L totale ($)</span>
             </div>
             <p className={`text-2xl font-bold ${totalUsd >= 0 ? 'text-[#22C55E]' : 'text-[#EF4444]'}`}>
               {totalUsd >= 0 ? '+' : ''}{totalUsd.toFixed(2)}
