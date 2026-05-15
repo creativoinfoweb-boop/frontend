@@ -26,6 +26,7 @@ import {
   X,
   LayoutDashboard,
   ChevronRight,
+  Gift,
 } from 'lucide-react'
 import { PricingPlanCard } from '@/components/pricing/PricingPlanCard'
 import ThemeOnboardingModal from '@/components/ThemeOnboardingModal'
@@ -558,18 +559,7 @@ export default function LandingPage() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/eldorado.svg" alt="Valorox" className="valorox-statue-img" />
                 <div className="valorox-shimmer" />
-                {[
-                  { bottom: '30%', left: '10%', delay: '0s', dx: '15px' },
-                  { bottom: '45%', left: '20%', delay: '0.8s', dx: '-10px' },
-                  { bottom: '60%', left: '15%', delay: '1.6s', dx: '20px' },
-                  { bottom: '35%', right: '10%', delay: '0.4s', dx: '-15px' },
-                  { bottom: '50%', right: '18%', delay: '1.2s', dx: '10px' },
-                  { bottom: '65%', right: '12%', delay: '2s', dx: '-20px' },
-                  { bottom: '25%', left: '35%', delay: '0.6s', dx: '5px' },
-                  { bottom: '55%', right: '32%', delay: '1.8s', dx: '-5px' },
-                ].map((p, i) => (
-                  <div key={i} className="valorox-particle" style={{ bottom: p.bottom, left: (p as {left?: string}).left, right: (p as {right?: string}).right, animationDelay: p.delay, animationDuration: `${3.5 + i * 0.3}s`, ['--dx' as string]: p.dx }} />
-                ))}
+                {/* Particles fluttuanti rimosse — hero più pulita e premium */}
               </div>
             </div>
           </div>
@@ -585,17 +575,17 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Live badge */}
+            {/* Brand chip */}
             <div className="valorox-badge mt-3">
               <div className="live-dot" style={{ width: 6, height: 6 }} />
-              AI Solution · XAU/USD · Automated
+              XAU/USD · AI EXECUTION · MULTI-STYLE
             </div>
 
             <p className="valorox-subtitle mt-2 mb-3">
-              Un nuovo approccio al trading.
+              Un nuovo approccio all&apos;oro.
             </p>
             <p className="valorox-hero-desc text-sm mb-9 max-w-lg mx-auto text-center" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-              Tecnologia, metodo e intelligenza artificiale per affrontare i mercati.
+              Scalping, intraday, volumetrica e CRT in un unico motore di esecuzione AI su XAU/USD.
             </p>
 
             {/* Live gold price */}
@@ -641,6 +631,7 @@ export default function LandingPage() {
                 { icon: Shield, text: 'Nessuna gestione fondi' },
                 { icon: Lock, text: 'Controllo totale utente' },
                 { icon: Globe, text: 'Nessuna affiliazione broker' },
+                { icon: Gift, text: '5 giorni gratis · 7 con referral' },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>
                   <Icon className="w-3.5 h-3.5" style={{ color: 'var(--gold)', opacity: 0.5 }} />

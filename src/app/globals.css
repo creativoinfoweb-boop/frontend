@@ -90,7 +90,7 @@
    CSS variables are actually injected. Resolves correctly because
    --font-valorox-brand / --font-brave / --font-exo2 are present here. */
 body {
-  --font-brand: var(--font-valorox-brand), var(--font-brave), var(--font-exo2), 'Exo 2', sans-serif;
+  --font-brand: var(--font-valorox-brand), 'Rajdhani', 'Saira Semi Condensed', var(--font-exo2), 'Exo 2', sans-serif;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1357,9 +1357,9 @@ input:-webkit-autofill:focus {
 
 .valorox-title {
   font-family: var(--font-brand) !important;
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(2.2rem, 5vw, 4.5rem);
-  letter-spacing: 0.18em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: transparent;
   background: linear-gradient(

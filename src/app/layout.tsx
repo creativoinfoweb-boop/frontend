@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono, Cinzel, Cormorant, Exo_2, Audiowide } from 'next/font/google'
+import { Inter, JetBrains_Mono, Cinzel, Cormorant, Exo_2, Rajdhani } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css'
 import { Providers } from './providers'
@@ -48,11 +48,11 @@ const exo2 = Exo_2({
   weight: ['200', '300', '400', '500', '600', '700', '800', '900'],
 })
 
-const valoroxBrand = Audiowide({
+const valoroxBrand = Rajdhani({
   variable: '--font-valorox-brand',
   subsets: ['latin'],
   display: 'swap',
-  weight: '400',
+  weight: ['500', '600', '700'],
 })
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://valoroxai.com'
