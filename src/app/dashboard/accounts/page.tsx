@@ -59,7 +59,7 @@ function ConnectionBadge({ account }: { account: MT5Account }) {
 
 export default function AccountsPage() {
   const [showModal, setShowModal] = useState(false)
-  const [formData, setFormData] = useState({ name: '', mt5_login: '', mt5_password: '', mt5_server: '', account_type: 'real', risk_percent: 3 })
+  const [formData, setFormData] = useState({ name: '', mt5_login: '', mt5_password: '', mt5_server: '', account_type: 'real', risk_percent: 1 as number })
   const [testingConnection, setTestingConnection] = useState(false)
   const [testMessage, setTestMessage] = useState<{ text: string; ok: boolean } | null>(null)
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null)
@@ -78,7 +78,7 @@ export default function AccountsPage() {
     mutationFn: (payload: typeof formData) => api.post('/accounts/mt5', payload),
     onSuccess: () => {
       try { localStorage.setItem(`risk_${formData.mt5_login}`, String(formData.risk_percent)) } catch {}
-      setFormData({ name: '', mt5_login: '', mt5_password: '', mt5_server: '', account_type: 'real', risk_percent: 3 })
+      setFormData({ name: '', mt5_login: '', mt5_password: '', mt5_server: '', account_type: 'real', risk_percent: 1 })
       setShowModal(false)
       refetch()
       showToast('Account MT5 collegato con successo!')
@@ -123,17 +123,32 @@ export default function AccountsPage() {
     addMutation.mutate({ ...formData, mt5_login: login, mt5_server: formData.mt5_server.trim(), name })
   }
 
+  const RISK_OPTIONS = [0.5, 1, 1.5, 2, 2.5] as const
+
   const riskLabel = (pct: number) =>
-    pct === 1 ? 'Conservativo' : pct === 2 ? 'Moderato' : 'Aggressivo'
+    pct <= 0.5 ? 'Molto conservativo'
+    : pct <= 1   ? 'Conservativo'
+    : pct <= 1.5 ? 'Moderato'
+    : pct <= 2   ? 'Aggressivo'
+    :              'Molto aggressivo'
+
   const riskColor = (pct: number) =>
-    pct === 1 ? '#00C2FF' : pct === 2 ? '#00E676' : '#F0B429'
+    pct <= 0.5 ? '#00C2FF'
+    : pct <= 1   ? '#3DDC97'
+    : pct <= 1.5 ? '#00E676'
+    : pct <= 2   ? '#F0B429'
+    :              '#FF8A3D'
+
+  const formatRisk = (pct: number) =>
+    Number.isInteger(pct) ? `${pct}%` : `${pct.toFixed(1)}%`
+
   const getRiskPercent = (acc: any): number => {
-    if (acc.risk_percent != null) return acc.risk_percent
+    if (acc.risk_percent != null) return Number(acc.risk_percent)
     try {
       const cached = localStorage.getItem(`risk_${acc.mt5_login}`)
-      if (cached) return parseInt(cached, 10)
+      if (cached) return parseFloat(cached)
     } catch {}
-    return 3
+    return 1
   }
 
   const canSave =
@@ -268,7 +283,7 @@ export default function AccountsPage() {
                       color: riskColor(getRiskPercent(acc)),
                       border: `1px solid ${riskColor(getRiskPercent(acc))}40`,
                     }}>
-                    Rischio: {getRiskPercent(acc)}% · {riskLabel(getRiskPercent(acc))}
+                    Rischio: {formatRisk(getRiskPercent(acc))} · {riskLabel(getRiskPercent(acc))}
                   </span>
                   <p className="text-[10px]" style={{ color: 'var(--text-muted)' }}>Verifica alle 10:00</p>
                 </div>
@@ -409,29 +424,51 @@ export default function AccountsPage() {
                   </div>
                 </div>
 
-                {/* Selettore rischio */}
+                {/* Selettore rischio — slider 5-step hard cap */}
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--text-secondary)' }}>
-                    Rischio per operazione
+                    Rischio massimo per operazione
                   </label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {[1, 2, 3].map(pct => (
+
+                  <div className="flex items-center justify-between px-1 mb-2">
+                    <span className="text-[11px] font-mono" style={{ color: 'var(--text-muted)' }}>0.5%</span>
+                    <span className="text-[11px] font-mono" style={{ color: 'var(--text-muted)' }}>2.5%</span>
+                  </div>
+
+                  <input
+                    type="range"
+                    min={0} max={4} step={1}
+                    value={Math.max(0, RISK_OPTIONS.indexOf(formData.risk_percent as 0.5 | 1 | 1.5 | 2 | 2.5))}
+                    onChange={(e) => {
+                      const idx = Number(e.target.value)
+                      setFormData({ ...formData, risk_percent: RISK_OPTIONS[idx] })
+                    }}
+                    className="risk-slider w-full"
+                    aria-label="Rischio massimo per operazione"
+                  />
+
+                  <div className="flex justify-between mt-2">
+                    {RISK_OPTIONS.map((pct) => (
                       <button
                         key={pct}
                         type="button"
                         onClick={() => setFormData({ ...formData, risk_percent: pct })}
-                        className="py-2.5 rounded-xl text-sm font-semibold transition-all text-center"
+                        className="text-[11px] font-semibold transition-all px-2 py-0.5 rounded-md"
                         style={
                           formData.risk_percent === pct
-                            ? { background: `${riskColor(pct)}15`, border: `1px solid ${riskColor(pct)}40`, color: riskColor(pct) }
-                            : { background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', color: '#3D3D5C' }
+                            ? { color: riskColor(pct), background: `${riskColor(pct)}15`, border: `1px solid ${riskColor(pct)}40` }
+                            : { color: 'var(--text-muted)', background: 'transparent', border: '1px solid transparent' }
                         }
                       >
-                        <span className="block text-base font-black">{pct}%</span>
-                        <span className="block text-[10px] mt-0.5 opacity-80">{riskLabel(pct)}</span>
+                        {formatRisk(pct)}
                       </button>
                     ))}
                   </div>
+
+                  <p className="text-[11px] mt-3 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                    <strong style={{ color: 'var(--gold)' }}>Tetto invalicabile.</strong>{' '}
+                    Anche se un singolo canale o un signal manuale è configurato a un rischio più alto, il sistema non supererà mai questa percentuale su questo conto. Selezione corrente: <strong style={{ color: riskColor(formData.risk_percent) }}>{formatRisk(formData.risk_percent)} · {riskLabel(formData.risk_percent)}</strong>.
+                  </p>
                 </div>
 
                 {/* Avvertenza capitale minimo */}
@@ -439,12 +476,16 @@ export default function AccountsPage() {
                   style={{ background: 'rgba(240,180,41,0.06)', border: '1px solid rgba(240,180,41,0.15)' }}>
                   <AlertTriangle className="w-3.5 h-3.5 text-[#F0B429] flex-shrink-0 mt-0.5" />
                   <div className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                    <strong style={{ color: '#F0B429' }}>Capitale consigliato:</strong>{' '}
-                    {formData.risk_percent <= 1
-                      ? <>almeno <strong style={{ color: 'var(--text-primary)' }}>3.000€</strong> con rischio 1%. Con capitali inferiori i lotti risultano troppo piccoli per i take profit frazionati.</>
-                      : formData.risk_percent === 2
-                      ? <>almeno <strong style={{ color: 'var(--text-primary)' }}>2.000€</strong> con rischio 2%. Il sistema necessita di lotti sufficienti per il frazionamento delle posizioni.</>
-                      : <>almeno <strong style={{ color: 'var(--text-primary)' }}>2.000€</strong> con rischio 3%. Percentuale aggressiva — consigliata solo con piena consapevolezza del rischio.</>
+                    <strong style={{ color: '#F0B429' }}>Capitale minimo suggerito:</strong>{' '}
+                    {formData.risk_percent <= 0.5
+                      ? <>almeno <strong style={{ color: 'var(--text-primary)' }}>5.000€</strong> con rischio 0.5% per consentire il frazionamento (TP parziali, BE automatico).</>
+                      : formData.risk_percent <= 1
+                      ? <>almeno <strong style={{ color: 'var(--text-primary)' }}>3.000€</strong> con rischio 1%.</>
+                      : formData.risk_percent <= 1.5
+                      ? <>almeno <strong style={{ color: 'var(--text-primary)' }}>2.500€</strong> con rischio 1.5%.</>
+                      : formData.risk_percent <= 2
+                      ? <>almeno <strong style={{ color: 'var(--text-primary)' }}>2.000€</strong> con rischio 2%.</>
+                      : <>almeno <strong style={{ color: 'var(--text-primary)' }}>1.500€</strong> con rischio 2.5% — alta volatilità sul capitale.</>
                     }
                   </div>
                 </div>
