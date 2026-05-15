@@ -1268,7 +1268,7 @@ export default function LandingPage() {
             <div>
               <h4 className="section-label mb-4">Supporto</h4>
               <div className="space-y-3">
-                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>support@botbosco.com</p>
+                <a href="mailto:valoroxinfo@gmail.com" className="text-sm transition-opacity hover:opacity-80" style={{ color: 'var(--text-secondary)' }}>valoroxinfo@gmail.com</a>
                 <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Lun–Ven, 9:00–18:00</p>
                 <div className="mt-4 p-3 rounded-xl" style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}>
                   <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Tempo medio di risposta</p>
