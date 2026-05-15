@@ -205,8 +205,8 @@ const learningModules = [
   },
   {
     num: '06', slug: '06', free: false, level: 'Avanzato', lessons: 8,
-    title: 'Gold Scalping — Applicazione',
-    desc: 'Il setup completo passo per passo su XAU/USD nelle Kill Zone operative.',
+    title: 'Applicazione operativa — scalping, intraday e gestione adattiva',
+    desc: 'Setup completo su XAU/USD nelle Kill Zone (scalping M1) e su movimenti H1/H4 (intraday).',
     topics: ['Asia session: marcare Asia High e Asia Low come livelli chiave', 'London Kill Zone: sweep del range Asia → conferma MSS su M1', 'Gestione live: T1 50%, BE automatico, T2 al livello HTF', '10 Regole del NO: quando non entrare mai in operazione'],
   },
   {
