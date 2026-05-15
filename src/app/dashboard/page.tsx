@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/store/auth'
 import { subscriptionsApi, statsApi, signalsApi } from '@/lib/api'
+import { PRICING } from '@/data/pricing'
 import { SubscriptionStatus, PublicPerformance, UserStats, SignalHistoryItem } from '@/types'
 import {
   AlertCircle,
@@ -279,7 +280,7 @@ export default function DashboardPage() {
       {hasNoSub && (
         <Banner icon={AlertCircle} color={RED}
           title="Nessun Abbonamento"
-          body="Inizia il trial gratuito di 5 giorni — registrati per iniziare."
+          body={`Inizia il trial gratuito di ${PRICING.trialDays} giorni (fino a ${PRICING.trialDaysWithReferral} con codice referral) — registrati per iniziare.`}
           cta="Inizia Trial" href="/dashboard/billing" />
       )}
       {trialExpired && (

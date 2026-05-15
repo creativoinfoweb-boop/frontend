@@ -28,6 +28,7 @@ import {
   ChevronRight,
 } from 'lucide-react'
 import { PricingPlanCard } from '@/components/pricing/PricingPlanCard'
+import { PRICING } from '@/data/pricing'
 import ThemeOnboardingModal from '@/components/ThemeOnboardingModal'
 
 /* ─── Animated counter ─────────────────────────────────── */
@@ -1179,7 +1180,7 @@ export default function LandingPage() {
           <p className="text-lg mb-10 max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
             Un sistema sviluppato per uso operativo interno, validato su centinaia di operazioni reali
             e reso accessibile a chi condivide un approccio disciplinato ai mercati.
-            5 giorni di prova inclusi con la registrazione.
+            {PRICING.trialDays} giorni di prova inclusi — fino a {PRICING.trialDaysWithReferral} con codice referral.
           </p>
 
           <p className="text-sm mb-4 font-medium" style={{ color: 'var(--text-secondary)' }}>
@@ -1187,7 +1188,7 @@ export default function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/auth/register" className="btn-gold text-base px-10 py-4 rounded-xl">
-              Inizia Gratis — 5 Giorni
+              Inizia Gratis — {PRICING.trialDays} Giorni
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link href="/dashboard/learn"

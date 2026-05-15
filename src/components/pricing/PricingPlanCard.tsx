@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Check, ArrowRight, Zap, TrendingUp, CreditCard } from 'lucide-react'
+import { PRICING } from '@/data/pricing'
 
 /** Contenuti allineati landing ↔ dashboard abbonamento */
 export const PRICING_FEATURES: { text: string; highlight: boolean }[] = [
@@ -218,7 +219,7 @@ export function PricingPlanCard({
             )}
 
             <p className="text-xs mb-6" style={{ color: 'var(--text-muted)' }}>
-              Inizia con <strong style={{ color: 'var(--text-primary)' }}>5 giorni di prova</strong> inclusi con la registrazione
+              Inizia con <strong style={{ color: 'var(--text-primary)' }}>{PRICING.trialDays} giorni di prova</strong> — fino a <strong style={{ color: 'var(--text-primary)' }}>{PRICING.trialDaysWithReferral} giorni</strong> con codice referral di un creator Valorox
             </p>
 
             {intro}
@@ -303,7 +304,7 @@ export function PricingPlanCard({
                       aria-disabled={!termsAccepted}
                     >
                       <Zap className="w-5 h-5" />
-                      Inizia 5 giorni gratis
+                      Inizia {PRICING.trialDays} giorni gratis
                       <ArrowRight className="w-5 h-5" />
                     </Link>
                   ) : (
@@ -318,7 +319,7 @@ export function PricingPlanCard({
                       ) : (
                         <>
                           <Zap className="w-5 h-5" />
-                          Inizia 5 giorni gratis
+                          Inizia {PRICING.trialDays} giorni gratis
                           <ArrowRight className="w-5 h-5" />
                         </>
                       )}

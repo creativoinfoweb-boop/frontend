@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { PricingPlanCard } from '@/components/pricing/PricingPlanCard'
+import { PRICING } from '@/data/pricing'
 
 const features = [
   'Automazione 100% configurabile su XAU/USD',
@@ -164,7 +165,8 @@ function BillingContent() {
   const isTrialing = status === 'trialing'
   const isActive = status === 'active'
   const isExpired = status === 'trial_expired' || status === 'inactive'
-  const trialPct = isTrialing ? Math.round(((7 - (subscription?.days_remaining ?? 0)) / 7) * 100) : 0
+  const trialDaysTotal = (subscription as any)?.trial_days_total ?? PRICING.trialDays
+  const trialPct = isTrialing ? Math.round(((trialDaysTotal - (subscription?.days_remaining ?? 0)) / Math.max(1, trialDaysTotal)) * 100) : 0
   const cancelPending = Boolean(subscription?.cancel_at_period_end)
 
   const showPricingBlock = !isActive
@@ -177,10 +179,10 @@ function BillingContent() {
     statusDetail = 'Scegli trial gratuito o pagamento — stesso piano della homepage.'
   } else if (hasNone) {
     statusHeadline = 'Abbonamento non ancora attivo'
-    statusDetail = 'Avvia il trial di 5 giorni oppure paga con carta (mensile o annuale).'
+    statusDetail = `Avvia il trial di ${PRICING.trialDays} giorni (fino a ${PRICING.trialDaysWithReferral} con codice referral) oppure paga con carta.`
   } else if (isTrialing) {
     statusHeadline = 'Trial attivo'
-    statusDetail = `Hai ancora ${subscription?.days_remaining ?? '—'} giorni gratis. Puoi attivare il pagamento quando vuoi.`
+    statusDetail = `Hai ancora ${subscription?.days_remaining ?? '—'} giorni gratis su ${trialDaysTotal} totali. Puoi attivare il pagamento quando vuoi.`
   } else if (isExpired) {
     statusHeadline = 'Abbonamento inattivo'
     statusDetail = 'Riattiva con lo stesso piano della homepage: mensile promo o annuale scontato.'
@@ -447,7 +449,7 @@ function BillingContent() {
 
       <div className="rounded-xl p-4 text-xs text-[var(--text-muted)] leading-relaxed"
         style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}>
-        Prezzi in EUR IVA inclusa. Trial 5 giorni gratuiti. Offerta lancio: €75.65 il primo mese (sconto 15%), poi €89/mese con rinnovo automatico (piano mensile). Piano annuale €907.80/anno. Cancellazione senza penali.
+        Prezzi in EUR IVA inclusa. Trial {PRICING.trialDays} giorni gratuiti (fino a {PRICING.trialDaysWithReferral} con codice referral). Offerta lancio: €75.65 il primo mese (sconto 15%), poi €89/mese con rinnovo automatico (piano mensile). Piano annuale €907.80/anno. Cancellazione senza penali.
         {' '}
         <Link href="/legal/terms" target="_blank" rel="noopener noreferrer" className="text-[var(--gold)] hover:opacity-90 transition-opacity underline-offset-2">Termini di Servizio</Link>
       </div>
