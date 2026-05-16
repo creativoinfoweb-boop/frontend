@@ -323,18 +323,18 @@ export default function LandingPage() {
           background: 'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, transparent 100%)',
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between gap-2">
           {/* Logo — always links back to landing */}
-          <Link href="/" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 group min-w-0 shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/valoroxoro.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
-            <div>
-              <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em' }}>
+            <img src="/valoroxoro.svg" alt="Valorox" className="gold-avatar-ring shrink-0" style={{ width: 28, height: 28 }} />
+            <div className="min-w-0">
+              <span className="text-sm sm:text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.10em' }}>
                 <span style={{ color: isDark ? '#ffffff' : '#0d0d18' }}>Val</span>
                 <span style={{ background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>oro</span>
                 <span style={{ color: isDark ? '#ffffff' : '#0d0d18' }}>x</span>
               </span>
-              <div className="text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: isDark ? 'rgba(255,255,255,0.42)' : 'rgba(0,0,0,0.38)' }}>AI Solution</div>
+              <div className="text-[8px] sm:text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: isDark ? 'rgba(255,255,255,0.38)' : 'rgba(0,0,0,0.35)' }}>AI Solution</div>
             </div>
           </Link>
 
@@ -572,8 +572,8 @@ export default function LandingPage() {
           <div className="valorox-hero-content">
 
             <div className="valorox-badge">
-              <div className="live-dot" style={{ width: 6, height: 6 }} />
-              XAU/USD · AI TRADING SYSTEM
+              <div className="live-dot" style={{ width: 4, height: 4 }} />
+              XAU/USD&nbsp;&nbsp;·&nbsp;&nbsp;AI TRADING SYSTEM
             </div>
 
             <p className="valorox-claim">
