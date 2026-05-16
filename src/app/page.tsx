@@ -569,7 +569,7 @@ export default function LandingPage() {
 
             {/* ── Refined title ── */}
             <div className="valorox-title-wrap">
-              <h1 className="valorox-title">Valorox</h1>
+              <h1 className="valorox-title">Val<span className="valorox-title-oro">oro</span>x</h1>
               <div className="valorox-title-deco">
                 <div className="valorox-title-diamond" />
               </div>

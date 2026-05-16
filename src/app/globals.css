@@ -1361,6 +1361,15 @@ input:-webkit-autofill:focus {
   font-size: clamp(2.2rem, 5vw, 4.5rem);
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  color: #ffffff;
+  animation: titleReveal 1.8s cubic-bezier(0.16,1,0.3,1) 0.8s both;
+}
+
+.light .valorox-title {
+  color: #0a0a0a;
+}
+
+.valorox-title-oro {
   color: transparent;
   background: linear-gradient(
     135deg,
@@ -1378,7 +1387,6 @@ input:-webkit-autofill:focus {
   -webkit-background-clip: text;
   background-clip: text;
   animation:
-    titleReveal 1.8s cubic-bezier(0.16,1,0.3,1) 0.8s both,
     titleGlow 4s ease-in-out 2.8s infinite,
     holoSlide 6s linear 2.8s infinite;
 }
