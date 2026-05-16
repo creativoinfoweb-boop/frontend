@@ -560,7 +560,7 @@ export default function LandingPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/eldorado.svg" alt="Valorox" className="valorox-brand-logo" fetchPriority="high" loading="eager" decoding="async" />
             <h1 className="valorox-title">
-              Val<span className="valorox-title-oro">oro</span>x<span className="valorox-title-ai">AI</span>
+              Al<span className="valorox-title-oro">oro</span><span className="valorox-title-x">x</span><span className="valorox-title-ai">AI</span>
             </h1>
           </div>
 
