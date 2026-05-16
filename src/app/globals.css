@@ -1529,7 +1529,7 @@ input:-webkit-autofill:focus {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(240,180,41,0.45);
-  margin-top: -0.1em;
+  margin-top: 0.3em;
   padding-left: 0.05em;
 }
 .light .valorox-brand-sub { color: rgba(160,100,15,0.5); }

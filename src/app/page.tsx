@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { useTheme } from 'next-themes'
 import { useAuthStore } from '@/store/auth'
 import Link from 'next/link'
@@ -29,6 +29,7 @@ import {
 } from 'lucide-react'
 import { PricingPlanCard } from '@/components/pricing/PricingPlanCard'
 import ThemeOnboardingModal from '@/components/ThemeOnboardingModal'
+import CookieConsent from '@/components/CookieConsent'
 
 /* ─── Animated counter ─────────────────────────────────── */
 function AnimatedCounter({ to, suffix = '', duration = 1500 }: { to: number; suffix?: string; duration?: number }) {
@@ -251,6 +252,8 @@ export default function LandingPage() {
   const [referralCode, setReferralCode] = useState<string | null>(null)
   const [showSplash, setShowSplash] = useState(true)
   const [splashFading, setSplashFading] = useState(false)
+  const [cookieDone, setCookieDone] = useState(false)
+  const onCookieDone = useCallback(() => setCookieDone(true), [])
   const isDark = theme !== 'light'
 
   useEffect(() => {
@@ -380,7 +383,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-2.5">
             <button
               onClick={() => setTheme(isDark ? 'light' : 'dark')}
-              className="theme-toggle hidden sm:inline-flex"
+              className="theme-toggle inline-flex"
               title={isDark ? 'Modalità chiara' : 'Modalità scura'}
             >
               {isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
@@ -1157,7 +1160,8 @@ export default function LandingPage() {
       </section>
 
       {/* ─── Theme Onboarding Modal ─────────────────────── */}
-      <ThemeOnboardingModal />
+      <CookieConsent onDone={onCookieDone} />
+      {cookieDone && <ThemeOnboardingModal />}
 
       {/* ─── Footer ─────────────────────────────────────── */}
       <footer className="py-16 px-4 sm:px-6 lg:px-8" style={{ borderTop: '1px solid var(--border)', background: 'var(--surface)' }}>
