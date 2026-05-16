@@ -11,7 +11,6 @@ import {
   Zap,
   BarChart3,
   Lock,
-  Check,
   Star,
   ArrowRight,
   Activity,
