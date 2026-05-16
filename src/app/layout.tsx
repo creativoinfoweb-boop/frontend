@@ -175,6 +175,13 @@ const organizationSchema = {
   },
   image: { '@id': `${SITE_URL}/#logo` },
   description: 'Valorox è il sistema di AI trading automatizzato su XAU/USD. Copy trading sull\'oro con intelligenza artificiale e risk management avanzato.',
+  email: 'valoroxinfo@gmail.com',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    email: 'valoroxinfo@gmail.com',
+    availableLanguage: ['Italian'],
+  },
   foundingDate: '2024',
   inLanguage: 'it-IT',
 }

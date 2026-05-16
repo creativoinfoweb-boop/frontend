@@ -336,7 +336,7 @@ export default function TermsPage() {
               <li>• Non vendiamo né cediamo i tuoi dati a terze parti per scopi commerciali.</li>
               <li>• I dati sono trattati nel rispetto del GDPR (Regolamento UE 2016/679).</li>
               <li>• Puoi richiedere in qualsiasi momento la cancellazione del tuo account e di tutti i dati associati.</li>
-              <li>• Per richieste relative alla privacy, scrivi a: <strong style={{ color: 'var(--gold)' }}>support@eldorado.trade</strong></li>
+              <li>• Per richieste relative alla privacy, scrivi a: <strong style={{ color: 'var(--gold)' }}>valoroxinfo@gmail.com</strong></li>
             </ul>
             <p>
               Utilizziamo cookie tecnici strettamente necessari al funzionamento del sito. Non utilizziamo
@@ -373,12 +373,12 @@ export default function TermsPage() {
             contattaci via email. Rispondiamo normalmente entro 24 ore nei giorni lavorativi.
           </p>
           <a
-            href="mailto:support@eldorado.trade"
+            href="mailto:valoroxinfo@gmail.com"
             className="inline-flex items-center gap-2 text-sm font-semibold transition-opacity hover:opacity-80"
             style={{ color: 'var(--gold)' }}
           >
             <Mail className="w-4 h-4" />
-            support@eldorado.trade
+            valoroxinfo@gmail.com
           </a>
         </section>
 
