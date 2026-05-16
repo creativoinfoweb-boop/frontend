@@ -4,6 +4,7 @@ import { Suspense, useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/store/auth'
 import { affiliatesApi, getApiErrorMessage } from '@/lib/api'
+import { PRICING } from '@/data/pricing'
 import { AffiliateDashboardResponse } from '@/types'
 import {
   Copy, AlertCircle, CheckCircle2, TrendingUp, Users, Gift,
@@ -255,7 +256,7 @@ function TierGrid({ currentTierId }: { currentTierId: string | null }) {
         })}
       </div>
       <p className="text-[10px] mt-3 text-center" style={{ color: 'var(--text-muted)' }}>
-        La commissione si calcola sul prezzo dell'abbonamento mensile (€89) per ogni referral attivo pagante.
+        La commissione si calcola sul prezzo dell&apos;abbonamento mensile ({PRICING.monthly.amountStr}) per ogni referral attivo pagante.
       </p>
     </div>
   )

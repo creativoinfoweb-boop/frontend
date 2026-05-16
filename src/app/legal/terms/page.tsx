@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: false },
 }
 import { ArrowLeft, Shield, AlertTriangle, Lock, CreditCard, RefreshCw, FileText, Mail } from 'lucide-react'
+import { PRICING } from '@/data/pricing'
 
 export default function TermsPage() {
   return (
@@ -254,8 +255,8 @@ export default function TermsPage() {
                 PCI-DSS. Valorox non memorizza mai i dati della tua carta di credito.
               </p>
               <ul className="space-y-1 pl-2">
-                <li>• <strong style={{ color: 'var(--text-primary)' }}>Trial gratuito di 5 giorni</strong>: nessun addebito. Al termine, se non cancelli, parte il piano mensile a €89/mese.</li>
-                <li>• <strong style={{ color: 'var(--text-primary)' }}>Piano mensile</strong>: €75.65 il primo mese (sconto 15%), poi €89/mese con rinnovo automatico.</li>
+                <li>• <strong style={{ color: 'var(--text-primary)' }}>Trial gratuito di {PRICING.trialDays} giorni</strong>: nessun addebito. Al termine, se non cancelli, parte il piano mensile a {PRICING.monthly.amountStr}/mese.</li>
+                <li>• <strong style={{ color: 'var(--text-primary)' }}>Piano mensile</strong>: {PRICING.monthly.firstMonthStr} il primo mese (sconto {PRICING.monthly.firstMonthDiscountPercent}%), poi {PRICING.monthly.amountStr}/mese con rinnovo automatico.</li>
                 <li>• <strong style={{ color: 'var(--text-primary)' }}>Piano annuale</strong>: unica fatturazione anticipata, con sconto applicato sul prezzo mensile equivalente.</li>
                 <li>• I prezzi sono in EUR, IVA inclusa ove applicabile.</li>
                 <li>• Il rinnovo automatico può essere disattivato in qualsiasi momento dalla dashboard senza penali.</li>
