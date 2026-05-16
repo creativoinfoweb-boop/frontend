@@ -321,7 +321,7 @@ export default function LandingPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/valoroxoro.svg" alt="Valorox" className="valorox-splash-logo" />
           <span className="valorox-splash-title">
-            <span className="valorox-title-a">A</span>l<span className="valorox-title-oro">oro</span>x<span className="valorox-title-ai" style={{ fontSize: '0.6em' }}>AI</span>
+            Val<span className="valorox-title-oro">oro</span>x<span className="valorox-title-ai" style={{ fontSize: '0.6em' }}>AI</span>
           </span>
         </div>
       )}
@@ -617,6 +617,19 @@ export default function LandingPage() {
                 </>
               )}
             </div>
+
+            <div className="valorox-hero-trust">
+              {[
+                { icon: Shield, text: 'Nessuna gestione fondi' },
+                { icon: Globe, text: 'Nessuna affiliazione broker' },
+                { icon: Gift, text: '5 giorni gratis' },
+              ].map(({ icon: Icon, text }) => (
+                <div key={text} className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--text-secondary)' }}>
+                  <Icon className="w-3 h-3 flex-shrink-0" style={{ color: 'var(--accent)', opacity: 0.7 }} />
+                  <span>{text}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>
@@ -668,19 +681,91 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* ─── Trust badges — below ticker ──────────────── */}
-      <div className="valorox-hero-trust">
-        {[
-          { icon: Shield, text: 'Nessuna gestione fondi' },
-          { icon: Globe, text: 'Nessuna affiliazione broker' },
-          { icon: Gift, text: '5 giorni gratis' },
-        ].map(({ icon: Icon, text }) => (
-          <div key={text} className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--text-muted)' }}>
-            <Icon className="w-3 h-3 flex-shrink-0" style={{ color: 'var(--accent)', opacity: 0.6 }} />
-            <span>{text}</span>
+      {/* ─── Quick Performance Preview (after ticker) ──── */}
+      <section className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-5 gap-6">
+            <div className="lg:col-span-3 card-premium p-6">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="font-semibold" style={{ color: 'var(--text-primary)' }}>Equity Curve</h3>
+                  <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>Gen–Apr 2026 — XAU/USD — Indicativa</p>
+                </div>
+                <span className="badge-success">+23.2% YTD</span>
+              </div>
+              <svg viewBox="0 0 560 200" className="w-full" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="perfGradPreview" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="var(--green)" stopOpacity="0.18" />
+                    <stop offset="100%" stopColor="var(--green)" stopOpacity="0" />
+                  </linearGradient>
+                  <linearGradient id="lineGradPreview" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="var(--green)" />
+                    <stop offset="100%" stopColor="var(--green)" stopOpacity="0.7" />
+                  </linearGradient>
+                </defs>
+                {[50, 100, 150].map(y => (
+                  <line key={y} x1="0" y1={y} x2="560" y2={y} stroke="var(--border)" strokeWidth="1" />
+                ))}
+                <path d="M0,180 L46,170 L93,160 L140,155 L186,145 L233,148 L280,130 L326,120 L373,115 L420,100 L466,90 L513,75 L560,65 L560,200 L0,200 Z" fill="url(#perfGradPreview)" />
+                <path d="M0,180 L46,170 L93,160 L140,155 L186,145 L233,148 L280,130 L326,120 L373,115 L420,100 L466,90 L513,75 L560,65" fill="none" stroke="url(#lineGradPreview)" strokeWidth="2.5" className="sparkline" />
+                <circle cx="560" cy="65" r="5" fill="var(--green)" opacity="0.8" />
+                <circle cx="560" cy="65" r="10" fill="var(--green)" opacity="0.12" />
+              </svg>
+              <div className="flex justify-between mt-2 px-1">
+                {['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'].map(m => (
+                  <span key={m} className="text-[9px] font-medium" style={{ color: 'var(--text-muted)' }}>{m}</span>
+                ))}
+              </div>
+            </div>
+            <div className="lg:col-span-2 grid grid-cols-2 lg:grid-cols-1 gap-4">
+              {statsLoading ? (
+                [...Array(2)].map((_, i) => (
+                  <div key={i} className="card-premium p-4 flex items-center gap-4">
+                    <div className="skeleton w-10 h-10 rounded-xl flex-shrink-0" />
+                    <div className="flex-1 space-y-1">
+                      <div className="skeleton h-6 w-20" />
+                      <div className="skeleton h-3 w-40" />
+                    </div>
+                  </div>
+                ))
+              ) : (
+                (() => {
+                  const totalTrades = masterStats?.trades_total ?? 0
+                  return [
+                    {
+                      label: 'Win Rate', icon: TrendingUp, color: 'var(--green)',
+                      value: '79.0%',
+                      sub: 'Media storica sistema',
+                    },
+                    {
+                      label: 'Operazioni Master', icon: BarChart3, color: 'var(--accent)',
+                      value: totalTrades > 0 ? String(totalTrades) : '312+',
+                      sub: 'Eseguite sul conto master',
+                    },
+                  ]
+                })().map((stat) => (
+                  <div key={stat.label} className="card-premium p-4 flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ background: `color-mix(in srgb, ${stat.color} 10%, transparent)`, border: `1px solid color-mix(in srgb, ${stat.color} 25%, transparent)` }}
+                    >
+                      <stat.icon className="w-4 h-4" style={{ color: stat.color }} />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-xl font-black font-mono number-mono" style={{ color: stat.color }}>{stat.value}</div>
+                      <div className="text-xs font-medium truncate" style={{ color: 'var(--text-secondary)' }}>{stat.label}</div>
+                      <div className="text-[10px] truncate" style={{ color: 'var(--text-muted)' }}>{stat.sub}</div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
           </div>
-        ))}
-      </div>
+          <p className="text-center text-xs italic mt-6" style={{ color: 'var(--text-muted)' }}>
+            * Performance passate non garantiscono risultati futuri. Il trading comporta rischi.
+          </p>
+        </div>
+      </section>
 
       {/* ─── Sub-Hero: Il Vero Problema ─────────────────── */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 relative">
