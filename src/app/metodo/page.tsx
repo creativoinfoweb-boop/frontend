@@ -22,7 +22,7 @@ const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: 'Come funziona Valorox AI Trading System su XAU/USD',
-  description: 'Guida completa al sistema di AI trading automatizzato di Valorox: metodo Smart Money, strategia Gold Scalping, risk management e automazione.',
+  description: 'Guida completa al sistema di AI trading di Valorox: metodo Smart Money, esecuzione multi-stile (scalping, intraday, analisi volumetrica, CRT), risk management e automazione su XAU/USD.',
   author: { '@type': 'Organization', name: 'Valorox', url: SITE_URL },
   publisher: { '@type': 'Organization', name: 'Valorox', logo: { '@type': 'ImageObject', url: `${SITE_URL}/icon-512.png` } },
   url: `${SITE_URL}/metodo`,
@@ -120,7 +120,7 @@ export default function MetodoPage() {
           </h1>
           <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             Come funziona il Sistema Valorox: il metodo Smart Money che sta alla base,
-            la strategia Gold Scalping su XAU/USD, e come l&apos;AI esegue tutto automaticamente — senza che tu debba fare nulla durante i trade.
+            l&apos;esecuzione multi-stile su XAU/USD (scalping, intraday, volumetrica, CRT), e come l&apos;AI applica tutto automaticamente — senza che tu debba fare nulla durante i trade.
           </p>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold"
             style={{ background: 'rgba(255,61,113,0.07)', border: '1px solid rgba(255,61,113,0.2)', color: '#FF6B6B' }}>
@@ -228,11 +228,12 @@ export default function MetodoPage() {
         {/* 03 La Strategia */}
         <section id="strategia" className="space-y-6 scroll-mt-20">
           <SectionLabel>03 — La Strategia</SectionLabel>
-          <h2 className="text-2xl sm:text-3xl font-black">Gold Scalping su XAU/USD</h2>
+          <h2 className="text-2xl sm:text-3xl font-black">Approccio multi-stile su XAU/USD</h2>
           <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            Il Sistema Valorox applica una strategia di scalping intraday sull&apos;oro (XAU/USD) focalizzata
-            sulla sessione di Londra — la finestra di massima liquidità istituzionale. Ogni operazione segue
-            una logica precisa e ripetibile.
+            Il Sistema Valorox seleziona dinamicamente l&apos;orizzonte temporale di trade in funzione della
+            liquidità e del contesto: scalping nelle Kill Zone di Londra, intraday su movimenti H1/H4,
+            con filtri di analisi volumetrica e modello CRT. Ogni operazione segue una logica precisa
+            e ripetibile.
           </p>
 
           <div className="space-y-3">
@@ -265,14 +266,67 @@ export default function MetodoPage() {
           </div>
         </section>
 
-        {/* 04 Come funziona l'AI */}
+        {/* 04 Stili di esecuzione adattivi */}
+        <section id="stili" className="space-y-6 scroll-mt-20">
+          <SectionLabel>04 — Stili di esecuzione adattivi</SectionLabel>
+          <h2 className="text-2xl sm:text-3xl font-black">Un solo motore, quattro stili operativi</h2>
+          <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+            Il Sistema non è vincolato a uno stile unico. In funzione della volatilità, della sessione e del
+            contesto macro, sceglie come operare — dal time-frame al posizionamento dello stop, fino alla
+            gestione delle uscite parziali.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <InfoCard title="Scalping in Kill Zone" accent="gold">
+              Time-frame M1, durata 2–15 minuti. Sweep + MSS dopo Asia range, ingresso preciso, stop strutturale
+              molto stretto. Operativo nella finestra di massima liquidità londinese.
+            </InfoCard>
+            <InfoCard title="Intraday su H1/H4" accent="blue">
+              Durata 1–6 ore. Setup SMC tradizionali (FVG, OB, sweep BSL/SSL) con orizzonte più ampio.
+              Adatto a movimenti di sessione completi quando lo scalping non offre setup di qualità.
+            </InfoCard>
+            <InfoCard title="Analisi volumetrica" accent="green">
+              Filtro su zone HVN/LVN (High/Low Volume Node) per confermare interesse istituzionale.
+              Riduce i falsi segnali nei range a bassa partecipazione.
+            </InfoCard>
+            <InfoCard title="Modello CRT" accent="blue">
+              Candle Range Theory applicata multi-timeframe (Daily/H4/H1): AMD (Accumulation, Manipulation,
+              Distribution) come griglia di lettura per setup ad alta precisione.
+            </InfoCard>
+          </div>
+
+          {/* Blocco Capitale e frazionamento */}
+          <div className="card-premium p-6 space-y-3">
+            <h3 className="font-bold text-lg" style={{ color: 'var(--text-primary)' }}>Capitale e frazionamento delle posizioni</h3>
+            <div className="space-y-3 text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p>
+                Il Sistema utilizza una gestione attiva con uscite parziali (TP1 al 50%, BE automatico, TP2 al
+                livello HTF). Per applicare il frazionamento correttamente è necessario operare con <strong style={{ color: 'var(--text-primary)' }}>lotti
+                sufficienti</strong>: su MT5 il lotto minimo è 0.01 e i broker non consentono di dividerlo ulteriormente.
+              </p>
+              <p>
+                Su capitali piccoli (sotto 1.500–2.000 €) o con rischio per operazione molto basso, il lotto
+                calcolato dal sizing automatico può risultare pari al minimo 0.01: in questo caso la posizione
+                non può essere chiusa parzialmente, e il sistema gestisce il trade in modalità{' '}
+                <strong style={{ color: 'var(--text-primary)' }}>single-exit</strong> — chiusura interamente in TP o SL.
+              </p>
+              <p>
+                Le statistiche generali del sistema restano coerenti, ma alcune ottimizzazioni di gestione
+                (riduzione drawdown via BE + TP parziale) richiedono un capitale di partenza adeguato.
+                Suggeriamo di iniziare in demo, validare il sistema su 60 giorni, e dimensionare il capitale
+                live in funzione della percentuale di rischio scelta.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 05 Come funziona l'AI */}
         <section id="automazione" className="space-y-6 scroll-mt-20">
-          <SectionLabel>04 — Automazione</SectionLabel>
+          <SectionLabel>05 — Automazione</SectionLabel>
           <h2 className="text-2xl sm:text-3xl font-black">Il Sistema Automatizzato</h2>
           <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            Il Sistema Valorox non è un bot generico. È l&apos;implementazione algoritmica precisa della strategia
-            Gold Scalping SMC — ogni regola che hai visto sopra è codificata e viene eseguita automaticamente,
-            24/5, senza che tu debba fare nulla durante i trade.
+            Il Sistema Valorox non è un bot generico. È l&apos;implementazione algoritmica precisa di un
+            approccio multi-stile basato sul metodo Smart Money — ogni regola che hai visto sopra è codificata
+            e viene eseguita automaticamente, 24/5, senza che tu debba fare nulla durante i trade.
           </p>
 
           <div className="rounded-2xl p-6 space-y-4" style={{ background: 'rgba(240,180,41,0.04)', border: '1px solid rgba(240,180,41,0.15)' }}>
@@ -342,9 +396,9 @@ export default function MetodoPage() {
           </div>
         </section>
 
-        {/* 05 Risk Management */}
+        {/* 06 Risk Management */}
         <section id="risk" className="space-y-6 scroll-mt-20">
-          <SectionLabel>05 — Risk Management</SectionLabel>
+          <SectionLabel>06 — Risk Management</SectionLabel>
           <h2 className="text-2xl sm:text-3xl font-black">Le Regole che Proteggono il Capitale</h2>
           <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             Il risk management non è opzionale. È la parte più importante del sistema — più della strategia stessa.
@@ -381,9 +435,9 @@ export default function MetodoPage() {
           </div>
         </section>
 
-        {/* 06 Demo */}
+        {/* 07 Demo */}
         <section id="demo" className="space-y-6 scroll-mt-20">
-          <SectionLabel>06 — Inizia in Demo</SectionLabel>
+          <SectionLabel>07 — Inizia in Demo</SectionLabel>
           <h2 className="text-2xl sm:text-3xl font-black">Il percorso consigliato</h2>
           <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             Non devi rischiare un solo euro per vedere il sistema in azione. Collega un conto demo MT5 del tuo broker

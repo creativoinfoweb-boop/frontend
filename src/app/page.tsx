@@ -206,8 +206,8 @@ const learningModules = [
   },
   {
     num: '06', slug: '06', free: false, level: 'Avanzato', lessons: 8,
-    title: 'Gold Scalping — Applicazione',
-    desc: 'Il setup completo passo per passo su XAU/USD nelle Kill Zone operative.',
+    title: 'Applicazione operativa — scalping, intraday e gestione adattiva',
+    desc: 'Setup completo su XAU/USD nelle Kill Zone (scalping M1) e su movimenti H1/H4 (intraday).',
     topics: ['Asia session: marcare Asia High e Asia Low come livelli chiave', 'London Kill Zone: sweep del range Asia → conferma MSS su M1', 'Gestione live: T1 50%, BE automatico, T2 al livello HTF', '10 Regole del NO: quando non entrare mai in operazione'],
   },
   {
@@ -1217,7 +1217,7 @@ export default function LandingPage() {
             <div>
               <h4 className="section-label mb-4">Supporto</h4>
               <div className="space-y-3">
-                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>support@botbosco.com</p>
+                <a href="mailto:valoroxinfo@gmail.com" className="text-sm transition-opacity hover:opacity-80" style={{ color: 'var(--text-secondary)' }}>valoroxinfo@gmail.com</a>
                 <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Lun–Ven, 9:00–18:00</p>
                 <div className="mt-4 p-3 rounded-xl" style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}>
                   <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Tempo medio di risposta</p>
