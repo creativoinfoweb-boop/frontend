@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Check, ArrowRight, Zap, TrendingUp, CreditCard } from 'lucide-react'
+import { PRICING } from '@/data/pricing'
 
 /** Contenuti allineati landing ↔ dashboard abbonamento */
 export const PRICING_FEATURES: { text: string; highlight: boolean }[] = [
@@ -144,13 +145,13 @@ export function PricingPlanCard({
               <span className="font-bold" style={{ color: 'var(--green)' }}>
                 Primo mese a €75.65
               </span>
-              , poi €89/mese · o scegli annuale per <span className="font-bold text-[#F0B429]">€907.80/anno</span>
+              , poi {PRICING.monthly.amountStr}/mese · o scegli annuale per <span className="font-bold text-[#F0B429]">{PRICING.yearly.amountStr}/anno</span>
             </p>
           </div>
         </div>
         <div className="text-left sm:text-right flex-shrink-0">
           <div className="text-xs line-through" style={{ color: 'var(--text-muted)' }}>
-            €89/mese
+            {PRICING.monthly.amountStr}/mese
           </div>
           <div className="text-xl font-black text-gradient-gold">
             €75.65<span className="text-xs font-normal" style={{ color: 'var(--text-secondary)' }}>/mese*</span>
@@ -190,7 +191,7 @@ export function PricingPlanCard({
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mt-2 mb-3">
               <div className="flex items-baseline gap-2 flex-wrap">
                 <span className={`${titleSize} font-black text-gradient-gold leading-none`}>
-                  {billingYearly ? '€907.80' : '€89'}
+                  {billingYearly ? PRICING.yearly.amountStr : PRICING.monthly.amountStr}
                 </span>
                 <span className="text-sm font-medium pb-0.5" style={{ color: 'var(--text-secondary)' }}>
                   {billingYearly ? '/anno' : '/mese'}
@@ -212,8 +213,8 @@ export function PricingPlanCard({
               </p>
             ) : (
               <p className="text-xs mb-4 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                Piano mensile: <strong style={{ color: 'var(--text-primary)' }}>€89/mese</strong>. Primo mese{' '}
-                <strong style={{ color: 'var(--green)' }}>€75.65</strong> (−15%), poi €89 in automatico.
+                Piano mensile: <strong style={{ color: 'var(--text-primary)' }}>{PRICING.monthly.amountStr}/mese</strong>. Primo mese{' '}
+                <strong style={{ color: 'var(--green)' }}>{PRICING.monthly.firstMonthStr}</strong> (−{PRICING.monthly.firstMonthDiscountPercent}%), poi {PRICING.monthly.amountStr} in automatico.
               </p>
             )}
 
@@ -378,9 +379,9 @@ export function PricingPlanCard({
       {/* Timeline */}
       <div className="grid grid-cols-3 gap-2 sm:gap-3 text-center">
         {[
-          { period: 'Giorni 1–5', price: 'GRATIS', color: 'var(--green)', bg: 'var(--green-subtle)', border: 'color-mix(in srgb, var(--green) 30%, transparent)' },
-          { period: 'Mensile', price: '€75.65*', color: 'var(--gold)', bg: 'var(--gold-subtle)', border: 'var(--border-gold)' },
-          { period: 'Dal Mese 2', price: '€89/mese', color: 'var(--text-secondary)', bg: 'var(--glass-bg)', border: 'var(--border)' },
+          { period: `Giorni 1–${PRICING.trialDays}`, price: 'GRATIS', color: 'var(--green)', bg: 'var(--green-subtle)', border: 'color-mix(in srgb, var(--green) 30%, transparent)' },
+          { period: 'Mensile', price: `${PRICING.monthly.firstMonthStr}*`, color: 'var(--gold)', bg: 'var(--gold-subtle)', border: 'var(--border-gold)' },
+          { period: 'Dal Mese 2', price: `${PRICING.monthly.amountStr}/mese`, color: 'var(--text-secondary)', bg: 'var(--glass-bg)', border: 'var(--border)' },
         ].map((item) => (
           <div key={item.period} className="rounded-xl py-2.5 sm:py-3 px-1.5" style={{ background: item.bg, border: `1px solid ${item.border}` }}>
             <div className="text-xs sm:text-sm font-black" style={{ color: item.color }}>

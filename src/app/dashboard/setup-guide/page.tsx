@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/store/auth'
+import { PRICING } from '@/data/pricing'
 import {
   CheckCircle2, ChevronRight, ChevronLeft, Zap,
   Check, Shield, Database, CreditCard, Lock, Server, User,
@@ -174,7 +175,7 @@ export default function SetupGuidePage() {
               </div>
               <div className="px-4 py-3 space-y-0">
                 <InfoRow label="Trial gratuito" value="5 giorni" />
-                <InfoRow label="Prezzo mensile" value="€89/mese (primo mese €75.65)" />
+                <InfoRow label="Prezzo mensile" value={`${PRICING.monthly.amountStr}/mese (primo mese ${PRICING.monthly.firstMonthStr})`} />
                 <InfoRow label="Strumento" value="XAU/USD (Oro)" />
                 <InfoRow label="Segnali al giorno" value="1–4 trade" />
                 <InfoRow label="Risk management" value="0.5–2.5% per trade (a scelta)" />

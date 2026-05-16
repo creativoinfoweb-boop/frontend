@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { PricingPlanCard } from '@/components/pricing/PricingPlanCard'
+import { PRICING } from '@/data/pricing'
 
 const features = [
   'Automazione 100% configurabile su XAU/USD',
@@ -316,7 +317,7 @@ function BillingContent() {
                 { label: 'Piano', value: subscription?.plan === 'gold_yearly' ? 'Annuale' : 'Mensile' },
                 {
                   label: 'Prezzo',
-                  value: subscription?.plan === 'gold_yearly' ? '€907.80/anno' : '€75.65→€89*',
+                  value: subscription?.plan === 'gold_yearly' ? `${PRICING.yearly.amountStr}/anno` : `${PRICING.monthly.firstMonthStr}→${PRICING.monthly.amountStr}*`,
                 },
                 { label: 'Rinnovo', value: subscription?.plan === 'gold_yearly' ? '1× / anno' : 'Mensile' },
               ].map((item) => (
@@ -329,7 +330,7 @@ function BillingContent() {
             </div>
             {subscription?.plan !== 'gold_yearly' && (
               <p className="text-[10px] text-[var(--text-muted)]">
-                *Piano mensile: €75.65 il primo mese (sconto 15%), poi €89/mese (automatico su Stripe).
+                *Piano mensile: {PRICING.monthly.firstMonthStr} il primo mese (sconto {PRICING.monthly.firstMonthDiscountPercent}%), poi {PRICING.monthly.amountStr}/mese (automatico su Stripe).
               </p>
             )}
 
@@ -447,7 +448,7 @@ function BillingContent() {
 
       <div className="rounded-xl p-4 text-xs text-[var(--text-muted)] leading-relaxed"
         style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}>
-        Prezzi in EUR IVA inclusa. Trial 5 giorni gratuiti. Offerta lancio: €75.65 il primo mese (sconto 15%), poi €89/mese con rinnovo automatico (piano mensile). Piano annuale €907.80/anno. Cancellazione senza penali.
+        Prezzi in {PRICING.currency} IVA inclusa. Trial {PRICING.trialDays} giorni gratuiti. Offerta lancio: {PRICING.monthly.firstMonthStr} il primo mese (sconto {PRICING.monthly.firstMonthDiscountPercent}%), poi {PRICING.monthly.amountStr}/mese con rinnovo automatico (piano mensile). Piano annuale {PRICING.yearly.amountStr}/anno. Cancellazione senza penali.
         {' '}
         <Link href="/legal/terms" target="_blank" rel="noopener noreferrer" className="text-[var(--gold)] hover:opacity-90 transition-opacity underline-offset-2">Termini di Servizio</Link>
       </div>

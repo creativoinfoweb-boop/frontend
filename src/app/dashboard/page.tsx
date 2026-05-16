@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/store/auth'
 import { subscriptionsApi, statsApi, signalsApi } from '@/lib/api'
+import { PRICING } from '@/data/pricing'
 import { SubscriptionStatus, PublicPerformance, UserStats, SignalHistoryItem } from '@/types'
 import {
   AlertCircle,
@@ -411,7 +412,7 @@ export default function DashboardPage() {
               <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 32, height: 32 }} />
               <div>
                 <div className="brand-cinzel text-[9.5px] tracking-[0.16em]">VALOROX</div>
-                <div className="text-[10px] mt-0.5" style={{ color: 'var(--text-secondary)' }}>€89 / mese</div>
+                <div className="text-[10px] mt-0.5" style={{ color: 'var(--text-secondary)' }}>{PRICING.monthly.amountStr} {PRICING.monthly.label}</div>
               </div>
             </div>
             <div>
