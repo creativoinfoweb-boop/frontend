@@ -556,7 +556,7 @@ export default function LandingPage() {
             <div className="valorox-statue-wrap">
               <div className="valorox-statue-inner">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/eldorado.svg" alt="Valorox" className="valorox-statue-img" />
+                <img src="/eldorado.svg" alt="Valorox" className="valorox-statue-img" fetchPriority="high" loading="eager" decoding="async" />
                 <div className="valorox-shimmer" />
                 {[
                   { bottom: '30%', left: '10%', delay: '0s', dx: '15px' },
@@ -1167,7 +1167,7 @@ export default function LandingPage() {
         <div className="relative max-w-3xl mx-auto text-center">
           <div className="mx-auto mb-6 flex justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 68, height: 68 }} />
+            <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 68, height: 68 }} loading="lazy" decoding="async" />
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-black mb-5">
@@ -1224,7 +1224,7 @@ export default function LandingPage() {
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
+                <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} loading="lazy" decoding="async" />
                 <div>
                   <span className="font-bold text-gradient-gold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em' }}>Valorox</span>
                   <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
