@@ -29,7 +29,7 @@ export const COURSE: CourseModule[] = [
   { id: '03', slug: '03', order: 3, title: 'Liquidità e Blocchi di Prezzo', description: 'MAPS, Order Block, FVG, Breaker, Mitigation, pool di liquidità.', level: 'Intermedio', isPremium: false, lessons: mod03lessons },
   { id: '04', slug: '04', order: 4, title: 'Punti di Entrata ad Alto R/R', description: 'Top-Down, POI, MSS M1, entry aggressiva/conservativa, Premium/Discount.', level: 'Intermedio', isPremium: false, lessons: mod04lessons },
   { id: '05', slug: '05', order: 5, title: 'Risk Management', description: 'Regola 1-2%, Kill Switch 3%, lotting, BE, TP frazionati, filtri notizie.', level: 'Intermedio', isPremium: true, lessons: mod05lessons },
-  { id: '06', slug: '06', order: 6, title: 'Gold Scalping — Applicazione', description: 'Setup completo: Asia range, London KZ, sweep+MSS, gestione live, 10 Regole del NO.', level: 'Avanzato', isPremium: true, lessons: mod06lessons },
+  { id: '06', slug: '06', order: 6, title: 'Applicazione operativa — scalping, intraday e gestione adattiva', description: 'Setup completo: Asia range, London Kill Zone, sweep+MSS su M1 (scalping) e H1 (intraday), gestione live frazionata, 10 Regole del NO.', level: 'Avanzato', isPremium: true, lessons: mod06lessons },
   { id: '07', slug: '07', order: 7, title: 'Il Sistema Valorox', description: 'Dalla teoria alla pratica: conto demo, dashboard, statistiche, criteri per il live.', level: 'Pratica', isPremium: true, lessons: mod07lessons },
   { id: '08', slug: '08', order: 8, title: 'CRT — Candle Range Theory', description: 'Il modello CRT: AMD, sweep di liquidità su singola candela, setup bullish/bearish e multi-timeframe.', level: 'Avanzato', isPremium: true, lessons: mod08lessons },
 ]
