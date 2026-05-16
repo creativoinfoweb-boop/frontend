@@ -1359,7 +1359,7 @@ input:-webkit-autofill:focus {
   font-family: var(--font-valorox-brand), 'Audiowide', sans-serif !important;
   font-weight: 400;
   font-size: clamp(1.9rem, 5vw, 4rem);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #ffffff;
   line-height: 1;
@@ -1371,13 +1371,24 @@ input:-webkit-autofill:focus {
 
 .light .valorox-title {
   color: #ffffff;
-  -webkit-text-stroke: 0.6px #0a0a0a;
-  text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+  -webkit-text-stroke: 0.25px #0a0a0a;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.2);
 }
 
+/* X in Exo 2 — reset stroke to prevent rectangle artifact at center intersection */
 .valorox-title-x {
   font-family: var(--font-exo2), 'Exo 2', sans-serif;
   font-weight: 500;
+  -webkit-text-stroke: 0 !important;
+}
+.light .valorox-title-x {
+  color: #0a0a0a;
+  -webkit-text-stroke: 0 !important;
+}
+
+/* ORO gradient — no stroke needed, gradient provides contrast */
+.light .valorox-title-oro {
+  -webkit-text-stroke: 0;
 }
 
 .valorox-title-ai {
@@ -1391,9 +1402,11 @@ input:-webkit-autofill:focus {
   transform: translateY(-0.18em);
   display: inline-block;
 }
+/* AI in light mode: plain black, no stroke */
 .light .valorox-title-ai {
-  color: #ffffff;
-  -webkit-text-stroke: 0.4px #0a0a0a;
+  color: #0a0a0a;
+  -webkit-text-stroke: 0;
+  opacity: 0.88;
 }
 
 /* ── Hero brand block: logo + title inline, upper-center ── */
@@ -1403,7 +1416,7 @@ input:-webkit-autofill:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.8rem, 2vw, 1.6rem);
+  gap: clamp(0.15rem, 0.5vw, 0.45rem);
   width: 100%;
   margin: 0 auto;
   padding-top: clamp(2rem, 6vh, 5rem);
@@ -1411,7 +1424,7 @@ input:-webkit-autofill:focus {
 }
 
 .valorox-brand-logo {
-  width: clamp(96px, 11vw, 140px);
+  width: clamp(110px, 13vw, 160px);
   height: auto;
   display: block;
   filter: saturate(1.2) contrast(1.08) brightness(1.1) drop-shadow(0 4px 24px rgba(240,180,41,0.35));
@@ -1421,7 +1434,7 @@ input:-webkit-autofill:focus {
 /* ── Hero claim ── */
 .valorox-claim {
   font-family: var(--font-exo2), 'Exo 2', sans-serif;
-  font-size: clamp(1.05rem, 2vw, 1.4rem);
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
   font-weight: 300;
   letter-spacing: 0.04em;
   color: var(--gold);
@@ -1498,20 +1511,21 @@ input:-webkit-autofill:focus {
 
 .light .valorox-subtitle { color: rgba(160,100,15,0.65); }
 
-/* Live badge */
+/* Live badge — elegant, fine */
 .valorox-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 1rem;
-  border: 1px solid var(--border-gold);
+  gap: 0.4rem;
+  padding: 0.22rem 0.75rem;
+  border: 1px solid rgba(240,180,41,0.18);
   border-radius: 99px;
-  background: var(--gold-subtle);
+  background: rgba(240,180,41,0.04);
   backdrop-filter: var(--glass-blur-sm);
-  font-size: 0.68rem;
-  letter-spacing: 0.15em;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: rgba(240,180,41,0.72);
   margin-bottom: 1.5rem;
   animation: fadeIn 1s ease-out 0.3s both;
 }
@@ -1551,11 +1565,14 @@ input:-webkit-autofill:focus {
 }
 
 .valorox-hero-content .valorox-hero-desc {
-  font-size: clamp(0.88rem, 1.4vw, 1rem);
+  font-size: clamp(0.78rem, 1.1vw, 0.9rem);
   line-height: 1.65;
-  color: var(--text-secondary);
+  color: rgba(255,255,255,0.62);
   max-width: 640px;
   margin: 0 auto 0.5rem;
+}
+.light .valorox-hero-content .valorox-hero-desc {
+  color: var(--text-secondary);
 }
 
 .valorox-hero-ctas {
