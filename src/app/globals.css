@@ -53,6 +53,13 @@
   --red:            #F03D5F;
   --red-subtle:     rgba(240,61,95,0.10);
 
+  /* Neutral accent — used for icons, buttons, UI elements (non-gold) */
+  --accent:              #A0A0BE;
+  --accent-hover:        #BDBDD8;
+  --accent-subtle:       rgba(160,160,190,0.07);
+  --border-accent:       rgba(160,160,190,0.14);
+  --border-accent-hover: rgba(160,160,190,0.28);
+
   /* Glass System */
   --glass-bg:          rgba(12, 12, 22, 0.75);
   --glass-bg-hover:    rgba(14, 14, 26, 0.85);
@@ -90,7 +97,7 @@
    CSS variables are actually injected. Resolves correctly because
    --font-valorox-brand / --font-brave / --font-exo2 are present here. */
 body {
-  --font-brand: var(--font-valorox-brand), var(--font-brave), var(--font-exo2), 'Exo 2', sans-serif;
+  --font-brand: var(--font-valorox-brand), 'Rajdhani', 'Saira Semi Condensed', var(--font-exo2), 'Exo 2', sans-serif;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -125,6 +132,13 @@ body {
   --green-subtle:   rgba(0,120,64,0.10);
   --red:            #B02040;
   --red-subtle:     rgba(176,32,64,0.10);
+
+  /* Neutral accent — light mode */
+  --accent:              #5A5A78;
+  --accent-hover:        #3A3A58;
+  --accent-subtle:       rgba(90,90,120,0.06);
+  --border-accent:       rgba(90,90,120,0.14);
+  --border-accent-hover: rgba(90,90,120,0.28);
 
   /* Glass System — Light: warm frosted glass */
   --glass-bg:          rgba(255, 255, 252, 0.80);
@@ -278,6 +292,43 @@ input:-webkit-autofill:focus {
   8%   { opacity: 0.5; }
   92%  { opacity: 0.18; }
   100% { transform: translateY(900%); opacity: 0; }
+}
+
+/* ── Splash screen ── */
+.valorox-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: #040408;
+  transition: opacity 0.6s ease-out;
+}
+.light .valorox-splash { background: #F4F0E8; }
+.valorox-splash-out { opacity: 0; pointer-events: none; }
+.valorox-splash-logo {
+  width: 90px;
+  height: auto;
+  filter: drop-shadow(0 4px 24px rgba(240,180,41,0.35));
+  animation: splashPulse 2.4s ease-in-out infinite;
+}
+.valorox-splash-title {
+  font-family: var(--font-exo2), 'Exo 2', sans-serif;
+  font-weight: 200;
+  font-size: 1.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: baseline;
+}
+.light .valorox-splash-title { color: #0a0a0a; }
+@keyframes splashPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50%      { transform: scale(1.06); opacity: 1; }
 }
 
 /* ── Valorox Hero ── */
@@ -630,6 +681,41 @@ input:-webkit-autofill:focus {
   box-shadow: 0 0 22px rgba(160,110,20,0.3), 0 4px 16px rgba(80,50,5,0.2);
 }
 
+/* ── Primary button — neutral premium (non-gold) ── */
+.btn-primary {
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  background: rgba(255,255,255,0.92);
+  color: #0a0a12;
+  font-weight: 600;
+  font-size: 0.875rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.08);
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover {
+  background: #ffffff;
+  box-shadow: 0 4px 28px rgba(255,255,255,0.18), 0 0 0 1px rgba(255,255,255,0.15);
+  transform: translateY(-2px) scale(1.01);
+}
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: 0.38; cursor: not-allowed; transform: none; }
+
+.light .btn-primary {
+  background: #0d0d18;
+  color: #ffffff;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+}
+.light .btn-primary:hover {
+  background: #1a1a2e;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.18);
+}
+
 .btn-outline {
   display: inline-flex;
   align-items: center;
@@ -655,7 +741,6 @@ input:-webkit-autofill:focus {
 }
 
 .btn-ghost {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -702,31 +787,38 @@ input:-webkit-autofill:focus {
 .btn-valorox:hover::after { left: 160%; }
 
 .btn-valorox-primary {
-  background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark));
-  background-size: 200% 100%;
-  color: #050300;
-  box-shadow: 0 0 35px rgba(240,180,41,0.35), 0 6px 24px rgba(0,0,0,0.5);
+  background: rgba(255,255,255,0.92);
+  color: #0a0a12;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.08);
 }
 .btn-valorox-primary:hover {
-  box-shadow: 0 0 60px rgba(240,180,41,0.6), 0 8px 32px rgba(0,0,0,0.55);
+  background: #ffffff;
+  box-shadow: 0 4px 32px rgba(255,255,255,0.2), 0 0 0 1px rgba(255,255,255,0.15);
   transform: translateY(-3px) scale(1.02);
-  background-position: 100% 0;
+}
+
+.light .btn-valorox-primary {
+  background: #0d0d18;
+  color: #ffffff;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+}
+.light .btn-valorox-primary:hover {
+  background: #1a1a2e;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.18);
 }
 
 .btn-valorox-secondary {
   background: var(--glass-bg);
-  color: var(--gold);
-  border: 1px solid var(--border-gold);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-accent);
   backdrop-filter: var(--glass-blur-sm);
 }
 .btn-valorox-secondary:hover {
-  background: var(--gold-subtle);
-  border-color: var(--border-gold-hover);
+  background: var(--accent-subtle);
+  border-color: var(--border-accent-hover);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-gold);
+  box-shadow: 0 0 20px rgba(160,160,190,0.12);
 }
-
-.light .btn-valorox-primary { color: var(--text-primary); }
 
 /* ═══════════════════════════════════════════════════════════
    INPUTS
@@ -1143,8 +1235,8 @@ input:-webkit-autofill:focus {
   width: 46px; height: 46px;
   border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
-  background: var(--gold-subtle);
-  border: 1px solid var(--border-gold);
+  background: var(--accent-subtle);
+  border: 1px solid var(--border-accent);
   transition: all var(--transition);
   backdrop-filter: var(--glass-blur-sm);
   flex-shrink: 0;
@@ -1152,9 +1244,9 @@ input:-webkit-autofill:focus {
 
 .card-premium:hover .feature-icon-wrap,
 .feature-icon-wrap:hover {
-  background: color-mix(in srgb, var(--gold-subtle) 200%, transparent);
-  box-shadow: 0 0 20px rgba(240,180,41,0.15);
-  border-color: var(--border-gold-hover);
+  background: color-mix(in srgb, var(--accent-subtle) 200%, transparent);
+  box-shadow: 0 0 20px rgba(160,160,190,0.12);
+  border-color: var(--border-accent-hover);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1162,7 +1254,6 @@ input:-webkit-autofill:focus {
 ═══════════════════════════════════════════════════════════ */
 
 .theme-toggle {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 34px; height: 34px;
@@ -1356,11 +1447,140 @@ input:-webkit-autofill:focus {
 }
 
 .valorox-title {
-  font-family: var(--font-brand) !important;
-  font-weight: 400;
-  font-size: clamp(2.2rem, 5vw, 4.5rem);
-  letter-spacing: 0.18em;
+  font-family: var(--font-exo2), 'Exo 2', sans-serif !important;
+  font-weight: 200;
+  font-size: clamp(1.5rem, 5vw, 4rem);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1;
+  margin: 0;
+  display: inline-flex;
+  align-items: baseline;
+  animation: titleReveal 1.8s cubic-bezier(0.16,1,0.3,1) 0.8s both;
+}
+
+.light .valorox-title {
+  color: #0a0a0a;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+}
+
+/* X — same font/weight as title, inherits color (white like "Al") */
+.valorox-title-x {
+  font-family: var(--font-exo2), 'Exo 2', sans-serif;
+  font-weight: 200;
+}
+
+/* ORO gradient — stroke not needed, gradient provides contrast */
+.light .valorox-title-oro {
+  -webkit-text-stroke: 0;
+}
+
+.valorox-title-ai {
+  font-family: var(--font-exo2), 'Exo 2', sans-serif;
+  font-size: 0.5em;
+  font-weight: 200;
+  letter-spacing: 0.18em;
+  margin-left: 0.55em;
+  color: #ffffff;
+  opacity: 0.85;
+  transform: translateY(-0.18em);
+  display: inline-block;
+}
+/* AI in light mode: plain black, no stroke */
+.light .valorox-title-ai {
+  color: #0a0a0a;
+  -webkit-text-stroke: 0;
+  opacity: 0.88;
+}
+
+/* ── Hero brand block: logo + title inline, upper-center ── */
+.valorox-brand-block {
+  position: relative;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.15rem, 0.5vw, 0.45rem);
+  width: 100%;
+  margin: 0 auto;
+  padding-top: clamp(1.5rem, 5vh, 5rem);
+  padding-bottom: clamp(0.75rem, 2vh, 1.8rem);
+}
+
+.valorox-brand-logo {
+  width: clamp(72px, 12vw, 155px);
+  height: auto;
+  display: block;
+  filter: saturate(1.2) contrast(1.08) brightness(1.1) drop-shadow(0 4px 24px rgba(240,180,41,0.35));
+  animation: valoroxFloat 7s ease-in-out infinite;
+}
+
+.valorox-brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.valorox-brand-sub {
+  font-size: clamp(0.42rem, 0.8vw, 0.6rem);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240,180,41,0.45);
+  margin-top: -0.1em;
+  padding-left: 0.05em;
+}
+.light .valorox-brand-sub { color: rgba(160,100,15,0.5); }
+
+/* ── Hero claim ── */
+.valorox-claim {
+  font-family: var(--font-exo2), 'Exo 2', sans-serif;
+  font-size: clamp(0.78rem, 1.4vw, 1.05rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  margin: 0 0 0.5rem;
+  text-align: center;
+  animation: subtitleFadeIn 1.2s ease-out 1.4s both;
+}
+.light .valorox-claim { color: var(--gold-dark); }
+
+/* ── Section-wide shimmer beam (not clipped to a box) ── */
+.valorox-hero-shimmer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+.valorox-hero-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -40%;
+  width: 35%;
+  height: 120%;
+  background: linear-gradient(108deg,
+    transparent 0%,
+    rgba(255,220,100,0.06) 35%,
+    rgba(255,255,210,0.12) 50%,
+    rgba(255,220,100,0.06) 65%,
+    transparent 100%);
+  filter: blur(8px);
+  animation: valoroxShimmerSweep 7s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+/* ── Slim CTA variant ── */
+.btn-valorox-slim {
+  padding: 0.65rem 1.4rem !important;
+  font-size: 0.9rem !important;
+  gap: 0.5rem !important;
+}
+
+.valorox-title-oro {
   color: transparent;
   background: linear-gradient(
     135deg,
@@ -1378,7 +1598,6 @@ input:-webkit-autofill:focus {
   -webkit-background-clip: text;
   background-clip: text;
   animation:
-    titleReveal 1.8s cubic-bezier(0.16,1,0.3,1) 0.8s both,
     titleGlow 4s ease-in-out 2.8s infinite,
     holoSlide 6s linear 2.8s infinite;
 }
@@ -1395,145 +1614,149 @@ input:-webkit-autofill:focus {
 
 .light .valorox-subtitle { color: rgba(160,100,15,0.65); }
 
-/* Live badge */
+/* Live badge — fine, elegante */
 .valorox-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 1rem;
-  border: 1px solid var(--border-gold);
+  gap: 0.38rem;
+  padding: 0.18rem 0.7rem;
+  border: 0.5px solid rgba(240,180,41,0.22);
   border-radius: 99px;
-  background: var(--gold-subtle);
-  backdrop-filter: var(--glass-blur-sm);
-  font-size: 0.68rem;
-  letter-spacing: 0.15em;
+  background: rgba(240,180,41,0.03);
+  font-size: 0.55rem;
+  font-weight: 400;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: rgba(240,180,41,0.65);
   margin-bottom: 1.5rem;
   animation: fadeIn 1s ease-out 0.3s both;
 }
 
 /* ═══════════════════════════════════════════════════════════
-   HERO HORIZONTAL LAYOUT — DESKTOP ONLY (≥1024px)
-   Mobile (<1024px) stays vertical and inalterato:
-   the container is a column with statue first (top) and
-   content second (bottom), matching the previous behavior.
+   HERO LAYOUT — vertical stack, brand block upper-center,
+   content section below. Wider, more horizontal flow.
 ═══════════════════════════════════════════════════════════ */
 
 .valorox-hero-container {
   position: relative;
   z-index: 5;
   width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(1rem, 4vh, 4rem) 1.25rem clamp(1.5rem, 4vh, 3.5rem);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.valorox-hero-visual,
 .valorox-hero-content {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
 }
 
-/* ── Desktop horizontal layout ───────────────────── */
+.valorox-hero-content .valorox-badge {
+  margin-bottom: 0.25rem;
+}
+
+.valorox-hero-content .valorox-claim {
+  margin: 0.5rem 0 0.25rem;
+}
+
+.valorox-hero-content .valorox-hero-desc {
+  font-size: clamp(0.72rem, 1.1vw, 0.9rem);
+  line-height: 1.65;
+  color: rgba(255,255,255,0.62);
+  max-width: 600px;
+  margin: 0 auto 0.5rem;
+}
+.light .valorox-hero-content .valorox-hero-desc {
+  color: var(--text-secondary);
+}
+
+.valorox-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+.valorox-hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.8rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
 @media (min-width: 1024px) {
   .valorox-hero-container {
-    flex-direction: row; /* statue left, content right */
-    align-items: center;
-    justify-content: space-between;
-    gap: 3rem;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem 2rem 4rem;
-  }
-
-  .valorox-hero-visual {
-    flex: 0 0 38%;
-    width: 38%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .valorox-hero-visual .valorox-statue-wrap {
-    position: relative;
-    width: 100%;
-    max-width: 420px;
-    margin: 0;
-    padding-top: 0;
-    top: auto;
-    left: auto;
-  }
-
-  .valorox-hero-visual .valorox-statue-img {
-    max-height: 60vh;
-  }
-
-  .valorox-hero-content {
-    flex: 0 0 58%;
-    width: 58%;
-    align-items: flex-start;
-    text-align: left;
-    margin-top: 0 !important;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-  }
-
-  /* Title left-aligned on desktop */
-  .valorox-hero-content .valorox-title-wrap {
-    align-items: flex-start;
-  }
-
-  .valorox-hero-content .valorox-title {
-    text-align: left;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    line-height: 1;
-  }
-
-  /* Decorative lines: hide left side, keep right of diamond */
-  .valorox-hero-content .valorox-title-deco {
-    justify-content: flex-start;
-    max-width: 220px;
-  }
-  .valorox-hero-content .valorox-title-deco::before {
-    display: none;
-  }
-
-  .valorox-hero-content .valorox-subtitle,
-  .valorox-hero-content .valorox-hero-desc {
-    text-align: left;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .valorox-hero-content .valorox-badge {
-    margin-bottom: 1rem;
-  }
-
-  .valorox-hero-content .valorox-gold-price {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .valorox-hero-content .valorox-hero-ctas {
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  .valorox-hero-content .valorox-hero-trust {
-    justify-content: flex-start;
+    max-width: 1100px;
+    padding-top: clamp(2.5rem, 7vh, 5rem);
   }
 }
 
-/* Wider screens: enlarge title further */
 @media (min-width: 1440px) {
   .valorox-hero-container {
-    max-width: 1440px;
-    gap: 4rem;
+    max-width: 1200px;
   }
-  .valorox-hero-content .valorox-title {
-    font-size: clamp(4rem, 6vw, 6.5rem);
+}
+
+/* ── Mobile hero: minimal, logo/title prominent, all above fold ── */
+@media (max-width: 639px) {
+  .valorox-brand-block {
+    padding-top: clamp(0.8rem, 3vh, 2rem);
+    padding-bottom: 0.2rem;
+    gap: 0.3rem;
+  }
+  .valorox-brand-logo {
+    width: 80px;
+  }
+  .valorox-title {
+    font-size: 2rem;
+  }
+  .valorox-brand-sub {
+    font-size: 0.42rem;
+    letter-spacing: 0.18em;
+  }
+  .valorox-hero-container {
+    padding: 0.2rem 1rem 0.8rem;
+  }
+  .valorox-hero-content {
+    gap: 0.3rem;
+  }
+  .valorox-hero-content .valorox-claim {
+    font-size: 0.75rem;
+    margin: 0.1rem 0 0;
+  }
+  .valorox-hero-content .valorox-hero-desc {
+    font-size: 0.65rem;
+    line-height: 1.45;
+    margin-bottom: 0;
+    color: rgba(255,255,255,0.5);
+  }
+  .valorox-hero-ctas {
+    margin-top: 0.2rem;
+    gap: 0.5rem;
+  }
+  .btn-valorox-slim {
+    padding: 0.45rem 1rem !important;
+    font-size: 0.78rem !important;
+  }
+  .valorox-hero-trust {
+    gap: 0.3rem 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+  .valorox-hero-trust > div {
+    font-size: 0.58rem;
   }
 }
 

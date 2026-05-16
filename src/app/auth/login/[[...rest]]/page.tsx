@@ -56,7 +56,7 @@ export default function LoginPage() {
         <div className="text-center mb-8">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/eldorado.svg"
+            src="/valoroxoro.svg"
             alt="Valorox"
             className="gold-avatar-ring mx-auto mb-4"
             style={{ width: 64, height: 64, display: 'block' }}

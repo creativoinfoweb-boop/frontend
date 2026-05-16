@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
@@ -246,7 +246,7 @@ export function TopBar() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/eldorado.svg"
+                src="/valoroxoro.svg"
                 alt="avatar"
                 className="gold-avatar-ring"
                 style={{ width: 28, height: 28, flexShrink: 0 }}

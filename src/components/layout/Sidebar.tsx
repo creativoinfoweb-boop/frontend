@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect, useCallback } from 'react'
 import clsx from 'clsx'
@@ -165,7 +165,7 @@ export function Sidebar() {
               <div className="relative flex-shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/eldorado.svg"
+                  src="/valoroxoro.svg"
                   alt="Valorox"
                   className="gold-avatar-ring"
                   style={{ width: 36, height: 36 }}
