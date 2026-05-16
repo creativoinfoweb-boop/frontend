@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/store/auth'
 import { PRICING } from '@/data/pricing'
+import { useQuery } from '@tanstack/react-query'
+import { subscriptionsApi } from '@/lib/api'
 import {
   CheckCircle2, ChevronRight, ChevronLeft, Zap,
   Check, Shield, Database, CreditCard, Lock, Server, User,
@@ -52,6 +54,15 @@ export default function SetupGuidePage() {
   }, [isAuthenticated, router])
 
   const currentStep = steps[step - 1]
+
+  // Trial dinamico: legge total dal backend (5gg standard, 7gg con referral) — fallback su pricing.
+  const { data: subscription } = useQuery({
+    queryKey: ['subscription-status'],
+    queryFn: async () => (await subscriptionsApi.getStatus()).data,
+    enabled: isAuthenticated,
+  })
+  const trialDaysTotal = (subscription as any)?.trial_days_total ?? PRICING.trialDays
+  const trialDaysLabel = `${trialDaysTotal} giorni`
 
   return (
     <div className="p-5 sm:p-6 max-w-3xl space-y-6">
@@ -164,7 +175,7 @@ export default function SetupGuidePage() {
           <div className="space-y-5 animate-fade-in">
             <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
               Per usare la piattaforma serve un accesso attivo (trial o pagamento). Nella pagina abbonamento puoi:{' '}
-              <strong className="text-[var(--text-primary)]">avviare 5 giorni gratis</strong>, oppure{' '}
+              <strong className="text-[var(--text-primary)]">avviare {trialDaysLabel}</strong>, oppure{' '}
               <strong className="text-[var(--text-primary)]">pagare subito</strong> con Stripe (piano mensile promo o annuale).
             </p>
 
@@ -174,7 +185,7 @@ export default function SetupGuidePage() {
                 Piano Valorox
               </div>
               <div className="px-4 py-3 space-y-0">
-                <InfoRow label="Trial gratuito" value="5 giorni" />
+                <InfoRow label="Trial gratuito" value={trialDaysLabel} />
                 <InfoRow label="Prezzo mensile" value={`${PRICING.monthly.amountStr}/mese (primo mese ${PRICING.monthly.firstMonthStr})`} />
                 <InfoRow label="Strumento" value="XAU/USD (Oro)" />
                 <InfoRow label="Segnali al giorno" value="1–4 trade" />
