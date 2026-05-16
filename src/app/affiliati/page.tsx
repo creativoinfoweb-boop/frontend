@@ -583,7 +583,7 @@ export default function AffiliatiPage() {
           <div className="flex items-center gap-6 text-sm">
             <Link href="/" style={{ color: 'var(--text-muted)' }}>Home</Link>
             <Link href="/legal/terms" style={{ color: 'var(--text-muted)' }}>Termini</Link>
-            <span style={{ color: 'var(--text-muted)' }}>support@botbosco.com</span>
+            <a href="mailto:valoroxinfo@gmail.com" style={{ color: 'var(--text-muted)' }} className="transition-opacity hover:opacity-80">valoroxinfo@gmail.com</a>
           </div>
           <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
             © 2026 Valorox. Tutti i diritti riservati.

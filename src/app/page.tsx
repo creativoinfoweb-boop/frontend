@@ -28,6 +28,7 @@ import {
   ChevronRight,
 } from 'lucide-react'
 import { PricingPlanCard } from '@/components/pricing/PricingPlanCard'
+import { PRICING } from '@/data/pricing'
 import ThemeOnboardingModal from '@/components/ThemeOnboardingModal'
 
 /* ─── Animated counter ─────────────────────────────────── */
@@ -556,7 +557,7 @@ export default function LandingPage() {
             <div className="valorox-statue-wrap">
               <div className="valorox-statue-inner">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/eldorado.svg" alt="Valorox" className="valorox-statue-img" />
+                <img src="/eldorado.svg" alt="Valorox" className="valorox-statue-img" fetchPriority="high" loading="eager" decoding="async" />
                 <div className="valorox-shimmer" />
                 {[
                   { bottom: '30%', left: '10%', delay: '0s', dx: '15px' },
@@ -1167,7 +1168,7 @@ export default function LandingPage() {
         <div className="relative max-w-3xl mx-auto text-center">
           <div className="mx-auto mb-6 flex justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 68, height: 68 }} />
+            <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 68, height: 68 }} loading="lazy" decoding="async" />
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-black mb-5">
@@ -1179,7 +1180,7 @@ export default function LandingPage() {
           <p className="text-lg mb-10 max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
             Un sistema sviluppato per uso operativo interno, validato su centinaia di operazioni reali
             e reso accessibile a chi condivide un approccio disciplinato ai mercati.
-            5 giorni di prova inclusi con la registrazione.
+            {PRICING.trialDays} giorni di prova inclusi — fino a {PRICING.trialDaysWithReferral} con codice referral.
           </p>
 
           <p className="text-sm mb-4 font-medium" style={{ color: 'var(--text-secondary)' }}>
@@ -1187,7 +1188,7 @@ export default function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/auth/register" className="btn-gold text-base px-10 py-4 rounded-xl">
-              Inizia Gratis — 5 Giorni
+              Inizia Gratis — {PRICING.trialDays} Giorni
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link href="/dashboard/learn"
@@ -1224,7 +1225,7 @@ export default function LandingPage() {
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
+                <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} loading="lazy" decoding="async" />
                 <div>
                   <span className="font-bold text-gradient-gold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em' }}>Valorox</span>
                   <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
@@ -1268,7 +1269,7 @@ export default function LandingPage() {
             <div>
               <h4 className="section-label mb-4">Supporto</h4>
               <div className="space-y-3">
-                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>support@botbosco.com</p>
+                <a href="mailto:valoroxinfo@gmail.com" className="text-sm transition-opacity hover:opacity-80" style={{ color: 'var(--text-secondary)' }}>valoroxinfo@gmail.com</a>
                 <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Lun–Ven, 9:00–18:00</p>
                 <div className="mt-4 p-3 rounded-xl" style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}>
                   <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Tempo medio di risposta</p>
