@@ -224,12 +224,8 @@ const learningModules = [
   },
 ]
 
-/* ─── Stats — Indicativi, aggiornati periodicamente dal Master account ───── */
-const stats = [
-  { value: 312, suffix: '', label: 'Operazioni Completate', isGold: true },
-  { value: 79, suffix: '%', label: 'Win Rate', isGold: false },
-  { value: 12, suffix: ' min', label: 'Durata Media', isGold: true },
-]
+/* ─── Stats — Durata media indicativa (minuti), gli altri vengono dall'API ── */
+const STATS_AVG_DURATION_MIN = 25
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 const BASE_URL = typeof window !== 'undefined' && window.location.protocol === 'https:'
@@ -249,6 +245,7 @@ export default function LandingPage() {
   })
   const [masterStats, setMasterStats] = useState<any>(null)
   const [statsLoading, setStatsLoading] = useState(true)
+  const [landingPerf, setLandingPerf] = useState<any>(null)
   const [referralCode, setReferralCode] = useState<string | null>(null)
   const [showSplash, setShowSplash] = useState(true)
   const [splashFading, setSplashFading] = useState(false)
@@ -296,10 +293,17 @@ export default function LandingPage() {
     const fetchMasterStats = async () => {
       try {
         setStatsLoading(true)
-        const res = await fetch(`${BASE_URL}/stats/master`)
-        if (res.ok) {
-          const data = await res.json()
+        const [statsRes, perfRes] = await Promise.all([
+          fetch(`${BASE_URL}/stats/master`),
+          fetch(`${BASE_URL}/stats/landing-performance`),
+        ])
+        if (statsRes.ok) {
+          const data = await statsRes.json()
           setMasterStats(data)
+        }
+        if (perfRes.ok) {
+          const data = await perfRes.json()
+          setLandingPerf(data)
         }
       } catch (_) {
         setMasterStats(null)
@@ -308,7 +312,7 @@ export default function LandingPage() {
       }
     }
     fetchMasterStats()
-    const interval = setInterval(fetchMasterStats, 5 * 60_000) // 5 min
+    const interval = setInterval(fetchMasterStats, 5 * 60_000)
     return () => clearInterval(interval)
   }, [])
 
@@ -689,71 +693,122 @@ export default function LandingPage() {
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h3 className="font-semibold" style={{ color: 'var(--text-primary)' }}>Equity Curve</h3>
-                  <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>Gen–Apr 2026 — XAU/USD — Indicativa</p>
+                  <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
+                    {landingPerf?.months?.length
+                      ? `${landingPerf.months[0].month.replace(/^\d{4}-0?/, '').replace(/^(\d)/, ((_: string, d: string) => ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'][parseInt(d)-1]) as any)}–${(() => { const last = landingPerf.months[landingPerf.months.length - 1].month; const m = parseInt(last.split('-')[1]); return ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'][m-1]; })()} ${landingPerf.months[0].month.split('-')[0]} — XAU/USD`
+                      : 'XAU/USD — Indicativa'}
+                  </p>
                 </div>
-                <span className="badge-success">+23.2% YTD</span>
+                <span className="badge-success">
+                  {landingPerf?.cumulative_equity?.length
+                    ? `+${landingPerf.cumulative_equity[landingPerf.cumulative_equity.length - 1]}%`
+                    : '+0%'}
+                </span>
               </div>
-              <svg viewBox="0 0 560 200" className="w-full" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="perfGradPreview" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="var(--green)" stopOpacity="0.18" />
-                    <stop offset="100%" stopColor="var(--green)" stopOpacity="0" />
-                  </linearGradient>
-                  <linearGradient id="lineGradPreview" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="var(--green)" />
-                    <stop offset="100%" stopColor="var(--green)" stopOpacity="0.7" />
-                  </linearGradient>
-                </defs>
-                {[50, 100, 150].map(y => (
-                  <line key={y} x1="0" y1={y} x2="560" y2={y} stroke="var(--border)" strokeWidth="1" />
-                ))}
-                <path d="M0,180 L46,170 L93,160 L140,155 L186,145 L233,148 L280,130 L326,120 L373,115 L420,100 L466,90 L513,75 L560,65 L560,200 L0,200 Z" fill="url(#perfGradPreview)" />
-                <path d="M0,180 L46,170 L93,160 L140,155 L186,145 L233,148 L280,130 L326,120 L373,115 L420,100 L466,90 L513,75 L560,65" fill="none" stroke="url(#lineGradPreview)" strokeWidth="2.5" className="sparkline" />
-                <circle cx="560" cy="65" r="5" fill="var(--green)" opacity="0.8" />
-                <circle cx="560" cy="65" r="10" fill="var(--green)" opacity="0.12" />
-              </svg>
-              <div className="flex justify-between mt-2 px-1">
-                {['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'].map(m => (
-                  <span key={m} className="text-[9px] font-medium" style={{ color: 'var(--text-muted)' }}>{m}</span>
-                ))}
-              </div>
+              {(() => {
+                const points = landingPerf?.cumulative_equity ?? []
+                const n = points.length
+                if (n === 0) {
+                  return (
+                    <div className="flex items-center justify-center h-[140px] text-xs" style={{ color: 'var(--text-muted)' }}>
+                      Dati non ancora disponibili
+                    </div>
+                  )
+                }
+                const maxVal = Math.max(...points, 1)
+                const minVal = Math.min(...points, 0)
+                const range = maxVal - minVal || 1
+                const W = 560, H = 200, padTop = 20, padBot = 20
+                const usableH = H - padTop - padBot
+                const xs = points.map((_: number, i: number) => (n === 1 ? W / 2 : (i / (n - 1)) * W))
+                const ys = points.map((v: number) => padTop + usableH - ((v - minVal) / range) * usableH)
+                const linePath = xs.map((x: number, i: number) => `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${ys[i].toFixed(1)}`).join(' ')
+                const areaPath = `${linePath} L${W},${H} L0,${H} Z`
+                const monthLabels = (landingPerf?.months ?? []).map((m: any) => {
+                  const idx = parseInt(m.month.split('-')[1]) - 1
+                  return ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'][idx]
+                })
+                return (
+                  <>
+                    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" preserveAspectRatio="none">
+                      <defs>
+                        <linearGradient id="perfGradPreview" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="var(--green)" stopOpacity="0.18" />
+                          <stop offset="100%" stopColor="var(--green)" stopOpacity="0" />
+                        </linearGradient>
+                        <linearGradient id="lineGradPreview" x1="0" y1="0" x2="1" y2="0">
+                          <stop offset="0%" stopColor="var(--green)" />
+                          <stop offset="100%" stopColor="var(--green)" stopOpacity="0.7" />
+                        </linearGradient>
+                      </defs>
+                      {[0.25, 0.5, 0.75].map(f => (
+                        <line key={f} x1="0" y1={padTop + usableH * f} x2={W} y2={padTop + usableH * f} stroke="var(--border)" strokeWidth="0.5" strokeDasharray="4 4" />
+                      ))}
+                      <path d={areaPath} fill="url(#perfGradPreview)" />
+                      <path d={linePath} fill="none" stroke="url(#lineGradPreview)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="sparkline" />
+                      {xs.map((x: number, i: number) => (
+                        <circle key={i} cx={x} cy={ys[i]} r="3.5" fill="var(--green)" opacity={i === n - 1 ? 1 : 0.5} />
+                      ))}
+                      <circle cx={xs[n-1]} cy={ys[n-1]} r="8" fill="var(--green)" opacity="0.12" />
+                    </svg>
+                    <div className="flex justify-between mt-2 px-1">
+                      {monthLabels.map((m: string, i: number) => (
+                        <span key={i} className="text-[9px] font-medium" style={{ color: 'var(--text-muted)' }}>{m}</span>
+                      ))}
+                    </div>
+                  </>
+                )
+              })()}
             </div>
-            <div className="lg:col-span-2 grid grid-cols-2 lg:grid-cols-1 gap-4">
+            <div className="lg:col-span-2 grid grid-cols-2 gap-3">
               {statsLoading ? (
-                [...Array(2)].map((_, i) => (
-                  <div key={i} className="card-premium p-4 flex items-center gap-4">
-                    <div className="skeleton w-10 h-10 rounded-xl flex-shrink-0" />
+                [...Array(4)].map((_, i) => (
+                  <div key={i} className="card-premium p-3 flex items-center gap-3">
+                    <div className="skeleton w-9 h-9 rounded-xl flex-shrink-0" />
                     <div className="flex-1 space-y-1">
-                      <div className="skeleton h-6 w-20" />
-                      <div className="skeleton h-3 w-40" />
+                      <div className="skeleton h-5 w-16" />
+                      <div className="skeleton h-3 w-24" />
                     </div>
                   </div>
                 ))
               ) : (
                 (() => {
-                  const totalTrades = masterStats?.trades_total ?? 0
+                  const winRate = landingPerf?.win_rate ?? masterStats?.win_rate_percent ?? 79.0
+                  const totalTrades = landingPerf?.total_trades ?? masterStats?.trades_total ?? 0
+                  const totalWins = landingPerf?.total_wins ?? masterStats?.trades_win ?? 0
+                  const totalLosses = landingPerf?.total_losses ?? masterStats?.trades_loss ?? 0
                   return [
                     {
+                      label: 'Operazioni Master', icon: BarChart3, color: 'var(--accent)',
+                      value: totalTrades > 0 ? String(totalTrades) : '—',
+                      sub: 'Totali sul conto master',
+                    },
+                    {
                       label: 'Win Rate', icon: TrendingUp, color: 'var(--green)',
-                      value: '79.0%',
+                      value: `${winRate.toFixed(1)}%`,
                       sub: 'Media storica sistema',
                     },
                     {
-                      label: 'Operazioni Master', icon: BarChart3, color: 'var(--accent)',
-                      value: totalTrades > 0 ? String(totalTrades) : '312+',
-                      sub: 'Eseguite sul conto master',
+                      label: 'Vincenti', icon: TrendingUp, color: 'var(--green)',
+                      value: totalWins > 0 ? String(totalWins) : '—',
+                      sub: 'Operazioni in profitto',
+                    },
+                    {
+                      label: 'Perdenti', icon: Activity, color: 'var(--red, #ef4444)',
+                      value: totalLosses > 0 ? String(totalLosses) : '—',
+                      sub: 'Operazioni in perdita',
                     },
                   ]
                 })().map((stat) => (
-                  <div key={stat.label} className="card-premium p-4 flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                  <div key={stat.label} className="card-premium p-3 flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
                       style={{ background: `color-mix(in srgb, ${stat.color} 10%, transparent)`, border: `1px solid color-mix(in srgb, ${stat.color} 25%, transparent)` }}
                     >
                       <stat.icon className="w-4 h-4" style={{ color: stat.color }} />
                     </div>
                     <div className="min-w-0">
-                      <div className="text-xl font-black font-mono number-mono" style={{ color: stat.color }}>{stat.value}</div>
-                      <div className="text-xs font-medium truncate" style={{ color: 'var(--text-secondary)' }}>{stat.label}</div>
+                      <div className="text-lg font-black font-mono number-mono" style={{ color: stat.color }}>{stat.value}</div>
+                      <div className="text-[11px] font-medium truncate" style={{ color: 'var(--text-secondary)' }}>{stat.label}</div>
                       <div className="text-[10px] truncate" style={{ color: 'var(--text-muted)' }}>{stat.sub}</div>
                     </div>
                   </div>
@@ -823,7 +878,15 @@ export default function LandingPage() {
       {/* ─── Stats Section ──────────────────────────────── */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-          {stats.map((stat, i) => (
+          {(() => {
+            const totalTrades = landingPerf?.total_trades ?? masterStats?.trades_total ?? 0
+            const winRate = landingPerf?.win_rate ?? masterStats?.win_rate_percent ?? 0
+            return [
+              { value: totalTrades, suffix: '', label: 'Operazioni Completate', isGold: true },
+              { value: Math.round(winRate), suffix: '%', label: 'Win Rate', isGold: false },
+              { value: STATS_AVG_DURATION_MIN, suffix: ' min', label: 'Durata Media', isGold: true },
+            ]
+          })().map((stat, i) => (
             <div key={stat.label} className="card-premium p-6 sm:p-8 text-center animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
               <div className={`text-4xl sm:text-5xl font-black font-mono number-mono mb-2 ${stat.isGold ? 'text-gradient-gold' : 'text-gradient-green'}`}>
                 <AnimatedCounter to={stat.value} suffix={stat.suffix} />
