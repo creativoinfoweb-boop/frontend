@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useQuery, useMutation } from '@tanstack/react-query'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import api from '@/lib/api'
 import type { MT5Account } from '@/types'
 import {
@@ -73,6 +73,7 @@ export default function AccountsPage() {
   })
 
   const hasAccount = accounts.length > 0
+  const queryClient = useQueryClient()
 
   const addMutation = useMutation({
     mutationFn: (payload: typeof formData) => api.post('/accounts/mt5', payload),
@@ -81,7 +82,14 @@ export default function AccountsPage() {
       setFormData({ name: '', mt5_login: '', mt5_password: '', mt5_server: '', account_type: 'real', risk_percent: 3 })
       setShowModal(false)
       refetch()
-      showToast('Account MT5 collegato con successo!')
+      // Invalida le query dipendenti: appena il backend rileva il nuovo subscriber
+      // i prossimi segnali devono comparire in dashboard senza richiedere reload manuale.
+      queryClient.invalidateQueries({ queryKey: ['accounts'] })
+      queryClient.invalidateQueries({ queryKey: ['live-signals'] })
+      queryClient.invalidateQueries({ queryKey: ['user-stats'] })
+      queryClient.invalidateQueries({ queryKey: ['master-stats'] })
+      queryClient.invalidateQueries({ queryKey: ['history'] })
+      showToast('Account collegato. Il sistema inizia a replicare i trade ai prossimi segnali (entro pochi secondi).')
     },
     onError: (e: any) => showToast(e.response?.data?.detail || 'Errore nel salvataggio', false),
   })
