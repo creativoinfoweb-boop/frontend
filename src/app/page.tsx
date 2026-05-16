@@ -396,9 +396,9 @@ export default function LandingPage() {
                 <Link href="/auth/login" className="hidden sm:inline-flex btn-ghost text-sm px-4 py-2">
                   Accedi
                 </Link>
-                <Link href="/auth/register" className="hidden sm:inline-flex btn-primary text-sm px-5 py-2.5">
+                <Link href="/auth/register" className="hidden sm:inline-flex btn-primary text-xs sm:text-sm px-3.5 sm:px-5 py-2 sm:py-2.5">
                   Inizia Gratis
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </Link>
               </>
             )}
@@ -448,10 +448,9 @@ export default function LandingPage() {
               <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2.5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/valoroxoro.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 30, height: 30 }} />
-                <div>
-                  <div className="brand-cinzel text-[12px]" style={{ letterSpacing: '0.14em' }}>VALOROX</div>
-                  <div className="text-[9px] tracking-widest uppercase" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
-                </div>
+                <span className="valorox-title" style={{ fontSize: '1rem' }}>
+                  Val<span className="valorox-title-oro">oro</span><span className="valorox-title-x">x</span><span className="valorox-title-ai" style={{ fontSize: '0.6em' }}>AI</span>
+                </span>
               </Link>
               <button onClick={() => setMobileMenuOpen(false)} className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ color: 'var(--text-muted)', background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
                 <X className="w-4 h-4" />
@@ -500,7 +499,7 @@ export default function LandingPage() {
                 <Link
                   href="/dashboard"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="btn-primary w-full justify-center text-sm py-3"
+                  className="btn-primary inline-flex w-full justify-center text-sm py-3"
                 >
                   <LayoutDashboard className="w-4 h-4" />
                   Vai alla Dashboard
@@ -510,14 +509,14 @@ export default function LandingPage() {
                   <Link
                     href="/auth/login"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="btn-ghost w-full justify-center text-sm py-3"
+                    className="btn-ghost inline-flex w-full justify-center text-sm py-3"
                   >
                     Accedi
                   </Link>
                   <Link
                     href="/auth/register"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="btn-primary w-full justify-center text-sm py-3"
+                    className="btn-primary inline-flex w-full justify-center text-sm py-3"
                   >
                     Inizia Gratis
                     <ArrowRight className="w-4 h-4" />
@@ -576,7 +575,7 @@ export default function LandingPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/valoroxoro.svg" alt="Valorox" className="valorox-brand-logo" fetchPriority="high" loading="eager" decoding="async" />
             <h1 className="valorox-title">
-              Al<span className="valorox-title-oro">oro</span><span className="valorox-title-x">x</span><span className="valorox-title-ai">AI</span>
+              Val<span className="valorox-title-oro">oro</span><span className="valorox-title-x">x</span><span className="valorox-title-ai">AI</span>
             </h1>
           </div>
 
@@ -619,12 +618,11 @@ export default function LandingPage() {
             <div className="valorox-hero-trust">
               {[
                 { icon: Shield, text: 'Nessuna gestione fondi' },
-                { icon: Lock, text: 'Controllo totale utente' },
                 { icon: Globe, text: 'Nessuna affiliazione broker' },
-                { icon: Gift, text: '5 giorni gratis · 7 con referral' },
+                { icon: Gift, text: '5 giorni gratis' },
               ].map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>
-                  <Icon className="w-3.5 h-3.5" style={{ color: 'var(--accent)', opacity: 0.5 }} />
+                <div key={text} className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--text-secondary)' }}>
+                  <Icon className="w-3 h-3 flex-shrink-0" style={{ color: 'var(--accent)', opacity: 0.7 }} />
                   <span>{text}</span>
                 </div>
               ))}
@@ -1150,7 +1148,7 @@ export default function LandingPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/valoroxoro.svg" alt="Valorox" style={{ width: 52, height: 52 }} />
           </div>
-          <Link href="/auth/register" className="btn-primary text-base px-10 py-4 rounded-xl">
+          <Link href="/auth/register" className="btn-primary inline-flex text-base px-10 py-4 rounded-xl">
             Inizia Gratis — 5 Giorni
             <ArrowRight className="w-5 h-5" />
           </Link>
