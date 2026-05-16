@@ -318,7 +318,7 @@ export default function LandingPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/valoroxoro.svg" alt="Valorox" className="valorox-splash-logo" />
           <span className="valorox-splash-title">
-            Val<span className="valorox-title-oro">oro</span>x
+            Val<span className="valorox-title-oro">oro</span>x<span className="valorox-title-ai" style={{ fontSize: '0.6em' }}>AI</span>
           </span>
         </div>
       )}
@@ -345,14 +345,9 @@ export default function LandingPage() {
           <Link href="/" className="flex items-center gap-2 sm:gap-3 group min-w-0 shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/valoroxoro.svg" alt="Valorox" className="gold-avatar-ring shrink-0" style={{ width: 28, height: 28 }} />
-            <div className="min-w-0">
-              <span className="text-sm sm:text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.10em' }}>
-                <span style={{ color: isDark ? '#ffffff' : '#0d0d18' }}>Val</span>
-                <span style={{ background: 'linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>oro</span>
-                <span style={{ color: isDark ? '#ffffff' : '#0d0d18' }}>x</span>
-              </span>
-              <div className="text-[8px] sm:text-[9px] font-medium tracking-widest uppercase leading-none mt-0.5" style={{ color: isDark ? 'rgba(255,255,255,0.38)' : 'rgba(0,0,0,0.35)' }}>AI Solution</div>
-            </div>
+            <span className="valorox-title" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.25rem)' }}>
+              Val<span className="valorox-title-oro">oro</span><span className="valorox-title-x">x</span><span className="valorox-title-ai" style={{ fontSize: '0.6em' }}>AI</span>
+            </span>
           </Link>
 
           {/* Center links — desktop only */}
@@ -1173,10 +1168,9 @@ export default function LandingPage() {
               <div className="flex items-center gap-3 mb-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/valoroxoro.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
-                <div>
-                  <span className="font-bold text-gradient-gold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em' }}>Valorox</span>
-                  <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
-                </div>
+                <span className="valorox-title" style={{ fontSize: '1.1rem' }}>
+                  Val<span className="valorox-title-oro">oro</span><span className="valorox-title-x">x</span><span className="valorox-title-ai" style={{ fontSize: '0.6em' }}>AI</span>
+                </span>
               </div>
               <p className="text-sm leading-relaxed max-w-xs" style={{ color: 'var(--text-secondary)' }}>
                 Sistema creato da un team di trader per eliminare l&apos;emotività dall&apos;esecuzione. Disciplina operativa su XAU/USD.

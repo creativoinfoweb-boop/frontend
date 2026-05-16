@@ -23,7 +23,7 @@ export function Providers({ children }: ProvidersProps) {
   useEffect(() => { migrateLegacyStorage() }, [])
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} storageKey="valorox-theme">
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="valorox-theme">
       <QueryClientProvider client={queryClient}>
         {children}
       </QueryClientProvider>
