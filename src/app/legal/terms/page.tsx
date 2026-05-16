@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: false },
 }
 import { ArrowLeft, Shield, AlertTriangle, Lock, CreditCard, RefreshCw, FileText, Mail } from 'lucide-react'
+import { PRICING } from '@/data/pricing'
 
 export default function TermsPage() {
   return (
@@ -254,8 +255,8 @@ export default function TermsPage() {
                 PCI-DSS. Valorox non memorizza mai i dati della tua carta di credito.
               </p>
               <ul className="space-y-1 pl-2">
-                <li>• <strong style={{ color: 'var(--text-primary)' }}>Trial gratuito di 5 giorni</strong>: nessun addebito. Al termine, se non cancelli, parte il piano mensile a €89/mese.</li>
-                <li>• <strong style={{ color: 'var(--text-primary)' }}>Piano mensile</strong>: €75.65 il primo mese (sconto 15%), poi €89/mese con rinnovo automatico.</li>
+                <li>• <strong style={{ color: 'var(--text-primary)' }}>Trial gratuito di {PRICING.trialDays} giorni</strong>: nessun addebito. Al termine, se non cancelli, parte il piano mensile a {PRICING.monthly.amountStr}/mese.</li>
+                <li>• <strong style={{ color: 'var(--text-primary)' }}>Piano mensile</strong>: {PRICING.monthly.firstMonthStr} il primo mese (sconto {PRICING.monthly.firstMonthDiscountPercent}%), poi {PRICING.monthly.amountStr}/mese con rinnovo automatico.</li>
                 <li>• <strong style={{ color: 'var(--text-primary)' }}>Piano annuale</strong>: unica fatturazione anticipata, con sconto applicato sul prezzo mensile equivalente.</li>
                 <li>• I prezzi sono in EUR, IVA inclusa ove applicabile.</li>
                 <li>• Il rinnovo automatico può essere disattivato in qualsiasi momento dalla dashboard senza penali.</li>
@@ -335,7 +336,7 @@ export default function TermsPage() {
               <li>• Non vendiamo né cediamo i tuoi dati a terze parti per scopi commerciali.</li>
               <li>• I dati sono trattati nel rispetto del GDPR (Regolamento UE 2016/679).</li>
               <li>• Puoi richiedere in qualsiasi momento la cancellazione del tuo account e di tutti i dati associati.</li>
-              <li>• Per richieste relative alla privacy, scrivi a: <strong style={{ color: 'var(--gold)' }}>support@eldorado.trade</strong></li>
+              <li>• Per richieste relative alla privacy, scrivi a: <strong style={{ color: 'var(--gold)' }}>valoroxinfo@gmail.com</strong></li>
             </ul>
             <p>
               Utilizziamo cookie tecnici strettamente necessari al funzionamento del sito. Non utilizziamo
@@ -372,12 +373,12 @@ export default function TermsPage() {
             contattaci via email. Rispondiamo normalmente entro 24 ore nei giorni lavorativi.
           </p>
           <a
-            href="mailto:support@eldorado.trade"
+            href="mailto:valoroxinfo@gmail.com"
             className="inline-flex items-center gap-2 text-sm font-semibold transition-opacity hover:opacity-80"
             style={{ color: 'var(--gold)' }}
           >
             <Mail className="w-4 h-4" />
-            support@eldorado.trade
+            valoroxinfo@gmail.com
           </a>
         </section>
 

@@ -6,8 +6,10 @@ export const PRICING = {
   symbol: '€',
 
   // Trial abbonamento (mostrato in landing + billing).
-  // Allineato a backend in produzione (5gg signup, 8gg con codice referral).
+  // Allineato a backend in produzione: 5gg signup standard, 7gg con codice referral (5 + 2 bonus).
   trialDays: 5,
+  trialDaysWithReferral: 7,
+  trialReferralBonusDays: 2,
 
   monthly: {
     amount: 89,

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/store/auth'
 import { subscriptionsApi, statsApi, signalsApi } from '@/lib/api'
+import { PRICING } from '@/data/pricing'
 import { SubscriptionStatus, PublicPerformance, UserStats, SignalHistoryItem } from '@/types'
 import {
   AlertCircle,
@@ -279,7 +280,7 @@ export default function DashboardPage() {
       {hasNoSub && (
         <Banner icon={AlertCircle} color={RED}
           title="Nessun Abbonamento"
-          body="Inizia il trial gratuito di 5 giorni — registrati per iniziare."
+          body={`Inizia il trial gratuito di ${PRICING.trialDays} giorni (fino a ${PRICING.trialDaysWithReferral} con codice referral) — registrati per iniziare.`}
           cta="Inizia Trial" href="/dashboard/billing" />
       )}
       {trialExpired && (
@@ -411,7 +412,7 @@ export default function DashboardPage() {
               <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 32, height: 32 }} />
               <div>
                 <div className="brand-cinzel text-[9.5px] tracking-[0.16em]">VALOROX</div>
-                <div className="text-[10px] mt-0.5" style={{ color: 'var(--text-secondary)' }}>€89 / mese</div>
+                <div className="text-[10px] mt-0.5" style={{ color: 'var(--text-secondary)' }}>{PRICING.monthly.amountStr} {PRICING.monthly.label}</div>
               </div>
             </div>
             <div>

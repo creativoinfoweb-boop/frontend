@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 import './globals.css'
 import { Providers } from './providers'
 import ClerkWrapper from '@/components/ClerkWrapper'
+import { PRICING } from '@/data/pricing'
 
 const braveEightyone = localFont({
   src: './fonts/BRAVEEightyone-Regular.ttf',
@@ -94,14 +95,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/eldorado.svg', type: 'image/svg+xml' },
       { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
       { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
-    shortcut: '/favicon.ico',
+    shortcut: '/eldorado.svg',
   },
   manifest: '/site.webmanifest',
   verification: {
@@ -173,6 +174,13 @@ const organizationSchema = {
   },
   image: { '@id': `${SITE_URL}/#logo` },
   description: 'Valorox è il sistema di AI trading automatizzato su XAU/USD. Copy trading sull\'oro con intelligenza artificiale e risk management avanzato.',
+  email: 'valoroxinfo@gmail.com',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    email: 'valoroxinfo@gmail.com',
+    availableLanguage: ['Italian'],
+  },
   foundingDate: '2024',
   inLanguage: 'it-IT',
 }
@@ -211,15 +219,15 @@ const softwareSchema = {
   ],
   offers: {
     '@type': 'Offer',
-    price: '39',
-    priceCurrency: 'EUR',
+    price: String(PRICING.monthly.amount),
+    priceCurrency: PRICING.currency,
     availability: 'https://schema.org/InStock',
     priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
-    description: 'Abbonamento mensile con trial gratuito di 5 giorni',
+    description: `Abbonamento mensile con trial gratuito di ${PRICING.trialDays} giorni`,
     priceSpecification: {
       '@type': 'UnitPriceSpecification',
-      price: '39',
-      priceCurrency: 'EUR',
+      price: String(PRICING.monthly.amount),
+      priceCurrency: PRICING.currency,
       billingDuration: 'P1M',
     },
   },
@@ -269,7 +277,7 @@ const faqSchema = {
       name: 'Quanto costa Valorox?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Valorox costa €39 al mese con trial gratuito di 5 giorni. Nessun costo nascosto, nessun lock-in: puoi cancellare in qualsiasi momento senza penalità.',
+        text: `Valorox costa ${PRICING.monthly.amountStr} ${PRICING.monthly.label} con trial gratuito di ${PRICING.trialDays} giorni. Nessun costo nascosto, nessun lock-in: puoi cancellare in qualsiasi momento senza penalità.`,
       },
     },
     {
