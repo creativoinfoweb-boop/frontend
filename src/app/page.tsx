@@ -549,84 +549,58 @@ export default function LandingPage() {
         <div className="valorox-vignette-left" />
         <div className="valorox-vignette-right" />
 
-        {/* NEW: Hero container — column on mobile (statue top, content bottom — IDENTICAL to before), row-reverse on desktop (content left, statue right) */}
+        {/* Section-wide shimmer beam (extends full hero width, no clipping) */}
+        <div className="valorox-hero-shimmer" aria-hidden="true" />
+
+        {/* Hero container — vertical stack, brand block centered upper-mid */}
         <div className="valorox-hero-container">
 
-          {/* Statue — first in DOM so mobile keeps statue ABOVE content */}
-          <div className="valorox-hero-visual">
-            <div className="valorox-statue-wrap">
-              <div className="valorox-statue-inner">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/eldorado.svg" alt="Valorox" className="valorox-statue-img" />
-                <div className="valorox-shimmer" />
-                {/* Particles fluttuanti rimosse — hero più pulita e premium */}
-              </div>
-            </div>
+          {/* Brand block: logo + VALOROX AI inline */}
+          <div className="valorox-brand-block">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/eldorado.svg" alt="Valorox" className="valorox-brand-logo" fetchPriority="high" loading="eager" decoding="async" />
+            <h1 className="valorox-title">
+              Val<span className="valorox-title-oro">oro</span>x<span className="valorox-title-ai">AI</span>
+            </h1>
           </div>
 
-          {/* Hero Content — second in DOM; on desktop flex row-reverse moves it to LEFT column */}
-          <div className="valorox-hero-content relative z-10 flex flex-col items-center text-center px-4 pb-20 w-full" style={{ marginTop: '1.5rem' }}>
+          {/* Hero Content — below brand block */}
+          <div className="valorox-hero-content">
 
-            {/* ── Refined title ── */}
-            <div className="valorox-title-wrap">
-              <h1 className="valorox-title">Val<span className="valorox-title-oro">oro</span>x</h1>
-              <div className="valorox-title-deco">
-                <div className="valorox-title-diamond" />
-              </div>
-            </div>
-
-            {/* Brand chip */}
-            <div className="valorox-badge mt-3">
+            <div className="valorox-badge">
               <div className="live-dot" style={{ width: 6, height: 6 }} />
-              XAU/USD · AI EXECUTION · MULTI-STYLE
+              XAU/USD · AI TRADING SYSTEM
             </div>
 
-            <p className="valorox-subtitle mt-2 mb-3">
-              Un nuovo approccio all&apos;oro.
+            <p className="valorox-claim">
+              Un nuovo approccio al trading.
             </p>
-            <p className="valorox-hero-desc text-sm mb-9 max-w-lg mx-auto text-center" style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+            <p className="valorox-hero-desc">
               Scalping, intraday, volumetrica e CRT in un unico motore di esecuzione AI su XAU/USD.
             </p>
 
-            {/* Live gold price */}
-            <div className="valorox-gold-price inline-flex items-center gap-4 rounded-xl px-6 py-3 mb-9"
-              style={{ background: 'var(--gold-subtle)', border: '1px solid var(--border-gold)', backdropFilter: 'blur(16px)' }}
-            >
-              <div className="live-dot" />
-              <span className="text-xs font-medium tracking-widest uppercase" style={{ color: 'var(--text-secondary)' }}>XAU/USD</span>
-              <span className="text-xl font-black font-mono number-mono" style={{ color: 'var(--gold)' }}>
-                {goldPrice.price
-                  ? goldPrice.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-                  : '—'}
-              </span>
-              <span className="text-sm font-semibold" style={{ color: goldPrice.up ? 'var(--green)' : 'var(--red)' }}>
-                {goldPrice.change_str}
-              </span>
-            </div>
-
-            {/* CTAs */}
-            <div className="valorox-hero-ctas flex flex-col sm:flex-row gap-4 items-center">
+            {/* CTAs — proportionate, slim */}
+            <div className="valorox-hero-ctas">
               {isAuthenticated ? (
-                <Link href="/dashboard" className="btn-valorox btn-valorox-primary">
-                  <LayoutDashboard className="w-5 h-5" />
+                <Link href="/dashboard" className="btn-valorox btn-valorox-primary btn-valorox-slim">
+                  <LayoutDashboard className="w-4 h-4" />
                   Vai alla Dashboard
                 </Link>
               ) : (
                 <>
-                  <Link href="/auth/register" className="btn-valorox btn-valorox-primary">
+                  <Link href="/auth/register" className="btn-valorox btn-valorox-primary btn-valorox-slim">
                     Inizia Gratis
-                    <ArrowRight className="w-5 h-5" />
+                    <ArrowRight className="w-4 h-4" />
                   </Link>
-                  <Link href="/metodo" className="btn-valorox btn-valorox-secondary">
+                  <Link href="/metodo" className="btn-valorox btn-valorox-secondary btn-valorox-slim">
                     Scopri il Metodo
-                    <BarChart3 className="w-5 h-5" />
+                    <BarChart3 className="w-4 h-4" />
                   </Link>
                 </>
               )}
             </div>
 
-            {/* Trust row */}
-            <div className="valorox-hero-trust flex flex-wrap gap-6 justify-center items-center mt-6">
+            <div className="valorox-hero-trust">
               {[
                 { icon: Shield, text: 'Nessuna gestione fondi' },
                 { icon: Lock, text: 'Controllo totale utente' },
@@ -653,7 +627,15 @@ export default function LandingPage() {
         style={{ borderTop: '1px solid var(--glass-border)', borderBottom: '1px solid var(--glass-border)', background: 'var(--glass-bg)', backdropFilter: 'blur(20px)' }}
       >
         <div className="ticker-content gap-6">
-          {[...tickerItems, ...tickerItems].map((item, i) => {
+          {(() => {
+            const filtered = tickerItems.filter(item => {
+              const isGold = item.symbol === 'XAU/USD'
+              if (isGold) return true
+              const p = item.price_str
+              return p && p !== '—' && p !== '...' && p.trim() !== ''
+            })
+            return [...filtered, ...filtered]
+          })().map((item, i) => {
             const isGold = item.symbol === 'XAU/USD'
             const displayPrice = isGold && goldPrice?.price ? `${goldPrice.price.toFixed(2)}` : item.price_str
             const displayChange = isGold && goldPrice?.change_str ? goldPrice.change_str : item.change_str
