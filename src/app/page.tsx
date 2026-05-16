@@ -318,7 +318,7 @@ export default function LandingPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/valoroxoro.svg" alt="Valorox" className="valorox-splash-logo" />
           <span className="valorox-splash-title">
-            Val<span className="valorox-title-oro">oro</span>x<span className="valorox-title-ai" style={{ fontSize: '0.6em' }}>AI</span>
+            <span className="valorox-title-a">A</span>l<span className="valorox-title-oro">oro</span>x<span className="valorox-title-ai" style={{ fontSize: '0.6em' }}>AI</span>
           </span>
         </div>
       )}
@@ -570,22 +570,22 @@ export default function LandingPage() {
         {/* Hero container — vertical stack, brand block centered upper-mid */}
         <div className="valorox-hero-container">
 
-          {/* Brand block: logo + VALOROX AI inline */}
+          {/* Brand block: logo + title + badge aligned */}
           <div className="valorox-brand-block">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/valoroxoro.svg" alt="Valorox" className="valorox-brand-logo" fetchPriority="high" loading="eager" decoding="async" />
-            <h1 className="valorox-title">
-              Val<span className="valorox-title-oro">oro</span><span className="valorox-title-x">x</span><span className="valorox-title-ai">AI</span>
-            </h1>
+            <div className="valorox-brand-text">
+              <h1 className="valorox-title">
+                <span className="valorox-title-a">A</span>l<span className="valorox-title-oro">oro</span><span className="valorox-title-x">x</span><span className="valorox-title-ai">AI</span>
+              </h1>
+              <div className="valorox-brand-sub">
+                XAU/USD&nbsp;&nbsp;·&nbsp;&nbsp;AI TRADING SYSTEM
+              </div>
+            </div>
           </div>
 
           {/* Hero Content — below brand block */}
           <div className="valorox-hero-content">
-
-            <div className="valorox-badge">
-              <div className="live-dot" style={{ width: 4, height: 4 }} />
-              XAU/USD&nbsp;&nbsp;·&nbsp;&nbsp;AI TRADING SYSTEM
-            </div>
 
             <p className="valorox-claim">
               Un nuovo approccio al trading.
@@ -613,19 +613,6 @@ export default function LandingPage() {
                   </Link>
                 </>
               )}
-            </div>
-
-            <div className="valorox-hero-trust">
-              {[
-                { icon: Shield, text: 'Nessuna gestione fondi' },
-                { icon: Globe, text: 'Nessuna affiliazione broker' },
-                { icon: Gift, text: '5 giorni gratis' },
-              ].map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--text-secondary)' }}>
-                  <Icon className="w-3 h-3 flex-shrink-0" style={{ color: 'var(--accent)', opacity: 0.7 }} />
-                  <span>{text}</span>
-                </div>
-              ))}
             </div>
           </div>
 
@@ -676,6 +663,20 @@ export default function LandingPage() {
             )
           })}
         </div>
+      </div>
+
+      {/* ─── Trust badges — below ticker ──────────────── */}
+      <div className="valorox-hero-trust">
+        {[
+          { icon: Shield, text: 'Nessuna gestione fondi' },
+          { icon: Globe, text: 'Nessuna affiliazione broker' },
+          { icon: Gift, text: '5 giorni gratis' },
+        ].map(({ icon: Icon, text }) => (
+          <div key={text} className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--text-muted)' }}>
+            <Icon className="w-3 h-3 flex-shrink-0" style={{ color: 'var(--accent)', opacity: 0.6 }} />
+            <span>{text}</span>
+          </div>
+        ))}
       </div>
 
       {/* ─── Sub-Hero: Il Vero Problema ─────────────────── */}

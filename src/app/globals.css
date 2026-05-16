@@ -1517,6 +1517,23 @@ input:-webkit-autofill:focus {
   animation: valoroxFloat 7s ease-in-out infinite;
 }
 
+.valorox-brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.valorox-brand-sub {
+  font-size: clamp(0.42rem, 0.8vw, 0.6rem);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240,180,41,0.45);
+  margin-top: -0.1em;
+  padding-left: 0.05em;
+}
+.light .valorox-brand-sub { color: rgba(160,100,15,0.5); }
+
 /* ── Hero claim ── */
 .valorox-claim {
   font-family: var(--font-exo2), 'Exo 2', sans-serif;
@@ -1672,10 +1689,12 @@ input:-webkit-autofill:focus {
 .valorox-hero-trust {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem 2rem;
+  gap: 0.6rem 1.8rem;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
 }
 
 @media (min-width: 1024px) {
@@ -1691,62 +1710,53 @@ input:-webkit-autofill:focus {
   }
 }
 
-/* ── Mobile hero: minimal, logo/title prominent ── */
+/* ── Mobile hero: minimal, logo/title prominent, all above fold ── */
 @media (max-width: 639px) {
   .valorox-brand-block {
-    padding-top: clamp(1.2rem, 4vh, 2.5rem);
-    padding-bottom: 0.3rem;
-    gap: 0.35rem;
+    padding-top: clamp(0.8rem, 3vh, 2rem);
+    padding-bottom: 0.2rem;
+    gap: 0.3rem;
   }
   .valorox-brand-logo {
-    width: 96px;
+    width: 80px;
   }
   .valorox-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
+  }
+  .valorox-brand-sub {
+    font-size: 0.42rem;
+    letter-spacing: 0.18em;
   }
   .valorox-hero-container {
-    padding: 0.3rem 1rem 1rem;
+    padding: 0.2rem 1rem 0.8rem;
   }
   .valorox-hero-content {
-    gap: 0.4rem;
-  }
-  .valorox-hero-content .valorox-badge {
-    border: none;
-    background: none;
-    padding: 0;
-    margin-bottom: 0;
-    font-size: 0.5rem;
-    letter-spacing: 0.22em;
-    color: rgba(240,180,41,0.5);
-  }
-  .valorox-hero-content .valorox-badge .live-dot {
-    display: none;
+    gap: 0.3rem;
   }
   .valorox-hero-content .valorox-claim {
-    font-size: 0.78rem;
-    margin: 0.15rem 0 0;
+    font-size: 0.75rem;
+    margin: 0.1rem 0 0;
   }
   .valorox-hero-content .valorox-hero-desc {
-    font-size: 0.68rem;
-    line-height: 1.5;
+    font-size: 0.65rem;
+    line-height: 1.45;
     margin-bottom: 0;
     color: rgba(255,255,255,0.5);
   }
   .valorox-hero-ctas {
-    margin-top: 0.3rem;
-    gap: 0.6rem;
+    margin-top: 0.2rem;
+    gap: 0.5rem;
   }
   .btn-valorox-slim {
-    padding: 0.5rem 1.1rem !important;
-    font-size: 0.8rem !important;
+    padding: 0.45rem 1rem !important;
+    font-size: 0.78rem !important;
   }
   .valorox-hero-trust {
-    gap: 0.35rem 1rem;
-    margin-top: 0.5rem;
+    gap: 0.3rem 0.8rem;
+    padding: 0.4rem 0.8rem;
   }
   .valorox-hero-trust > div {
-    font-size: 0.62rem;
-    color: rgba(255,255,255,0.55);
+    font-size: 0.58rem;
   }
 }
 
