@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -408,7 +408,7 @@ export default function DashboardPage() {
             <h3 className="text-xs font-bold mb-3" style={{ color: 'var(--text-primary)' }}>Abbonamento</h3>
             <div className="flex items-center gap-2.5 mb-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 32, height: 32 }} />
+              <img src="/valoroxoro.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 32, height: 32 }} />
               <div>
                 <div className="brand-cinzel text-[9.5px] tracking-[0.16em]">VALOROX</div>
                 <div className="text-[10px] mt-0.5" style={{ color: 'var(--text-secondary)' }}>€89 / mese</div>

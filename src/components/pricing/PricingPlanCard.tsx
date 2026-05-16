@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import Link from 'next/link'
@@ -180,7 +180,7 @@ export function PricingPlanCard({
           <div className="relative">
             <div className="flex items-center gap-2 mb-3 pr-20">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: compact ? 28 : 30, height: compact ? 28 : 30 }} />
+              <img src="/valoroxoro.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: compact ? 28 : 30, height: compact ? 28 : 30 }} />
               <span className="text-sm font-semibold" style={{ color: 'var(--gold)' }}>
                 Valorox Premium
               </span>

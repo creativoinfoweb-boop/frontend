@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -77,7 +77,7 @@ export default function ProfilePage() {
         <div className="flex items-center gap-5 mb-8">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/eldorado.svg"
+            src="/valoroxoro.svg"
             alt="Valorox"
             className="gold-avatar-ring"
             style={{ width: 64, height: 64 }}

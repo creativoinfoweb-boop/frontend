@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect, useRef } from 'react'
 import { useTheme } from 'next-themes'
@@ -327,7 +327,7 @@ export default function LandingPage() {
           {/* Logo — always links back to landing */}
           <Link href="/" className="flex items-center gap-3 group">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
+            <img src="/valoroxoro.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
             <div>
               <span className="text-base font-semibold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em' }}>
                 <span style={{ color: isDark ? '#ffffff' : '#0d0d18' }}>Val</span>
@@ -435,7 +435,7 @@ export default function LandingPage() {
             <div className="flex items-center justify-between px-5 pt-5 pb-4" style={{ borderBottom: '1px solid var(--border)' }}>
               <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2.5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 30, height: 30 }} />
+                <img src="/valoroxoro.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 30, height: 30 }} />
                 <div>
                   <div className="brand-cinzel text-[12px]" style={{ letterSpacing: '0.14em' }}>VALOROX</div>
                   <div className="text-[9px] tracking-widest uppercase" style={{ color: 'var(--text-muted)' }}>AI Solution</div>
@@ -562,7 +562,7 @@ export default function LandingPage() {
           {/* Brand block: logo + VALOROX AI inline */}
           <div className="valorox-brand-block">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.svg" alt="Valorox" className="valorox-brand-logo" fetchPriority="high" loading="eager" decoding="async" />
+            <img src="/valoroxoro.svg" alt="Valorox" className="valorox-brand-logo" fetchPriority="high" loading="eager" decoding="async" />
             <h1 className="valorox-title">
               Al<span className="valorox-title-oro">oro</span><span className="valorox-title-x">x</span><span className="valorox-title-ai">AI</span>
             </h1>
@@ -1144,7 +1144,7 @@ export default function LandingPage() {
         <div className="relative max-w-3xl mx-auto text-center">
           <div className="mx-auto mb-6 flex justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 68, height: 68 }} />
+            <img src="/valoroxoro.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 68, height: 68 }} />
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-black mb-5">
@@ -1201,7 +1201,7 @@ export default function LandingPage() {
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/eldorado.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
+                <img src="/valoroxoro.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 34, height: 34 }} />
                 <div>
                   <span className="font-bold text-gradient-gold" style={{ fontFamily: 'var(--font-brand)', letterSpacing: '0.12em' }}>Valorox</span>
                   <div className="text-[9px] tracking-widest uppercase mt-0.5" style={{ color: 'var(--text-muted)' }}>AI Solution</div>

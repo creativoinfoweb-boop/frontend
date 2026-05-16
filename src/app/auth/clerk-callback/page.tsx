@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { Suspense, useEffect, useRef, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -13,7 +13,7 @@ function LoadingUI() {
       <div className="animate-pulse">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/eldorado.svg"
+          src="/valoroxoro.svg"
           alt="Valorox"
           style={{
             width: 64,
@@ -129,7 +129,7 @@ function ClerkCallbackContent() {
       <div className={syncError ? '' : 'animate-pulse'}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/eldorado.svg"
+          src="/valoroxoro.svg"
           alt="Valorox"
           style={{
             width: 64,
