@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     default: 'Valorox AI Trading System',
     template: '%s | Valorox',
   },
-  description: 'Valorox: sistema AI per il trading automatizzato su XAU/USD. Copy trading sull\'oro con intelligenza artificiale, risk management avanzato e dashboard in tempo reale. Trial gratuito 5 giorni.',
+  description: 'Valorox: sistema di execution AI multi-stile su XAU/USD — scalping, intraday, analisi volumetrica, CRT. Copy trading sull\'oro con intelligenza artificiale, risk management avanzato e dashboard in tempo reale. Trial gratuito 5 giorni.',
   keywords: [
     'Valorox', 'Valorox AI', 'Valorox Trading', 'Valorox System', 'Valorox AI Trading',
     'valoroxai', 'valoroxai.com',
@@ -174,7 +174,7 @@ const organizationSchema = {
     caption: 'Valorox AI Trading System',
   },
   image: { '@id': `${SITE_URL}/#logo` },
-  description: 'Valorox è il sistema di AI trading automatizzato su XAU/USD. Copy trading sull\'oro con intelligenza artificiale e risk management avanzato.',
+  description: 'Valorox è il sistema di execution AI multi-stile su XAU/USD: scalping, intraday, analisi volumetrica e CRT in un unico motore di esecuzione automatica.',
   email: 'valoroxinfo@gmail.com',
   contactPoint: {
     '@type': 'ContactPoint',
