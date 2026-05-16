@@ -1536,3 +1536,40 @@ input:-webkit-autofill:focus {
     font-size: clamp(4rem, 6vw, 6.5rem);
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   RISK SLIDER — 5-step hard cap selector (accounts page)
+═══════════════════════════════════════════════════════════ */
+.risk-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg,
+    #00C2FF 0%,
+    #3DDC97 25%,
+    #00E676 50%,
+    #F0B429 75%,
+    #FF8A3D 100%);
+  outline: none;
+}
+.risk-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--gold);
+  box-shadow: 0 2px 8px rgba(240,180,41,0.35);
+  cursor: pointer;
+  transition: transform 120ms ease-out;
+}
+.risk-slider::-webkit-slider-thumb:hover { transform: scale(1.1); }
+.risk-slider::-moz-range-thumb {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--gold);
+  box-shadow: 0 2px 8px rgba(240,180,41,0.35);
+  cursor: pointer;
+}
