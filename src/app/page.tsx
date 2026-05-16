@@ -250,15 +250,22 @@ export default function LandingPage() {
   const [masterStats, setMasterStats] = useState<any>(null)
   const [statsLoading, setStatsLoading] = useState(true)
   const [referralCode, setReferralCode] = useState<string | null>(null)
+  const [showSplash, setShowSplash] = useState(true)
+  const [splashFading, setSplashFading] = useState(false)
   const isDark = theme !== 'light'
 
   useEffect(() => {
-    // Leggi il parametro ?ref= dall'URL
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search)
       const ref = params.get('ref')
       if (ref) setReferralCode(ref)
     }
+  }, [])
+
+  useEffect(() => {
+    const fadeTimer = setTimeout(() => setSplashFading(true), 2400)
+    const removeTimer = setTimeout(() => setShowSplash(false), 3000)
+    return () => { clearTimeout(fadeTimer); clearTimeout(removeTimer) }
   }, [])
 
   useEffect(() => {
@@ -305,6 +312,17 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ background: 'var(--bg)', color: 'var(--text-primary)' }}>
+
+      {/* ── Splash Screen ── */}
+      {showSplash && (
+        <div className={`valorox-splash ${splashFading ? 'valorox-splash-out' : ''}`}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/valoroxoro.svg" alt="Valorox" className="valorox-splash-logo" />
+          <span className="valorox-splash-title">
+            Val<span className="valorox-title-oro">oro</span>x
+          </span>
+        </div>
+      )}
 
       {/* ── Gold top rule ── */}
       <div className="fixed top-0 w-full h-[2px] z-[60]"
@@ -375,7 +393,7 @@ export default function LandingPage() {
             </button>
 
             {isAuthenticated ? (
-              <Link href="/dashboard" className="btn-gold text-sm px-5 py-2.5 hidden sm:inline-flex">
+              <Link href="/dashboard" className="btn-primary text-sm px-5 py-2.5 hidden sm:inline-flex">
                 <LayoutDashboard className="w-4 h-4" />
                 Dashboard
               </Link>
@@ -384,7 +402,7 @@ export default function LandingPage() {
                 <Link href="/auth/login" className="hidden sm:inline-flex btn-ghost text-sm px-4 py-2">
                   Accedi
                 </Link>
-                <Link href="/auth/register" className="hidden sm:inline-flex btn-gold text-sm px-5 py-2.5">
+                <Link href="/auth/register" className="hidden sm:inline-flex btn-primary text-sm px-5 py-2.5">
                   Inizia Gratis
                   <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -480,7 +498,7 @@ export default function LandingPage() {
                 className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-all"
                 style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
               >
-                {isDark ? <Sun className="w-4 h-4" style={{ color: 'var(--gold)' }} /> : <Moon className="w-4 h-4" style={{ color: 'var(--gold)' }} />}
+                {isDark ? <Sun className="w-4 h-4" style={{ color: 'var(--accent)' }} /> : <Moon className="w-4 h-4" style={{ color: 'var(--accent)' }} />}
                 {isDark ? 'Modalità chiara' : 'Modalità scura'}
               </button>
 
@@ -488,7 +506,7 @@ export default function LandingPage() {
                 <Link
                   href="/dashboard"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="btn-gold w-full justify-center text-sm py-3"
+                  className="btn-primary w-full justify-center text-sm py-3"
                 >
                   <LayoutDashboard className="w-4 h-4" />
                   Vai alla Dashboard
@@ -505,7 +523,7 @@ export default function LandingPage() {
                   <Link
                     href="/auth/register"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="btn-gold w-full justify-center text-sm py-3"
+                    className="btn-primary w-full justify-center text-sm py-3"
                   >
                     Inizia Gratis
                     <ArrowRight className="w-4 h-4" />
@@ -522,7 +540,7 @@ export default function LandingPage() {
         <div className="sticky top-[60px] z-40 border-b" style={{ background: 'linear-gradient(135deg, rgba(240,180,41,0.15), rgba(0,230,118,0.08))', borderColor: 'var(--glass-border)' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 flex-1">
-              <Star className="w-5 h-5" style={{ color: 'var(--gold)' }} />
+              <Star className="w-5 h-5" style={{ color: 'var(--accent)' }} />
               <div className="text-sm">
                 <p className="font-semibold" style={{ color: 'var(--text-primary)' }}>Iscrizione tramite referral</p>
                 <p className="text-xs" style={{ color: 'var(--text-muted)' }}>3 giorni extra di trial + 30% sconto primo mese</p>
@@ -612,7 +630,7 @@ export default function LandingPage() {
                 { icon: Gift, text: '5 giorni gratis · 7 con referral' },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>
-                  <Icon className="w-3.5 h-3.5" style={{ color: 'var(--gold)', opacity: 0.5 }} />
+                  <Icon className="w-3.5 h-3.5" style={{ color: 'var(--accent)', opacity: 0.5 }} />
                   <span>{text}</span>
                 </div>
               ))}
@@ -686,17 +704,17 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-3 gap-5">
             {[
               {
-                icon: TrendingUp, color: 'var(--gold)',
+                icon: TrendingUp, color: 'var(--accent)',
                 title: 'Interferenza Emotiva',
                 desc: 'Chiusure anticipate per timore, perdite lasciate correre. Le decisioni sotto pressione emotiva producono sistematicamente risultati inferiori al potenziale della strategia.',
               },
               {
-                icon: Zap, color: 'var(--gold)',
+                icon: Zap, color: 'var(--accent)',
                 title: 'Comportamento Impulsivo',
                 desc: 'Overtrading e inseguimento del mercato sono le cause più documentate di performance negative. Ogni operazione fuori dal piano introduce un edge negativo sul risultato.',
               },
               {
-                icon: Activity, color: 'var(--gold)',
+                icon: Activity, color: 'var(--accent)',
                 title: 'Incostanza Operativa',
                 desc: 'L\'edge statistico si manifesta su centinaia di operazioni coerenti. Una strategia modificata frequentemente non può esprimere il proprio potenziale.',
               },
@@ -714,7 +732,7 @@ export default function LandingPage() {
           <div className="text-center mt-10">
             <Link href="/metodo"
               className="inline-flex items-center gap-2 text-sm font-bold transition-opacity hover:opacity-80"
-              style={{ color: 'var(--gold)' }}>
+              style={{ color: 'var(--accent)' }}>
               Scopri come abbiamo risolto questo problema →
             </Link>
           </div>
@@ -778,9 +796,9 @@ export default function LandingPage() {
               <div key={i} className="card-premium p-8 animate-fade-in-up" style={{ animationDelay: `${i * 150}ms` }}>
                 <div className="flex items-start justify-between mb-6">
                   <div className="feature-icon-wrap">
-                    <step.icon className="w-5 h-5" style={{ color: 'var(--gold)' }} />
+                    <step.icon className="w-5 h-5" style={{ color: 'var(--accent)' }} />
                   </div>
-                  <span className="text-4xl font-black font-mono" style={{ opacity: 0.12, color: 'var(--gold)' }}>{step.num}</span>
+                  <span className="text-4xl font-black font-mono" style={{ opacity: 0.08, color: 'var(--accent)' }}>{step.num}</span>
                 </div>
                 <h3 className="text-lg font-bold mb-3" style={{ color: 'var(--text-primary)' }}>{step.title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{step.desc}</p>
@@ -817,15 +835,15 @@ export default function LandingPage() {
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{ background: 'rgba(240,180,41,0.1)', border: '1px solid rgba(240,180,41,0.2)' }}>
-                      <BookOpen className="w-4 h-4" style={{ color: 'var(--gold)' }} />
+                      style={{ background: 'var(--accent-subtle)', border: '1px solid var(--border-accent)' }}>
+                      <BookOpen className="w-4 h-4" style={{ color: 'var(--accent)' }} />
                     </div>
                     <span className="text-[10px] font-bold tracking-widest uppercase"
                       style={{ color: mod.free ? 'var(--green)' : 'var(--text-muted)' }}>
                       {mod.free ? 'Gratuito' : 'Accesso'}
                     </span>
                   </div>
-                  <span className="text-2xl font-black font-mono" style={{ opacity: 0.1, color: 'var(--gold)' }}>
+                  <span className="text-2xl font-black font-mono" style={{ opacity: 0.08, color: 'var(--accent)' }}>
                     {mod.num}
                   </span>
                 </div>
@@ -848,7 +866,7 @@ export default function LandingPage() {
                 <ul className="space-y-1.5 flex-1">
                   {mod.topics.map((t, j) => (
                     <li key={j} className="flex items-start gap-1.5 text-[11px]" style={{ color: 'var(--text-muted)' }}>
-                      <span className="mt-0.5 flex-shrink-0" style={{ color: 'var(--gold)', opacity: 0.6 }}>·</span>
+                      <span className="mt-0.5 flex-shrink-0" style={{ color: 'var(--accent)', opacity: 0.5 }}>·</span>
                       {t}
                     </li>
                   ))}
@@ -959,7 +977,7 @@ export default function LandingPage() {
                       sub: 'Media storica sistema',
                     },
                     {
-                      label: 'Operazioni Master', icon: BarChart3, color: 'var(--gold)',
+                      label: 'Operazioni Master', icon: BarChart3, color: 'var(--accent)',
                       value: totalTrades > 0 ? String(totalTrades) : '312+',
                       sub: 'Eseguite sul conto master',
                     },
@@ -1007,7 +1025,7 @@ export default function LandingPage() {
             {features.map((feat, i) => (
               <div key={feat.title} className="card-premium p-6 group animate-fade-in-up" style={{ animationDelay: `${i * 80}ms` }}>
                 <div className="feature-icon-wrap mb-5">
-                  <feat.icon className="w-5 h-5" style={{ color: 'var(--gold)' }} />
+                  <feat.icon className="w-5 h-5" style={{ color: 'var(--accent)' }} />
                 </div>
                 <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)' }}>{feat.title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{feat.desc}</p>
@@ -1052,15 +1070,15 @@ export default function LandingPage() {
               <div key={t.name} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: t.stars }).map((_, j) => (
-                    <Star key={j} className="w-4 h-4" style={{ color: 'var(--gold)' }} fill="var(--gold)" />
+                    <Star key={j} className="w-4 h-4" style={{ color: 'var(--accent)' }} fill="var(--accent)" />
                   ))}
                 </div>
                 <p className="text-sm leading-relaxed mb-5 italic" style={{ color: 'var(--text-secondary)' }}>"{t.text}"</p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full flex items-center justify-center"
-                      style={{ background: 'var(--gold-subtle)', border: '1px solid var(--border-gold)' }}>
-                      <span className="text-xs font-bold" style={{ color: 'var(--gold)' }}>{t.avatar}</span>
+                      style={{ background: 'var(--accent-subtle)', border: '1px solid var(--border-accent)' }}>
+                      <span className="text-xs font-bold" style={{ color: 'var(--accent)' }}>{t.avatar}</span>
                     </div>
                     <div>
                       <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{t.name}</div>
@@ -1118,7 +1136,7 @@ export default function LandingPage() {
                       <Link
                         href={item.learnMoreUrl}
                         className="inline-flex items-center gap-1 mt-3 text-xs font-semibold transition-opacity hover:opacity-70"
-                        style={{ color: 'var(--gold)' }}
+                        style={{ color: 'var(--accent)' }}
                       >
                         {('learnMoreLabel' in item && item.learnMoreLabel) || 'Scopri di più →'}
                       </Link>
@@ -1131,63 +1149,17 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ─── CTA Banner ─────────────────────────────────── */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0" style={{ background: 'var(--surface-overlay)' }} />
-        <div className="absolute inset-0 grid-bg-sm opacity-15 pointer-events-none" />
-
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-72 h-72 rounded-full blur-[100px] pointer-events-none"
-          style={{ background: 'radial-gradient(circle, var(--gold-subtle) 0%, transparent 70%)' }} />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-72 h-72 rounded-full blur-[100px] pointer-events-none"
-          style={{ background: 'radial-gradient(circle, var(--gold-subtle) 0%, transparent 70%)' }} />
-
-        <div className="relative max-w-3xl mx-auto text-center">
-          <div className="mx-auto mb-6 flex justify-center">
+      {/* ─── CTA Finale ─────────────────────────────────── */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 relative">
+        <div className="relative max-w-md mx-auto text-center">
+          <div className="mx-auto mb-5 flex justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/valoroxoro.svg" alt="Valorox" className="gold-avatar-ring" style={{ width: 68, height: 68 }} />
+            <img src="/valoroxoro.svg" alt="Valorox" style={{ width: 52, height: 52 }} />
           </div>
-
-          <h2 className="text-4xl sm:text-5xl font-black mb-5">
-            <span className="text-gradient-white">Il Problema Non è la Strategia.</span>
-            <br />
-            <span className="text-gradient-gold">È la Disciplina nell&apos;Eseguirla.</span>
-          </h2>
-
-          <p className="text-lg mb-10 max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            Un sistema sviluppato per uso operativo interno, validato su centinaia di operazioni reali
-            e reso accessibile a chi condivide un approccio disciplinato ai mercati.
-            5 giorni di prova inclusi con la registrazione.
-          </p>
-
-          <p className="text-sm mb-4 font-medium" style={{ color: 'var(--text-secondary)' }}>
-            Inizia ad usare il nostro sistema AI trading automatico
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/auth/register" className="btn-gold text-base px-10 py-4 rounded-xl">
-              Inizia Gratis — 5 Giorni
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link href="/dashboard/learn"
-              className="inline-flex items-center gap-2 text-base font-semibold px-8 py-4 rounded-xl transition-all"
-              style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', color: 'var(--text-secondary)' }}>
-              <GraduationCap className="w-5 h-5" />
-              Impara con il nostro corso gratuito
-            </Link>
-          </div>
-          <div className="mt-4">
-            <Link href="/metodo" className="text-sm font-medium transition-opacity hover:opacity-70" style={{ color: 'var(--gold)' }}>
-              Scopri il Metodo →
-            </Link>
-          </div>
-
-          <div className="flex flex-wrap gap-6 justify-center mt-8">
-            {['Inizia in demo — zero rischio', 'Nessuna promessa di profitto', 'Processo, probabilità, disciplina'].map(text => (
-              <div key={text} className="flex items-center gap-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
-                <Check className="w-4 h-4" style={{ color: 'var(--green)' }} />
-                <span>{text}</span>
-              </div>
-            ))}
-          </div>
+          <Link href="/auth/register" className="btn-primary text-base px-10 py-4 rounded-xl">
+            Inizia Gratis — 5 Giorni
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </section>
 
@@ -1232,7 +1204,7 @@ export default function LandingPage() {
                     <Link href={link.href}
                       className="text-sm transition-colors duration-200"
                       style={{ color: 'var(--text-secondary)' }}
-                      onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold)')}
+                      onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
                       onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
                     >
                       {link.label}
@@ -1249,7 +1221,7 @@ export default function LandingPage() {
                 <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Lun–Ven, 9:00–18:00</p>
                 <div className="mt-4 p-3 rounded-xl" style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}>
                   <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Tempo medio di risposta</p>
-                  <p className="text-sm font-semibold mt-1" style={{ color: 'var(--gold)' }}>&lt; 2 ore</p>
+                  <p className="text-sm font-semibold mt-1" style={{ color: 'var(--accent)' }}>&lt; 2 ore</p>
                 </div>
               </div>
             </div>
