@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, ChevronDown } from 'lucide-react'
+import { ArrowLeft, ChevronDown, Sun, Moon } from 'lucide-react'
 import { useLanguage, LANGUAGES, LangCode } from '@/i18n/LanguageContext'
+import { useTheme } from 'next-themes'
 
 interface PublicPageNavProps {
   showMethod?: boolean
@@ -12,8 +13,10 @@ interface PublicPageNavProps {
 
 export default function PublicPageNav({ showMethod = true, showAbout = false }: PublicPageNavProps) {
   const { t, lang, setLang } = useLanguage()
+  const { theme, setTheme } = useTheme()
   const [langMenuOpen, setLangMenuOpen] = useState(false)
   const currentLang = LANGUAGES.find(l => l.code === lang)
+  const isDark = theme !== 'light'
 
   return (
     <nav
@@ -37,6 +40,15 @@ export default function PublicPageNav({ showMethod = true, showAbout = false }: 
         </Link>
 
         <div className="flex-1" />
+
+        {/* Theme toggle */}
+        <button
+          onClick={() => setTheme(isDark ? 'light' : 'dark')}
+          className="theme-toggle inline-flex"
+          title={isDark ? 'Light mode' : 'Dark mode'}
+        >
+          {isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+        </button>
 
         {/* Language selector — same style as main page navbar */}
         <div className="relative">
