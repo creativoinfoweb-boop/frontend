@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Termini di Servizio e Privacy Policy | Valorox',
+  title: 'Termini di Servizio e Privacy Policy',
   description: 'Termini di utilizzo, privacy policy, rischi finanziari e condizioni di abbonamento di Valorox AI Trading System. Sistema di copy trading automatizzato su XAU/USD.',
   robots: { index: true, follow: false },
 }

@@ -29,7 +29,7 @@ const aboutSchema = {
 }
 
 export const metadata: Metadata = {
-  title: 'Chi Siamo | Il Team Valorox AI Trading',
+  title: 'Chi Siamo — Il Team Valorox AI Trading',
   description: 'Il team di trader professionisti e sviluppatori AI dietro Valorox. Scopri la missione, la tecnologia e il metodo che ha creato il sistema di copy trading su XAU/USD.',
   keywords: [
     'Valorox chi siamo', 'Valorox team', 'AI trading company Italia',

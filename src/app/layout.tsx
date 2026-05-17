@@ -106,7 +106,7 @@ export const metadata: Metadata = {
     ],
     shortcut: '/valoroxoro.svg',
   },
-  manifest: '/site.webmanifest',
+  manifest: '/manifest.webmanifest',
   verification: {
     google: 'google2f3368ce4bb147c3',
   },

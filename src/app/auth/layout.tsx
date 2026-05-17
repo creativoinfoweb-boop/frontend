@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Accedi | Valorox AI Trading System',
+  title: 'Accedi',
   description: 'Accedi a Valorox per gestire il tuo sistema di copy trading automatizzato su XAU/USD.',
   robots: { index: false, follow: false },
 }

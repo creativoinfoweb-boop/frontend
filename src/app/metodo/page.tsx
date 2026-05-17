@@ -25,7 +25,7 @@ const articleSchema = {
 }
 
 export const metadata: Metadata = {
-  title: 'Come Funziona il Sistema AI Trading | Valorox',
+  title: 'Come Funziona il Sistema AI Trading',
   description: 'Scopri come Valorox automatizza il trading su XAU/USD con AI e metodo Smart Money. Copy trading automatico sull\'oro, risk management strutturato, MetaTrader 5. Inizia gratis.',
   keywords: [
     'Valorox come funziona', 'AI trading XAU/USD come funziona',
