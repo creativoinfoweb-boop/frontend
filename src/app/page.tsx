@@ -69,11 +69,13 @@ function AnimatedCounter({ to, suffix = '', duration = 1500 }: { to: number; suf
 
 /* ─── Ticker fallback ──────────────────────────────────── */
 const tickerFallback = [
-  { symbol: 'XAU/USD', price_str: '—', change_str: '...', up: true },
-  { symbol: 'EUR/USD', price_str: '—', change_str: '...', up: true },
-  { symbol: 'DXY', price_str: '—', change_str: '...', up: false },
-  { symbol: 'GBP/USD', price_str: '—', change_str: '...', up: true },
-  { symbol: 'USD/JPY', price_str: '—', change_str: '...', up: false },
+  { symbol: 'XAU/USD', price_str: '···', change_str: '···', up: true },
+  { symbol: 'EUR/USD', price_str: '···', change_str: '···', up: true },
+  { symbol: 'BTC/USD', price_str: '···', change_str: '···', up: true },
+  { symbol: 'GBP/USD', price_str: '···', change_str: '···', up: true },
+  { symbol: 'USD/JPY', price_str: '···', change_str: '···', up: false },
+  { symbol: 'NASDAQ', price_str: '···', change_str: '···', up: true },
+  { symbol: 'S&P 500', price_str: '···', change_str: '···', up: true },
 ]
 
 /* ─── Static per-module metadata (language-independent) ── */
@@ -603,10 +605,8 @@ export default function LandingPage() {
         <div className="ticker-content gap-6">
           {(() => {
             const filtered = tickerItems.filter(item => {
-              const isGold = item.symbol === 'XAU/USD'
-              if (isGold) return true
               const p = item.price_str
-              return p && p !== '—' && p !== '...' && p.trim() !== ''
+              return p && p !== '—' && p.trim() !== ''
             })
             return [...filtered, ...filtered]
           })().map((item, i) => {
@@ -1001,11 +1001,11 @@ export default function LandingPage() {
       <section id="pricing" className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-xl mx-auto">
           <div className="text-center mb-10">
-            <div className="section-label mb-3">Pricing</div>
+            <div className="section-label mb-3">{t.pricing.sectionLabel}</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-3">
-              Un Piano, Tutto Incluso
+              {t.pricing.title}
             </h2>
-            <p style={{ color: 'var(--text-secondary)' }}>Nessuna sorpresa. Nessun tier nascosto.</p>
+            <p style={{ color: 'var(--text-secondary)' }}>{t.pricing.subtitle}</p>
           </div>
 
           <PricingPlanCard variant="landing" />

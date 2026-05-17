@@ -12,7 +12,7 @@ const breadcrumbSchema = {
 }
 
 export const metadata: Metadata = {
-  title: 'Programma Affiliati | Guadagna con Valorox',
+  title: 'Programma Affiliati — Guadagna con Valorox',
   description: 'Guadagna commissioni ricorrenti con il programma affiliati Valorox. Presenta trader al sistema di AI trading XAU/USD e ricevi una percentuale su ogni abbonamento attivo.',
   keywords: [
     'Valorox affiliati', 'programma affiliazione trading AI',
