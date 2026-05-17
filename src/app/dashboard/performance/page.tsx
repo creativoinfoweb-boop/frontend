@@ -102,9 +102,9 @@ export default function PerformancePage() {
   const userCurveData = equityFromPoints(equityCurve)
   const hasUserData = userCurveData.length >= 2
 
-  const tradesWin      = userStats?.trades_win  ?? 0
-  const tradesLoss     = userStats?.trades_loss ?? 0
-  const totalPips      = n(userStats?.total_profit_pips)
+  const tradesWin      = userStats?.trades_won  ?? 0
+  const tradesLoss     = userStats?.trades_lost ?? 0
+  const totalProfitUsd = n(userStats?.total_profit_usd)
   const winRateMaster  = n(masterStats?.win_rate_percent)
   const avgDur         = n(masterStats?.avg_trade_duration_hours)
   const totalPipsMaster = n(masterStats?.total_profit_pips)
@@ -156,12 +156,12 @@ export default function PerformancePage() {
           sub="Totale storico master"
           color={totalPipsMaster >= 0 ? 'var(--green)' : 'var(--red)'} icon={TrendingUp} />
         <StatCard
-          label="I Miei Pips"
-          value={totalPips !== 0
-            ? `${totalPips >= 0 ? '+' : ''}${totalPips.toFixed(1)} pips`
-            : '— pips'}
-          sub="Pips accumulati sul tuo conto"
-          color={totalPips >= 0 ? 'var(--green)' : 'var(--red)'} icon={BarChart3} />
+          label="Il Mio Profitto"
+          value={totalProfitUsd !== 0
+            ? `${totalProfitUsd >= 0 ? '+' : ''}$${Math.abs(totalProfitUsd).toFixed(2)}`
+            : '—'}
+          sub="Profitto totale in USD · tuo conto"
+          color={totalProfitUsd >= 0 ? 'var(--green)' : 'var(--red)'} icon={BarChart3} />
         <StatCard
           label="Durata Media"
           value={avgDur > 0 ? `${avgDur.toFixed(1)}h` : '—'}
