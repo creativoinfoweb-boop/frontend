@@ -1001,11 +1001,11 @@ export default function LandingPage() {
       <section id="pricing" className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-xl mx-auto">
           <div className="text-center mb-10">
-            <div className="section-label mb-3">Pricing</div>
+            <div className="section-label mb-3">{t.pricing.sectionLabel}</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-3">
-              Un Piano, Tutto Incluso
+              {t.pricing.title}
             </h2>
-            <p style={{ color: 'var(--text-secondary)' }}>Nessuna sorpresa. Nessun tier nascosto.</p>
+            <p style={{ color: 'var(--text-secondary)' }}>{t.pricing.subtitle}</p>
           </div>
 
           <PricingPlanCard variant="landing" />

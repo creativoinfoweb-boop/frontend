@@ -1,6 +1,7 @@
 ﻿import type { Metadata, Viewport } from 'next'
 import { Inter, JetBrains_Mono, Cinzel, Cormorant, Exo_2, Audiowide } from 'next/font/google'
 import localFont from 'next/font/local'
+import 'flag-icons/css/flag-icons.min.css'
 import './globals.css'
 import { Providers } from './providers'
 import ClerkWrapper from '@/components/ClerkWrapper'
