@@ -158,7 +158,6 @@ export default function DashboardPage() {
   const [masterStats, setMasterStats] = useState<PublicPerformance | null>(null)
   const [userStats, setUserStats] = useState<UserStats | null>(null)
   const [recentTrades, setRecentTrades] = useState<SignalHistoryItem[]>([])
-  const [allHistory, setAllHistory] = useState<SignalHistoryItem[]>([])
   const [loading, setLoading] = useState(true)
   const [showBotWarning, setShowBotWarning] = useState(() =>
     typeof window !== 'undefined' && !localStorage.getItem('bot_warning_dismissed')
@@ -178,7 +177,6 @@ export default function DashboardPage() {
         setMasterStats(masterRes.data)
         setUserStats(userRes.data)
         const all = histRes.data.history || []
-        setAllHistory(all)
         setRecentTrades(all.slice(0, 5))
       } catch (_) {}
       finally { setLoading(false) }
@@ -213,16 +211,14 @@ export default function DashboardPage() {
   const GREEN = 'var(--green)'
   const RED   = 'var(--red)'
 
-  // Derive wins/losses from real history (profit_usd > 0 = win, < 0 = loss)
-  const executedHistory = allHistory.filter(h => h.status === 'EXECUTED')
-  const tradesWin  = executedHistory.filter(h => (h.profit_usd ?? 0) > 0).length
-  const tradesLoss = executedHistory.filter(h => (h.profit_usd ?? 0) < 0).length
-
-  const totalPipsMaster = n(masterStats?.total_profit_pips)
-  const winRateMaster   = n(masterStats?.win_rate_percent, 85)
+  const winRateMaster  = n(masterStats?.win_rate_percent, 85)
+  const tradesWin      = userStats?.trades_won  ?? 0
+  const tradesLoss     = userStats?.trades_lost ?? 0
+  const totalProfitUsd = n(userStats?.total_profit_usd)
+  const tradesTotali   = userStats?.trades_total ?? 0
 
   const sparkWinRate = [60, 65, 62, 70, 68, 72, winRateMaster || 85]
-  const sparkTrades  = [1, 2, 3, 4, 5, 6, userStats?.trades_executed ?? 8]
+  const sparkTrades  = [1, 2, 3, 4, 5, 6, tradesTotali || 0]
 
   return (
     <div className="space-y-5 max-w-[1400px]">
@@ -296,13 +292,13 @@ export default function DashboardPage() {
           cta="Setup Guide" href="/dashboard/setup-guide" />
       )}
 
-      {/* KPI Cards — 3 cards (ibrido master+utente) */}
+      {/* KPI Cards */}
       <div className="grid grid-cols-3 gap-3">
-        {/* 1. Trade Eseguiti — dall'utente */}
+        {/* 1. Trade Totali — trade chiusi eseguiti su questo conto */}
         <KpiCard
-          label="Trade Eseguiti"
-          value={String(userStats?.trades_executed ?? 0)}
-          sub={`Su ${userStats?.trades_copied ?? 0} esecuzioni della strategia`}
+          label="Trade Totali"
+          value={String(tradesTotali)}
+          sub={userStats?.trades_open ? `${userStats.trades_open} aperte ora` : 'Trade chiusi sul tuo conto'}
           icon={Activity} color={GOLD} sparkData={sparkTrades} delay={0} />
 
         {/* 2. Win Rate — dal master (affidabilità sistema) */}
@@ -312,14 +308,12 @@ export default function DashboardPage() {
           sub={`Media su ${masterStats?.trades_total ?? 0} trade master`}
           icon={Target} color={GREEN} sparkData={sparkWinRate} delay={60} />
 
-        {/* 3. Profit Pips — dal master (performance sistema) */}
+        {/* 3. Profitto Personale — in USD, scalato per il lotto dell'utente */}
         <KpiCard
-          label="Profit Pips Sistema"
-          value={totalPipsMaster !== 0
-            ? `${totalPipsMaster >= 0 ? '+' : ''}${totalPipsMaster.toFixed(0)}`
-            : '—'}
-          sub="Totale storico · sistema"
-          icon={TrendingUp} color={totalPipsMaster >= 0 ? GOLD : RED} delay={120} />
+          label="Profitto Personale"
+          value={tradesTotali === 0 ? '—' : `${totalProfitUsd >= 0 ? '+' : ''}$${Math.abs(totalProfitUsd).toFixed(2)}`}
+          sub="Profitto totale in dollari · tuo conto"
+          icon={TrendingUp} color={totalProfitUsd >= 0 ? GOLD : RED} delay={120} />
       </div>
 
       {/* Main Grid */}
@@ -364,7 +358,7 @@ export default function DashboardPage() {
           <div className="grid grid-cols-2 gap-2 mb-3">
             {[
               { label: 'Win Rate Sistema', value: `${winRateMaster.toFixed(1)}%`, color: GREEN },
-              { label: 'Trade Totali',     value: String(masterStats?.trades_total ?? 0), color: GOLD },
+              { label: 'Trade Totali (tuoi)', value: String(tradesTotali), color: GOLD },
             ].map(s => (
               <div key={s.label} className="text-center rounded-lg py-2.5 px-2"
                 style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
