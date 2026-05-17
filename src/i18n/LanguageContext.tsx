@@ -25,12 +25,28 @@ const LanguageContext = createContext<LanguageContextType>({
   t: translations['it'],
 })
 
+const SUPPORTED = new Set<LangCode>(['it', 'en', 'fr', 'de', 'es'])
+
+function detectBrowserLang(): LangCode {
+  if (typeof navigator === 'undefined') return 'it'
+  const langs = navigator.languages?.length ? navigator.languages : [navigator.language]
+  for (const l of langs) {
+    const code = l.split('-')[0].toLowerCase() as LangCode
+    if (SUPPORTED.has(code)) return code
+  }
+  return 'it'
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<LangCode>('it')
 
   useEffect(() => {
     const saved = localStorage.getItem('valorox-lang') as LangCode | null
-    if (saved && translations[saved]) setLangState(saved)
+    if (saved && translations[saved]) {
+      setLangState(saved)
+    } else {
+      setLangState(detectBrowserLang())
+    }
   }, [])
 
   const setLang = (l: LangCode) => {
