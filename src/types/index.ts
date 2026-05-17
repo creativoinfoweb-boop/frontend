@@ -232,15 +232,14 @@ export interface PublicPerformance {
 }
 
 export interface UserStats {
-  trades_copied: number
-  trades_executed: number
+  trades_total: number         // trade chiusi eseguiti
+  trades_executed: number      // tutti gli eseguiti (open + closed)
+  trades_open: number          // posizioni aperte in corso
+  trades_won: number           // trade chiusi in profitto
+  trades_lost: number          // trade chiusi in perdita
   trades_failed: number
-  trades_win?: number
-  trades_loss?: number
-  win_rate_percent: number
-  avg_profit_per_trade: number
-  total_profit_pips: number
-  avg_trade_duration_hours?: number
+  win_rate_percent: number     // win rate personale su trade chiusi
+  total_profit_usd: number     // profitto totale in USD
 }
 
 // ─────────────────────────────────────────────────────────────────────────

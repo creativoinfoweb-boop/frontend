@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/store/auth'
 import { signalsApi, getApiErrorMessage } from '@/lib/api'
 import type { SignalHistoryItem } from '@/types'
-import { AlertCircle, RefreshCw, TrendingUp, TrendingDown, Clock, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react'
+import { AlertCircle, RefreshCw, TrendingUp, TrendingDown, Clock, ChevronLeft, ChevronRight } from 'lucide-react'
 
 type FilterStatus = 'ALL' | 'EXECUTED'
 
@@ -121,9 +121,6 @@ export default function HistoryPage() {
   const totalUsd = history
     .filter(h => h.signal_status === 'CLOSED' && h.profit_usd !== undefined && h.profit_usd !== null)
     .reduce((acc, h) => acc + (Number(h.profit_usd) || 0), 0)
-  const totalPips = history
-    .filter(h => h.signal_status === 'CLOSED' && h.profit_pips !== undefined && h.profit_pips !== null)
-    .reduce((acc, h) => acc + (Number(h.profit_pips) || 0), 0)
 
   return (
     <div className="space-y-6">
@@ -150,7 +147,7 @@ export default function HistoryPage() {
 
       {/* Summary cards */}
       {!loading && history.length > 0 && (
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <div className="rounded-xl p-4" style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
             <div className="flex items-center gap-2 mb-1">
               <Clock className="h-4 w-4 text-[#3B82F6]" />
@@ -172,22 +169,14 @@ export default function HistoryPage() {
             </div>
             <p className="text-2xl font-bold text-[#EF4444]">{lossTrades}</p>
           </div>
-          <div className="rounded-xl p-4" style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
-            <div className="flex items-center gap-2 mb-1">
-              <CheckCircle2 className="h-4 w-4" style={{ color: totalPips >= 0 ? '#22C55E' : '#EF4444' }} />
-              <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Pips totali</span>
-            </div>
-            <p className={`text-2xl font-bold ${totalPips >= 0 ? 'text-[#22C55E]' : 'text-[#EF4444]'}`}>
-              {totalPips >= 0 ? '+' : ''}{totalPips.toFixed(0)}
-            </p>
-          </div>
-          <div className="rounded-xl p-4 col-span-2 md:col-span-1" style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
+          <div className="rounded-xl p-4 col-span-2 md:col-span-1"
+            style={{ background: totalUsd >= 0 ? 'rgba(34,197,94,0.06)' : 'rgba(239,68,68,0.06)', border: `1px solid ${totalUsd >= 0 ? 'rgba(34,197,94,0.2)' : 'rgba(239,68,68,0.2)'}` }}>
             <div className="flex items-center gap-2 mb-1">
               <TrendingUp className="h-4 w-4" style={{ color: totalUsd >= 0 ? '#22C55E' : '#EF4444' }} />
-              <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>P/L totale ($)</span>
+              <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Profitto Totale</span>
             </div>
             <p className={`text-2xl font-bold ${totalUsd >= 0 ? 'text-[#22C55E]' : 'text-[#EF4444]'}`}>
-              {totalUsd >= 0 ? '+' : ''}{totalUsd.toFixed(2)}
+              {totalUsd >= 0 ? '+' : ''}${Math.abs(totalUsd).toFixed(2)}
             </p>
           </div>
         </div>
