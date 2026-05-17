@@ -158,7 +158,6 @@ export default function DashboardPage() {
   const [masterStats, setMasterStats] = useState<PublicPerformance | null>(null)
   const [userStats, setUserStats] = useState<UserStats | null>(null)
   const [recentTrades, setRecentTrades] = useState<SignalHistoryItem[]>([])
-  const [allHistory, setAllHistory] = useState<SignalHistoryItem[]>([])
   const [loading, setLoading] = useState(true)
   const [showBotWarning, setShowBotWarning] = useState(() =>
     typeof window !== 'undefined' && !localStorage.getItem('bot_warning_dismissed')
@@ -178,7 +177,6 @@ export default function DashboardPage() {
         setMasterStats(masterRes.data)
         setUserStats(userRes.data)
         const all = histRes.data.history || []
-        setAllHistory(all)
         setRecentTrades(all.slice(0, 5))
       } catch (_) {}
       finally { setLoading(false) }
