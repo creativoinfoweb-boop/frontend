@@ -5,12 +5,12 @@ import { translations } from './translations'
 
 export type LangCode = 'it' | 'en' | 'fr' | 'de' | 'es'
 
-export const LANGUAGES: { code: LangCode; label: string; flag: string }[] = [
-  { code: 'it', label: 'Italiano', flag: '🇮🇹' },
-  { code: 'en', label: 'English', flag: '🇬🇧' },
-  { code: 'fr', label: 'Français', flag: '🇫🇷' },
-  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
-  { code: 'es', label: 'Español', flag: '🇪🇸' },
+export const LANGUAGES: { code: LangCode; label: string; flag: string; flagCode: string }[] = [
+  { code: 'it', label: 'Italiano', flag: '🇮🇹', flagCode: 'it' },
+  { code: 'en', label: 'English', flag: '🇬🇧', flagCode: 'gb' },
+  { code: 'fr', label: 'Français', flag: '🇫🇷', flagCode: 'fr' },
+  { code: 'de', label: 'Deutsch', flag: '🇩🇪', flagCode: 'de' },
+  { code: 'es', label: 'Español', flag: '🇪🇸', flagCode: 'es' },
 ]
 
 type LanguageContextType = {
@@ -25,12 +25,28 @@ const LanguageContext = createContext<LanguageContextType>({
   t: translations['it'],
 })
 
+const SUPPORTED = new Set<LangCode>(['it', 'en', 'fr', 'de', 'es'])
+
+function detectBrowserLang(): LangCode {
+  if (typeof navigator === 'undefined') return 'it'
+  const langs = navigator.languages?.length ? navigator.languages : [navigator.language]
+  for (const l of langs) {
+    const code = l.split('-')[0].toLowerCase() as LangCode
+    if (SUPPORTED.has(code)) return code
+  }
+  return 'it'
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<LangCode>('it')
 
   useEffect(() => {
     const saved = localStorage.getItem('valorox-lang') as LangCode | null
-    if (saved && translations[saved]) setLangState(saved)
+    if (saved && translations[saved]) {
+      setLangState(saved)
+    } else {
+      setLangState(detectBrowserLang())
+    }
   }, [])
 
   const setLang = (l: LangCode) => {

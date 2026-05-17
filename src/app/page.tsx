@@ -274,14 +274,14 @@ export default function LandingPage() {
           {/* Center links — desktop only */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href}
+              <Link key={link.href} href={link.href}
                 className="text-sm font-medium transition-all duration-200"
                 style={{ color: scrolled ? 'var(--text-secondary)' : 'rgba(255,255,255,0.82)' }}
                 onMouseEnter={e => (e.currentTarget.style.color = scrolled ? 'var(--text-primary)' : '#ffffff')}
                 onMouseLeave={e => (e.currentTarget.style.color = scrolled ? 'var(--text-secondary)' : 'rgba(255,255,255,0.82)')}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <Link href="/affiliati"
               className="text-sm font-medium transition-all duration-200"
@@ -314,7 +314,7 @@ export default function LandingPage() {
                 }}
                 aria-label="Select language"
               >
-                <span>{currentLang?.flag}</span>
+                <span className={`fi fi-${currentLang?.flagCode}`} style={{ width: '1.2em', height: '0.9em', display: 'inline-block' }} />
                 <span>{lang.toUpperCase()}</span>
                 <ChevronDown className="w-3 h-3 opacity-60" style={{ transform: langMenuOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
               </button>
@@ -339,7 +339,7 @@ export default function LandingPage() {
                         onMouseEnter={e => { if (l.code !== lang) (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.05)' }}
                         onMouseLeave={e => { if (l.code !== lang) (e.currentTarget as HTMLElement).style.background = 'transparent' }}
                       >
-                        <span className="text-base">{l.flag}</span>
+                        <span className={`fi fi-${l.flagCode}`} style={{ width: '1.2em', height: '0.9em', display: 'inline-block' }} />
                         <span>{l.label}</span>
                       </button>
                     ))}
@@ -424,7 +424,7 @@ export default function LandingPage() {
                 ...navLinks,
                 { label: t.nav.affiliates, href: '/affiliati' },
               ].map(link => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
@@ -435,7 +435,7 @@ export default function LandingPage() {
                 >
                   <ChevronRight className="w-3.5 h-3.5 opacity-40 flex-shrink-0" />
                   {link.label}
-                </a>
+                </Link>
               ))}
 
               {/* Language picker in mobile drawer */}
@@ -453,7 +453,7 @@ export default function LandingPage() {
                         color: l.code === lang ? 'var(--gold)' : 'var(--text-muted)',
                       }}
                     >
-                      <span className="text-base">{l.flag}</span>
+                      <span className={`fi fi-${l.flagCode}`} style={{ width: '1.4em', height: '1em', display: 'inline-block' }} />
                       <span>{l.code.toUpperCase()}</span>
                     </button>
                   ))}
@@ -523,6 +523,8 @@ export default function LandingPage() {
         </div>
       )}
 
+      {/* ─── Hero + Ticker (on mobile these fill exactly 100svh) ── */}
+      <div className="hero-ticker-wrap">
       {/* ─── Hero ───────────────────────────────────────── */}
       <section className="valorox-hero">
         <div className="valorox-rays">
@@ -635,6 +637,7 @@ export default function LandingPage() {
           })}
         </div>
       </div>
+      </div>{/* end hero-ticker-wrap */}
 
       {/* ─── Quick Performance Preview ───────────────────── */}
       <section className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
