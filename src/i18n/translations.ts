@@ -13,7 +13,7 @@ export const translations = {
     hero: {
       subtitle: 'XAU/USD · AI TRADING SYSTEM',
       tagline: 'Un nuovo approccio al trading.',
-      description: 'Scalping, intraday, volumetrica e CRT in un unico motore di esecuzione AI su XAU/USD.',
+      description: 'Scalping, intraday, volumetrica, CRT e Wyckoff in un unico motore di esecuzione AI su XAU/USD.',
       startFree: 'Inizia Gratis',
       learnMethod: 'Scopri il Metodo',
       trust1: 'Nessuna gestione fondi',
@@ -414,7 +414,7 @@ export const translations = {
     hero: {
       subtitle: 'XAU/USD · AI TRADING SYSTEM',
       tagline: 'A new approach to trading.',
-      description: 'Scalping, intraday, volumetric and CRT in a single AI execution engine on XAU/USD.',
+      description: 'Scalping, intraday, volumetric, CRT and Wyckoff in a single AI execution engine on XAU/USD.',
       startFree: 'Start Free',
       learnMethod: 'Discover the Method',
       trust1: 'No fund management',
@@ -815,7 +815,7 @@ export const translations = {
     hero: {
       subtitle: 'XAU/USD · SYSTÈME DE TRADING IA',
       tagline: 'Une nouvelle approche du trading.',
-      description: 'Scalping, intraday, volumétrique et CRT dans un seul moteur d\'exécution IA sur XAU/USD.',
+      description: 'Scalping, intraday, volumétrique, CRT et Wyckoff dans un seul moteur d\'exécution IA sur XAU/USD.',
       startFree: 'Commencer Gratuitement',
       learnMethod: 'Découvrir la Méthode',
       trust1: 'Aucune gestion de fonds',
@@ -1192,7 +1192,7 @@ export const translations = {
     hero: {
       subtitle: 'XAU/USD · KI-HANDELSSYSTEM',
       tagline: 'Ein neuer Ansatz im Trading.',
-      description: 'Scalping, Intraday, Volumetrik und CRT in einer einzigen KI-Ausführungsmaschine auf XAU/USD.',
+      description: 'Scalping, Intraday, Volumetrik, CRT und Wyckoff in einer einzigen KI-Ausführungsmaschine auf XAU/USD.',
       startFree: 'Kostenlos starten',
       learnMethod: 'Methode entdecken',
       trust1: 'Keine Fondsverwaltung',
@@ -1569,7 +1569,7 @@ export const translations = {
     hero: {
       subtitle: 'XAU/USD · SISTEMA DE TRADING IA',
       tagline: 'Un nuevo enfoque del trading.',
-      description: 'Scalping, intraday, volumétrico y CRT en un único motor de ejecución IA sobre XAU/USD.',
+      description: 'Scalping, intraday, volumétrico, CRT y Wyckoff en un único motor de ejecución IA sobre XAU/USD.',
       startFree: 'Empezar Gratis',
       learnMethod: 'Descubrir el Método',
       trust1: 'Sin gestión de fondos',
