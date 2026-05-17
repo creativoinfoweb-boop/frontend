@@ -54,6 +54,31 @@ async function makeIcon(sizePx, paddingRatio = 0.12) {
   return result
 }
 
+/**
+ * Apple Touch Icon: quadrato pieno, sfondo scuro, logo centrato con margine.
+ * iOS applica automaticamente i bordi arrotondati (squircle) — NON serve disegnarli.
+ */
+async function makeAppleTouchIcon(sizePx = 180) {
+  const logoSize = Math.round(sizePx * 0.72)   // 72% dello spazio = margine visivo generoso
+
+  const bgSvg = `
+    <svg width="${sizePx}" height="${sizePx}" xmlns="http://www.w3.org/2000/svg">
+      <rect width="${sizePx}" height="${sizePx}" fill="#0c0c10"/>
+    </svg>`
+
+  const logoPng = await sharp(SVG_PATH)
+    .resize(logoSize, logoSize, { fit: 'contain', background: { r:0,g:0,b:0,alpha:0 } })
+    .png()
+    .toBuffer()
+
+  const offset = Math.round((sizePx - logoSize) / 2)
+  return sharp(Buffer.from(bgSvg))
+    .resize(sizePx, sizePx)
+    .composite([{ input: logoPng, top: offset, left: offset }])
+    .png({ compressionLevel: 9 })
+    .toBuffer()
+}
+
 async function makeOgImage() {
   const W = 1200, H = 630
   const logoSize = 280
@@ -149,8 +174,8 @@ async function main() {
   writeFileSync(resolve(PUBLIC, 'icon-512.png'), i512)
   console.log(`icon-512.png  ${i512.length} bytes`)
 
-  // apple-touch-icon.png  180x180
-  const apple = await makeIcon(180, 0.09)
+  // apple-touch-icon.png  180x180 — quadrato pieno (iOS arrotonda da sola)
+  const apple = await makeAppleTouchIcon(180)
   writeFileSync(resolve(PUBLIC, 'apple-touch-icon.png'), apple)
   console.log(`apple-touch-icon.png  ${apple.length} bytes`)
 
