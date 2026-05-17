@@ -1,11 +1,12 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
-  ArrowLeft, Shield, Brain, Clock,
+  Shield, Brain, Clock,
   AlertTriangle, Zap, Target, BarChart3, ArrowRight,
   Bot, GraduationCap, CheckCircle2, XCircle, Activity,
   BookOpen,
 } from 'lucide-react'
+import PublicPageNav from '@/components/PublicPageNav'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://valoroxai.com'
 
@@ -84,24 +85,7 @@ export default function MetodoPage() {
         style={{ background: 'linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark))' }} />
 
       {/* Nav */}
-      <nav className="sticky top-0 z-50 border-b"
-        style={{ background: 'var(--glass-bg)', backdropFilter: 'blur(24px)', borderColor: 'var(--border)' }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-4">
-          <Link href="/" className="flex items-center gap-2 text-sm font-semibold transition-opacity hover:opacity-70"
-            style={{ color: 'var(--text-secondary)' }}>
-            <ArrowLeft className="w-4 h-4" />
-            Torna alla Home
-          </Link>
-          <div className="flex-1" />
-          <Link href="/chi-siamo" className="text-sm transition-opacity hover:opacity-70 hidden sm:block"
-            style={{ color: 'var(--text-muted)' }}>
-            Chi Siamo
-          </Link>
-          <Link href="/auth/register" className="btn-gold text-xs px-4 py-2">
-            Inizia Gratis
-          </Link>
-        </div>
-      </nav>
+      <PublicPageNav showMethod={false} showAbout={true} />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-20">
 

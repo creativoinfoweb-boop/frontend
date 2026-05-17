@@ -1,6 +1,7 @@
-﻿'use client'
+'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { useLanguage, LANGUAGES, LangCode } from '@/i18n/LanguageContext'
 import { useTheme } from 'next-themes'
 import { useAuthStore } from '@/store/auth'
 import Link from 'next/link'
@@ -75,156 +76,36 @@ const tickerFallback = [
   { symbol: 'USD/JPY', price_str: '—', change_str: '...', up: false },
 ]
 
-/* ─── FAQ items ───────────────────────────────────────── */
-const faqItems = [
-  {
-    id: 'what-is',
-    question: 'Cos\'è Valorox e a cosa serve?',
-    answer: 'Valorox è una piattaforma educativa e tecnologica per chi vuole comprendere i mercati finanziari e applicare una strategia operativa strutturata. Unisce formazione sulla visione Smart Money con strumenti che consentono all\'utente di osservare e applicare la strategia in modo sistematico, utilizzando il nostro sistema per eseguirla anche in maniera automatizzata. Non è un servizio di investimento.',
-  },
-  {
-    id: 'smart-money',
-    question: 'Cos\'è la visione Smart Money?',
-    answer: 'Smart Money identifica l\'approccio dei grandi operatori istituzionali (banche, hedge fund, market maker) che muovono i mercati attraverso dinamiche di liquidità. Comprendere come si muovono questi player — dove raccolgono liquidità, come creano falsi breakout, quando entrano davvero — è la base della strategia che studiamo e applichiamo su XAU/USD.',
-    learnMoreUrl: '/metodo',
-    learnMoreLabel: 'Approfondisci il Metodo →',
-  },
-  {
-    id: 'demo',
-    question: 'Posso iniziare con un conto demo?',
-    answer: 'Assolutamente sì — ed è il percorso che consigliamo. Collega un conto demo MT5 del tuo broker, osserva come la strategia viene applicata in condizioni reali di mercato, studia le logiche operative e i parametri di rischio. Solo quando hai piena comprensione, decidi in autonomia se passare al conto live.',
-  },
-  {
-    id: 'risks',
-    question: 'Quali rischi devo considerare?',
-    answer: 'Il trading sui mercati finanziari comporta rischio reale di perdita del capitale. La piattaforma fornisce strumenti di supporto decisionale — non garantisce risultati. I parametri di rischio (stop loss, size, take profit) sono sempre impostati e controllati dall\'utente. Non forniamo consulenza finanziaria. Studia prima, testa in demo, poi decidi con consapevolezza.',
-    learnMoreUrl: '/legal/terms',
-    learnMoreLabel: 'Leggi Termini e Rischi completi →',
-  },
-  {
-    id: 'how-works',
-    question: 'Come funziona tecnicamente la piattaforma?',
-    answer: 'Colleghi le credenziali del tuo conto MT5 (cifrate AES-128 — non le legge nessuno). La piattaforma applica la strategia sul conto secondo i parametri da te configurati: rischio per operazione, orari, strumenti. Non serve avere MT5 aperto sul PC. Importante: evita interventi manuali sul conto collegato, perché possono compromettere la coerenza operativa della strategia.',
-  },
-  {
-    id: 'frequency',
-    question: 'Con quale frequenza opera la strategia?',
-    answer: 'La strategia opera su XAU/USD principalmente nella sessione di Londra/New York (10:00 – 16:00 CET), dove la liquidità e la volatilità istituzionale sono più elevate. La frequenza varia in base alle condizioni di mercato: qualità prima di quantità. In assenza di condizioni ottimali, la strategia non entra — e questo è un punto di forza, non un limite.',
-  },
-  {
-    id: 'parameters-limited',
-    question: 'Perché alcuni parametri sono limitati e non posso impostarli liberamente?',
-    answer: 'È una scelta deliberata, non una limitazione tecnica. Più libertà operativa significa più opportunità di commettere errori emotivi — e i dati lo confermano. Il range di rischio 1%-3% è già ampio: sotto l\'1% il capitale non permette la struttura TP multipla; sopra il 3% l\'emotività durante i drawdown diventa difficilmente gestibile. La struttura di stop loss, break-even e take profit segue logiche strategiche precise — modificarle arbitrariamente in base alla sensazione del momento è esattamente il comportamento che produce perdite.',
-  },
-  {
-    id: 'vs-signals',
-    question: 'Qual è la differenza rispetto ai classici segnali di trading?',
-    answer: 'I segnali hanno un problema strutturale: anche se il segnale è corretto, l\'utente deve eseguirlo manualmente — e qui entra l\'emotività. Ritardo nell\'esecuzione, slippage, paura di entrare tardi, dubbio sull\'uscita. Spesso si perde anche con segnali corretti perché l\'esecuzione è inconsistente. Noi non mandiamo segnali: applichiamo la strategia in modo coerente, senza ritardi, senza esitazioni, con la stessa logica su ogni operazione. La differenza non è nella strategia — è nell\'esecuzione.',
-  },
-  {
-    id: 'cancel',
-    question: 'Posso cancellare quando voglio?',
-    answer: 'Sì, in qualsiasi momento senza penalità. Le operazioni già aperte rimangono sul tuo conto MT5 e puoi gestirle come preferisci. Non c\'è lock-in, non ci sono costi nascosti.',
-  },
-  {
-    id: 'broker',
-    question: 'Quale broker devo usare?',
-    answer: 'Qualsiasi broker MetaTrader 5 che offra XAU/USD (Oro). Non abbiamo alcuna affiliazione con broker — nessuna commissione, nessun conflitto di interesse. Tu scegli il broker che preferisci. Per l\'applicazione ottimale della strategia consigliamo broker ECN con spread ridotti come Exness, IC Markets o Pepperstone. Sia conti demo che live sono supportati.',
-  },
-  {
-    id: 'broker-independence',
-    question: 'Avete affiliazioni con broker o conflitti di interesse?',
-    answer: 'No. Valorox non ha alcuna affiliazione con broker, non riceve commissioni sul volume di trading degli utenti e non ha alcun conflitto di interesse. Il nostro unico ricavo è l\'abbonamento alla piattaforma. L\'utente sceglie liberamente il proprio broker, senza alcuna restrizione o preferenza forzata da parte nostra.',
-  },
+/* ─── Static per-module metadata (language-independent) ── */
+const FAQ_IDS = [
+  'what-is', 'smart-money', 'demo', 'risks', 'how-works',
+  'frequency', 'parameters-limited', 'vs-signals', 'cancel', 'broker', 'broker-independence',
+] as const
+
+const FEATURE_ICONS = [BarChart3, Shield, Globe, Activity, Layers, TrendingUp] as const
+
+const HOW_IT_WORKS_ICONS = [Globe, Layers, Activity, BarChart3] as const
+
+const PROBLEM_ICONS = [TrendingUp, Zap, Activity] as const
+
+const MODULE_META = [
+  { num: '01', slug: '01', free: true, levelKey: 'beginner', lessons: 8 },
+  { num: '02', slug: '02', free: true, levelKey: 'beginner', lessons: 10 },
+  { num: '03', slug: '03', free: true, levelKey: 'intermediate', lessons: 9 },
+  { num: '04', slug: '04', free: true, levelKey: 'intermediate', lessons: 8 },
+  { num: '05', slug: '05', free: false, levelKey: 'intermediate', lessons: 7 },
+  { num: '06', slug: '06', free: false, levelKey: 'advanced', lessons: 8 },
+  { num: '07', slug: '07', free: false, levelKey: 'advanced', lessons: 7 },
+  { num: '08', slug: '08', free: false, levelKey: 'practice', lessons: 5 },
+] as const
+
+const TESTIMONIALS = [
+  { name: 'Marco R.', role: 'Trader — XAU/USD', avatar: 'MR', text: 'Finalmente capisco perché il mercato si muove. La sezione educativa ha cambiato il mio approccio all\'analisi: so quando aprire posizioni e soprattutto quando non farlo.', stars: 5, profit: '+312 pips*' },
+  { name: 'Sofia L.', role: 'Trader — XAU/USD', avatar: 'SL', text: 'Non mi baso più su indicatori senza logica. Ho capito le dinamiche istituzionali e osservo il mercato in modo completamente diverso. Trasparenza totale sul funzionamento.', stars: 5, profit: '+198 pips*' },
+  { name: 'Andrea M.', role: 'Trader — XAU/USD', avatar: 'AM', text: 'La strategia viene applicata in modo coerente. Ho accesso a tutti i dati dalla dashboard: performance, win rate, operazioni. Riesco a monitorare e imparare dalla mia operatività.', stars: 5, profit: '+445 pips*' },
 ]
 
-/* ─── Features — gold-only accent palette ──────────────── */
-const features = [
-  {
-    icon: BarChart3,
-    title: 'Nessuna Emotività',
-    desc: 'Il sistema esegue la strategia esattamente come configurata — senza paura, senza avidità, senza deviazioni. L\'esecuzione coerente è l\'unico modo per sfruttare un edge statistico.',
-  },
-  {
-    icon: Shield,
-    title: 'Parametri Limitati Volutamente',
-    desc: 'Alcune impostazioni sono intenzionalmente vincolate. Non per restringerti — per proteggerti dagli errori emotivi che ogni trader commette quando ha troppa libertà operativa.',
-  },
-  {
-    icon: Globe,
-    title: 'Osserva Prima in Demo',
-    desc: 'Collega un conto demo: vedi la strategia applicata in condizioni reali, senza rischiare capitale. Comprendi le logiche operative prima di prendere qualsiasi decisione.',
-  },
-  {
-    icon: Activity,
-    title: 'Approccio Sistematico',
-    desc: 'Stop loss secondo logica strategica. Break even automatico. Take profit strutturati. Ogni uscita segue un piano predefinito — non una reazione emotiva al mercato.',
-  },
-  {
-    icon: Layers,
-    title: 'Creato per Noi Stessi',
-    desc: 'Questo sistema è stato costruito internamente da un team di trader per migliorare la propria disciplina. Testato, ottimizzato, poi condiviso. Non è teoria — è quello che usiamo noi.',
-  },
-  {
-    icon: TrendingUp,
-    title: 'Processo, Non Profitto',
-    desc: 'Non promettiamo guadagni. Promettiamo coerenza operativa. Il risultato di lungo periodo dipende dall\'applicazione disciplinata di un metodo — non da previsioni o fortuna.',
-  },
-]
-
-/* ─── Learning Modules ──────────────────────────────────── */
-const learningModules = [
-  {
-    num: '01', slug: '01', free: true, level: 'Principiante', lessons: 8,
-    title: 'Fondamenti del Mercato',
-    desc: 'Le basi per leggere XAU/USD e le sessioni operative prima di qualsiasi operazione.',
-    topics: ['XAU/USD: caratteristiche e volatilità dell\'oro', 'Sessioni: Asia (00–08), Londra (09–12), NY (14:30–17)', 'ATR: misurare la volatilità per calibrare il rischio', 'Spread, leva, margine e struttura del conto MT5'],
-  },
-  {
-    num: '02', slug: '02', free: true, level: 'Principiante', lessons: 10,
-    title: 'Smart Money Concept',
-    desc: 'Come operano gli istituzionali e perché il retail sistematicamente perde.',
-    topics: ['BSL e SSL: liquidità sopra i massimi e sotto i minimi', 'BOS (Break of Structure) e MSS (Market Structure Shift)', 'Liquidity Sweep: il falso breakout per raccogliere gli stop', 'Retail vs Istituzionale: chi muove davvero il mercato'],
-  },
-  {
-    num: '03', slug: '03', free: true, level: 'Intermedio', lessons: 9,
-    title: 'Liquidità e Blocchi di Prezzo',
-    desc: 'I meccanismi algoritmici che muovono i prezzi: MAPS e i 9 tipi di blocchi.',
-    topics: ['MAPS: Consolidation → Expansion → Retracement/Reversal', 'Order Block, Breaker Block e Mitigation Block', 'Fair Value Gap (FVG): squilibri di prezzo istituzionali', 'Propulsion Block e Vacuum Block: segnali di accelerazione'],
-  },
-  {
-    num: '04', slug: '04', free: true, level: 'Intermedio', lessons: 8,
-    title: 'Punti di Entrata ad Alto R/R',
-    desc: 'La tecnica H1→M1 per entrare con logica istituzionale e massimizzare il R/R.',
-    topics: ['H1 trigger: identificare la zona di interesse sul timeframe alto', 'M1 micro-struttura e MSS di conferma dopo il sweep', 'Entrata aggressiva (OB candle) vs conservativa (50% OB retest)', 'Premium/Discount Zone e confluenza multi-timeframe'],
-  },
-  {
-    num: '05', slug: '05', free: false, level: 'Intermedio', lessons: 7,
-    title: 'Risk Management',
-    desc: 'Le regole operative che determinano la sopravvivenza nel lungo periodo.',
-    topics: ['Regola 1–2% per operazione, max 3% di perdita giornaliera', 'Stop Loss basato sulla struttura: sotto il fake move low', 'T1 al 50% → Break Even automatico → T2 al livello HTF', 'Kill Switch: stop dopo 2 perdite consecutive, filtro NFP/FOMC/CPI'],
-  },
-  {
-    num: '06', slug: '06', free: false, level: 'Avanzato', lessons: 8,
-    title: 'Applicazione operativa — scalping, intraday e gestione adattiva',
-    desc: 'Setup completo su XAU/USD nelle Kill Zone (scalping M1) e su movimenti H1/H4 (intraday).',
-    topics: ['Asia session: marcare Asia High e Asia Low come livelli chiave', 'London Kill Zone: sweep del range Asia → conferma MSS su M1', 'Gestione live: T1 50%, BE automatico, T2 al livello HTF', '10 Regole del NO: quando non entrare mai in operazione'],
-  },
-  {
-    num: '07', slug: '07', free: false, level: 'Avanzato', lessons: 7,
-    title: 'CRT — Candle Range Theory',
-    desc: 'Il modello CRT: ogni candela è un range completo con sweep di liquidità e setup AMD ad alta probabilità.',
-    topics: ['CRT-High e CRT-Low: i livelli di liquidità di ogni candela', 'Le 3 fasi AMD: Accumulation → Manipulation → Distribution', 'Setup Bullish: sweep SSL + conferma + entry long precisa', 'Setup Bearish: sweep BSL + conferma + entry short + multi-timeframe'],
-  },
-  {
-    num: '08', slug: '08', free: false, level: 'Pratica', lessons: 5,
-    title: 'Il Sistema Valorox',
-    desc: 'Dalla teoria alla pratica reale con la piattaforma: demo, dashboard, progressione.',
-    topics: ['Collegare il conto demo MT5 e configurare il rischio', 'Monitorare ogni operazione dalla dashboard in tempo reale', 'Win rate, equity curve, profit factor: leggere le statistiche', 'Da demo a live: i criteri oggettivi per fare il passo'],
-  },
-]
-
-/* ─── Stats — Durata media indicativa (minuti), gli altri vengono dall'API ── */
+/* ─── Stats ─────────────────────────────────────────────── */
 const STATS_AVG_DURATION_MIN = 25
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
@@ -232,13 +113,19 @@ const BASE_URL = typeof window !== 'undefined' && window.location.protocol === '
   ? '/api'
   : API_URL
 
+const LANG_LOCALES: Record<LangCode, string> = {
+  it: 'it-IT', en: 'en-US', fr: 'fr-FR', de: 'de-DE', es: 'es-ES',
+}
+
 /* ─── Main Component ───────────────────────────────────── */
 export default function LandingPage() {
   const { theme, setTheme } = useTheme()
   const { isAuthenticated } = useAuthStore()
+  const { t, lang, setLang } = useLanguage()
   const [expandedFaq, setExpandedFaq] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [langMenuOpen, setLangMenuOpen] = useState(false)
   const [tickerItems, setTickerItems] = useState(tickerFallback)
   const [goldPrice, setGoldPrice] = useState<{ price: number | null; change_str: string; up: boolean }>({
     price: null, change_str: '...', up: true,
@@ -252,6 +139,22 @@ export default function LandingPage() {
   const [cookieDone, setCookieDone] = useState(false)
   const onCookieDone = useCallback(() => setCookieDone(true), [])
   const isDark = theme !== 'light'
+
+  /* ── Derived from translations ── */
+  const faqItems = t.faq.items.map((item, i) => ({ ...item, id: FAQ_IDS[i] }))
+  const features = t.features.items.map((item, i) => ({ ...item, icon: FEATURE_ICONS[i] }))
+  const learningModules = t.learning.modules.map((mod, i) => ({
+    ...mod,
+    ...MODULE_META[i],
+    level: t.learning.levels[MODULE_META[i].levelKey as keyof typeof t.learning.levels],
+  }))
+  const problemItems = [t.problem.emotional, t.problem.impulsive, t.problem.inconsistent]
+
+  const monthLabel = (monthStr: string) => {
+    const [year, monthNum] = monthStr.split('-').map(Number)
+    return new Intl.DateTimeFormat(LANG_LOCALES[lang] || 'it-IT', { month: 'short' })
+      .format(new Date(year, monthNum - 1))
+  }
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -316,6 +219,17 @@ export default function LandingPage() {
     return () => clearInterval(interval)
   }, [])
 
+  /* ── Nav links ── */
+  const navLinks = [
+    { label: t.nav.method, href: '/metodo' },
+    { label: t.nav.about, href: '/chi-siamo' },
+    { label: t.nav.learn, href: '#impara' },
+    { label: t.nav.performance, href: '#performance' },
+    { label: t.nav.pricing, href: '#pricing' },
+  ]
+
+  const currentLang = LANGUAGES.find(l => l.code === lang)
+
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ background: 'var(--bg)', color: 'var(--text-primary)' }}>
 
@@ -348,7 +262,7 @@ export default function LandingPage() {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between gap-2">
-          {/* Logo — always links back to landing */}
+          {/* Logo */}
           <Link href="/" className="flex items-center gap-2 sm:gap-3 group min-w-0 shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/valoroxoro.svg" alt="Valorox" className="gold-avatar-ring shrink-0" style={{ width: 28, height: 28 }} />
@@ -359,13 +273,7 @@ export default function LandingPage() {
 
           {/* Center links — desktop only */}
           <div className="hidden md:flex items-center gap-8">
-            {[
-              { label: 'Metodo', href: '/metodo' },
-              { label: 'Chi Siamo', href: '/chi-siamo' },
-              { label: 'Impara', href: '#impara' },
-              { label: 'Performance', href: '#performance' },
-              { label: 'Pricing', href: '#pricing' },
-            ].map((link) => (
+            {navLinks.map((link) => (
               <a key={link.href} href={link.href}
                 className="text-sm font-medium transition-all duration-200"
                 style={{ color: scrolled ? 'var(--text-secondary)' : 'rgba(255,255,255,0.82)' }}
@@ -379,19 +287,66 @@ export default function LandingPage() {
               className="text-sm font-medium transition-all duration-200"
               style={{ color: scrolled ? 'var(--text-secondary)' : 'rgba(255,255,255,0.82)' }}
             >
-              Affiliati
+              {t.nav.affiliates}
             </Link>
           </div>
 
           {/* Right CTAs */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
+            {/* Theme toggle */}
             <button
               onClick={() => setTheme(isDark ? 'light' : 'dark')}
               className="theme-toggle inline-flex"
-              title={isDark ? 'Modalità chiara' : 'Modalità scura'}
+              title={isDark ? 'Light mode' : 'Dark mode'}
             >
               {isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
             </button>
+
+            {/* Language selector */}
+            <div className="relative hidden sm:block">
+              <button
+                onClick={() => setLangMenuOpen(v => !v)}
+                className="flex items-center gap-1 text-[11px] font-bold px-2 py-1.5 rounded-lg transition-all"
+                style={{
+                  background: langMenuOpen ? 'rgba(240,180,41,0.12)' : 'rgba(255,255,255,0.08)',
+                  border: `1px solid ${langMenuOpen ? 'rgba(240,180,41,0.35)' : 'rgba(255,255,255,0.15)'}`,
+                  color: langMenuOpen ? 'var(--gold)' : 'rgba(255,255,255,0.75)',
+                }}
+                aria-label="Select language"
+              >
+                <span>{currentLang?.flag}</span>
+                <span>{lang.toUpperCase()}</span>
+                <ChevronDown className="w-3 h-3 opacity-60" style={{ transform: langMenuOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
+              </button>
+
+              {langMenuOpen && (
+                <>
+                  <div className="fixed inset-0 z-[70]" onClick={() => setLangMenuOpen(false)} />
+                  <div
+                    className="absolute right-0 top-full mt-1.5 z-[80] rounded-xl overflow-hidden shadow-xl"
+                    style={{ background: 'var(--glass-bg)', backdropFilter: 'blur(24px)', border: '1px solid var(--glass-border)', minWidth: '140px' }}
+                  >
+                    {LANGUAGES.map(l => (
+                      <button
+                        key={l.code}
+                        onClick={() => { setLang(l.code); setLangMenuOpen(false) }}
+                        className="flex items-center gap-2.5 w-full px-3.5 py-2.5 text-left text-sm transition-all"
+                        style={{
+                          color: l.code === lang ? 'var(--gold)' : 'var(--text-secondary)',
+                          background: l.code === lang ? 'rgba(240,180,41,0.08)' : 'transparent',
+                          fontWeight: l.code === lang ? '700' : '500',
+                        }}
+                        onMouseEnter={e => { if (l.code !== lang) (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.05)' }}
+                        onMouseLeave={e => { if (l.code !== lang) (e.currentTarget as HTMLElement).style.background = 'transparent' }}
+                      >
+                        <span className="text-base">{l.flag}</span>
+                        <span>{l.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
 
             {isAuthenticated ? (
               <Link href="/dashboard" className="btn-primary text-sm px-5 py-2.5 hidden sm:inline-flex">
@@ -401,10 +356,10 @@ export default function LandingPage() {
             ) : (
               <>
                 <Link href="/auth/login" className="hidden sm:inline-flex btn-ghost text-sm px-4 py-2">
-                  Accedi
+                  {t.nav.login}
                 </Link>
                 <Link href="/auth/register" className="hidden sm:inline-flex btn-primary text-xs sm:text-sm px-3.5 sm:px-5 py-2 sm:py-2.5">
-                  Inizia Gratis
+                  {t.nav.startFree}
                   <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </Link>
               </>
@@ -432,13 +387,11 @@ export default function LandingPage() {
       {/* ─── Mobile Menu Drawer ──────────────────────────── */}
       {mobileMenuOpen && (
         <>
-          {/* Backdrop */}
           <div
             className="fixed inset-0 z-[55] md:hidden"
             style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}
             onClick={() => setMobileMenuOpen(false)}
           />
-          {/* Drawer */}
           <div
             className="fixed top-0 right-0 h-full w-[min(280px,85vw)] z-[60] md:hidden flex flex-col animate-slide-in-right"
             style={{
@@ -466,14 +419,10 @@ export default function LandingPage() {
 
             {/* Nav links */}
             <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-0.5">
-              <p className="px-3 pb-2 text-[9px] font-bold tracking-[0.2em] uppercase" style={{ color: 'var(--text-muted)' }}>Navigazione</p>
+              <p className="px-3 pb-2 text-[9px] font-bold tracking-[0.2em] uppercase" style={{ color: 'var(--text-muted)' }}>Navigation</p>
               {[
-                { label: 'Il Metodo', href: '/metodo' },
-                { label: 'Chi Siamo', href: '/chi-siamo' },
-                { label: 'Impara', href: '#impara' },
-                { label: 'Performance', href: '#performance' },
-                { label: 'Pricing', href: '#pricing' },
-                { label: 'Affiliati', href: '/affiliati' },
+                ...navLinks,
+                { label: t.nav.affiliates, href: '/affiliati' },
               ].map(link => (
                 <a
                   key={link.href}
@@ -488,18 +437,39 @@ export default function LandingPage() {
                   {link.label}
                 </a>
               ))}
+
+              {/* Language picker in mobile drawer */}
+              <div className="px-3 pt-3 pb-1">
+                <p className="text-[9px] font-bold tracking-[0.2em] uppercase mb-2" style={{ color: 'var(--text-muted)' }}>Language</p>
+                <div className="grid grid-cols-3 gap-1.5">
+                  {LANGUAGES.map(l => (
+                    <button
+                      key={l.code}
+                      onClick={() => { setLang(l.code); setMobileMenuOpen(false) }}
+                      className="flex flex-col items-center gap-0.5 py-1.5 rounded-lg text-[10px] font-bold transition-all"
+                      style={{
+                        background: l.code === lang ? 'rgba(240,180,41,0.12)' : 'rgba(255,255,255,0.04)',
+                        border: `1px solid ${l.code === lang ? 'rgba(240,180,41,0.35)' : 'rgba(255,255,255,0.08)'}`,
+                        color: l.code === lang ? 'var(--gold)' : 'var(--text-muted)',
+                      }}
+                    >
+                      <span className="text-base">{l.flag}</span>
+                      <span>{l.code.toUpperCase()}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
             </nav>
 
             {/* Bottom CTAs */}
             <div className="px-4 py-4 space-y-2.5" style={{ borderTop: '1px solid var(--border)' }}>
-              {/* Theme toggle */}
               <button
                 onClick={() => setTheme(isDark ? 'light' : 'dark')}
                 className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-all"
                 style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
               >
                 {isDark ? <Sun className="w-4 h-4" style={{ color: 'var(--accent)' }} /> : <Moon className="w-4 h-4" style={{ color: 'var(--accent)' }} />}
-                {isDark ? 'Modalità chiara' : 'Modalità scura'}
+                {isDark ? 'Light mode' : 'Dark mode'}
               </button>
 
               {isAuthenticated ? (
@@ -509,7 +479,7 @@ export default function LandingPage() {
                   className="btn-primary inline-flex w-full justify-center text-sm py-3"
                 >
                   <LayoutDashboard className="w-4 h-4" />
-                  Vai alla Dashboard
+                  Dashboard
                 </Link>
               ) : (
                 <>
@@ -518,14 +488,14 @@ export default function LandingPage() {
                     onClick={() => setMobileMenuOpen(false)}
                     className="btn-ghost inline-flex w-full justify-center text-sm py-3"
                   >
-                    Accedi
+                    {t.nav.login}
                   </Link>
                   <Link
                     href="/auth/register"
                     onClick={() => setMobileMenuOpen(false)}
                     className="btn-primary inline-flex w-full justify-center text-sm py-3"
                   >
-                    Inizia Gratis
+                    {t.nav.startFree}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </>
@@ -555,29 +525,16 @@ export default function LandingPage() {
 
       {/* ─── Hero ───────────────────────────────────────── */}
       <section className="valorox-hero">
-
-        {/* God rays — absolute, full section width */}
         <div className="valorox-rays">
           {[0,1,2,3,4].map(i => <div key={i} className="valorox-ray" />)}
         </div>
-
-        {/* Subtle scan */}
         <div className="valorox-scanline" />
-
-        {/* Full-width glow beam — NOT inside statue-wrap */}
         <div className="valorox-halo" />
-
-        {/* Side vignettes */}
         <div className="valorox-vignette-left" />
         <div className="valorox-vignette-right" />
-
-        {/* Section-wide shimmer beam (extends full hero width, no clipping) */}
         <div className="valorox-hero-shimmer" aria-hidden="true" />
 
-        {/* Hero container — vertical stack, brand block centered upper-mid */}
         <div className="valorox-hero-container">
-
-          {/* Brand block: logo + title + badge aligned */}
           <div className="valorox-brand-block">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/valoroxoro.svg" alt="Valorox" className="valorox-brand-logo" fetchPriority="high" loading="eager" decoding="async" />
@@ -586,36 +543,33 @@ export default function LandingPage() {
                 <span className="valorox-title-a">A</span>l<span className="valorox-title-oro">oro</span><span className="valorox-title-x">x</span><span className="valorox-title-ai">AI</span>
               </h1>
               <div className="valorox-brand-sub">
-                XAU/USD&nbsp;&nbsp;·&nbsp;&nbsp;AI TRADING SYSTEM
+                {t.hero.subtitle}
               </div>
             </div>
           </div>
 
-          {/* Hero Content — below brand block */}
           <div className="valorox-hero-content">
-
             <p className="valorox-claim">
-              Un nuovo approccio al trading.
+              {t.hero.tagline}
             </p>
             <p className="valorox-hero-desc">
-              Scalping, intraday, volumetrica e CRT in un unico motore di esecuzione AI su XAU/USD.
+              {t.hero.description}
             </p>
 
-            {/* CTAs — proportionate, slim */}
             <div className="valorox-hero-ctas">
               {isAuthenticated ? (
                 <Link href="/dashboard" className="btn-valorox btn-valorox-primary btn-valorox-slim">
                   <LayoutDashboard className="w-4 h-4" />
-                  Vai alla Dashboard
+                  Dashboard
                 </Link>
               ) : (
                 <>
                   <Link href="/auth/register" className="btn-valorox btn-valorox-primary btn-valorox-slim">
-                    Inizia Gratis
+                    {t.hero.startFree}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                   <Link href="/metodo" className="btn-valorox btn-valorox-secondary btn-valorox-slim">
-                    Scopri il Metodo
+                    {t.hero.learnMethod}
                     <BarChart3 className="w-4 h-4" />
                   </Link>
                 </>
@@ -624,9 +578,9 @@ export default function LandingPage() {
 
             <div className="valorox-hero-trust">
               {[
-                { icon: Shield, text: 'Nessuna gestione fondi' },
-                { icon: Globe, text: 'Nessuna affiliazione broker' },
-                { icon: Gift, text: '5 giorni gratis' },
+                { icon: Shield, text: t.hero.trust1 },
+                { icon: Globe, text: t.hero.trust2 },
+                { icon: Gift, text: t.hero.trust3 },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--text-secondary)' }}>
                   <Icon className="w-3 h-3 flex-shrink-0" style={{ color: 'var(--accent)', opacity: 0.7 }} />
@@ -635,15 +589,12 @@ export default function LandingPage() {
               ))}
             </div>
           </div>
-
         </div>
 
-        {/* Bottom vignette fade into next section */}
         <div className="valorox-vignette-bottom" />
-
       </section>
 
-      {/* ─── Ticker Tape — between hero and content ─────── */}
+      {/* ─── Ticker Tape ────────────────────────────────── */}
       <div className="w-full overflow-hidden py-2"
         style={{ borderTop: '1px solid var(--glass-border)', borderBottom: '1px solid var(--glass-border)', background: 'var(--glass-bg)', backdropFilter: 'blur(20px)' }}
       >
@@ -685,18 +636,18 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* ─── Quick Performance Preview (after ticker) ──── */}
+      {/* ─── Quick Performance Preview ───────────────────── */}
       <section className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-5 gap-6">
             <div className="lg:col-span-3 card-premium p-6">
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h3 className="font-semibold" style={{ color: 'var(--text-primary)' }}>Equity Curve</h3>
+                  <h3 className="font-semibold" style={{ color: 'var(--text-primary)' }}>{t.perf.equityCurve}</h3>
                   <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
                     {landingPerf?.months?.length
-                      ? `${landingPerf.months[0].month.replace(/^\d{4}-0?/, '').replace(/^(\d)/, ((_: string, d: string) => ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'][parseInt(d)-1]) as any)}–${(() => { const last = landingPerf.months[landingPerf.months.length - 1].month; const m = parseInt(last.split('-')[1]); return ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'][m-1]; })()} ${landingPerf.months[0].month.split('-')[0]} — XAU/USD`
-                      : 'XAU/USD — Indicativa'}
+                      ? `${monthLabel(landingPerf.months[0].month)}–${monthLabel(landingPerf.months[landingPerf.months.length - 1].month)} ${landingPerf.months[0].month.split('-')[0]} — XAU/USD`
+                      : t.perf.indicative}
                   </p>
                 </div>
                 <span className="badge-success">
@@ -711,7 +662,7 @@ export default function LandingPage() {
                 if (n === 0) {
                   return (
                     <div className="flex items-center justify-center h-[140px] text-xs" style={{ color: 'var(--text-muted)' }}>
-                      Dati non ancora disponibili
+                      {t.perf.noData}
                     </div>
                   )
                 }
@@ -724,10 +675,7 @@ export default function LandingPage() {
                 const ys = points.map((v: number) => padTop + usableH - ((v - minVal) / range) * usableH)
                 const linePath = xs.map((x: number, i: number) => `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${ys[i].toFixed(1)}`).join(' ')
                 const areaPath = `${linePath} L${W},${H} L0,${H} Z`
-                const monthLabels = (landingPerf?.months ?? []).map((m: any) => {
-                  const idx = parseInt(m.month.split('-')[1]) - 1
-                  return ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'][idx]
-                })
+                const monthLabels = (landingPerf?.months ?? []).map((m: any) => monthLabel(m.month))
                 return (
                   <>
                     <svg viewBox={`0 0 ${W} ${H}`} className="w-full" preserveAspectRatio="none">
@@ -760,6 +708,7 @@ export default function LandingPage() {
                 )
               })()}
             </div>
+
             <div className="lg:col-span-2 grid grid-cols-2 gap-3">
               {statsLoading ? (
                 [...Array(4)].map((_, i) => (
@@ -779,24 +728,24 @@ export default function LandingPage() {
                   const totalLosses = landingPerf?.total_losses ?? masterStats?.trades_loss ?? 0
                   return [
                     {
-                      label: 'Operazioni Master', icon: BarChart3, color: 'var(--accent)',
+                      label: t.perf.totalTrades, icon: BarChart3, color: 'var(--accent)',
                       value: totalTrades > 0 ? String(totalTrades) : '—',
-                      sub: 'Totali sul conto master',
+                      sub: t.perf.totalTradesSub,
                     },
                     {
-                      label: 'Win Rate', icon: TrendingUp, color: 'var(--green)',
+                      label: t.perf.winRate, icon: TrendingUp, color: 'var(--green)',
                       value: `${winRate.toFixed(1)}%`,
-                      sub: 'Media storica sistema',
+                      sub: t.perf.winRateSub,
                     },
                     {
-                      label: 'Vincenti', icon: TrendingUp, color: 'var(--green)',
+                      label: t.perf.wins, icon: TrendingUp, color: 'var(--green)',
                       value: totalWins > 0 ? String(totalWins) : '—',
-                      sub: 'Operazioni in profitto',
+                      sub: t.perf.winsSub,
                     },
                     {
-                      label: 'Perdenti', icon: Activity, color: 'var(--red, #ef4444)',
+                      label: t.perf.losses, icon: Activity, color: 'var(--red, #ef4444)',
                       value: totalLosses > 0 ? String(totalLosses) : '—',
-                      sub: 'Operazioni in perdita',
+                      sub: t.perf.lossesSub,
                     },
                   ]
                 })().map((stat) => (
@@ -817,7 +766,7 @@ export default function LandingPage() {
             </div>
           </div>
           <p className="text-center text-xs italic mt-6" style={{ color: 'var(--text-muted)' }}>
-            * Performance passate non garantiscono risultati futuri. Il trading comporta rischi.
+            {t.perf.disclaimer}
           </p>
         </div>
       </section>
@@ -827,49 +776,37 @@ export default function LandingPage() {
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--surface-overlay)' }} />
         <div className="relative max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <div className="section-label mb-3">Il Vero Problema del Trading</div>
+            <div className="section-label mb-3">{t.problem.label}</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
-              Il problema non è la strategia.<br className="hidden sm:block" />
-              È la disciplina nell&apos;eseguirla.
+              {t.problem.title.split('\n')[0]}
+              <br className="hidden sm:block" />
+              {t.problem.title.split('\n')[1]}
             </h2>
             <p className="max-w-xl mx-auto text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              La maggior parte delle perdite nel trading retail deriva dall&apos;interferenza emotiva, non dalla qualità della strategia.
+              {t.problem.description}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-5">
-            {[
-              {
-                icon: TrendingUp, color: 'var(--accent)',
-                title: 'Interferenza Emotiva',
-                desc: 'Chiusure anticipate per timore, perdite lasciate correre. Le decisioni sotto pressione emotiva producono sistematicamente risultati inferiori al potenziale della strategia.',
-              },
-              {
-                icon: Zap, color: 'var(--accent)',
-                title: 'Comportamento Impulsivo',
-                desc: 'Overtrading e inseguimento del mercato sono le cause più documentate di performance negative. Ogni operazione fuori dal piano introduce un edge negativo sul risultato.',
-              },
-              {
-                icon: Activity, color: 'var(--accent)',
-                title: 'Incostanza Operativa',
-                desc: 'L\'edge statistico si manifesta su centinaia di operazioni coerenti. Una strategia modificata frequentemente non può esprimere il proprio potenziale.',
-              },
-            ].map((item, i) => (
-              <div key={i} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
-                <div className="feature-icon-wrap mb-4">
-                  <item.icon className="w-5 h-5" style={{ color: item.color }} />
+            {problemItems.map((item, i) => {
+              const Icon = PROBLEM_ICONS[i]
+              return (
+                <div key={i} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
+                  <div className="feature-icon-wrap mb-4">
+                    <Icon className="w-5 h-5" style={{ color: 'var(--accent)' }} />
+                  </div>
+                  <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)' }}>{item.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
                 </div>
-                <h3 className="font-bold mb-2" style={{ color: 'var(--text-primary)' }}>{item.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
           <div className="text-center mt-10">
             <Link href="/metodo"
               className="inline-flex items-center gap-2 text-sm font-bold transition-opacity hover:opacity-80"
               style={{ color: 'var(--accent)' }}>
-              Scopri come abbiamo risolto questo problema →
+              {t.problem.cta}
             </Link>
           </div>
         </div>
@@ -882,9 +819,9 @@ export default function LandingPage() {
             const totalTrades = landingPerf?.total_trades ?? masterStats?.trades_total ?? 0
             const winRate = landingPerf?.win_rate ?? masterStats?.win_rate_percent ?? 0
             return [
-              { value: totalTrades, suffix: '', label: 'Operazioni Completate', isGold: true },
-              { value: Math.round(winRate), suffix: '%', label: 'Win Rate', isGold: false },
-              { value: STATS_AVG_DURATION_MIN, suffix: ' min', label: 'Durata Media', isGold: true },
+              { value: totalTrades, suffix: '', label: t.stats.operations, isGold: true },
+              { value: Math.round(winRate), suffix: '%', label: t.stats.winRate, isGold: false },
+              { value: STATS_AVG_DURATION_MIN, suffix: ' min', label: t.stats.avgDuration, isGold: true },
             ]
           })().map((stat, i) => (
             <div key={stat.label} className="card-premium p-6 sm:p-8 text-center animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
@@ -904,50 +841,31 @@ export default function LandingPage() {
 
         <div className="relative max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <div className="section-label mb-3">Il Percorso</div>
+            <div className="section-label mb-3">{t.howItWorks.label}</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
-              Dall'Educazione all'Applicazione Reale
+              {t.howItWorks.title}
             </h2>
             <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Non basta sapere — devi vedere come funziona nella pratica. Ecco il percorso Smart Trader.
+              {t.howItWorks.description}
             </p>
           </div>
 
           <div className="grid md:grid-cols-4 gap-6 relative">
-
-            {[
-              {
-                num: '01', icon: Globe,
-                title: 'Studia il Metodo',
-                desc: 'Accedi alla sezione educativa: liquidità, Smart Money, sessioni, risk management. Comprendi le logiche prima di agire.',
-              },
-              {
-                num: '02', icon: Layers,
-                title: 'Osserva in Demo',
-                desc: 'Collega un conto demo MT5. Osserva la strategia applicata in condizioni reali di mercato senza rischio di capitale.',
-              },
-              {
-                num: '03', icon: Activity,
-                title: 'Decidi in Autonomia',
-                desc: 'Quando hai piena comprensione del funzionamento, configuri rischio e parametri. Sei tu a decidere se e quando passare al live.',
-              },
-              {
-                num: '04', icon: BarChart3,
-                title: 'Monitora dalla Dashboard',
-                desc: 'La tua dashboard personale mostra in tempo reale: operazioni eseguite, win rate, equity curve, performance storiche. Tutti i dati per crescere e diventare progressivamente autonomo.',
-              },
-            ].map((step, i) => (
-              <div key={i} className="card-premium p-8 animate-fade-in-up" style={{ animationDelay: `${i * 150}ms` }}>
-                <div className="flex items-start justify-between mb-6">
-                  <div className="feature-icon-wrap">
-                    <step.icon className="w-5 h-5" style={{ color: 'var(--accent)' }} />
+            {t.howItWorks.steps.map((step, i) => {
+              const Icon = HOW_IT_WORKS_ICONS[i]
+              return (
+                <div key={i} className="card-premium p-8 animate-fade-in-up" style={{ animationDelay: `${i * 150}ms` }}>
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="feature-icon-wrap">
+                      <Icon className="w-5 h-5" style={{ color: 'var(--accent)' }} />
+                    </div>
+                    <span className="text-4xl font-black font-mono" style={{ opacity: 0.08, color: 'var(--accent)' }}>{step.num}</span>
                   </div>
-                  <span className="text-4xl font-black font-mono" style={{ opacity: 0.08, color: 'var(--accent)' }}>{step.num}</span>
+                  <h3 className="text-lg font-bold mb-3" style={{ color: 'var(--text-primary)' }}>{step.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{step.desc}</p>
                 </div>
-                <h3 className="text-lg font-bold mb-3" style={{ color: 'var(--text-primary)' }}>{step.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{step.desc}</p>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
@@ -957,12 +875,12 @@ export default function LandingPage() {
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--surface-overlay)' }} />
         <div className="relative max-w-6xl mx-auto">
           <div className="text-center mb-10">
-            <div className="section-label mb-3">Corsi Gratuiti</div>
+            <div className="section-label mb-3">{t.learning.label}</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
-              Impara con i nostri corsi gratuiti.
+              {t.learning.title}
             </h2>
             <p className="max-w-xl mx-auto text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              Un percorso strutturato dal metodo Smart Money all&apos;applicazione reale su XAU/USD.
+              {t.learning.description}
             </p>
           </div>
 
@@ -984,7 +902,7 @@ export default function LandingPage() {
                     </div>
                     <span className="text-[10px] font-bold tracking-widest uppercase"
                       style={{ color: mod.free ? 'var(--green)' : 'var(--text-muted)' }}>
-                      {mod.free ? 'Gratuito' : 'Accesso'}
+                      {mod.free ? t.learning.free : '🔒'}
                     </span>
                   </div>
                   <span className="text-2xl font-black font-mono" style={{ opacity: 0.08, color: 'var(--accent)' }}>
@@ -995,9 +913,9 @@ export default function LandingPage() {
                 {/* Level badge */}
                 <span className="self-start text-[9px] font-bold tracking-widest uppercase px-2 py-0.5 rounded mb-3"
                   style={{
-                    background: mod.level === 'Principiante' ? 'rgba(0,230,118,0.1)' : mod.level === 'Avanzato' ? 'rgba(240,180,41,0.1)' : mod.level === 'Pratica' ? 'rgba(155,93,229,0.1)' : 'rgba(240,180,41,0.08)',
-                    color: mod.level === 'Principiante' ? 'var(--green)' : 'var(--gold)',
-                    border: `1px solid ${mod.level === 'Principiante' ? 'rgba(0,230,118,0.2)' : 'rgba(240,180,41,0.2)'}`,
+                    background: mod.levelKey === 'beginner' ? 'rgba(0,230,118,0.1)' : mod.levelKey === 'advanced' ? 'rgba(240,180,41,0.1)' : mod.levelKey === 'practice' ? 'rgba(155,93,229,0.1)' : 'rgba(240,180,41,0.08)',
+                    color: mod.levelKey === 'beginner' ? 'var(--green)' : 'var(--gold)',
+                    border: `1px solid ${mod.levelKey === 'beginner' ? 'rgba(0,230,118,0.2)' : 'rgba(240,180,41,0.2)'}`,
                   }}>
                   {mod.level}
                 </span>
@@ -1008,10 +926,10 @@ export default function LandingPage() {
 
                 {/* Topics */}
                 <ul className="space-y-1.5 flex-1">
-                  {mod.topics.map((t, j) => (
+                  {mod.topics.map((topic, j) => (
                     <li key={j} className="flex items-start gap-1.5 text-[11px]" style={{ color: 'var(--text-muted)' }}>
                       <span className="mt-0.5 flex-shrink-0" style={{ color: 'var(--accent)', opacity: 0.5 }}>·</span>
-                      {t}
+                      {topic}
                     </li>
                   ))}
                 </ul>
@@ -1019,14 +937,14 @@ export default function LandingPage() {
                 {/* Footer */}
                 <div className="flex items-center justify-between mt-4 pt-3" style={{ borderTop: '1px solid var(--border)' }}>
                   <span className="text-[10px]" style={{ color: 'var(--text-muted)' }}>
-                    {mod.lessons} lezioni
+                    {mod.lessons} {t.learning.lessons}
                   </span>
                   {mod.free
                     ? <span className="text-[10px] font-semibold flex items-center gap-1" style={{ color: 'var(--green)' }}>
-                        <Play className="w-3 h-3" /> Inizia
+                        <Play className="w-3 h-3" /> {t.learning.free}
                       </span>
                     : <span className="text-[10px] flex items-center gap-1" style={{ color: 'var(--text-muted)' }}>
-                        <Lock className="w-3 h-3" /> Sblocca
+                        <Lock className="w-3 h-3" /> Access
                       </span>
                   }
                 </div>
@@ -1034,14 +952,13 @@ export default function LandingPage() {
             ))}
           </div>
 
-          {/* CTAs */}
           <div className="text-center mt-10 space-y-3">
             <p className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
-              Accedi a tutti gli 8 moduli, i primi 4 completamente gratuiti.
+              {t.learning.cta}
             </p>
             <Link href="/auth/register" className="btn-gold text-sm px-8 py-3 rounded-xl inline-flex">
               <GraduationCap className="w-4 h-4" />
-              Inizia a imparare gratuitamente
+              {t.hero.startFree}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -1054,12 +971,12 @@ export default function LandingPage() {
 
         <div className="relative max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <div className="section-label mb-3">Perché Valorox</div>
+            <div className="section-label mb-3">{t.features.label}</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
-              Esperienza operativa.<br className="hidden sm:block" />Potenziata dall&apos;intelligenza artificiale.
+              {t.features.title}
             </h2>
             <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              L&apos;unione tra esperienza reale sui mercati, competenze di programmazione e intelligenza artificiale per creare un sistema con impatto concreto nel trading moderno.
+              {t.features.description}
             </p>
           </div>
 
@@ -1097,37 +1014,33 @@ export default function LandingPage() {
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--surface-overlay)' }} />
         <div className="relative max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <div className="section-label mb-3">Testimonianze</div>
+            <div className="section-label mb-3">{t.testimonials.label}</div>
             <h2 className="text-2xl sm:text-3xl font-black text-gradient-white">
-              Cosa Dicono i Nostri Smart Trader
+              {t.testimonials.title}
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-5">
-            {[
-              { name: 'Marco R.', role: 'Trader — XAU/USD', avatar: 'MR', text: 'Finalmente capisco perché il mercato si muove. La sezione educativa ha cambiato il mio approccio all\'analisi: so quando aprire posizioni e soprattutto quando non farlo.', stars: 5, profit: '+312 pips*' },
-              { name: 'Sofia L.', role: 'Trader — XAU/USD', avatar: 'SL', text: 'Non mi baso più su indicatori senza logica. Ho capito le dinamiche istituzionali e osservo il mercato in modo completamente diverso. Trasparenza totale sul funzionamento.', stars: 5, profit: '+198 pips*' },
-              { name: 'Andrea M.', role: 'Trader — XAU/USD', avatar: 'AM', text: 'La strategia viene applicata in modo coerente. Ho accesso a tutti i dati dalla dashboard: performance, win rate, operazioni. Riesco a monitorare e imparare dalla mia operatività.', stars: 5, profit: '+445 pips*' },
-            ].map((t, i) => (
-              <div key={t.name} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
+            {TESTIMONIALS.map((tc, i) => (
+              <div key={tc.name} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
                 <div className="flex gap-1 mb-4">
-                  {Array.from({ length: t.stars }).map((_, j) => (
+                  {Array.from({ length: tc.stars }).map((_, j) => (
                     <Star key={j} className="w-4 h-4" style={{ color: 'var(--accent)' }} fill="var(--accent)" />
                   ))}
                 </div>
-                <p className="text-sm leading-relaxed mb-5 italic" style={{ color: 'var(--text-secondary)' }}>"{t.text}"</p>
+                <p className="text-sm leading-relaxed mb-5 italic" style={{ color: 'var(--text-secondary)' }}>&ldquo;{tc.text}&rdquo;</p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full flex items-center justify-center"
                       style={{ background: 'var(--accent-subtle)', border: '1px solid var(--border-accent)' }}>
-                      <span className="text-xs font-bold" style={{ color: 'var(--accent)' }}>{t.avatar}</span>
+                      <span className="text-xs font-bold" style={{ color: 'var(--accent)' }}>{tc.avatar}</span>
                     </div>
                     <div>
-                      <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{t.name}</div>
-                      <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>{t.role}</div>
+                      <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{tc.name}</div>
+                      <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>{tc.role}</div>
                     </div>
                   </div>
-                  <span className="badge-success text-xs">{t.profit}</span>
+                  <span className="badge-success text-xs">{tc.profit}</span>
                 </div>
               </div>
             ))}
@@ -1139,9 +1052,9 @@ export default function LandingPage() {
       <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
-            <div className="section-label mb-3">FAQ</div>
+            <div className="section-label mb-3">{t.faq.label}</div>
             <h2 className="text-3xl sm:text-4xl font-black text-gradient-white">
-              Domande Frequenti
+              {t.faq.title}
             </h2>
           </div>
 
@@ -1157,7 +1070,7 @@ export default function LandingPage() {
                   className="w-full flex items-center justify-between p-5 text-left"
                 >
                   <span className="font-semibold text-sm sm:text-base pr-4" style={{ color: 'var(--text-primary)' }}>
-                    {item.question}
+                    {item.q}
                   </span>
                   <div className="flex-shrink-0 w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300"
                     style={{
@@ -1173,7 +1086,7 @@ export default function LandingPage() {
                 {expandedFaq === item.id && (
                   <div className="px-5 pb-5 animate-fade-in-up">
                     <div className="divider mb-4" />
-                    <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.answer}</p>
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.a}</p>
                     {'learnMoreUrl' in item && item.learnMoreUrl && (
                       <Link
                         href={item.learnMoreUrl}
@@ -1199,7 +1112,7 @@ export default function LandingPage() {
             <img src="/valoroxoro.svg" alt="Valorox" style={{ width: 52, height: 52 }} />
           </div>
           <Link href="/auth/register" className="btn-primary inline-flex text-base px-10 py-4 rounded-xl">
-            Inizia Gratis — 5 Giorni
+            {t.cta.startFree}
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
@@ -1222,7 +1135,7 @@ export default function LandingPage() {
                 </span>
               </div>
               <p className="text-sm leading-relaxed max-w-xs" style={{ color: 'var(--text-secondary)' }}>
-                Sistema creato da un team di trader per eliminare l&apos;emotività dall&apos;esecuzione. Disciplina operativa su XAU/USD.
+                {t.footer.tagline}
               </p>
               <div className="flex items-center gap-2 mt-4">
                 <div className="live-dot" />
@@ -1231,16 +1144,15 @@ export default function LandingPage() {
             </div>
 
             <div>
-              <h4 className="section-label mb-4">Navigazione</h4>
+              <h4 className="section-label mb-4">Navigation</h4>
               <ul className="space-y-2.5">
                 {[
-                  { label: 'Accedi', href: '/auth/login' },
-                  { label: 'Registrati', href: '/auth/register' },
-                  { label: 'Metodo & Strategia', href: '/metodo' },
-                  { label: 'Chi Siamo', href: '/chi-siamo' },
-                  { label: 'Come Funziona', href: '#how' },
-                  { label: 'Performance', href: '#performance' },
-                  { label: 'Termini di Servizio', href: '/legal/terms' },
+                  { label: t.nav.login, href: '/auth/login' },
+                  { label: t.nav.startFree, href: '/auth/register' },
+                  { label: t.footer.links.method, href: '/metodo' },
+                  { label: t.footer.links.about, href: '/chi-siamo' },
+                  { label: t.footer.links.performance, href: '#performance' },
+                  { label: t.footer.links.terms, href: '/legal/terms' },
                 ].map(link => (
                   <li key={link.href}>
                     <Link href={link.href}
@@ -1271,25 +1183,22 @@ export default function LandingPage() {
 
           <div className="divider mb-8" />
 
-          {/* Legal disclaimer strip */}
           <div className="rounded-xl p-4 mb-6 text-center"
             style={{ background: 'rgba(255,61,113,0.03)', border: '1px solid rgba(255,61,113,0.1)' }}>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
               <strong style={{ color: 'rgba(255,90,120,0.8)' }}>Non forniamo consulenza finanziaria.</strong>{' '}
-              Valorox è un software SaaS di automazione. Non gestiamo fondi, non offriamo servizi di investimento né gestione patrimoniale.
-              Tutte le decisioni operative e i parametri sono impostati direttamente dall'utente.
-              Il trading comporta rischi reali di perdita del capitale. Nessun risultato è garantito.
+              {t.footer.disclaimer}
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-              &copy; 2025 Valorox. Tutti i diritti riservati.
+              &copy; 2025 Valorox. {t.footer.rights}
             </p>
             <p className="text-xs text-center sm:text-right max-w-md leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              Performance passate non garantiscono risultati futuri.{' '}
+              {t.perf.disclaimer.replace('*', '').trim()}{' '}
               <Link href="/legal/terms" className="underline underline-offset-2 transition-opacity hover:opacity-70" style={{ color: 'var(--text-muted)' }}>
-                Termini di Servizio
+                {t.footer.links.terms}
               </Link>
             </p>
           </div>
