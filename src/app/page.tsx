@@ -523,6 +523,8 @@ export default function LandingPage() {
         </div>
       )}
 
+      {/* ─── Hero + Ticker (on mobile these fill exactly 100svh) ── */}
+      <div className="hero-ticker-wrap">
       {/* ─── Hero ───────────────────────────────────────── */}
       <section className="valorox-hero">
         <div className="valorox-rays">
@@ -635,6 +637,7 @@ export default function LandingPage() {
           })}
         </div>
       </div>
+      </div>{/* end hero-ticker-wrap */}
 
       {/* ─── Quick Performance Preview ───────────────────── */}
       <section className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
