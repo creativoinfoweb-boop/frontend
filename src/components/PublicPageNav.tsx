@@ -1,7 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ChevronDown } from 'lucide-react'
 import { useLanguage, LANGUAGES, LangCode } from '@/i18n/LanguageContext'
 
 interface PublicPageNavProps {
@@ -11,6 +12,8 @@ interface PublicPageNavProps {
 
 export default function PublicPageNav({ showMethod = true, showAbout = false }: PublicPageNavProps) {
   const { t, lang, setLang } = useLanguage()
+  const [langMenuOpen, setLangMenuOpen] = useState(false)
+  const currentLang = LANGUAGES.find(l => l.code === lang)
 
   return (
     <nav
@@ -22,7 +25,8 @@ export default function PublicPageNav({ showMethod = true, showAbout = false }: 
         className="absolute top-0 left-0 w-full h-[2px]"
         style={{ background: 'linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark))' }}
       />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-4">
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center gap-3">
         <Link
           href="/"
           className="flex items-center gap-2 text-sm font-semibold transition-opacity hover:opacity-70"
@@ -31,24 +35,64 @@ export default function PublicPageNav({ showMethod = true, showAbout = false }: 
           <ArrowLeft className="w-4 h-4" />
           Home
         </Link>
+
         <div className="flex-1" />
 
-        {/* Language selector */}
-        <select
-          value={lang}
-          onChange={e => setLang(e.target.value as LangCode)}
-          className="appearance-none text-[11px] font-bold px-2.5 py-1.5 rounded-lg cursor-pointer border"
-          style={{
-            background: 'var(--glass-bg)',
-            borderColor: 'var(--border)',
-            color: 'var(--text-secondary)',
-          }}
-          aria-label="Language"
-        >
-          {LANGUAGES.map(l => (
-            <option key={l.code} value={l.code}>{l.flag} {l.code.toUpperCase()}</option>
-          ))}
-        </select>
+        {/* Language selector — same style as main page navbar */}
+        <div className="relative">
+          <button
+            onClick={() => setLangMenuOpen(v => !v)}
+            className="flex items-center gap-1 text-[11px] font-bold px-2.5 py-1.5 rounded-lg transition-all"
+            style={{
+              background: langMenuOpen ? 'rgba(240,180,41,0.12)' : 'var(--glass-bg)',
+              border: `1px solid ${langMenuOpen ? 'rgba(240,180,41,0.35)' : 'var(--border)'}`,
+              color: langMenuOpen ? 'var(--gold)' : 'var(--text-secondary)',
+            }}
+            aria-label="Select language"
+          >
+            <span className="text-base leading-none">{currentLang?.flag}</span>
+            <span>{lang.toUpperCase()}</span>
+            <ChevronDown
+              className="w-3 h-3 opacity-60"
+              style={{ transform: langMenuOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}
+            />
+          </button>
+
+          {langMenuOpen && (
+            <>
+              {/* Backdrop */}
+              <div className="fixed inset-0 z-[70]" onClick={() => setLangMenuOpen(false)} />
+              {/* Dropdown */}
+              <div
+                className="absolute right-0 top-full mt-1.5 z-[80] rounded-xl overflow-hidden shadow-xl"
+                style={{
+                  background: 'var(--glass-bg)',
+                  backdropFilter: 'blur(24px)',
+                  border: '1px solid var(--glass-border)',
+                  minWidth: '150px',
+                }}
+              >
+                {LANGUAGES.map(l => (
+                  <button
+                    key={l.code}
+                    onClick={() => { setLang(l.code as LangCode); setLangMenuOpen(false) }}
+                    className="flex items-center gap-2.5 w-full px-3.5 py-2.5 text-left text-sm transition-all"
+                    style={{
+                      color: l.code === lang ? 'var(--gold)' : 'var(--text-secondary)',
+                      background: l.code === lang ? 'rgba(240,180,41,0.08)' : 'transparent',
+                      fontWeight: l.code === lang ? '700' : '500',
+                    }}
+                    onMouseEnter={e => { if (l.code !== lang) (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.05)' }}
+                    onMouseLeave={e => { if (l.code !== lang) (e.currentTarget as HTMLElement).style.background = 'transparent' }}
+                  >
+                    <span className="text-base">{l.flag}</span>
+                    <span>{l.label}</span>
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
 
         {showAbout && (
           <Link
