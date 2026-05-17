@@ -50,7 +50,7 @@ export default function PublicPageNav({ showMethod = true, showAbout = false }: 
             }}
             aria-label="Select language"
           >
-            <span className="text-base leading-none">{currentLang?.flag}</span>
+            <span className={`fi fi-${currentLang?.flagCode}`} style={{ width: '1.2em', height: '0.9em', display: 'inline-block' }} />
             <span>{lang.toUpperCase()}</span>
             <ChevronDown
               className="w-3 h-3 opacity-60"
@@ -85,7 +85,7 @@ export default function PublicPageNav({ showMethod = true, showAbout = false }: 
                     onMouseEnter={e => { if (l.code !== lang) (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.05)' }}
                     onMouseLeave={e => { if (l.code !== lang) (e.currentTarget as HTMLElement).style.background = 'transparent' }}
                   >
-                    <span className="text-base">{l.flag}</span>
+                    <span className={`fi fi-${l.flagCode}`} style={{ width: '1.2em', height: '0.9em', display: 'inline-block' }} />
                     <span>{l.label}</span>
                   </button>
                 ))}

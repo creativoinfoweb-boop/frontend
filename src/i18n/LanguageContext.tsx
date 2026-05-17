@@ -5,12 +5,12 @@ import { translations } from './translations'
 
 export type LangCode = 'it' | 'en' | 'fr' | 'de' | 'es'
 
-export const LANGUAGES: { code: LangCode; label: string; flag: string }[] = [
-  { code: 'it', label: 'Italiano', flag: '🇮🇹' },
-  { code: 'en', label: 'English', flag: '🇬🇧' },
-  { code: 'fr', label: 'Français', flag: '🇫🇷' },
-  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
-  { code: 'es', label: 'Español', flag: '🇪🇸' },
+export const LANGUAGES: { code: LangCode; label: string; flag: string; flagCode: string }[] = [
+  { code: 'it', label: 'Italiano', flag: '🇮🇹', flagCode: 'it' },
+  { code: 'en', label: 'English', flag: '🇬🇧', flagCode: 'gb' },
+  { code: 'fr', label: 'Français', flag: '🇫🇷', flagCode: 'fr' },
+  { code: 'de', label: 'Deutsch', flag: '🇩🇪', flagCode: 'de' },
+  { code: 'es', label: 'Español', flag: '🇪🇸', flagCode: 'es' },
 ]
 
 type LanguageContextType = {
