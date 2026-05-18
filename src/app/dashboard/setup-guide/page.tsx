@@ -249,6 +249,61 @@ export default function SetupGuidePage() {
               </p>
             </div>
 
+            {/* Sezione per chi non ha ancora un conto broker */}
+            <div
+              className="rounded-xl overflow-hidden"
+              style={{ border: '1px solid rgba(155,93,229,0.2)' }}
+            >
+              <div className="px-4 py-2.5 text-xs font-bold text-[#9B5DE5]"
+                style={{ background: 'rgba(155,93,229,0.08)' }}>
+                Non hai ancora un conto broker MT5?
+              </div>
+              <div className="px-4 py-3 space-y-4">
+                <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
+                  Per usare Valorox ti serve un conto MetaTrader 5 aperto presso un qualsiasi broker
+                  che supporti MT5. Puoi scegliere liberamente il broker che preferisci —{' '}
+                  <strong className="text-[var(--text-primary)]">non abbiamo affiliazioni con nessun broker</strong>.
+                </p>
+
+                <div className="space-y-2.5">
+                  {[
+                    { n: 1, text: 'Scegli un broker che supporti MetaTrader 5 (MT5)' },
+                    { n: 2, text: 'Registrati sul sito del broker e completa la verifica identità (KYC)' },
+                    { n: 3, text: 'Effettua un deposito sul conto live (minimo consigliato: 2.000€)' },
+                    { n: 4, text: 'Il broker ti invierà via email: login numerico, password e nome del server' },
+                    { n: 5, text: 'Accedi almeno una volta a MT5 con le credenziali ricevute per attivarle' },
+                    { n: 6, text: 'Torna qui e inserisci login, password e server nel pannello Account MT5' },
+                  ].map(({ n, text }) => (
+                    <div key={n} className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5"
+                        style={{ background: 'rgba(155,93,229,0.15)', border: '1px solid rgba(155,93,229,0.25)', color: '#9B5DE5' }}>
+                        {n}
+                      </div>
+                      <span className="text-xs text-[var(--text-secondary)] leading-relaxed">{text}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div>
+                  <p className="text-[10px] font-semibold text-[var(--text-muted)] mb-2">
+                    Broker noti compatibili MT5 (nessuna affiliazione, a titolo d&apos;esempio):
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {['IC Markets', 'Exness', 'Pepperstone', 'XM'].map(b => (
+                      <span key={b}
+                        className="px-2.5 py-1 rounded-lg text-[10px] font-semibold"
+                        style={{ background: 'rgba(155,93,229,0.08)', border: '1px solid rgba(155,93,229,0.18)', color: '#C4A8FF' }}>
+                        {b}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-[9px] text-[var(--text-muted)] mt-1.5">
+                    Questi broker sono citati solo come esempi di broker compatibili MT5. Non riceviamo commissioni né abbiamo accordi commerciali con nessuno di essi.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <button
               onClick={() => router.push('/dashboard/accounts')}
               className="btn-gold px-6 py-2.5 rounded-xl text-sm"

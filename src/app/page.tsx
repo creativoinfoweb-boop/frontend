@@ -102,9 +102,9 @@ const MODULE_META = [
 ] as const
 
 const TESTIMONIALS = [
-  { name: 'Marco R.', role: 'Trader — XAU/USD', avatar: 'MR', text: 'Finalmente capisco perché il mercato si muove. La sezione educativa ha cambiato il mio approccio all\'analisi: so quando aprire posizioni e soprattutto quando non farlo.', stars: 5, profit: '+312 pips*' },
-  { name: 'Sofia L.', role: 'Trader — XAU/USD', avatar: 'SL', text: 'Non mi baso più su indicatori senza logica. Ho capito le dinamiche istituzionali e osservo il mercato in modo completamente diverso. Trasparenza totale sul funzionamento.', stars: 5, profit: '+198 pips*' },
-  { name: 'Andrea M.', role: 'Trader — XAU/USD', avatar: 'AM', text: 'La strategia viene applicata in modo coerente. Ho accesso a tutti i dati dalla dashboard: performance, win rate, operazioni. Riesco a monitorare e imparare dalla mia operatività.', stars: 5, profit: '+445 pips*' },
+  { name: 'Marco R.', role: 'Trader — XAU/USD', avatar: 'MR', text: 'Incredibile come sia cambiata la mia operatività. Finalmente capisco perché il mercato si muove — la logica Smart Money è straordinaria. Non apro più posizioni a caso: so esattamente quando il setup è valido e quando stare fuori.', stars: 5, profit: '+312 pips*' },
+  { name: 'Luca T.', role: 'Trader — XAU/USD', avatar: 'LT', text: 'Ho smesso di seguire sale segnali e canali Telegram. Copiare manualmente ogni segnale era stressante, spesso in ritardo, pieno di errori. Con Valorox è tutto automatico — il sistema entra, gestisce il trade e chiude da solo. Non devo fare assolutamente nulla. Straordinario.', stars: 5, profit: '+521 pips*' },
+  { name: 'Andrea M.', role: 'Trader — XAU/USD', avatar: 'AM', text: "L'automazione completa è quello che cercavo da anni. Nessun intervento manuale, nessuna notifica da seguire, nessuna pressione. Il sistema lavora mentre io vivo la mia giornata. Dalla dashboard vedo tutto in tempo reale — è una cosa incredibile.", stars: 5, profit: '+445 pips*' },
 ]
 
 /* ─── Stats ─────────────────────────────────────────────── */
@@ -584,7 +584,8 @@ export default function LandingPage() {
               {[
                 { icon: Shield, text: t.hero.trust1 },
                 { icon: Globe, text: t.hero.trust2 },
-                { icon: Gift, text: t.hero.trust3 },
+                { icon: Lock, text: t.hero.trust3 },
+                { icon: Gift, text: t.hero.trust4 },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--text-secondary)' }}>
                   <Icon className="w-3 h-3 flex-shrink-0" style={{ color: 'var(--accent)', opacity: 0.7 }} />
@@ -1103,6 +1104,131 @@ export default function LandingPage() {
                 )}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Trasparenza e Sicurezza ───────────────────── */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--surface-overlay)' }} />
+        <div className="relative max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <div className="section-label mb-3">Trasparenza</div>
+            <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
+              Il tuo capitale resta tuo.<br className="hidden sm:block" />
+              Sempre.
+            </h2>
+            <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
+              Nessun deposito sulla nostra piattaforma, nessuna password del broker, nessun conflitto di interesse.
+              Solo tecnologia al servizio della tua operatività.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+            {[
+              {
+                icon: Shield, color: 'var(--green)',
+                title: 'Zero Depositi',
+                desc: 'Non richiediamo alcun deposito sulla nostra piattaforma. I tuoi fondi restano sempre sul tuo conto broker, sotto il tuo pieno controllo.',
+              },
+              {
+                icon: Lock, color: 'var(--gold)',
+                title: 'Nessuna Password Broker',
+                desc: 'Non chiediamo la password del tuo broker. Utilizziamo solo le credenziali MT5 di trading, cifrate e usate esclusivamente per eseguire le operazioni.',
+              },
+              {
+                icon: Globe, color: '#00C2FF',
+                title: 'Broker Libero',
+                desc: 'Scegli il broker che preferisci. Non abbiamo affiliazioni, non riceviamo commissioni e non favoriamo nessun broker specifico.',
+              },
+              {
+                icon: Layers, color: '#9B5DE5',
+                title: 'Totale Trasparenza',
+                desc: "Il nostro unico ricavo è l'abbonamento. Nessun costo nascosto, nessuna commissione sul tuo volume di trading, nessun conflitto di interesse.",
+              },
+            ].map((item, i) => (
+              <div key={i} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 80}ms` }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                  style={{ background: `color-mix(in srgb, ${item.color} 10%, transparent)`, border: `1px solid color-mix(in srgb, ${item.color} 20%, transparent)` }}>
+                  <item.icon className="w-5 h-5" style={{ color: item.color }} />
+                </div>
+                <h3 className="font-bold text-sm mb-2" style={{ color: 'var(--text-primary)' }}>{item.title}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-2xl p-5 text-center"
+            style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', backdropFilter: 'blur(20px)' }}>
+            <p className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
+              Colleghi il tuo conto MT5 — noi eseguiamo la strategia. Nient&apos;altro.
+            </p>
+            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+              Non gestiamo fondi, non richiediamo depositi, non accediamo al tuo broker. Il tuo capitale resta dove lo hai messo tu.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Guida MT5 per Chi Non Ce L'Ha ─────────────── */}
+      <section id="guida-mt5" className="py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-14">
+            <div className="section-label mb-3">Guida Rapida</div>
+            <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
+              Non hai ancora un account MT5?
+            </h2>
+            <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
+              Nessun problema. Ecco come ottenere un conto MT5 in pochi minuti, con il broker che preferisci.
+            </p>
+          </div>
+
+          <div className="space-y-4 mb-12">
+            {[
+              { num: '01', title: 'Scegli un broker MT5', desc: 'Qualsiasi broker che offra MetaTrader 5 con XAU/USD va bene. Sei completamente libero nella scelta — non abbiamo affiliazioni con nessun broker.', note: null },
+              { num: '02', title: 'Registrati e verifica il conto', desc: "Crea un account sul sito del broker scelto. Dovrai completare la verifica dell'identità (KYC) — procedura standard richiesta da tutti i broker regolamentati.", note: null },
+              { num: '03', title: 'Effettua il deposito sul broker', desc: 'Deposita i fondi direttamente sul tuo conto broker. Il deposito avviene sul broker, non sulla nostra piattaforma — noi non gestiamo né tocchiamo i tuoi fondi in alcun modo.', note: null },
+              { num: '04', title: 'Ottieni le credenziali MT5', desc: 'Dopo il deposito, il broker ti fornirà le credenziali per accedere a MetaTrader 5: login, password e nome del server.', note: 'Richiedi specificatamente un conto MetaTrader 5 (MT5), non MT4. Il nostro sistema funziona esclusivamente con MT5.' },
+              { num: '05', title: 'Accedi a MT5 e verifica i fondi', desc: 'Accedi alla piattaforma MT5 con le credenziali ricevute. Vedrai direttamente il saldo depositato sul broker. MT5 è disponibile su Windows, Mac, iOS e Android.', note: null },
+              { num: '06', title: "Collega l'account a Valorox", desc: "Dalla nostra dashboard, inserisci le credenziali MT5 nella sezione \"Account\". Da quel momento il sistema sincronizza e apre automaticamente le operazioni sul tuo conto.", note: null },
+            ].map((item, i) => (
+              <div key={i} className="card-premium p-5 flex gap-4 animate-fade-in-up" style={{ animationDelay: `${i * 60}ms` }}>
+                <span className="text-2xl font-black font-mono flex-shrink-0 mt-0.5" style={{ color: 'var(--gold)', opacity: 0.25 }}>{item.num}</span>
+                <div className="flex-1">
+                  <h3 className="font-bold text-sm mb-1" style={{ color: 'var(--text-primary)' }}>{item.title}</h3>
+                  <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
+                  {item.note && (
+                    <div className="mt-2 rounded-lg px-3 py-2" style={{ background: 'rgba(240,180,41,0.06)', border: '1px solid rgba(240,180,41,0.12)' }}>
+                      <p className="text-[11px] leading-relaxed" style={{ color: 'var(--gold)' }}>{item.note}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="card-premium p-6">
+            <h3 className="text-sm font-bold mb-2" style={{ color: 'var(--text-primary)' }}>Alcuni broker MT5 diffusi</h3>
+            <p className="text-xs mb-4" style={{ color: 'var(--text-muted)' }}>
+              Solo esempi. Non raccomandiamo né favoriamo nessun broker — la scelta è interamente tua.
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {[
+                { name: 'IC Markets', type: 'ECN · Spread ridotti' },
+                { name: 'Exness', type: 'Spread competitivi' },
+                { name: 'Pepperstone', type: 'ECN · Regolamentato' },
+                { name: 'XM', type: 'MT5 · Ampia offerta' },
+              ].map((broker) => (
+                <div key={broker.name} className="rounded-xl p-3 text-center"
+                  style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}>
+                  <p className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{broker.name}</p>
+                  <p className="text-[10px] mt-0.5" style={{ color: 'var(--text-muted)' }}>{broker.type}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-[10px] mt-3 text-center" style={{ color: 'var(--text-muted)' }}>
+              Funziona con qualsiasi broker MT5 che offra XAU/USD. Nessuna affiliazione.
+            </p>
           </div>
         </div>
       </section>
