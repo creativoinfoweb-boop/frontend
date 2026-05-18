@@ -23,6 +23,9 @@ import {
   Clock,
   ChevronRight,
   Info,
+  Shield,
+  Wallet,
+  Link2,
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -242,6 +245,22 @@ export default function DashboardPage() {
             </span>
           </p>
         </div>
+      </div>
+
+      {/* Trust Strip */}
+      <div className="flex flex-wrap gap-2">
+        {[
+          { icon: Wallet,  text: 'Zero depositi richiesti', color: '#00E676' },
+          { icon: Shield,  text: 'Non gestiamo i tuoi fondi', color: '#9B5DE5' },
+          { icon: Link2,   text: 'Solo collegamento MT5', color: '#00C2FF' },
+        ].map(({ icon: Icon, text, color }) => (
+          <div key={text}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-semibold"
+            style={{ background: `color-mix(in srgb, ${color} 8%, var(--glass-bg))`, border: `1px solid color-mix(in srgb, ${color} 20%, transparent)`, color }}>
+            <Icon className="w-3 h-3 flex-shrink-0" />
+            {text}
+          </div>
+        ))}
       </div>
 
       {/* Banner avvertenza strategia — dismissibile, appare solo al primo accesso */}
