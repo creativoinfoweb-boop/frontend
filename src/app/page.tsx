@@ -584,7 +584,8 @@ export default function LandingPage() {
               {[
                 { icon: Shield, text: t.hero.trust1 },
                 { icon: Globe, text: t.hero.trust2 },
-                { icon: Gift, text: t.hero.trust3 },
+                { icon: Lock, text: t.hero.trust3 },
+                { icon: Gift, text: t.hero.trust4 },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--text-secondary)' }}>
                   <Icon className="w-3 h-3 flex-shrink-0" style={{ color: 'var(--accent)', opacity: 0.7 }} />

@@ -19,6 +19,7 @@ export const translations = {
       trust1: 'Zero depositi richiesti',
       trust2: 'Nessuna password broker',
       trust3: 'Broker libero — zero affiliazioni',
+      trust4: '5 giorni di trial gratuito',
     },
     perf: {
       equityCurve: 'Equity Curve',
@@ -420,6 +421,7 @@ export const translations = {
       trust1: 'Zero deposits required',
       trust2: 'No broker password needed',
       trust3: 'Free broker choice — no affiliations',
+      trust4: '5-day free trial',
     },
     perf: {
       equityCurve: 'Equity Curve',
@@ -821,6 +823,7 @@ export const translations = {
       trust1: 'Zéro dépôt requis',
       trust2: 'Aucun mot de passe broker',
       trust3: 'Broker libre — zéro affiliation',
+      trust4: '5 jours d\'essai gratuit',
     },
     perf: {
       equityCurve: 'Courbe d\'Équité',
@@ -1198,6 +1201,7 @@ export const translations = {
       trust1: 'Keine Einzahlung erforderlich',
       trust2: 'Kein Broker-Passwort nötig',
       trust3: 'Freie Broker-Wahl — keine Bindung',
+      trust4: '5 Tage kostenlose Testversion',
     },
     perf: {
       equityCurve: 'Equity-Kurve',
@@ -1575,6 +1579,7 @@ export const translations = {
       trust1: 'Cero depósitos requeridos',
       trust2: 'Sin contraseña de broker',
       trust3: 'Broker libre — sin afiliaciones',
+      trust4: '5 días de prueba gratuita',
     },
     perf: {
       equityCurve: 'Curva de Equity',

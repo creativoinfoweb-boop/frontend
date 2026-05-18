@@ -235,11 +235,12 @@ export interface UserStats {
   trades_total: number         // trade chiusi eseguiti
   trades_executed: number      // tutti gli eseguiti (open + closed)
   trades_open: number          // posizioni aperte in corso
-  trades_won: number           // trade chiusi in profitto
-  trades_lost: number          // trade chiusi in perdita
+  trades_won: number           // trade chiusi con pips > 0
+  trades_lost: number          // trade chiusi con pips < 0
   trades_failed: number
-  win_rate_percent: number     // win rate personale su trade chiusi
-  total_profit_usd: number     // profitto totale in USD
+  win_rate_percent: number     // win rate personale (pips-based)
+  total_profit_usd: number     // profitto totale in USD (scalato per lotto)
+  total_profit_pips: number    // pips totali accumulati
 }
 
 // ─────────────────────────────────────────────────────────────────────────
