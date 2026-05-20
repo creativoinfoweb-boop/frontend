@@ -4,7 +4,7 @@ import { ReactNode, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/store/auth'
 import Link from 'next/link'
-import { LayoutDashboard, Users, Tags, Radio, LogOut, Server, Sun, Moon, Users2 } from 'lucide-react'
+import { LayoutDashboard, Users, Tags, Radio, LogOut, Server, Sun, Moon, Users2, Send } from 'lucide-react'
 
 interface AdminLayoutProps {
   children: ReactNode
@@ -52,6 +52,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     { label: 'Coupon', href: '/admin/coupons', icon: Tags },
     { label: 'Segnali', href: '/admin/signals', icon: Radio },
     { label: 'Affiliati', href: '/admin/affiliates', icon: Users2 },
+    { label: 'Segnale Manuale', href: '/admin/manual-signal', icon: Send },
   ]
 
   if (!mounted) return null

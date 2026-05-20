@@ -333,6 +333,20 @@ export const adminApi = {
 
   listSignals: () =>
     instance.get<{ signals: AdminSignal[]; total: number }>('/admin/signals'),
+
+  createManualSignal: (payload: {
+    symbol: string
+    direction: 'BUY' | 'SELL'
+    entry_price: number
+    sl: number
+    tp: number
+    lot_size: number
+    comment?: string
+  }) =>
+    instance.post('/admin/manual-signal', payload),
+
+  emergencyStop: () =>
+    instance.post('/admin/emergency-stop?confirm=true'),
 }
 
 // ─────────────────────────────────────────────────────────────────────────
