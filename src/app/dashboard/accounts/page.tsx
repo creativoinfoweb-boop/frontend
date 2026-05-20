@@ -151,11 +151,8 @@ export default function AccountsPage() {
     Number.isInteger(pct) ? `${pct}%` : `${pct.toFixed(1)}%`
 
   const getRiskPercent = (acc: any): number => {
-    if (acc.risk_percent != null) return Number(acc.risk_percent)
-    try {
-      const cached = localStorage.getItem(`risk_${acc.mt5_login}`)
-      if (cached) return parseFloat(cached)
-    } catch {}
+    // Legge direttamente dal DB (ora salvato correttamente)
+    if (acc.risk_percent != null && acc.risk_percent > 0) return Number(acc.risk_percent)
     return 1
   }
 
