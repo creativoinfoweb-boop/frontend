@@ -1282,6 +1282,8 @@ export default function LandingPage() {
                   { label: t.footer.links.about, href: '/chi-siamo' },
                   { label: t.footer.links.performance, href: '#performance' },
                   { label: t.footer.links.terms, href: '/legal/terms' },
+                  { label: t.footer.links.privacy, href: '/legal/privacy' },
+                  { label: t.footer.links.cookie, href: '/legal/cookie-policy' },
                 ].map(link => (
                   <li key={link.href}>
                     <Link href={link.href}
