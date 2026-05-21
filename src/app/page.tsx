@@ -33,6 +33,7 @@ import ThemeOnboardingModal from '@/components/ThemeOnboardingModal'
 import CookieConsent from '@/components/CookieConsent'
 import { TrustpilotHeroWidget, TrustpilotFooterBadge } from '@/components/trustpilot/TrustpilotStars'
 import { TrustpilotCarousel } from '@/components/trustpilot/TrustpilotCarousel'
+import { TRUSTPILOT_ENABLED } from '@/lib/trustpilot-config'
 
 /* ─── Animated counter ─────────────────────────────────── */
 function AnimatedCounter({ to, suffix = '', duration = 1500 }: { to: number; suffix?: string; duration?: number }) {
@@ -769,10 +770,11 @@ export default function LandingPage() {
                 ))
               ) : (
                 (() => {
-                  const winRate = masterStats?.win_rate_percent ?? landingPerf?.win_rate ?? 79.0
-                  const totalTrades = masterStats?.trades_total ?? landingPerf?.total_trades ?? 0
-                  const totalWins = masterStats?.trades_win ?? landingPerf?.total_wins ?? 0
-                  const totalLosses = masterStats?.trades_loss ?? landingPerf?.total_losses ?? 0
+                  // landingPerf (dati manuali dal monitor) ha priorità su masterStats (live)
+                  const winRate = (landingPerf?.win_rate || null) ?? masterStats?.win_rate_percent ?? 0
+                  const totalTrades = (landingPerf?.total_trades || null) ?? masterStats?.trades_total ?? 0
+                  const totalWins = (landingPerf?.total_wins || null) ?? masterStats?.trades_win ?? 0
+                  const totalLosses = (landingPerf?.total_losses || null) ?? masterStats?.trades_loss ?? 0
                   return [
                     {
                       label: t.perf.totalTrades, icon: BarChart3, color: 'var(--accent)',
@@ -813,9 +815,11 @@ export default function LandingPage() {
             </div>
           </div>
           {/* Trustpilot widget — sotto il grafico equity */}
-          <div className="flex justify-center mt-6">
-            <TrustpilotHeroWidget reviewsLabel={t.trustpilot.heroReviews} />
-          </div>
+          {TRUSTPILOT_ENABLED && (
+            <div className="flex justify-center mt-6">
+              <TrustpilotHeroWidget reviewsLabel={t.trustpilot.heroReviews} />
+            </div>
+          )}
 
           <p className="text-center text-xs italic mt-4" style={{ color: 'var(--text-muted)' }}>
             {t.perf.disclaimer}
@@ -868,8 +872,9 @@ export default function LandingPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
           {(() => {
-            const totalTrades = masterStats?.trades_total ?? landingPerf?.total_trades ?? 0
-            const winRate = masterStats?.win_rate_percent ?? landingPerf?.win_rate ?? 0
+            // landingPerf (dati manuali dal monitor) ha priorità su masterStats (live)
+            const totalTrades = (landingPerf?.total_trades || null) ?? masterStats?.trades_total ?? 0
+            const winRate = (landingPerf?.win_rate || null) ?? masterStats?.win_rate_percent ?? 0
             return [
               { value: totalTrades, suffix: '', label: t.stats.operations, isGold: true },
               { value: Math.round(winRate), suffix: '%', label: t.stats.winRate, isGold: false },
@@ -1112,12 +1117,14 @@ export default function LandingPage() {
       </section>
 
       {/* ─── Trustpilot Reviews Carousel ─────────────────── */}
-      <TrustpilotCarousel
-        sectionLabel={t.trustpilot.sectionLabel}
-        title={t.trustpilot.sectionTitle}
-        subtitle={t.trustpilot.sectionSubtitle}
-        ctaText={t.trustpilot.ctaAll}
-      />
+      {TRUSTPILOT_ENABLED && (
+        <TrustpilotCarousel
+          sectionLabel={t.trustpilot.sectionLabel}
+          title={t.trustpilot.sectionTitle}
+          subtitle={t.trustpilot.sectionSubtitle}
+          ctaText={t.trustpilot.ctaAll}
+        />
+      )}
 
       {/* ─── Guida MT5 per Chi Non Ce L'Ha ─────────────── */}
       <section id="guida-mt5" className="py-24 px-4 sm:px-6 lg:px-8">
@@ -1318,13 +1325,15 @@ export default function LandingPage() {
                 </div>
 
                 {/* Trustpilot footer badge */}
-                <div className="mt-4">
-                  <TrustpilotFooterBadge
-                    ratingLabel={t.trustpilot.footerRating}
-                    reviewsLabel={t.trustpilot.footerReviews}
-                    ctaLabel={t.trustpilot.footerCta}
-                  />
-                </div>
+                {TRUSTPILOT_ENABLED && (
+                  <div className="mt-4">
+                    <TrustpilotFooterBadge
+                      ratingLabel={t.trustpilot.footerRating}
+                      reviewsLabel={t.trustpilot.footerReviews}
+                      ctaLabel={t.trustpilot.footerCta}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
