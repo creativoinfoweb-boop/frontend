@@ -364,6 +364,48 @@ export default function LandingPage() {
               </>
             )}
 
+            {/* Mobile language flag circle — sm:hidden so visible only on mobile */}
+            <div className="relative sm:hidden">
+              <button
+                onClick={() => setLangMenuOpen(v => !v)}
+                className="flex items-center justify-center w-8 h-8 rounded-full overflow-hidden transition-all"
+                style={{
+                  background: langMenuOpen ? 'rgba(240,180,41,0.12)' : 'rgba(255,255,255,0.08)',
+                  border: `1.5px solid ${langMenuOpen ? 'rgba(240,180,41,0.4)' : 'rgba(255,255,255,0.2)'}`,
+                  flexShrink: 0,
+                }}
+                aria-label="Select language"
+              >
+                <span className={`fi fi-${currentLang?.flagCode}`} style={{ width: '1.6em', height: '1.6em', display: 'inline-block' }} />
+              </button>
+
+              {langMenuOpen && (
+                <>
+                  <div className="fixed inset-0 z-[70]" onClick={() => setLangMenuOpen(false)} />
+                  <div
+                    className="absolute right-0 top-full mt-1.5 z-[80] rounded-xl overflow-hidden shadow-xl"
+                    style={{ background: 'var(--glass-bg)', backdropFilter: 'blur(24px)', border: '1px solid var(--glass-border)', minWidth: '140px' }}
+                  >
+                    {LANGUAGES.map(l => (
+                      <button
+                        key={l.code}
+                        onClick={() => { setLang(l.code); setLangMenuOpen(false) }}
+                        className="flex items-center gap-2.5 w-full px-3.5 py-2.5 text-left text-sm transition-all"
+                        style={{
+                          color: l.code === lang ? 'var(--gold)' : 'var(--text-secondary)',
+                          background: l.code === lang ? 'rgba(240,180,41,0.08)' : 'transparent',
+                          fontWeight: l.code === lang ? '700' : '500',
+                        }}
+                      >
+                        <span className={`fi fi-${l.flagCode}`} style={{ width: '1.2em', height: '0.9em', display: 'inline-block' }} />
+                        <span>{l.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+
             {/* Mobile hamburger */}
             <button
               onClick={() => setMobileMenuOpen(v => !v)}
@@ -594,13 +636,6 @@ export default function LandingPage() {
               ))}
             </div>
 
-            {/* Trustpilot mini widget */}
-            <div className="mt-4 flex justify-center sm:justify-start">
-              <TrustpilotHeroWidget
-                label={t.trustpilot.footerRating}
-                reviewsLabel={t.trustpilot.heroReviews}
-              />
-            </div>
           </div>
         </div>
 
@@ -777,7 +812,12 @@ export default function LandingPage() {
               )}
             </div>
           </div>
-          <p className="text-center text-xs italic mt-6" style={{ color: 'var(--text-muted)' }}>
+          {/* Trustpilot widget — sotto il grafico equity */}
+          <div className="flex justify-center mt-6">
+            <TrustpilotHeroWidget reviewsLabel={t.trustpilot.heroReviews} />
+          </div>
+
+          <p className="text-center text-xs italic mt-4" style={{ color: 'var(--text-muted)' }}>
             {t.perf.disclaimer}
           </p>
         </div>
