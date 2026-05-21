@@ -565,6 +565,10 @@ export default function LandingPage() {
                 </Link>
               ) : (
                 <>
+                  <Link href="/metodo" className="btn-valorox btn-valorox-secondary btn-valorox-slim">
+                    {t.hero.learnMethod}
+                    <BarChart3 className="w-4 h-4" />
+                  </Link>
                   <div className="flex flex-col items-center gap-1.5">
                     <Link href="/auth/register" className="btn-valorox btn-valorox-primary btn-valorox-slim">
                       {t.hero.ctaMain}
@@ -572,10 +576,6 @@ export default function LandingPage() {
                     </Link>
                     <span className="text-[11px] font-medium" style={{ color: 'rgba(255,255,255,0.55)' }}>{t.hero.ctaSub}</span>
                   </div>
-                  <Link href="/metodo" className="btn-valorox btn-valorox-secondary btn-valorox-slim">
-                    {t.hero.learnMethod}
-                    <BarChart3 className="w-4 h-4" />
-                  </Link>
                 </>
               )}
             </div>
