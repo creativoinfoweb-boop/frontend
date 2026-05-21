@@ -1,5 +1,5 @@
 ﻿import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono, Cinzel, Cormorant, Exo_2, Audiowide } from 'next/font/google'
+import { Inter, Audiowide } from 'next/font/google'
 import localFont from 'next/font/local'
 import 'flag-icons/css/flag-icons.min.css'
 import './globals.css'
@@ -19,35 +19,6 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   weight: ['300', '400', '500', '600', '700', '800', '900'],
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: '--font-jetbrains',
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['400', '500', '600'],
-})
-
-const cinzel = Cinzel({
-  variable: '--font-cinzel',
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['400', '500', '600', '700'],
-})
-
-const cormorant = Cormorant({
-  variable: '--font-cormorant',
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-})
-
-const exo2 = Exo_2({
-  variable: '--font-exo2',
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['200', '300', '400', '500', '600', '700', '800', '900'],
 })
 
 const valoroxBrand = Audiowide({
@@ -333,7 +304,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${cinzel.variable} ${cormorant.variable} ${exo2.variable} ${braveEightyone.variable} ${valoroxBrand.variable} antialiased`}
+        className={`${inter.variable} ${braveEightyone.variable} ${valoroxBrand.variable} antialiased`}
         suppressHydrationWarning
       >
         <ClerkWrapper>
