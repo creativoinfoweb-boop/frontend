@@ -82,9 +82,9 @@
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Typography — placeholder; effective definition is on `body` below
-     where next/font CSS vars (--font-valorox-brand, --font-brave, --font-exo2)
-     are actually defined. Declared here just for documentation. */
-  --font-brand: 'Exo 2', sans-serif;
+     where next/font CSS vars (--font-valorox-brand, --font-brave) are
+     actually defined. Declared here just for documentation. */
+  --font-brand: 'Inter', sans-serif;
 
   /* Holographic overlay */
   --holo: linear-gradient(105deg,
@@ -95,9 +95,9 @@
 
 /* Effective brand font cascade — defined on body where next/font
    CSS variables are actually injected. Resolves correctly because
-   --font-valorox-brand / --font-brave / --font-exo2 are present here. */
+   --font-valorox-brand / --font-brave are present here. */
 body {
-  --font-brand: var(--font-valorox-brand), 'Rajdhani', 'Saira Semi Condensed', var(--font-exo2), 'Exo 2', sans-serif;
+  --font-brand: var(--font-valorox-brand), 'Rajdhani', 'Saira Semi Condensed', var(--font-inter), 'Inter', sans-serif;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -316,7 +316,7 @@ input:-webkit-autofill:focus {
   animation: splashPulse 2.4s ease-in-out infinite;
 }
 .valorox-splash-title {
-  font-family: var(--font-exo2), 'Exo 2', sans-serif;
+  font-family: var(--font-inter), 'Inter', sans-serif;
   font-weight: 200;
   font-size: 1.8rem;
   letter-spacing: 0.06em;
@@ -1129,7 +1129,7 @@ input:-webkit-autofill:focus {
 }
 
 .number-mono {
-  font-family: var(--font-jetbrains), 'JetBrains Mono', monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
   font-feature-settings: 'tnum' 1;
 }
 
@@ -1459,7 +1459,7 @@ input:-webkit-autofill:focus {
 }
 
 .valorox-title {
-  font-family: var(--font-exo2), 'Exo 2', sans-serif !important;
+  font-family: var(--font-inter), 'Inter', sans-serif !important;
   font-weight: 200;
   font-size: clamp(1.5rem, 5vw, 4rem);
   letter-spacing: 0.06em;
@@ -1480,7 +1480,7 @@ input:-webkit-autofill:focus {
 
 /* X — same font/weight as title, inherits color (white like "Al") */
 .valorox-title-x {
-  font-family: var(--font-exo2), 'Exo 2', sans-serif;
+  font-family: var(--font-inter), 'Inter', sans-serif;
   font-weight: 200;
 }
 
@@ -1490,7 +1490,7 @@ input:-webkit-autofill:focus {
 }
 
 .valorox-title-ai {
-  font-family: var(--font-exo2), 'Exo 2', sans-serif;
+  font-family: var(--font-inter), 'Inter', sans-serif;
   font-size: 0.5em;
   font-weight: 200;
   letter-spacing: 0.18em;
@@ -1548,7 +1548,7 @@ input:-webkit-autofill:focus {
 
 /* ── Hero claim ── */
 .valorox-claim {
-  font-family: var(--font-exo2), 'Exo 2', sans-serif;
+  font-family: var(--font-inter), 'Inter', sans-serif;
   font-size: clamp(0.78rem, 1.4vw, 1.05rem);
   font-weight: 300;
   letter-spacing: 0.04em;

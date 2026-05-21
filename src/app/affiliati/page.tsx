@@ -151,7 +151,7 @@ export default function AffiliatiPage() {
             {[Send, Users, TrendingUp].map((Icon, i) => (
               <div key={i} className="card-premium p-6 text-center relative">
                 <div className="absolute top-4 right-4 text-5xl font-black opacity-[0.04]"
-                  style={{ color: 'var(--gold)', fontFamily: 'var(--font-exo2)' }}>
+                  style={{ color: 'var(--gold)', fontFamily: 'var(--font-inter)' }}>
                   {String(i + 1).padStart(2, '0')}
                 </div>
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5"

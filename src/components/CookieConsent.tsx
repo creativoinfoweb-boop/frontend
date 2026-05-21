@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 const STORAGE_KEY = 'valorox-cookie-consent'
 
@@ -56,7 +57,12 @@ export default function CookieConsent({ onDone }: { onDone: () => void }) {
     >
       <p className="text-xs leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>
         Utilizziamo cookie tecnici per migliorare la tua esperienza.
-        Nessun tracciamento pubblicitario.
+        Nessun tracciamento pubblicitario.{' '}
+        <Link href="/legal/cookie-policy"
+          className="underline transition-opacity hover:opacity-80"
+          style={{ color: 'var(--gold)' }}>
+          Cookie Policy
+        </Link>
       </p>
       <div className="flex items-center gap-2">
         <button

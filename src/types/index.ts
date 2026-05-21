@@ -1,5 +1,5 @@
 /**
- * Frontend types for Gold Boss Bot Copy Trading SaaS
+ * Frontend types for Valorox Copy Trading SaaS
  */
 
 // ─────────────────────────────────────────────────────────────────────────
