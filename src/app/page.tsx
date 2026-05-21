@@ -196,20 +196,31 @@ export default function LandingPage() {
     const fetchMasterStats = async () => {
       try {
         setStatsLoading(true)
-        const [statsRes, perfRes] = await Promise.all([
-          fetch(`${BASE_URL}/stats/master`),
-          fetch(`${BASE_URL}/stats/landing-performance`),
-        ])
-        if (statsRes.ok) {
-          const data = await statsRes.json()
-          setMasterStats(data)
-        }
-        if (perfRes.ok) {
-          const data = await perfRes.json()
-          setLandingPerf(data)
-        }
-      } catch (_) {
-        setMasterStats(null)
+
+        // Fetch landing-performance FIRST (priorità monitor)
+        try {
+          const perfRes = await fetch(`${BASE_URL}/stats/landing-performance`)
+          if (perfRes.ok) {
+            const ct = perfRes.headers.get('content-type') || ''
+            if (ct.includes('application/json')) {
+              const data = await perfRes.json()
+              setLandingPerf(data)
+            }
+          }
+        } catch (_) { /* landing-performance non disponibile */ }
+
+        // Fetch master stats come fallback
+        try {
+          const statsRes = await fetch(`${BASE_URL}/stats/master`)
+          if (statsRes.ok) {
+            const ct = statsRes.headers.get('content-type') || ''
+            if (ct.includes('application/json')) {
+              const data = await statsRes.json()
+              setMasterStats(data)
+            }
+          }
+        } catch (_) { /* master stats non disponibile */ }
+
       } finally {
         setStatsLoading(false)
       }
@@ -770,11 +781,13 @@ export default function LandingPage() {
                 ))
               ) : (
                 (() => {
-                  // landingPerf (dati manuali dal monitor) ha priorità su masterStats (live)
-                  const winRate = (landingPerf?.win_rate || null) ?? masterStats?.win_rate_percent ?? 0
-                  const totalTrades = (landingPerf?.total_trades || null) ?? masterStats?.trades_total ?? 0
-                  const totalWins = (landingPerf?.total_wins || null) ?? masterStats?.trades_win ?? 0
-                  const totalLosses = (landingPerf?.total_losses || null) ?? masterStats?.trades_loss ?? 0
+                  // Se il monitor locale ha dati (months > 0), usa SOLO quelli
+                  // Altrimenti fallback a masterStats (live dal DB)
+                  const hasMonitorData = landingPerf && Array.isArray(landingPerf.months) && landingPerf.months.length > 0
+                  const winRate = hasMonitorData ? (landingPerf.win_rate ?? 0) : (masterStats?.win_rate_percent ?? 0)
+                  const totalTrades = hasMonitorData ? (landingPerf.total_trades ?? 0) : (masterStats?.trades_total ?? 0)
+                  const totalWins = hasMonitorData ? (landingPerf.total_wins ?? 0) : (masterStats?.trades_win ?? 0)
+                  const totalLosses = hasMonitorData ? (landingPerf.total_losses ?? 0) : (masterStats?.trades_loss ?? 0)
                   return [
                     {
                       label: t.perf.totalTrades, icon: BarChart3, color: 'var(--accent)',
@@ -872,9 +885,10 @@ export default function LandingPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
           {(() => {
-            // landingPerf (dati manuali dal monitor) ha priorità su masterStats (live)
-            const totalTrades = (landingPerf?.total_trades || null) ?? masterStats?.trades_total ?? 0
-            const winRate = (landingPerf?.win_rate || null) ?? masterStats?.win_rate_percent ?? 0
+            // Se il monitor locale ha dati, usa SOLO quelli
+            const hasMonitorData = landingPerf && Array.isArray(landingPerf.months) && landingPerf.months.length > 0
+            const totalTrades = hasMonitorData ? (landingPerf.total_trades ?? 0) : (masterStats?.trades_total ?? 0)
+            const winRate = hasMonitorData ? (landingPerf.win_rate ?? 0) : (masterStats?.win_rate_percent ?? 0)
             return [
               { value: totalTrades, suffix: '', label: t.stats.operations, isGold: true },
               { value: Math.round(winRate), suffix: '%', label: t.stats.winRate, isGold: false },
