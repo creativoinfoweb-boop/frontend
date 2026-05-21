@@ -11,9 +11,9 @@ export const translations = {
       startFree: 'Inizia Gratis',
     },
     hero: {
-      subtitle: 'XAU/USD · AI TRADING SYSTEM',
+      subtitle: 'MULTI-ASSET · AI TRADING SYSTEM',
       tagline: 'Un nuovo approccio al trading.',
-      description: 'Scalping, intraday, volumetrica, CRT e Wyckoff in un unico motore di esecuzione AI su XAU/USD.',
+      description: 'Scalping, intraday, volumetrica, CRT e Wyckoff in un unico motore di esecuzione AI su Oro, Forex, Indici e Crypto.',
       startFree: 'Inizia Gratis',
       learnMethod: 'Scopri il Metodo',
       trust1: 'Zero depositi richiesti',
@@ -23,7 +23,7 @@ export const translations = {
     },
     perf: {
       equityCurve: 'Equity Curve',
-      indicative: 'XAU/USD — Indicativa',
+      indicative: 'Multi-Asset — Indicativa',
       noData: 'Dati non ancora disponibili',
       disclaimer: '* Performance passate non garantiscono risultati futuri. Il trading comporta rischi.',
       winRate: 'Win Rate',
@@ -106,11 +106,11 @@ export const translations = {
       title: 'Hai Domande? Abbiamo le Risposte.',
       items: [
         { q: 'Cos\'è Valorox e a cosa serve?', a: 'Valorox è una piattaforma educativa e tecnologica per chi vuole comprendere i mercati finanziari e applicare una strategia operativa strutturata. Unisce formazione sulla visione Smart Money con strumenti che consentono all\'utente di osservare e applicare la strategia in modo sistematico, utilizzando il nostro sistema per eseguirla anche in maniera automatizzata. Non è un servizio di investimento.' },
-        { q: 'Cos\'è la visione Smart Money?', a: 'Smart Money identifica l\'approccio dei grandi operatori istituzionali (banche, hedge fund, market maker) che muovono i mercati attraverso dinamiche di liquidità. Comprendere come si muovono questi player — dove raccolgono liquidità, come creano falsi breakout, quando entrano davvero — è la base della strategia che studiamo e applichiamo su XAU/USD.', learnMoreUrl: '/metodo', learnMoreLabel: 'Approfondisci il Metodo →' },
+        { q: 'Cos\'è la visione Smart Money?', a: 'Smart Money identifica l\'approccio dei grandi operatori istituzionali (banche, hedge fund, market maker) che muovono i mercati attraverso dinamiche di liquidità. Comprendere come si muovono questi player — dove raccolgono liquidità, come creano falsi breakout, quando entrano davvero — è la base della strategia che studiamo e applichiamo su Oro, Forex, Indici e Crypto.', learnMoreUrl: '/metodo', learnMoreLabel: 'Approfondisci il Metodo →' },
         { q: 'Posso iniziare con un conto demo?', a: 'Assolutamente sì — ed è il percorso che consigliamo. Collega un conto demo MT5 del tuo broker, osserva come la strategia viene applicata in condizioni reali di mercato, studia le logiche operative e i parametri di rischio. Solo quando hai piena comprensione, decidi in autonomia se passare al conto live.' },
         { q: 'Quali rischi devo considerare?', a: 'Il trading sui mercati finanziari comporta rischio reale di perdita del capitale. La piattaforma fornisce strumenti di supporto decisionale — non garantisce risultati. I parametri di rischio (stop loss, size, take profit) sono sempre impostati e controllati dall\'utente. Non forniamo consulenza finanziaria. Studia prima, testa in demo, poi decidi con consapevolezza.', learnMoreUrl: '/legal/terms', learnMoreLabel: 'Leggi Termini e Rischi completi →' },
         { q: 'Come funziona tecnicamente la piattaforma?', a: 'Colleghi le credenziali del tuo conto MT5 (cifrate AES-128 — non le legge nessuno). La piattaforma applica la strategia sul conto secondo i parametri da te configurati: rischio per operazione, orari, strumenti. Non serve avere MT5 aperto sul PC.' },
-        { q: 'Con quale frequenza opera la strategia?', a: 'La strategia opera su XAU/USD principalmente nella sessione di Londra/New York (10:00 – 16:00 CET), dove la liquidità e la volatilità istituzionale sono più elevate. La frequenza varia in base alle condizioni di mercato: qualità prima di quantità.' },
+        { q: 'Con quale frequenza opera la strategia?', a: 'La strategia opera su 7 asset (XAU/USD, EUR/USD, GBP/USD, GBP/AUD, BTC/USD, Nasdaq, S&P 500) principalmente nella sessione di Londra/New York (10:00 – 16:00 CET), dove la liquidità e la volatilità istituzionale sono più elevate. La frequenza varia in base alle condizioni di mercato: qualità prima di quantità.' },
         { q: 'Perché alcuni parametri sono limitati?', a: 'È una scelta deliberata, non una limitazione tecnica. Più libertà operativa significa più opportunità di commettere errori emotivi. Il range di rischio 1%-3% è già ampio e la struttura di stop loss, break-even e take profit segue logiche strategiche precise.' },
         { q: 'Qual è la differenza rispetto ai classici segnali di trading?', a: 'I segnali hanno un problema strutturale: anche se il segnale è corretto, l\'utente deve eseguirlo manualmente — e qui entra l\'emotività. Noi non mandiamo segnali: applichiamo la strategia in modo coerente, senza ritardi, senza esitazioni.' },
         { q: 'Posso cancellare quando voglio?', a: 'Sì, in qualsiasi momento senza penalità. Le operazioni già aperte rimangono sul tuo conto MT5 e puoi gestirle come preferisci. Non c\'è lock-in, non ci sono costi nascosti.' },
@@ -131,7 +131,7 @@ export const translations = {
       disclaimer: 'Nessuna carta di credito richiesta · Cancellazione in qualsiasi momento · Trading comporta rischi',
     },
     footer: {
-      tagline: 'Sistema creato da un team di trader per eliminare l\'emotività dall\'esecuzione. Disciplina operativa su XAU/USD.',
+      tagline: 'Sistema creato da un team di trader per eliminare l\'emotività dall\'esecuzione. Disciplina operativa multi-asset.',
       platform: 'Piattaforma',
       legal: 'Legale',
       links: {
@@ -202,7 +202,7 @@ export const translations = {
       withReferral: 'con codice referral di un creator Valorox',
       timelineFree: 'GRATIS',
       features: [
-        { text: 'Automazione 100% su XAU/USD — nulla da installare', highlight: true },
+        { text: 'Automazione 100% multi-asset (Oro, Forex, Indici, Crypto) — nulla da installare', highlight: true },
         { text: 'Piattaforma server-side — il tuo conto rimane sempre protetto', highlight: true },
         { text: 'Dashboard live con posizioni in tempo reale', highlight: false },
         { text: 'Risk management configurabile — controllo totale', highlight: false },
@@ -213,7 +213,7 @@ export const translations = {
     },
     metodo: {
       heroTitle: 'Metodo, Strategia\ne Automazione',
-      heroDesc: 'Come funziona il Sistema Valorox: il metodo Smart Money che sta alla base, l\'esecuzione multi-stile su XAU/USD (scalping, intraday, volumetrica, CRT), e come l\'AI applica tutto automaticamente — senza che tu debba fare nulla durante i trade.',
+      heroDesc: 'Come funziona il Sistema Valorox: il metodo Smart Money che sta alla base, l\'esecuzione multi-stile e multi-asset (scalping, intraday, volumetrica, CRT) su Oro, Forex, Indici e Crypto, e come l\'AI applica tutto automaticamente — senza che tu debba fare nulla durante i trade.',
       heroDisclaimer: 'Non forniamo consulenza finanziaria. Il trading comporta rischi reali.',
       quickNav: [
         { label: '01 Perché fallisce il retail', href: '#problema' },
@@ -243,10 +243,10 @@ export const translations = {
         { title: 'Order Block e FVG', desc: 'Order Block: l\'ultima candela ribassista prima di un forte movimento rialzista — zona dove gli istituzionali hanno piazzato ordini. Fair Value Gap: squilibrio di prezzo tra tre candele — il mercato tende a tornare a colmare questi gap.' },
       ],
       s02CourseTitle: 'Vuoi approfondire il metodo SMC?',
-      s02CourseDesc: 'Il nostro corso include 8 moduli completi — dai fondamentali del mercato fino all\'applicazione pratica su XAU/USD e il modello CRT. I primi 4 moduli (44 lezioni) sono completamente gratuiti.',
+      s02CourseDesc: 'Il nostro corso include 8 moduli completi — dai fondamentali del mercato fino all\'applicazione pratica multi-asset e il modello CRT. I primi 4 moduli (44 lezioni) sono completamente gratuiti.',
       s02CourseLink: 'Accedi al Corso Gratuito →',
       s03Label: '03 — La Strategia',
-      s03Title: 'Approccio multi-stile su XAU/USD',
+      s03Title: 'Approccio multi-stile, multi-asset',
       s03Desc: 'Il Sistema Valorox seleziona dinamicamente l\'orizzonte temporale di trade in funzione della liquidità e del contesto: scalping nelle Kill Zone di Londra, intraday su movimenti H1/H4, con filtri di analisi volumetrica e modello CRT. Ogni operazione segue una logica precisa e ripetibile.',
       s03Steps: [
         { num: '01', title: 'Fase Asia — Marca il Range', desc: 'Durante la sessione asiatica (00:00–08:00 CET) il mercato si muove in un range stretto. Il Sistema identifica l\'Asia High (AH) e l\'Asia Low (AL) — questi diventano i livelli di riferimento per Londra.' },
@@ -278,7 +278,7 @@ export const translations = {
       s05Steps: [
         'Ti registri e colleghi le credenziali del tuo conto MT5 (password investor read-only, cifrata AES-128)',
         'Configuri il rischio per operazione (1–3% del capitale) e attivi il sistema',
-        'Il Sistema monitora XAU/USD 24/5 cercando i setup: marcatura Asia range, attesa Kill Zone, identificazione sweep + MSS',
+        'Il Sistema monitora 7 asset (Oro, Forex, Indici, Crypto) 24/5 cercando i setup: marcatura Asia range, attesa Kill Zone, identificazione sweep + MSS',
         'Quando un setup valido si forma, apre la posizione con entry precisa, SL strutturale, TP1/TP2/residuo già configurati',
         'Gestisce il trade in autonomia: BE automatico a TP1, scala le posizioni, chiude tutto secondo il piano',
         'Tutto è visibile in tempo reale dalla tua dashboard: trade aperti, storico, equity curve, statistiche',
@@ -415,9 +415,9 @@ export const translations = {
       startFree: 'Start Free',
     },
     hero: {
-      subtitle: 'XAU/USD · AI TRADING SYSTEM',
+      subtitle: 'MULTI-ASSET · AI TRADING SYSTEM',
       tagline: 'A new approach to trading.',
-      description: 'Scalping, intraday, volumetric, CRT and Wyckoff in a single AI execution engine on XAU/USD.',
+      description: 'Scalping, intraday, volumetric, CRT and Wyckoff in a single AI execution engine on Gold, Forex, Indices and Crypto.',
       startFree: 'Start Free',
       learnMethod: 'Discover the Method',
       trust1: 'Zero deposits required',
@@ -427,7 +427,7 @@ export const translations = {
     },
     perf: {
       equityCurve: 'Equity Curve',
-      indicative: 'XAU/USD — Indicative',
+      indicative: 'Multi-Asset — Indicative',
       noData: 'Data not yet available',
       disclaimer: '* Past performance does not guarantee future results. Trading involves risks.',
       winRate: 'Win Rate',
@@ -510,11 +510,11 @@ export const translations = {
       title: 'Got Questions? We Have Answers.',
       items: [
         { q: 'What is Valorox and what is it for?', a: 'Valorox is an educational and technological platform for those who want to understand financial markets and apply a structured operational strategy. It combines Smart Money training with tools that allow the user to observe and apply the strategy systematically. Not an investment service.' },
-        { q: 'What is Smart Money?', a: 'Smart Money identifies the approach of large institutional operators (banks, hedge funds, market makers) who move markets through liquidity dynamics. Understanding how these players move — where they collect liquidity, how they create false breakouts, when they really enter — is the foundation of the strategy we study and apply on XAU/USD.', learnMoreUrl: '/metodo', learnMoreLabel: 'Learn more about the Method →' },
+        { q: 'What is Smart Money?', a: 'Smart Money identifies the approach of large institutional operators (banks, hedge funds, market makers) who move markets through liquidity dynamics. Understanding how these players move — where they collect liquidity, how they create false breakouts, when they really enter — is the foundation of the strategy we study and apply on Gold, Forex, Indices and Crypto.', learnMoreUrl: '/metodo', learnMoreLabel: 'Learn more about the Method →' },
         { q: 'Can I start with a demo account?', a: 'Absolutely yes — and it\'s the path we recommend. Connect an MT5 demo account from your broker, observe how the strategy is applied in real market conditions, study the operational logic and risk parameters. Only when you fully understand, decide independently whether to go live.' },
         { q: 'What risks should I consider?', a: 'Trading on financial markets involves real risk of capital loss. The platform provides decision-support tools — it does not guarantee results. Risk parameters (stop loss, size, take profit) are always set and controlled by the user. We do not provide financial advice.', learnMoreUrl: '/legal/terms', learnMoreLabel: 'Read full Terms and Risks →' },
         { q: 'How does the platform work technically?', a: 'You connect your MT5 account credentials (AES-128 encrypted — nobody reads them). The platform applies the strategy on the account according to your configured parameters: risk per trade, hours, instruments. No need to have MT5 open on your PC.' },
-        { q: 'How frequently does the strategy operate?', a: 'The strategy operates on XAU/USD mainly in the London/New York session (10:00 – 16:00 CET), where institutional liquidity and volatility are highest. Frequency varies by market conditions: quality over quantity.' },
+        { q: 'How frequently does the strategy operate?', a: 'The strategy operates on 7 assets (XAU/USD, EUR/USD, GBP/USD, GBP/AUD, BTC/USD, Nasdaq, S&P 500) mainly in the London/New York session (10:00 – 16:00 CET), where institutional liquidity and volatility are highest. Frequency varies by market conditions: quality over quantity.' },
         { q: 'Why are some parameters limited?', a: 'It\'s a deliberate choice, not a technical limitation. More operational freedom means more opportunities to make emotional errors. The 1%-3% risk range is already wide, and the stop loss, break-even and take profit structure follows precise strategic logic.' },
         { q: 'What\'s the difference from traditional trading signals?', a: 'Signals have a structural problem: even if the signal is correct, the user must execute it manually — and that\'s where emotion enters. We don\'t send signals: we apply the strategy consistently, without delays, without hesitation.' },
         { q: 'Can I cancel anytime?', a: 'Yes, at any time without penalty. Already open operations remain on your MT5 account and you can manage them as you prefer. No lock-in, no hidden costs.' },
@@ -535,7 +535,7 @@ export const translations = {
       disclaimer: 'No credit card required · Cancel anytime · Trading involves risks',
     },
     footer: {
-      tagline: 'System created by a team of traders to eliminate emotion from execution. Operational discipline on XAU/USD.',
+      tagline: 'System created by a team of traders to eliminate emotion from execution. Multi-asset operational discipline.',
       platform: 'Platform',
       legal: 'Legal',
       links: {
@@ -606,7 +606,7 @@ export const translations = {
       withReferral: 'with a Valorox creator referral code',
       timelineFree: 'FREE',
       features: [
-        { text: '100% automation on XAU/USD — nothing to install', highlight: true },
+        { text: '100% multi-asset automation (Gold, Forex, Indices, Crypto) — nothing to install', highlight: true },
         { text: 'Server-side platform — your account is always protected', highlight: true },
         { text: 'Live dashboard with real-time positions', highlight: false },
         { text: 'Configurable risk management — total control', highlight: false },
@@ -617,7 +617,7 @@ export const translations = {
     },
     metodo: {
       heroTitle: 'Method, Strategy\nand Automation',
-      heroDesc: 'How the Valorox System works: the Smart Money method at its core, multi-style execution on XAU/USD (scalping, intraday, volumetric, CRT), and how the AI applies everything automatically — without you having to do anything during trades.',
+      heroDesc: 'How the Valorox System works: the Smart Money method at its core, multi-style and multi-asset execution (scalping, intraday, volumetric, CRT) on Gold, Forex, Indices and Crypto, and how the AI applies everything automatically — without you having to do anything during trades.',
       heroDisclaimer: 'We do not provide financial advice. Trading involves real risks.',
       quickNav: [
         { label: '01 Why retail fails', href: '#problema' },
@@ -647,10 +647,10 @@ export const translations = {
         { title: 'Order Block and FVG', desc: 'Order Block: the last bearish candle before a strong bullish move — the zone where institutions placed orders. Fair Value Gap: price imbalance between three candles — the market tends to return to fill these gaps.' },
       ],
       s02CourseTitle: 'Want to go deeper on the SMC method?',
-      s02CourseDesc: 'Our course includes 8 complete modules — from market fundamentals to practical application on XAU/USD and the CRT model. The first 4 modules (44 lessons) are completely free.',
+      s02CourseDesc: 'Our course includes 8 complete modules — from market fundamentals to multi-asset practical application and the CRT model. The first 4 modules (44 lessons) are completely free.',
       s02CourseLink: 'Access the Free Course →',
       s03Label: '03 — The Strategy',
-      s03Title: 'Multi-style approach on XAU/USD',
+      s03Title: 'Multi-style, multi-asset approach',
       s03Desc: 'The Valorox System dynamically selects the trade time horizon based on liquidity and context: scalping in London Kill Zones, intraday on H1/H4 moves, with volumetric analysis filters and CRT model. Every operation follows a precise and repeatable logic.',
       s03Steps: [
         { num: '01', title: 'Asia Phase — Mark the Range', desc: 'During the Asian session (00:00–08:00 CET) the market moves in a tight range. The System identifies Asia High (AH) and Asia Low (AL) — these become the reference levels for London.' },
@@ -682,7 +682,7 @@ export const translations = {
       s05Steps: [
         'You register and connect your MT5 account credentials (investor read-only password, AES-128 encrypted)',
         'You configure risk per trade (1–3% of capital) and activate the system',
-        'The System monitors XAU/USD 24/5 looking for setups: Asia range marking, Kill Zone wait, sweep + MSS identification',
+        'The System monitors 7 assets (Gold, Forex, Indices, Crypto) 24/5 looking for setups: Asia range marking, Kill Zone wait, sweep + MSS identification',
         'When a valid setup forms, it opens the position with precise entry, structural SL, TP1/TP2/residual already configured',
         'It manages the trade autonomously: automatic BE at TP1, scales positions, closes everything per plan',
         'Everything is visible in real time from your dashboard: open trades, history, equity curve, statistics',
@@ -819,9 +819,9 @@ export const translations = {
       startFree: 'Commencer Gratuitement',
     },
     hero: {
-      subtitle: 'XAU/USD · SYSTÈME DE TRADING IA',
+      subtitle: 'MULTI-ASSET · SYSTÈME DE TRADING IA',
       tagline: 'Une nouvelle approche du trading.',
-      description: 'Scalping, intraday, volumétrique, CRT et Wyckoff dans un seul moteur d\'exécution IA sur XAU/USD.',
+      description: 'Scalping, intraday, volumétrique, CRT et Wyckoff dans un seul moteur d\'exécution IA sur Or, Forex, Indices et Crypto.',
       startFree: 'Commencer Gratuitement',
       learnMethod: 'Découvrir la Méthode',
       trust1: 'Zéro dépôt requis',
@@ -831,7 +831,7 @@ export const translations = {
     },
     perf: {
       equityCurve: 'Courbe d\'Équité',
-      indicative: 'XAU/USD — Indicative',
+      indicative: 'Multi-Asset — Indicative',
       noData: 'Données non encore disponibles',
       disclaimer: '* Les performances passées ne garantissent pas les résultats futurs. Le trading comporte des risques.',
       winRate: 'Taux de Réussite',
@@ -905,11 +905,11 @@ export const translations = {
       title: 'Des Questions ? Nous Avons les Réponses.',
       items: [
         { q: 'Qu\'est-ce que Valorox et à quoi sert-il ?', a: 'Valorox est une plateforme éducative et technologique pour ceux qui veulent comprendre les marchés financiers et appliquer une stratégie opérationnelle structurée. Ce n\'est pas un service d\'investissement.' },
-        { q: 'Qu\'est-ce que le Smart Money ?', a: 'Le Smart Money identifie l\'approche des grands opérateurs institutionnels qui bougent les marchés via des dynamiques de liquidité. Comprendre leurs mouvements est la base de la stratégie appliquée sur XAU/USD.', learnMoreUrl: '/metodo', learnMoreLabel: 'Approfondir la Méthode →' },
+        { q: 'Qu\'est-ce que le Smart Money ?', a: 'Le Smart Money identifie l\'approche des grands opérateurs institutionnels qui bougent les marchés via des dynamiques de liquidité. Comprendre leurs mouvements est la base de la stratégie appliquée sur Or, Forex, Indices et Crypto.', learnMoreUrl: '/metodo', learnMoreLabel: 'Approfondir la Méthode →' },
         { q: 'Puis-je commencer avec un compte démo ?', a: 'Absolument oui — c\'est le parcours recommandé. Connectez un compte démo MT5, observez comment la stratégie est appliquée, étudiez les paramètres de risque.' },
         { q: 'Quels risques dois-je considérer ?', a: 'Le trading comporte un risque réel de perte en capital. La plateforme fournit des outils d\'aide à la décision — elle ne garantit pas les résultats.', learnMoreUrl: '/legal/terms', learnMoreLabel: 'Lire les Conditions et Risques complets →' },
         { q: 'Comment fonctionne techniquement la plateforme ?', a: 'Vous connectez vos identifiants MT5 (chiffrés AES-128). La plateforme applique la stratégie selon vos paramètres configurés. Pas besoin d\'avoir MT5 ouvert.' },
-        { q: 'À quelle fréquence la stratégie opère-t-elle ?', a: 'La stratégie opère sur XAU/USD principalement pendant la session Londres/New York (10h–16h CET). La fréquence varie selon les conditions de marché : qualité avant quantité.' },
+        { q: 'À quelle fréquence la stratégie opère-t-elle ?', a: 'La stratégie opère sur 7 actifs (XAU/USD, EUR/USD, GBP/USD, GBP/AUD, BTC/USD, Nasdaq, S&P 500) principalement pendant la session Londres/New York (10h–16h CET). La fréquence varie selon les conditions de marché : qualité avant quantité.' },
         { q: 'Pourquoi certains paramètres sont-ils limités ?', a: 'C\'est un choix délibéré. Plus de liberté opérationnelle signifie plus d\'opportunités d\'erreurs émotionnelles. La plage de risque 1%-3% est déjà large.' },
         { q: 'Quelle est la différence avec les signaux de trading classiques ?', a: 'Les signaux ont un problème structurel : l\'utilisateur doit les exécuter manuellement et l\'émotion intervient. Nous n\'envoyons pas de signaux : nous appliquons la stratégie de manière cohérente.' },
         { q: 'Puis-je annuler quand je veux ?', a: 'Oui, à tout moment sans pénalité. Les opérations déjà ouvertes restent sur votre compte MT5. Pas de lock-in, pas de frais cachés.' },
@@ -927,7 +927,7 @@ export const translations = {
       disclaimer: 'Aucune carte de crédit requise · Annulation à tout moment · Le trading comporte des risques',
     },
     footer: {
-      tagline: 'Système créé par une équipe de traders pour éliminer l\'émotion de l\'exécution. Discipline opérationnelle sur XAU/USD.',
+      tagline: 'Système créé par une équipe de traders pour éliminer l\'émotion de l\'exécution. Discipline opérationnelle multi-actifs.',
       platform: 'Plateforme',
       legal: 'Légal',
       links: { method: 'La Méthode', learn: 'Apprendre', performance: 'Performance', pricing: 'Tarifs', about: 'À Propos', affiliates: 'Affiliés', terms: 'Conditions d\'Utilisation', privacy: 'Politique de Confidentialité', cookie: 'Politique Cookies' },
@@ -984,7 +984,7 @@ export const translations = {
       withReferral: 'avec un code de parrainage d\'un créateur Valorox',
       timelineFree: 'GRATUIT',
       features: [
-        { text: 'Automatisation 100% sur XAU/USD — rien à installer', highlight: true },
+        { text: 'Automatisation 100% multi-actifs (Or, Forex, Indices, Crypto) — rien à installer', highlight: true },
         { text: 'Plateforme côté serveur — votre compte est toujours protégé', highlight: true },
         { text: 'Tableau de bord live avec positions en temps réel', highlight: false },
         { text: 'Gestion des risques configurable — contrôle total', highlight: false },
@@ -995,7 +995,7 @@ export const translations = {
     },
     metodo: {
       heroTitle: 'Méthode, Stratégie\net Automatisation',
-      heroDesc: 'Comment fonctionne le Système Valorox : la méthode Smart Money à la base, l\'exécution multi-style sur XAU/USD (scalping, intraday, volumétrique, CRT), et comment l\'IA applique tout automatiquement — sans que vous ayez à faire quoi que ce soit pendant les trades.',
+      heroDesc: 'Comment fonctionne le Système Valorox : la méthode Smart Money à la base, l\'exécution multi-style et multi-actifs (scalping, intraday, volumétrique, CRT) sur Or, Forex, Indices et Crypto, et comment l\'IA applique tout automatiquement — sans que vous ayez à faire quoi que ce soit pendant les trades.',
       heroDisclaimer: 'Nous ne fournissons pas de conseils financiers. Le trading comporte des risques réels.',
       quickNav: [
         { label: '01 Pourquoi le retail échoue', href: '#problema' },
@@ -1025,10 +1025,10 @@ export const translations = {
         { title: 'Order Block et FVG', desc: 'Order Block : la dernière bougie baissière avant un fort mouvement haussier — zone où les institutions ont passé des ordres. Fair Value Gap : déséquilibre de prix entre trois bougies — le marché tend à revenir combler ces gaps.' },
       ],
       s02CourseTitle: 'Vous voulez approfondir la méthode SMC ?',
-      s02CourseDesc: 'Notre cours comprend 8 modules complets — des fondamentaux du marché jusqu\'à l\'application pratique sur XAU/USD et le modèle CRT. Les 4 premiers modules (44 leçons) sont entièrement gratuits.',
+      s02CourseDesc: 'Notre cours comprend 8 modules complets — des fondamentaux du marché jusqu\'à l\'application pratique multi-actifs et le modèle CRT. Les 4 premiers modules (44 leçons) sont entièrement gratuits.',
       s02CourseLink: 'Accéder au Cours Gratuit →',
       s03Label: '03 — La Stratégie',
-      s03Title: 'Approche multi-style sur XAU/USD',
+      s03Title: 'Approche multi-style, multi-actifs',
       s03Desc: 'Le Système Valorox sélectionne dynamiquement l\'horizon temporel du trade en fonction de la liquidité et du contexte : scalping dans les Kill Zones de Londres, intraday sur les mouvements H1/H4, avec filtres d\'analyse volumétrique et modèle CRT. Chaque opération suit une logique précise et répétable.',
       s03Steps: [
         { num: '01', title: 'Phase Asie — Marquer le Range', desc: 'Pendant la session asiatique (00:00–08:00 CET) le marché se déplace dans un range étroit. Le Système identifie l\'Asia High (AH) et l\'Asia Low (AL) — ceux-ci deviennent les niveaux de référence pour Londres.' },
@@ -1060,7 +1060,7 @@ export const translations = {
       s05Steps: [
         'Vous vous inscrivez et connectez vos identifiants MT5 (mot de passe investisseur lecture seule, chiffré AES-128)',
         'Vous configurez le risque par opération (1–3% du capital) et activez le système',
-        'Le Système surveille XAU/USD 24/5 à la recherche de setups : marquage Asia range, attente Kill Zone, identification sweep + MSS',
+        'Le Système surveille 7 actifs (Or, Forex, Indices, Crypto) 24/5 à la recherche de setups : marquage Asia range, attente Kill Zone, identification sweep + MSS',
         'Quand un setup valide se forme, il ouvre la position avec entrée précise, SL structurel, TP1/TP2/résiduel déjà configurés',
         'Il gère le trade en autonomie : BE automatique à TP1, scale les positions, clôture tout selon le plan',
         'Tout est visible en temps réel depuis votre tableau de bord : trades ouverts, historique, courbe d\'équité, statistiques',
@@ -1197,9 +1197,9 @@ export const translations = {
       startFree: 'Kostenlos starten',
     },
     hero: {
-      subtitle: 'XAU/USD · KI-HANDELSSYSTEM',
+      subtitle: 'MULTI-ASSET · KI-HANDELSSYSTEM',
       tagline: 'Ein neuer Ansatz im Trading.',
-      description: 'Scalping, Intraday, Volumetrik, CRT und Wyckoff in einer einzigen KI-Ausführungsmaschine auf XAU/USD.',
+      description: 'Scalping, Intraday, Volumetrik, CRT und Wyckoff in einer einzigen KI-Ausführungsmaschine auf Gold, Forex, Indizes und Crypto.',
       startFree: 'Kostenlos starten',
       learnMethod: 'Methode entdecken',
       trust1: 'Keine Einzahlung erforderlich',
@@ -1209,7 +1209,7 @@ export const translations = {
     },
     perf: {
       equityCurve: 'Equity-Kurve',
-      indicative: 'XAU/USD — Indikativ',
+      indicative: 'Multi-Asset — Indikativ',
       noData: 'Daten noch nicht verfügbar',
       disclaimer: '* Vergangene Ergebnisse garantieren keine zukünftigen Ergebnisse. Trading birgt Risiken.',
       winRate: 'Gewinnrate',
@@ -1283,11 +1283,11 @@ export const translations = {
       title: 'Haben Sie Fragen? Wir haben die Antworten.',
       items: [
         { q: 'Was ist Valorox und wofür dient es?', a: 'Valorox ist eine Bildungs- und Technologieplattform für alle, die Finanzmärkte verstehen und eine strukturierte operative Strategie anwenden möchten. Kein Investmentservice.' },
-        { q: 'Was ist Smart Money?', a: 'Smart Money bezeichnet den Ansatz großer institutioneller Betreiber, die Märkte durch Liquiditätsdynamiken bewegen. Das Verständnis dieser Bewegungen ist die Grundlage unserer Strategie auf XAU/USD.', learnMoreUrl: '/metodo', learnMoreLabel: 'Mehr über die Methode →' },
+        { q: 'Was ist Smart Money?', a: 'Smart Money bezeichnet den Ansatz großer institutioneller Betreiber, die Märkte durch Liquiditätsdynamiken bewegen. Das Verständnis dieser Bewegungen ist die Grundlage unserer Multi-Asset Strategie auf Gold, Forex, Indizes und Crypto.', learnMoreUrl: '/metodo', learnMoreLabel: 'Mehr über die Methode →' },
         { q: 'Kann ich mit einem Demo-Konto beginnen?', a: 'Absolut ja — das ist der empfohlene Weg. Verbinden Sie ein MT5-Demo-Konto, beobachten Sie die Strategie unter realen Bedingungen und studieren Sie die Risikoparameter.' },
         { q: 'Welche Risiken muss ich berücksichtigen?', a: 'Trading birgt ein echtes Verlustrisiko. Die Plattform bietet Entscheidungsunterstützung — garantiert aber keine Ergebnisse.', learnMoreUrl: '/legal/terms', learnMoreLabel: 'Vollständige AGB und Risiken lesen →' },
         { q: 'Wie funktioniert die Plattform technisch?', a: 'Sie verbinden Ihre MT5-Zugangsdaten (AES-128 verschlüsselt). Die Plattform wendet die Strategie nach Ihren konfigurierten Parametern an. MT5 muss nicht offen sein.' },
-        { q: 'Wie häufig operiert die Strategie?', a: 'Die Strategie operiert auf XAU/USD hauptsächlich in der London/New York-Session (10:00–16:00 MEZ). Häufigkeit variiert je nach Marktbedingungen: Qualität vor Quantität.' },
+        { q: 'Wie häufig operiert die Strategie?', a: 'Die Strategie operiert auf 7 Assets (XAU/USD, EUR/USD, GBP/USD, GBP/AUD, BTC/USD, Nasdaq, S&P 500) hauptsächlich in der London/New York-Session (10:00–16:00 MEZ). Häufigkeit variiert je nach Marktbedingungen: Qualität vor Quantität.' },
         { q: 'Warum sind einige Parameter begrenzt?', a: 'Eine bewusste Entscheidung. Mehr operative Freiheit bedeutet mehr Möglichkeiten für emotionale Fehler. Der Risikobereich 1%-3% ist bereits weit.' },
         { q: 'Was ist der Unterschied zu klassischen Trading-Signalen?', a: 'Signale haben ein strukturelles Problem: der Nutzer muss manuell ausführen und Emotionen kommen ins Spiel. Wir senden keine Signale: wir wenden die Strategie konsistent an.' },
         { q: 'Kann ich jederzeit kündigen?', a: 'Ja, jederzeit ohne Strafe. Bereits offene Positionen bleiben auf Ihrem MT5-Konto. Kein Lock-in, keine versteckten Kosten.' },
@@ -1305,7 +1305,7 @@ export const translations = {
       disclaimer: 'Keine Kreditkarte erforderlich · Jederzeit kündigen · Trading birgt Risiken',
     },
     footer: {
-      tagline: 'System entwickelt von einem Trader-Team, um Emotionen aus der Ausführung zu eliminieren. Operative Disziplin auf XAU/USD.',
+      tagline: 'System entwickelt von einem Trader-Team, um Emotionen aus der Ausführung zu eliminieren. Multi-Asset operative Disziplin.',
       platform: 'Plattform',
       legal: 'Rechtliches',
       links: { method: 'Die Methode', learn: 'Lernen', performance: 'Performance', pricing: 'Preise', about: 'Über uns', affiliates: 'Partner', terms: 'Nutzungsbedingungen', privacy: 'Datenschutzerklärung', cookie: 'Cookie-Richtlinie' },
@@ -1362,7 +1362,7 @@ export const translations = {
       withReferral: 'mit einem Empfehlungscode eines Valorox-Creators',
       timelineFree: 'GRATIS',
       features: [
-        { text: '100% Automatisierung auf XAU/USD — nichts zu installieren', highlight: true },
+        { text: '100% Multi-Asset Automatisierung (Gold, Forex, Indizes, Crypto) — nichts zu installieren', highlight: true },
         { text: 'Server-seitige Plattform — Ihr Konto ist immer geschützt', highlight: true },
         { text: 'Live-Dashboard mit Echtzeit-Positionen', highlight: false },
         { text: 'Konfigurierbares Risikomanagement — vollständige Kontrolle', highlight: false },
@@ -1373,7 +1373,7 @@ export const translations = {
     },
     metodo: {
       heroTitle: 'Methode, Strategie\nund Automatisierung',
-      heroDesc: 'Wie das Valorox System funktioniert: die Smart Money Methode als Grundlage, Multi-Stil-Ausführung auf XAU/USD (Scalping, Intraday, Volumetrik, CRT), und wie die KI alles automatisch anwendet — ohne dass Sie während der Trades irgendetwas tun müssen.',
+      heroDesc: 'Wie das Valorox System funktioniert: die Smart Money Methode als Grundlage, Multi-Stil und Multi-Asset Ausführung (Scalping, Intraday, Volumetrik, CRT) auf Gold, Forex, Indizes und Crypto, und wie die KI alles automatisch anwendet — ohne dass Sie während der Trades irgendetwas tun müssen.',
       heroDisclaimer: 'Wir bieten keine Finanzberatung. Trading birgt echte Risiken.',
       quickNav: [
         { label: '01 Warum Retail scheitert', href: '#problema' },
@@ -1403,10 +1403,10 @@ export const translations = {
         { title: 'Order Block und FVG', desc: 'Order Block: die letzte Baisse-Kerze vor einer starken Aufwärtsbewegung — Zone, wo Institutionen Aufträge platzierten. Fair Value Gap: Preisungleichgewicht zwischen drei Kerzen — der Markt tendiert dazu, diese Gaps zu schließen.' },
       ],
       s02CourseTitle: 'Möchten Sie die SMC-Methode vertiefen?',
-      s02CourseDesc: 'Unser Kurs umfasst 8 vollständige Module — von Marktgrundlagen bis zur praktischen Anwendung auf XAU/USD und dem CRT-Modell. Die ersten 4 Module (44 Lektionen) sind vollständig kostenlos.',
+      s02CourseDesc: 'Unser Kurs umfasst 8 vollständige Module — von Marktgrundlagen bis zur Multi-Asset praktischen Anwendung und dem CRT-Modell. Die ersten 4 Module (44 Lektionen) sind vollständig kostenlos.',
       s02CourseLink: 'Zum kostenlosen Kurs →',
       s03Label: '03 — Die Strategie',
-      s03Title: 'Multi-Stil-Ansatz auf XAU/USD',
+      s03Title: 'Multi-Stil, Multi-Asset Ansatz',
       s03Desc: 'Das Valorox System wählt dynamisch den Trade-Zeithorizont basierend auf Liquidität und Kontext: Scalping in London Kill Zones, Intraday bei H1/H4-Bewegungen, mit Volumetrie-Analyse-Filtern und CRT-Modell. Jede Operation folgt einer präzisen und wiederholbaren Logik.',
       s03Steps: [
         { num: '01', title: 'Asien-Phase — Range markieren', desc: 'Während der asiatischen Session (00:00–08:00 MEZ) bewegt sich der Markt in einem engen Range. Das System identifiziert Asia High (AH) und Asia Low (AL) — diese werden die Referenzniveaus für London.' },
@@ -1438,7 +1438,7 @@ export const translations = {
       s05Steps: [
         'Sie registrieren sich und verbinden Ihre MT5-Kontodaten (Investor-Nur-Lesen-Passwort, AES-128 verschlüsselt)',
         'Sie konfigurieren das Risiko pro Trade (1–3% des Kapitals) und aktivieren das System',
-        'Das System überwacht XAU/USD 24/5 und sucht nach Setups: Asia Range Markierung, Kill Zone Wartezeit, Sweep + MSS Identifikation',
+        'Das System überwacht 7 Assets (Gold, Forex, Indizes, Crypto) 24/5 und sucht nach Setups: Asia Range Markierung, Kill Zone Wartezeit, Sweep + MSS Identifikation',
         'Wenn ein gültiges Setup entsteht, öffnet es die Position mit präzisem Einstieg, strukturellem SL, bereits konfigurierten TP1/TP2/Rest',
         'Es verwaltet den Trade autonom: automatisches BE bei TP1, skaliert Positionen, schließt alles plangemäß',
         'Alles ist in Echtzeit von Ihrem Dashboard sichtbar: offene Trades, Historie, Equity-Kurve, Statistiken',
@@ -1575,9 +1575,9 @@ export const translations = {
       startFree: 'Empezar Gratis',
     },
     hero: {
-      subtitle: 'XAU/USD · SISTEMA DE TRADING IA',
+      subtitle: 'MULTI-ASSET · SISTEMA DE TRADING IA',
       tagline: 'Un nuevo enfoque del trading.',
-      description: 'Scalping, intraday, volumétrico, CRT y Wyckoff en un único motor de ejecución IA sobre XAU/USD.',
+      description: 'Scalping, intraday, volumétrico, CRT y Wyckoff en un único motor de ejecución IA sobre Oro, Forex, Índices y Crypto.',
       startFree: 'Empezar Gratis',
       learnMethod: 'Descubrir el Método',
       trust1: 'Cero depósitos requeridos',
@@ -1587,7 +1587,7 @@ export const translations = {
     },
     perf: {
       equityCurve: 'Curva de Equity',
-      indicative: 'XAU/USD — Indicativo',
+      indicative: 'Multi-Asset — Indicativo',
       noData: 'Datos aún no disponibles',
       disclaimer: '* El rendimiento pasado no garantiza resultados futuros. El trading conlleva riesgos.',
       winRate: 'Tasa de Acierto',
@@ -1661,11 +1661,11 @@ export const translations = {
       title: '¿Tienes Preguntas? Tenemos las Respuestas.',
       items: [
         { q: '¿Qué es Valorox y para qué sirve?', a: 'Valorox es una plataforma educativa y tecnológica para quienes quieren entender los mercados financieros y aplicar una estrategia operativa estructurada. No es un servicio de inversión.' },
-        { q: '¿Qué es el Smart Money?', a: 'Smart Money identifica el enfoque de los grandes operadores institucionales que mueven los mercados a través de dinámicas de liquidez. Entender cómo se mueven estos jugadores es la base de la estrategia que aplicamos en XAU/USD.', learnMoreUrl: '/metodo', learnMoreLabel: 'Profundizar en el Método →' },
+        { q: '¿Qué es el Smart Money?', a: 'Smart Money identifica el enfoque de los grandes operadores institucionales que mueven los mercados a través de dinámicas de liquidez. Entender cómo se mueven estos jugadores es la base de la estrategia que aplicamos en Oro, Forex, Índices y Crypto.', learnMoreUrl: '/metodo', learnMoreLabel: 'Profundizar en el Método →' },
         { q: '¿Puedo empezar con una cuenta demo?', a: 'Absolutamente sí — es el camino recomendado. Conecta una cuenta demo MT5, observa cómo se aplica la estrategia en condiciones reales y estudia los parámetros de riesgo.' },
         { q: '¿Qué riesgos debo considerar?', a: 'El trading conlleva riesgo real de pérdida de capital. La plataforma proporciona herramientas de apoyo a la decisión — no garantiza resultados.', learnMoreUrl: '/legal/terms', learnMoreLabel: 'Leer Términos y Riesgos completos →' },
         { q: '¿Cómo funciona técnicamente la plataforma?', a: 'Conectas tus credenciales MT5 (cifradas AES-128). La plataforma aplica la estrategia según tus parámetros configurados. No necesitas tener MT5 abierto.' },
-        { q: '¿Con qué frecuencia opera la estrategia?', a: 'La estrategia opera en XAU/USD principalmente en la sesión Londres/Nueva York (10:00–16:00 CET). La frecuencia varía según las condiciones del mercado: calidad antes que cantidad.' },
+        { q: '¿Con qué frecuencia opera la estrategia?', a: 'La estrategia opera en 7 activos (XAU/USD, EUR/USD, GBP/USD, GBP/AUD, BTC/USD, Nasdaq, S&P 500) principalmente en la sesión Londres/Nueva York (10:00–16:00 CET). La frecuencia varía según las condiciones del mercado: calidad antes que cantidad.' },
         { q: '¿Por qué algunos parámetros están limitados?', a: 'Es una elección deliberada. Más libertad operativa significa más oportunidades de cometer errores emocionales. El rango de riesgo 1%-3% ya es amplio.' },
         { q: '¿Cuál es la diferencia respecto a las señales de trading clásicas?', a: 'Las señales tienen un problema estructural: el usuario debe ejecutarlas manualmente y entran las emociones. Nosotros no enviamos señales: aplicamos la estrategia de forma coherente.' },
         { q: '¿Puedo cancelar cuando quiera?', a: 'Sí, en cualquier momento sin penalización. Las operaciones ya abiertas permanecen en tu cuenta MT5. Sin lock-in, sin costes ocultos.' },
@@ -1683,7 +1683,7 @@ export const translations = {
       disclaimer: 'Sin tarjeta de crédito · Cancela en cualquier momento · El trading conlleva riesgos',
     },
     footer: {
-      tagline: 'Sistema creado por un equipo de traders para eliminar la emoción de la ejecución. Disciplina operativa en XAU/USD.',
+      tagline: 'Sistema creado por un equipo de traders para eliminar la emoción de la ejecución. Disciplina operativa multi-activo.',
       platform: 'Plataforma',
       legal: 'Legal',
       links: { method: 'El Método', learn: 'Aprender', performance: 'Rendimiento', pricing: 'Precios', about: 'Nosotros', affiliates: 'Afiliados', terms: 'Términos de Servicio', privacy: 'Política de Privacidad', cookie: 'Política de Cookies' },
@@ -1740,7 +1740,7 @@ export const translations = {
       withReferral: 'con código referral de un creator Valorox',
       timelineFree: 'GRATIS',
       features: [
-        { text: 'Automatización 100% en XAU/USD — nada que instalar', highlight: true },
+        { text: 'Automatización 100% multi-activo (Oro, Forex, Índices, Crypto) — nada que instalar', highlight: true },
         { text: 'Plataforma del lado del servidor — tu cuenta siempre protegida', highlight: true },
         { text: 'Dashboard en vivo con posiciones en tiempo real', highlight: false },
         { text: 'Gestión de riesgos configurable — control total', highlight: false },
@@ -1751,7 +1751,7 @@ export const translations = {
     },
     metodo: {
       heroTitle: 'Método, Estrategia\ny Automatización',
-      heroDesc: 'Cómo funciona el Sistema Valorox: el método Smart Money en su base, la ejecución multi-estilo en XAU/USD (scalping, intraday, volumétrico, CRT), y cómo la IA aplica todo automáticamente — sin que tengas que hacer nada durante las operaciones.',
+      heroDesc: 'Cómo funciona el Sistema Valorox: el método Smart Money en su base, la ejecución multi-estilo y multi-activo (scalping, intraday, volumétrico, CRT) sobre Oro, Forex, Índices y Crypto, y cómo la IA aplica todo automáticamente — sin que tengas que hacer nada durante las operaciones.',
       heroDisclaimer: 'No proporcionamos asesoría financiera. El trading conlleva riesgos reales.',
       quickNav: [
         { label: '01 Por qué fracasa el retail', href: '#problema' },
@@ -1781,10 +1781,10 @@ export const translations = {
         { title: 'Order Block y FVG', desc: 'Order Block: la última vela bajista antes de un fuerte movimiento alcista — zona donde las instituciones colocaron órdenes. Fair Value Gap: desequilibrio de precio entre tres velas — el mercado tiende a volver para cerrar estos gaps.' },
       ],
       s02CourseTitle: '¿Quieres profundizar en el método SMC?',
-      s02CourseDesc: 'Nuestro curso incluye 8 módulos completos — desde los fundamentos del mercado hasta la aplicación práctica en XAU/USD y el modelo CRT. Los primeros 4 módulos (44 lecciones) son completamente gratuitos.',
+      s02CourseDesc: 'Nuestro curso incluye 8 módulos completos — desde los fundamentos del mercado hasta la aplicación práctica multi-activo y el modelo CRT. Los primeros 4 módulos (44 lecciones) son completamente gratuitos.',
       s02CourseLink: 'Acceder al Curso Gratuito →',
       s03Label: '03 — La Estrategia',
-      s03Title: 'Enfoque multi-estilo en XAU/USD',
+      s03Title: 'Enfoque multi-estilo, multi-activo',
       s03Desc: 'El Sistema Valorox selecciona dinámicamente el horizonte temporal del trade en función de la liquidez y el contexto: scalping en las Kill Zones de Londres, intraday en movimientos H1/H4, con filtros de análisis volumétrico y modelo CRT. Cada operación sigue una lógica precisa y repetible.',
       s03Steps: [
         { num: '01', title: 'Fase Asia — Marcar el Rango', desc: 'Durante la sesión asiática (00:00–08:00 CET) el mercado se mueve en un rango estrecho. El Sistema identifica el Asia High (AH) y el Asia Low (AL) — estos se convierten en los niveles de referencia para Londres.' },
@@ -1816,7 +1816,7 @@ export const translations = {
       s05Steps: [
         'Te registras y conectas las credenciales de tu cuenta MT5 (contraseña investor solo lectura, cifrada AES-128)',
         'Configuras el riesgo por operación (1–3% del capital) y activas el sistema',
-        'El Sistema monitoriza XAU/USD 24/5 buscando setups: marcaje del rango Asia, espera Kill Zone, identificación sweep + MSS',
+        'El Sistema monitoriza 7 activos (Oro, Forex, Índices, Crypto) 24/5 buscando setups: marcaje del rango Asia, espera Kill Zone, identificación sweep + MSS',
         'Cuando se forma un setup válido, abre la posición con entrada precisa, SL estructural, TP1/TP2/residual ya configurados',
         'Gestiona el trade de forma autónoma: BE automático en TP1, escala posiciones, cierra todo según el plan',
         'Todo es visible en tiempo real desde tu dashboard: trades abiertos, historial, curva de equity, estadísticas',

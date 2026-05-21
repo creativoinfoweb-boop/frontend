@@ -102,9 +102,9 @@ const MODULE_META = [
 ] as const
 
 const TESTIMONIALS = [
-  { name: 'Marco R.', role: 'Trader — XAU/USD', avatar: 'MR', text: 'Incredibile come sia cambiata la mia operatività. Finalmente capisco perché il mercato si muove — la logica Smart Money è straordinaria. Non apro più posizioni a caso: so esattamente quando il setup è valido e quando stare fuori.', stars: 5, profit: '+312 pips*' },
-  { name: 'Luca T.', role: 'Trader — XAU/USD', avatar: 'LT', text: 'Ho smesso di seguire sale segnali e canali Telegram. Copiare manualmente ogni segnale era stressante, spesso in ritardo, pieno di errori. Con Valorox è tutto automatico — il sistema entra, gestisce il trade e chiude da solo. Non devo fare assolutamente nulla. Straordinario.', stars: 5, profit: '+521 pips*' },
-  { name: 'Andrea M.', role: 'Trader — XAU/USD', avatar: 'AM', text: "L'automazione completa è quello che cercavo da anni. Nessun intervento manuale, nessuna notifica da seguire, nessuna pressione. Il sistema lavora mentre io vivo la mia giornata. Dalla dashboard vedo tutto in tempo reale — è una cosa incredibile.", stars: 5, profit: '+445 pips*' },
+  { name: 'Marco R.', role: 'Trader — Multi-Asset', avatar: 'MR', text: 'Incredibile come sia cambiata la mia operatività. Finalmente capisco perché il mercato si muove — la logica Smart Money è straordinaria. Non apro più posizioni a caso: so esattamente quando il setup è valido e quando stare fuori.', stars: 5, profit: '+312 pips*' },
+  { name: 'Luca T.', role: 'Trader — XAU/USD & Forex', avatar: 'LT', text: 'Ho smesso di seguire sale segnali e canali Telegram. Copiare manualmente ogni segnale era stressante, spesso in ritardo, pieno di errori. Con Valorox è tutto automatico — il sistema entra, gestisce il trade e chiude da solo. Non devo fare assolutamente nulla. Straordinario.', stars: 5, profit: '+521 pips*' },
+  { name: 'Andrea M.', role: 'Trader — Indici & Crypto', avatar: 'AM', text: "L'automazione completa è quello che cercavo da anni. Nessun intervento manuale, nessuna notifica da seguire, nessuna pressione. Il sistema lavora mentre io vivo la mia giornata. Dalla dashboard vedo tutto in tempo reale — è una cosa incredibile.", stars: 5, profit: '+445 pips*' },
 ]
 
 /* ─── Stats ─────────────────────────────────────────────── */
