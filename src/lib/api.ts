@@ -333,6 +333,9 @@ export const adminApi = {
 
   listSignals: () =>
     instance.get<{ signals: AdminSignal[]; total: number }>('/admin/signals'),
+
+  emergencyStop: () =>
+    instance.post('/admin/emergency-stop?confirm=true'),
 }
 
 // ─────────────────────────────────────────────────────────────────────────
