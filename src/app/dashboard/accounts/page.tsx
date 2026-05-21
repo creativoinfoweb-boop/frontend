@@ -151,11 +151,8 @@ export default function AccountsPage() {
     Number.isInteger(pct) ? `${pct}%` : `${pct.toFixed(1)}%`
 
   const getRiskPercent = (acc: any): number => {
-    if (acc.risk_percent != null) return Number(acc.risk_percent)
-    try {
-      const cached = localStorage.getItem(`risk_${acc.mt5_login}`)
-      if (cached) return parseFloat(cached)
-    } catch {}
+    // Legge direttamente dal DB (ora salvato correttamente)
+    if (acc.risk_percent != null && acc.risk_percent > 0) return Number(acc.risk_percent)
     return 1
   }
 
@@ -315,9 +312,10 @@ export default function AccountsPage() {
                 <div className="flex items-start gap-2 p-3 rounded-xl"
                   style={{ background: 'rgba(240,180,41,0.05)', border: '1px solid rgba(240,180,41,0.12)' }}>
                   <Clock className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: 'var(--gold)' }} />
-                  <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
-                    La prima verifica automatica avverrà domani mattina alle <strong style={{ color: 'var(--gold)' }}>10:00</strong>. Se vuoi, usa il pulsante Test per verificare subito (solo su VPS Windows con MT5 attivo).
-                  </p>
+                  <div className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                    <p>Account salvato. La <strong style={{ color: 'var(--gold)' }}>prima verifica automatica</strong> avverrà alle <strong style={{ color: 'var(--gold)' }}>10:00</strong> di domani mattina — il nostro sistema si connetterà al tuo conto MT5 e confermerà che tutto funziona.</p>
+                    <p className="mt-1" style={{ color: 'var(--text-muted)' }}>Se la verifica fallisce, vedrai qui il motivo esatto (credenziali errate, server non trovato, ecc.) e potrai correggere i dati.</p>
+                  </div>
                 </div>
               )}
             </div>
@@ -400,11 +398,11 @@ export default function AccountsPage() {
                     type="text"
                     value={formData.mt5_server}
                     onChange={e => setFormData({ ...formData, mt5_server: e.target.value })}
-                    placeholder="Es. Exness-MT5Real"
+                    placeholder="Es. VantageInternational-Live 6"
                     className="input-premium w-full text-sm font-mono"
                   />
-                  <p className="text-[10px] mt-1" style={{ color: 'var(--text-muted)' }}>
-                    Trovalo in MT5: File → Apri Conto → cerca il tuo broker
+                  <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                    <strong style={{ color: 'var(--text-secondary)' }}>Come trovarlo:</strong> apri MT5 sul tuo PC/mobile → in alto a sinistra vedi il nome del server (es. <span className="font-mono">VantageInternational-Live 6</span>). Oppure: File → Apri Conto → cerca il tuo broker → copia il nome esatto del server.
                   </p>
                 </div>
 
