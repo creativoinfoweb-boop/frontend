@@ -31,6 +31,8 @@ import {
 import { PricingPlanCard } from '@/components/pricing/PricingPlanCard'
 import ThemeOnboardingModal from '@/components/ThemeOnboardingModal'
 import CookieConsent from '@/components/CookieConsent'
+import { TrustpilotHeroWidget, TrustpilotFooterBadge } from '@/components/trustpilot/TrustpilotStars'
+import { TrustpilotCarousel } from '@/components/trustpilot/TrustpilotCarousel'
 
 /* ─── Animated counter ─────────────────────────────────── */
 function AnimatedCounter({ to, suffix = '', duration = 1500 }: { to: number; suffix?: string; duration?: number }) {
@@ -563,11 +565,13 @@ export default function LandingPage() {
                 </Link>
               ) : (
                 <>
-                  <Link href="/auth/register" className="btn-valorox btn-valorox-primary btn-valorox-slim flex-col gap-0">
-                    <span className="font-black">{t.hero.ctaMain}</span>
-                    <span className="text-[10px] font-medium opacity-75">{t.hero.ctaSub}</span>
-                    <ArrowRight className="w-4 h-4 hidden" />
-                  </Link>
+                  <div className="flex flex-col items-center gap-1.5">
+                    <Link href="/auth/register" className="btn-valorox btn-valorox-primary btn-valorox-slim">
+                      {t.hero.ctaMain}
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                    <span className="text-[11px] font-medium" style={{ color: 'rgba(255,255,255,0.55)' }}>{t.hero.ctaSub}</span>
+                  </div>
                   <Link href="/metodo" className="btn-valorox btn-valorox-secondary btn-valorox-slim">
                     {t.hero.learnMethod}
                     <BarChart3 className="w-4 h-4" />
@@ -588,6 +592,14 @@ export default function LandingPage() {
                   <span>{text}</span>
                 </div>
               ))}
+            </div>
+
+            {/* Trustpilot mini widget */}
+            <div className="mt-4 flex justify-center sm:justify-start">
+              <TrustpilotHeroWidget
+                label={t.trustpilot.footerRating}
+                reviewsLabel={t.trustpilot.heroReviews}
+              />
             </div>
           </div>
         </div>
@@ -1059,6 +1071,14 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ─── Trustpilot Reviews Carousel ─────────────────── */}
+      <TrustpilotCarousel
+        sectionLabel={t.trustpilot.sectionLabel}
+        title={t.trustpilot.sectionTitle}
+        subtitle={t.trustpilot.sectionSubtitle}
+        ctaText={t.trustpilot.ctaAll}
+      />
+
       {/* ─── Guida MT5 per Chi Non Ce L'Ha ─────────────── */}
       <section id="guida-mt5" className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
@@ -1255,6 +1275,15 @@ export default function LandingPage() {
                 <div className="mt-4 p-3 rounded-xl" style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}>
                   <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>{t.support.responseLabel}</p>
                   <p className="text-sm font-semibold mt-1" style={{ color: 'var(--accent)' }}>{t.support.responseTime}</p>
+                </div>
+
+                {/* Trustpilot footer badge */}
+                <div className="mt-4">
+                  <TrustpilotFooterBadge
+                    ratingLabel={t.trustpilot.footerRating}
+                    reviewsLabel={t.trustpilot.footerReviews}
+                    ctaLabel={t.trustpilot.footerCta}
+                  />
                 </div>
               </div>
             </div>
