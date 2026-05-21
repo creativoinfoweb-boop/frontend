@@ -101,11 +101,6 @@ const MODULE_META = [
   { num: '08', slug: '08', free: false, levelKey: 'practice', lessons: 5 },
 ] as const
 
-const TESTIMONIALS = [
-  { name: 'Marco R.', role: 'Trader — Multi-Asset', avatar: 'MR', text: 'Incredibile come sia cambiata la mia operatività. Finalmente capisco perché il mercato si muove — la logica Smart Money è straordinaria. Non apro più posizioni a caso: so esattamente quando il setup è valido e quando stare fuori.', stars: 5, profit: '+312 pips*' },
-  { name: 'Luca T.', role: 'Trader — XAU/USD & Forex', avatar: 'LT', text: 'Ho smesso di seguire sale segnali e canali Telegram. Copiare manualmente ogni segnale era stressante, spesso in ritardo, pieno di errori. Con Valorox è tutto automatico — il sistema entra, gestisce il trade e chiude da solo. Non devo fare assolutamente nulla. Straordinario.', stars: 5, profit: '+521 pips*' },
-  { name: 'Andrea M.', role: 'Trader — Indici & Crypto', avatar: 'AM', text: "L'automazione completa è quello che cercavo da anni. Nessun intervento manuale, nessuna notifica da seguire, nessuna pressione. Il sistema lavora mentre io vivo la mia giornata. Dalla dashboard vedo tutto in tempo reale — è una cosa incredibile.", stars: 5, profit: '+445 pips*' },
-]
 
 /* ─── Stats ─────────────────────────────────────────────── */
 const STATS_AVG_DURATION_MIN = 25
@@ -514,12 +509,12 @@ export default function LandingPage() {
             <div className="flex items-center gap-3 flex-1">
               <Star className="w-5 h-5" style={{ color: 'var(--accent)' }} />
               <div className="text-sm">
-                <p className="font-semibold" style={{ color: 'var(--text-primary)' }}>Iscrizione tramite referral</p>
-                <p className="text-xs" style={{ color: 'var(--text-muted)' }}>3 giorni extra di trial + 30% sconto primo mese</p>
+                <p className="font-semibold" style={{ color: 'var(--text-primary)' }}>{t.referral.title}</p>
+                <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{t.referral.desc}</p>
               </div>
             </div>
             <Link href={`/auth/register?ref=${referralCode}`} className="btn-gold text-xs px-4 py-2 flex-shrink-0">
-              Accetto
+              {t.referral.cta}
             </Link>
           </div>
         </div>
@@ -568,9 +563,10 @@ export default function LandingPage() {
                 </Link>
               ) : (
                 <>
-                  <Link href="/auth/register" className="btn-valorox btn-valorox-primary btn-valorox-slim">
-                    {t.hero.startFree}
-                    <ArrowRight className="w-4 h-4" />
+                  <Link href="/auth/register" className="btn-valorox btn-valorox-primary btn-valorox-slim flex-col gap-0">
+                    <span className="font-black">{t.hero.ctaMain}</span>
+                    <span className="text-[10px] font-medium opacity-75">{t.hero.ctaSub}</span>
+                    <ArrowRight className="w-4 h-4 hidden" />
                   </Link>
                   <Link href="/metodo" className="btn-valorox btn-valorox-secondary btn-valorox-slim">
                     {t.hero.learnMethod}
@@ -854,6 +850,26 @@ export default function LandingPage() {
             </p>
           </div>
 
+          {/* ── Automazione premessa ── */}
+          <div className="mb-8 rounded-2xl p-5 sm:p-6 border"
+            style={{ background: 'linear-gradient(135deg, rgba(240,180,41,0.06), rgba(0,194,255,0.04))', borderColor: 'rgba(240,180,41,0.2)' }}>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="flex-1">
+                <p className="font-black text-base mb-1" style={{ color: 'var(--gold)' }}>{t.howItWorks.autoNoteTitle}</p>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{t.howItWorks.autoNoteDesc}</p>
+              </div>
+              <Link href="/auth/register" className="btn-gold text-sm px-5 py-2.5 flex-shrink-0 whitespace-nowrap inline-flex items-center gap-2">
+                {t.howItWorks.autoNoteCta}
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4 mb-8">
+            <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
+            <p className="text-xs font-semibold uppercase tracking-widest flex-shrink-0" style={{ color: 'var(--text-muted)' }}>{t.howItWorks.orLearn}</p>
+            <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
+          </div>
+
           <div className="grid md:grid-cols-4 gap-6 relative">
             {t.howItWorks.steps.map((step, i) => {
               const Icon = HOW_IT_WORKS_ICONS[i]
@@ -998,6 +1014,102 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ─── Trasparenza e Sicurezza ───────────────────── */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--surface-overlay)' }} />
+        <div className="relative max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <div className="section-label mb-3">{t.transparency.label}</div>
+            <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
+              {t.transparency.title.split('\n')[0]}<br className="hidden sm:block" />
+              {t.transparency.title.split('\n')[1]}
+            </h2>
+            <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
+              {t.transparency.desc}
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+            {([
+              { icon: Shield, color: 'var(--green)' },
+              { icon: Lock, color: 'var(--gold)' },
+              { icon: Globe, color: '#00C2FF' },
+              { icon: Layers, color: '#9B5DE5' },
+            ] as const).map((meta, i) => (
+              <div key={i} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 80}ms` }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                  style={{ background: `color-mix(in srgb, ${meta.color} 10%, transparent)`, border: `1px solid color-mix(in srgb, ${meta.color} 20%, transparent)` }}>
+                  <meta.icon className="w-5 h-5" style={{ color: meta.color }} />
+                </div>
+                <h3 className="font-bold text-sm mb-2" style={{ color: 'var(--text-primary)' }}>{t.transparency.items[i].title}</h3>
+                <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{t.transparency.items[i].desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-2xl p-5 text-center"
+            style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', backdropFilter: 'blur(20px)' }}>
+            <p className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
+              {t.transparency.note}
+            </p>
+            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+              {t.transparency.noteSub}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Guida MT5 per Chi Non Ce L'Ha ─────────────── */}
+      <section id="guida-mt5" className="py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-14">
+            <div className="section-label mb-3">{t.guide.label}</div>
+            <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
+              {t.guide.title}
+            </h2>
+            <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
+              {t.guide.desc}
+            </p>
+          </div>
+
+          <div className="space-y-4 mb-12">
+            {t.guide.steps.map((item, i) => (
+              <div key={i} className="card-premium p-5 flex gap-4 animate-fade-in-up" style={{ animationDelay: `${i * 60}ms` }}>
+                <span className="text-2xl font-black font-mono flex-shrink-0 mt-0.5" style={{ color: 'var(--gold)', opacity: 0.25 }}>{item.num}</span>
+                <div className="flex-1">
+                  <h3 className="font-bold text-sm mb-1" style={{ color: 'var(--text-primary)' }}>{item.title}</h3>
+                  <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
+                  {item.note && (
+                    <div className="mt-2 rounded-lg px-3 py-2" style={{ background: 'rgba(240,180,41,0.06)', border: '1px solid rgba(240,180,41,0.12)' }}>
+                      <p className="text-[11px] leading-relaxed" style={{ color: 'var(--gold)' }}>{item.note}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="card-premium p-6">
+            <h3 className="text-sm font-bold mb-2" style={{ color: 'var(--text-primary)' }}>{t.guide.whyTitle}</h3>
+            <p className="text-xs mb-4 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+              {t.guide.whyDesc}
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {t.guide.whyItems.map((item) => (
+                <div key={item.name} className="rounded-xl p-3 text-center"
+                  style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}>
+                  <p className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{item.name}</p>
+                  <p className="text-[10px] mt-0.5" style={{ color: 'var(--text-muted)' }}>{item.type}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-[10px] mt-3 text-center" style={{ color: 'var(--text-muted)' }}>
+              {t.guide.whyNote}
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ─── Pricing ────────────────────────────────────── */}
       <section id="pricing" className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-xl mx-auto">
@@ -1010,45 +1122,6 @@ export default function LandingPage() {
           </div>
 
           <PricingPlanCard variant="landing" />
-        </div>
-      </section>
-
-      {/* ─── Testimonials ────────────────────────────────── */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 relative">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--surface-overlay)' }} />
-        <div className="relative max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="section-label mb-3">{t.testimonials.label}</div>
-            <h2 className="text-2xl sm:text-3xl font-black text-gradient-white">
-              {t.testimonials.title}
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-5">
-            {TESTIMONIALS.map((tc, i) => (
-              <div key={tc.name} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: tc.stars }).map((_, j) => (
-                    <Star key={j} className="w-4 h-4" style={{ color: 'var(--accent)' }} fill="var(--accent)" />
-                  ))}
-                </div>
-                <p className="text-sm leading-relaxed mb-5 italic" style={{ color: 'var(--text-secondary)' }}>&ldquo;{tc.text}&rdquo;</p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center"
-                      style={{ background: 'var(--accent-subtle)', border: '1px solid var(--border-accent)' }}>
-                      <span className="text-xs font-bold" style={{ color: 'var(--accent)' }}>{tc.avatar}</span>
-                    </div>
-                    <div>
-                      <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{tc.name}</div>
-                      <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>{tc.role}</div>
-                    </div>
-                  </div>
-                  <span className="badge-success text-xs">{tc.profit}</span>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -1108,131 +1181,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ─── Trasparenza e Sicurezza ───────────────────── */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--surface-overlay)' }} />
-        <div className="relative max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="section-label mb-3">Trasparenza</div>
-            <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
-              Il tuo capitale resta tuo.<br className="hidden sm:block" />
-              Sempre.
-            </h2>
-            <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Nessun deposito sulla nostra piattaforma, nessuna password del broker, nessun conflitto di interesse.
-              Solo tecnologia al servizio della tua operatività.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
-            {[
-              {
-                icon: Shield, color: 'var(--green)',
-                title: 'Zero Depositi',
-                desc: 'Non richiediamo alcun deposito sulla nostra piattaforma. I tuoi fondi restano sempre sul tuo conto broker, sotto il tuo pieno controllo.',
-              },
-              {
-                icon: Lock, color: 'var(--gold)',
-                title: 'Nessuna Password Broker',
-                desc: 'Non chiediamo la password del tuo broker. Utilizziamo solo le credenziali MT5 di trading, cifrate e usate esclusivamente per eseguire le operazioni.',
-              },
-              {
-                icon: Globe, color: '#00C2FF',
-                title: 'Zero Conflitti di Interesse',
-                desc: 'Il sistema opera su ICMarkets per ragioni puramente tecniche (velocità e latenza). Non abbiamo affiliazioni, non riceviamo commissioni e non forniamo codici referral.',
-              },
-              {
-                icon: Layers, color: '#9B5DE5',
-                title: 'Totale Trasparenza',
-                desc: "Il nostro unico ricavo è l'abbonamento. Nessun costo nascosto, nessuna commissione sul tuo volume di trading, nessun conflitto di interesse.",
-              },
-            ].map((item, i) => (
-              <div key={i} className="card-premium p-6 animate-fade-in-up" style={{ animationDelay: `${i * 80}ms` }}>
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                  style={{ background: `color-mix(in srgb, ${item.color} 10%, transparent)`, border: `1px solid color-mix(in srgb, ${item.color} 20%, transparent)` }}>
-                  <item.icon className="w-5 h-5" style={{ color: item.color }} />
-                </div>
-                <h3 className="font-bold text-sm mb-2" style={{ color: 'var(--text-primary)' }}>{item.title}</h3>
-                <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="rounded-2xl p-5 text-center"
-            style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', backdropFilter: 'blur(20px)' }}>
-            <p className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
-              Colleghi il tuo conto MT5 — noi eseguiamo la strategia. Nient&apos;altro.
-            </p>
-            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-              Non gestiamo fondi, non richiediamo depositi, non accediamo al tuo broker. Il tuo capitale resta dove lo hai messo tu.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Guida MT5 per Chi Non Ce L'Ha ─────────────── */}
-      <section id="guida-mt5" className="py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="section-label mb-3">Guida Rapida</div>
-            <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
-              Non hai ancora un account MT5?
-            </h2>
-            <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Nessun problema. Ecco come aprire un conto ICMarkets MT5 in pochi minuti.
-            </p>
-          </div>
-
-          <div className="space-y-4 mb-12">
-            {[
-              { num: '01', title: 'Apri un conto ICMarkets', desc: 'Registrati su icmarkets.com e crea un conto MT5. ICMarkets è tra i broker più affidabili e competitivi al mondo — lo abbiamo scelto per la velocità di esecuzione e gli spread ridotti.', note: 'Perché ICMarkets? Il nostro sistema richiede che tutti i conti operino sullo stesso broker del master per garantire la massima velocità e zero latenza nella copia. Non è una affiliazione — è una scelta tecnica.' },
-              { num: '02', title: 'Verifica la tua identità', desc: "Completa la verifica dell'identità (KYC) su ICMarkets — procedura standard richiesta da tutti i broker regolamentati.", note: null },
-              { num: '03', title: 'Deposita sul tuo conto ICMarkets', desc: 'Deposita i fondi direttamente sul tuo conto ICMarkets. I tuoi fondi restano sempre sul tuo conto — noi non gestiamo né tocchiamo i tuoi fondi in alcun modo.', note: null },
-              { num: '04', title: 'Ottieni le credenziali MT5', desc: 'ICMarkets ti fornirà le credenziali per accedere a MetaTrader 5: login, password e nome del server (es. ICMarketsSC-MT5-2).', note: 'Assicurati di avere un conto MetaTrader 5 (MT5), non MT4. Il nostro sistema funziona esclusivamente con MT5.' },
-              { num: '05', title: 'Accedi a MT5 e verifica i fondi', desc: 'Accedi alla piattaforma MT5 con le credenziali ricevute. Vedrai direttamente il saldo depositato. MT5 è disponibile su Windows, Mac, iOS e Android.', note: null },
-              { num: '06', title: "Collega l'account a Valorox", desc: "Dalla nostra dashboard, inserisci le credenziali MT5 nella sezione \"Account\". Da quel momento il sistema sincronizza e apre automaticamente le operazioni sul tuo conto.", note: null },
-            ].map((item, i) => (
-              <div key={i} className="card-premium p-5 flex gap-4 animate-fade-in-up" style={{ animationDelay: `${i * 60}ms` }}>
-                <span className="text-2xl font-black font-mono flex-shrink-0 mt-0.5" style={{ color: 'var(--gold)', opacity: 0.25 }}>{item.num}</span>
-                <div className="flex-1">
-                  <h3 className="font-bold text-sm mb-1" style={{ color: 'var(--text-primary)' }}>{item.title}</h3>
-                  <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.desc}</p>
-                  {item.note && (
-                    <div className="mt-2 rounded-lg px-3 py-2" style={{ background: 'rgba(240,180,41,0.06)', border: '1px solid rgba(240,180,41,0.12)' }}>
-                      <p className="text-[11px] leading-relaxed" style={{ color: 'var(--gold)' }}>{item.note}</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="card-premium p-6">
-            <h3 className="text-sm font-bold mb-2" style={{ color: 'var(--text-primary)' }}>Perché ICMarkets?</h3>
-            <p className="text-xs mb-4 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              ICMarkets è uno dei broker più affidabili e convenienti a livello mondiale. Lo abbiamo scelto per le sue caratteristiche tecniche — non abbiamo affiliazioni né codici referral.
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {[
-                { name: 'Spread da 0.0', type: 'Tra i più bassi del settore' },
-                { name: 'Esecuzione < 40ms', type: 'Velocità istituzionale' },
-                { name: 'Regolamentato', type: 'ASIC · CySEC · FSA' },
-                { name: 'MT5 Nativo', type: 'Pieno supporto MetaTrader 5' },
-              ].map((item) => (
-                <div key={item.name} className="rounded-xl p-3 text-center"
-                  style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}>
-                  <p className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{item.name}</p>
-                  <p className="text-[10px] mt-0.5" style={{ color: 'var(--text-muted)' }}>{item.type}</p>
-                </div>
-              ))}
-            </div>
-            <p className="text-[10px] mt-3 text-center" style={{ color: 'var(--text-muted)' }}>
-              Funziona con qualsiasi broker MT5 che offra XAU/USD. Nessuna affiliazione.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* ─── CTA Finale ─────────────────────────────────── */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 relative">
         <div className="relative max-w-md mx-auto text-center">
@@ -1268,7 +1216,7 @@ export default function LandingPage() {
               </p>
               <div className="flex items-center gap-2 mt-4">
                 <div className="live-dot" />
-                <span className="text-xs font-medium" style={{ color: 'var(--green)' }}>Sistema attivo — 24/5</span>
+                <span className="text-xs font-medium" style={{ color: 'var(--green)' }}>{t.systemActive}</span>
               </div>
             </div>
 
@@ -1300,13 +1248,13 @@ export default function LandingPage() {
             </div>
 
             <div>
-              <h4 className="section-label mb-4">Supporto</h4>
+              <h4 className="section-label mb-4">{t.support.label}</h4>
               <div className="space-y-3">
                 <a href="mailto:valoroxinfo@gmail.com" className="text-sm transition-opacity hover:opacity-80" style={{ color: 'var(--text-secondary)' }}>valoroxinfo@gmail.com</a>
-                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Lun–Ven, 9:00–18:00</p>
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>{t.support.hours}</p>
                 <div className="mt-4 p-3 rounded-xl" style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}>
-                  <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Tempo medio di risposta</p>
-                  <p className="text-sm font-semibold mt-1" style={{ color: 'var(--accent)' }}>&lt; 2 ore</p>
+                  <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>{t.support.responseLabel}</p>
+                  <p className="text-sm font-semibold mt-1" style={{ color: 'var(--accent)' }}>{t.support.responseTime}</p>
                 </div>
               </div>
             </div>
@@ -1317,7 +1265,7 @@ export default function LandingPage() {
           <div className="rounded-xl p-4 mb-6 text-center"
             style={{ background: 'rgba(255,61,113,0.03)', border: '1px solid rgba(255,61,113,0.1)' }}>
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              <strong style={{ color: 'rgba(255,90,120,0.8)' }}>Non forniamo consulenza finanziaria.</strong>{' '}
+              <strong style={{ color: 'rgba(255,90,120,0.8)' }}>{t.noFinancialAdvice}</strong>{' '}
               {t.footer.disclaimer}
             </p>
           </div>
