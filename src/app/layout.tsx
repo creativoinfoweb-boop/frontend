@@ -116,6 +116,7 @@ export const metadata: Metadata = {
   classification: 'Finance, Trading, Technology',
   other: {
     'theme-color': '#F0B429',
+    'trustpilot-one-time-domain-verification-id': '6a699199-3619-4f97-9c74-4bd815d042b2',
   },
 }
 
