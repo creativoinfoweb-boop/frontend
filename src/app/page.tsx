@@ -1138,8 +1138,8 @@ export default function LandingPage() {
               },
               {
                 icon: Globe, color: '#00C2FF',
-                title: 'Broker Libero',
-                desc: 'Scegli il broker che preferisci. Non abbiamo affiliazioni, non riceviamo commissioni e non favoriamo nessun broker specifico.',
+                title: 'Zero Conflitti di Interesse',
+                desc: 'Il sistema opera su ICMarkets per ragioni puramente tecniche (velocità e latenza). Non abbiamo affiliazioni, non riceviamo commissioni e non forniamo codici referral.',
               },
               {
                 icon: Layers, color: '#9B5DE5',
@@ -1179,17 +1179,17 @@ export default function LandingPage() {
               Non hai ancora un account MT5?
             </h2>
             <p className="max-w-xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              Nessun problema. Ecco come ottenere un conto MT5 in pochi minuti, con il broker che preferisci.
+              Nessun problema. Ecco come aprire un conto ICMarkets MT5 in pochi minuti.
             </p>
           </div>
 
           <div className="space-y-4 mb-12">
             {[
-              { num: '01', title: 'Scegli un broker MT5', desc: 'Qualsiasi broker che offra MetaTrader 5 con XAU/USD va bene. Sei completamente libero nella scelta — non abbiamo affiliazioni con nessun broker.', note: null },
-              { num: '02', title: 'Registrati e verifica il conto', desc: "Crea un account sul sito del broker scelto. Dovrai completare la verifica dell'identità (KYC) — procedura standard richiesta da tutti i broker regolamentati.", note: null },
-              { num: '03', title: 'Effettua il deposito sul broker', desc: 'Deposita i fondi direttamente sul tuo conto broker. Il deposito avviene sul broker, non sulla nostra piattaforma — noi non gestiamo né tocchiamo i tuoi fondi in alcun modo.', note: null },
-              { num: '04', title: 'Ottieni le credenziali MT5', desc: 'Dopo il deposito, il broker ti fornirà le credenziali per accedere a MetaTrader 5: login, password e nome del server.', note: 'Richiedi specificatamente un conto MetaTrader 5 (MT5), non MT4. Il nostro sistema funziona esclusivamente con MT5.' },
-              { num: '05', title: 'Accedi a MT5 e verifica i fondi', desc: 'Accedi alla piattaforma MT5 con le credenziali ricevute. Vedrai direttamente il saldo depositato sul broker. MT5 è disponibile su Windows, Mac, iOS e Android.', note: null },
+              { num: '01', title: 'Apri un conto ICMarkets', desc: 'Registrati su icmarkets.com e crea un conto MT5. ICMarkets è tra i broker più affidabili e competitivi al mondo — lo abbiamo scelto per la velocità di esecuzione e gli spread ridotti.', note: 'Perché ICMarkets? Il nostro sistema richiede che tutti i conti operino sullo stesso broker del master per garantire la massima velocità e zero latenza nella copia. Non è una affiliazione — è una scelta tecnica.' },
+              { num: '02', title: 'Verifica la tua identità', desc: "Completa la verifica dell'identità (KYC) su ICMarkets — procedura standard richiesta da tutti i broker regolamentati.", note: null },
+              { num: '03', title: 'Deposita sul tuo conto ICMarkets', desc: 'Deposita i fondi direttamente sul tuo conto ICMarkets. I tuoi fondi restano sempre sul tuo conto — noi non gestiamo né tocchiamo i tuoi fondi in alcun modo.', note: null },
+              { num: '04', title: 'Ottieni le credenziali MT5', desc: 'ICMarkets ti fornirà le credenziali per accedere a MetaTrader 5: login, password e nome del server (es. ICMarketsSC-MT5-2).', note: 'Assicurati di avere un conto MetaTrader 5 (MT5), non MT4. Il nostro sistema funziona esclusivamente con MT5.' },
+              { num: '05', title: 'Accedi a MT5 e verifica i fondi', desc: 'Accedi alla piattaforma MT5 con le credenziali ricevute. Vedrai direttamente il saldo depositato. MT5 è disponibile su Windows, Mac, iOS e Android.', note: null },
               { num: '06', title: "Collega l'account a Valorox", desc: "Dalla nostra dashboard, inserisci le credenziali MT5 nella sezione \"Account\". Da quel momento il sistema sincronizza e apre automaticamente le operazioni sul tuo conto.", note: null },
             ].map((item, i) => (
               <div key={i} className="card-premium p-5 flex gap-4 animate-fade-in-up" style={{ animationDelay: `${i * 60}ms` }}>
@@ -1208,21 +1208,21 @@ export default function LandingPage() {
           </div>
 
           <div className="card-premium p-6">
-            <h3 className="text-sm font-bold mb-2" style={{ color: 'var(--text-primary)' }}>Alcuni broker MT5 diffusi</h3>
-            <p className="text-xs mb-4" style={{ color: 'var(--text-muted)' }}>
-              Solo esempi. Non raccomandiamo né favoriamo nessun broker — la scelta è interamente tua.
+            <h3 className="text-sm font-bold mb-2" style={{ color: 'var(--text-primary)' }}>Perché ICMarkets?</h3>
+            <p className="text-xs mb-4 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+              ICMarkets è uno dei broker più affidabili e convenienti a livello mondiale. Lo abbiamo scelto per le sue caratteristiche tecniche — non abbiamo affiliazioni né codici referral.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {[
-                { name: 'IC Markets', type: 'ECN · Spread ridotti' },
-                { name: 'Exness', type: 'Spread competitivi' },
-                { name: 'Pepperstone', type: 'ECN · Regolamentato' },
-                { name: 'XM', type: 'MT5 · Ampia offerta' },
-              ].map((broker) => (
-                <div key={broker.name} className="rounded-xl p-3 text-center"
+                { name: 'Spread da 0.0', type: 'Tra i più bassi del settore' },
+                { name: 'Esecuzione < 40ms', type: 'Velocità istituzionale' },
+                { name: 'Regolamentato', type: 'ASIC · CySEC · FSA' },
+                { name: 'MT5 Nativo', type: 'Pieno supporto MetaTrader 5' },
+              ].map((item) => (
+                <div key={item.name} className="rounded-xl p-3 text-center"
                   style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}>
-                  <p className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{broker.name}</p>
-                  <p className="text-[10px] mt-0.5" style={{ color: 'var(--text-muted)' }}>{broker.type}</p>
+                  <p className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{item.name}</p>
+                  <p className="text-[10px] mt-0.5" style={{ color: 'var(--text-muted)' }}>{item.type}</p>
                 </div>
               ))}
             </div>
