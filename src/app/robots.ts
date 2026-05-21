@@ -11,17 +11,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           '/dashboard/',
           '/admin/',
-          '/auth/',
-          '/api/',
-        ],
-      },
-      {
-        userAgent: 'Googlebot',
-        allow: '/',
-        disallow: [
-          '/dashboard/',
-          '/admin/',
-          '/auth/',
           '/api/',
         ],
       },
