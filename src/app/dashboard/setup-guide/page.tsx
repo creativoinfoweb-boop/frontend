@@ -14,7 +14,7 @@ import {
 
 const steps = [
   { num: 1, title: 'Abbonamento', icon: CreditCard, color: '#F0B429',  desc: 'Verifica che la tua subscription sia attiva' },
-  { num: 2, title: 'Account MT5', icon: Database,   color: '#00C2FF',  desc: 'Inserisci le credenziali del tuo conto broker' },
+  { num: 2, title: 'Account MT5', icon: Database,   color: '#00C2FF',  desc: 'Collega il tuo conto ICMarkets MT5' },
   { num: 3, title: 'Sicurezza',   icon: Shield,     color: '#9B5DE5',  desc: 'Come proteggiamo i tuoi dati' },
   { num: 4, title: 'Come Funziona', icon: BarChart3, color: '#00C2FF', desc: 'La piattaforma, rischio e take profit' },
   { num: 5, title: 'Pronto!',     icon: Zap,        color: '#00E676',  desc: 'La piattaforma è attiva — zero azioni richieste' },
@@ -219,7 +219,7 @@ export default function SetupGuidePage() {
 
             <div className="space-y-3">
               <StepInstruction n={1} text='Vai su Dashboard → Account MT5 (oppure usa il pulsante qui sotto)' />
-              <StepInstruction n={2} text='Clicca «Collega Account MT5» e compila login, password e server broker' />
+              <StepInstruction n={2} text='Clicca «Collega Account MT5» e compila login, password e server ICMarkets' />
               <StepInstruction n={3} text='Il nome in dashboard è opzionale: se lo lasci vuoto usiamo automaticamente «Conto + il tuo login»' />
               <StepInstruction n={4} text='In basso nel modulo premi «Salva e collega conto» (il test connessione è solo opzionale)' />
             </div>
@@ -231,10 +231,10 @@ export default function SetupGuidePage() {
             >
               <p className="text-xs font-semibold text-[#00C2FF]">Dove trovo le credenziali?</p>
               <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
-                Le credenziali MT5 le trovi nell&apos;email di apertura conto del tuo broker, oppure
-                nel portale del broker sotto <strong className="text-[var(--text-primary)]">&quot;I miei conti&quot;</strong> o
-                <strong className="text-[var(--text-primary)]"> &quot;Account Details&quot;</strong>. Il server broker si trova
-                in MT5: <strong className="text-[var(--text-primary)]">File → Apri Conto → cerca il tuo broker</strong>.
+                Le credenziali MT5 le trovi nell&apos;email di apertura conto ICMarkets, oppure
+                nel portale ICMarkets sotto <strong className="text-[var(--text-primary)]">&quot;I miei conti&quot;</strong> o
+                <strong className="text-[var(--text-primary)]"> &quot;Account Details&quot;</strong>. Il nome del server (es. ICMarketsSC-MT5-2) si trova
+                in MT5: in alto a sinistra nella finestra principale.
               </p>
             </div>
 
@@ -256,21 +256,22 @@ export default function SetupGuidePage() {
             >
               <div className="px-4 py-2.5 text-xs font-bold text-[#9B5DE5]"
                 style={{ background: 'rgba(155,93,229,0.08)' }}>
-                Non hai ancora un conto broker MT5?
+                Non hai ancora un conto ICMarkets MT5?
               </div>
               <div className="px-4 py-3 space-y-4">
                 <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
-                  Per usare Valorox ti serve un conto MetaTrader 5 aperto presso un qualsiasi broker
-                  che supporti MT5. Puoi scegliere liberamente il broker che preferisci —{' '}
-                  <strong className="text-[var(--text-primary)]">non abbiamo affiliazioni con nessun broker</strong>.
+                  Per usare Valorox ti serve un conto MetaTrader 5 su <strong className="text-[var(--text-primary)]">ICMarkets</strong> —
+                  il broker utilizzato dal nostro account master. Questa scelta è puramente tecnica: garantisce la massima velocità di esecuzione
+                  e zero latenza nella copia dei trade.{' '}
+                  <strong className="text-[var(--text-primary)]">Non abbiamo affiliazioni né codici referral</strong>.
                 </p>
 
                 <div className="space-y-2.5">
                   {[
-                    { n: 1, text: 'Scegli un broker che supporti MetaTrader 5 (MT5)' },
-                    { n: 2, text: 'Registrati sul sito del broker e completa la verifica identità (KYC)' },
+                    { n: 1, text: 'Vai su icmarkets.com e apri un conto MetaTrader 5 (MT5)' },
+                    { n: 2, text: 'Completa la verifica identità (KYC) — procedura standard' },
                     { n: 3, text: 'Effettua un deposito sul conto live (minimo consigliato: 2.000€)' },
-                    { n: 4, text: 'Il broker ti invierà via email: login numerico, password e nome del server' },
+                    { n: 4, text: 'ICMarkets ti invierà via email: login numerico, password e nome del server (es. ICMarketsSC-MT5-2)' },
                     { n: 5, text: 'Accedi almeno una volta a MT5 con le credenziali ricevute per attivarle' },
                     { n: 6, text: 'Torna qui e inserisci login, password e server nel pannello Account MT5' },
                   ].map(({ n, text }) => (
@@ -284,21 +285,11 @@ export default function SetupGuidePage() {
                   ))}
                 </div>
 
-                <div>
-                  <p className="text-[10px] font-semibold text-[var(--text-muted)] mb-2">
-                    Broker noti compatibili MT5 (nessuna affiliazione, a titolo d&apos;esempio):
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {['IC Markets', 'Exness', 'Pepperstone', 'XM'].map(b => (
-                      <span key={b}
-                        className="px-2.5 py-1 rounded-lg text-[10px] font-semibold"
-                        style={{ background: 'rgba(155,93,229,0.08)', border: '1px solid rgba(155,93,229,0.18)', color: '#C4A8FF' }}>
-                        {b}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="text-[9px] text-[var(--text-muted)] mt-1.5">
-                    Questi broker sono citati solo come esempi di broker compatibili MT5. Non riceviamo commissioni né abbiamo accordi commerciali con nessuno di essi.
+                <div className="rounded-lg p-3" style={{ background: 'rgba(0,194,255,0.05)', border: '1px solid rgba(0,194,255,0.12)' }}>
+                  <p className="text-[10px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                    <strong style={{ color: '#00C2FF' }}>Perché ICMarkets?</strong>{' '}
+                    ICMarkets è tra i broker più affidabili e convenienti al mondo (spread da 0.0, esecuzione &lt;40ms, regolamentato ASIC/CySEC/FSA).
+                    Lo abbiamo scelto per le sue caratteristiche tecniche — non riceviamo commissioni né forniamo codici referral.
                   </p>
                 </div>
               </div>

@@ -188,7 +188,7 @@ export default function AccountsPage() {
         <Info className="w-4 h-4 text-[#F0B429] flex-shrink-0 mt-0.5" />
         <div className="text-xs text-[#8A8AA0] leading-relaxed">
           <strong className="text-[#F0B429]">1 account MT5 per abbonamento.</strong>{' '}
-          Ogni abbonamento permette di collegare un solo conto broker. I trade vengono copiati direttamente dal nostro server — non serve MT5 aperto sul tuo computer.
+          Ogni abbonamento permette di collegare un solo conto <strong className="text-[#F0B429]">ICMarkets</strong> MT5. I trade vengono copiati direttamente dal nostro server — non serve MT5 aperto sul tuo computer.
         </div>
       </div>
 
@@ -198,6 +198,16 @@ export default function AccountsPage() {
         <Shield className="w-4 h-4 text-[#9B5DE5] flex-shrink-0 mt-0.5" />
         <p className="text-xs text-[#8A8AA0] leading-relaxed">
           Le credenziali MT5 vengono cifrate con <strong className="text-[#C4A8FF]">Fernet AES-128</strong> prima di essere salvate nel database. Non vengono mai trasmesse o lette in chiaro da nessuno, neanche da noi.
+        </p>
+      </div>
+
+      {/* Broker richiesto — ICMarkets */}
+      <div className="flex items-start gap-3 p-4 rounded-xl"
+        style={{ background: 'rgba(0,194,255,0.05)', border: '1px solid rgba(0,194,255,0.15)' }}>
+        <Server className="w-4 h-4 text-[#00C2FF] flex-shrink-0 mt-0.5" />
+        <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+          <strong style={{ color: '#00C2FF' }}>Broker richiesto: ICMarkets.</strong>{' '}
+          Per garantire la massima velocità di esecuzione e zero latenza nella copia dei trade, tutti i conti devono operare sullo stesso broker del nostro account master. Abbiamo scelto <strong style={{ color: 'var(--text-primary)' }}>ICMarkets</strong> — tra i più affidabili e competitivi al mondo. Non abbiamo affiliazioni né conflitti di interesse: è una scelta puramente tecnica.
         </p>
       </div>
 
@@ -227,7 +237,7 @@ export default function AccountsPage() {
           <div>
             <p className="font-bold" style={{ color: 'var(--text-primary)' }}>Nessun account collegato</p>
             <p className="text-sm mt-1 max-w-xs" style={{ color: 'var(--text-secondary)' }}>
-              Inserisci le credenziali del tuo conto MT5 — il nostro server copierà i trade automaticamente
+              Collega il tuo conto ICMarkets MT5 — il nostro server copierà i trade automaticamente
             </p>
           </div>
           <button onClick={() => { setShowModal(true); setTestMessage(null) }} className="btn-gold px-6 py-2.5 rounded-xl">
@@ -392,17 +402,17 @@ export default function AccountsPage() {
 
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wider mb-1.5" style={{ color: 'var(--text-secondary)' }}>
-                    Server Broker
+                    Server ICMarkets
                   </label>
                   <input
                     type="text"
                     value={formData.mt5_server}
                     onChange={e => setFormData({ ...formData, mt5_server: e.target.value })}
-                    placeholder="Es. VantageInternational-Live 6"
+                    placeholder="Es. ICMarketsSC-MT5-2"
                     className="input-premium w-full text-sm font-mono"
                   />
                   <p className="text-[10px] mt-1 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-                    <strong style={{ color: 'var(--text-secondary)' }}>Come trovarlo:</strong> apri MT5 sul tuo PC/mobile → in alto a sinistra vedi il nome del server (es. <span className="font-mono">VantageInternational-Live 6</span>). Oppure: File → Apri Conto → cerca il tuo broker → copia il nome esatto del server.
+                    <strong style={{ color: 'var(--text-secondary)' }}>Come trovarlo:</strong> apri MT5 → in alto a sinistra trovi il nome del server (es. <span className="font-mono">ICMarketsSC-MT5-2</span>, <span className="font-mono">ICMarketsSC-MT5-4</span>, ecc.). Ogni conto ICMarkets ha un server assegnato — inserisci quello esatto.
                   </p>
                 </div>
 
