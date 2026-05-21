@@ -18,6 +18,16 @@ interface SignalForm {
   comment: string
 }
 
+const SUPPORTED_SYMBOLS = [
+  { value: 'XAUUSD', label: 'XAU/USD — Oro', category: 'commodity' },
+  { value: 'EURUSD', label: 'EUR/USD', category: 'forex' },
+  { value: 'GBPUSD', label: 'GBP/USD', category: 'forex' },
+  { value: 'GBPAUD', label: 'GBP/AUD', category: 'forex' },
+  { value: 'BTCUSD', label: 'BTC/USD — Bitcoin', category: 'crypto' },
+  { value: 'USTech', label: 'NASDAQ — Nasdaq 100', category: 'index' },
+  { value: 'US500',  label: 'S&P 500', category: 'index' },
+]
+
 const DEFAULT_FORM: SignalForm = {
   symbol: 'XAUUSD',
   direction: 'BUY',
@@ -137,14 +147,16 @@ export default function ManualSignalPage() {
         {/* Symbol */}
         <div className="space-y-1.5">
           <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: textSecondary }}>Symbol</label>
-          <input
-            type="text"
+          <select
             value={form.symbol}
-            onChange={e => setForm(f => ({ ...f, symbol: e.target.value.toUpperCase() }))}
-            placeholder="es. XAUUSD"
-            className="w-full rounded-xl px-4 py-2.5 text-sm font-mono outline-none focus:ring-2 focus:ring-[#F5A623]/40"
+            onChange={e => setForm(f => ({ ...f, symbol: e.target.value }))}
+            className="w-full rounded-xl px-4 py-2.5 text-sm font-mono outline-none focus:ring-2 focus:ring-[#F5A623]/40 appearance-none cursor-pointer"
             style={{ background: inputBg, border: `1px solid ${border}`, color: textPrimary }}
-          />
+          >
+            {SUPPORTED_SYMBOLS.map(s => (
+              <option key={s.value} value={s.value}>{s.label}</option>
+            ))}
+          </select>
         </div>
 
         {/* Direction */}
