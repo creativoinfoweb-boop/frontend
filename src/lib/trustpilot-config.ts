@@ -10,6 +10,9 @@
  * 3. Copy the data-businessunit-id value
  */
 
+/** Imposta true per mostrare tutti i widget Trustpilot sul sito */
+export const TRUSTPILOT_ENABLED = false
+
 export const TRUSTPILOT_CONFIG = {
   /** Trustpilot Business Unit ID — replace with real one */
   businessUnitId: '',

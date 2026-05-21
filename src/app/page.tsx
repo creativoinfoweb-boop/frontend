@@ -33,6 +33,7 @@ import ThemeOnboardingModal from '@/components/ThemeOnboardingModal'
 import CookieConsent from '@/components/CookieConsent'
 import { TrustpilotHeroWidget, TrustpilotFooterBadge } from '@/components/trustpilot/TrustpilotStars'
 import { TrustpilotCarousel } from '@/components/trustpilot/TrustpilotCarousel'
+import { TRUSTPILOT_ENABLED } from '@/lib/trustpilot-config'
 
 /* ─── Animated counter ─────────────────────────────────── */
 function AnimatedCounter({ to, suffix = '', duration = 1500 }: { to: number; suffix?: string; duration?: number }) {
@@ -814,9 +815,11 @@ export default function LandingPage() {
             </div>
           </div>
           {/* Trustpilot widget — sotto il grafico equity */}
-          <div className="flex justify-center mt-6">
-            <TrustpilotHeroWidget reviewsLabel={t.trustpilot.heroReviews} />
-          </div>
+          {TRUSTPILOT_ENABLED && (
+            <div className="flex justify-center mt-6">
+              <TrustpilotHeroWidget reviewsLabel={t.trustpilot.heroReviews} />
+            </div>
+          )}
 
           <p className="text-center text-xs italic mt-4" style={{ color: 'var(--text-muted)' }}>
             {t.perf.disclaimer}
@@ -1114,12 +1117,14 @@ export default function LandingPage() {
       </section>
 
       {/* ─── Trustpilot Reviews Carousel ─────────────────── */}
-      <TrustpilotCarousel
-        sectionLabel={t.trustpilot.sectionLabel}
-        title={t.trustpilot.sectionTitle}
-        subtitle={t.trustpilot.sectionSubtitle}
-        ctaText={t.trustpilot.ctaAll}
-      />
+      {TRUSTPILOT_ENABLED && (
+        <TrustpilotCarousel
+          sectionLabel={t.trustpilot.sectionLabel}
+          title={t.trustpilot.sectionTitle}
+          subtitle={t.trustpilot.sectionSubtitle}
+          ctaText={t.trustpilot.ctaAll}
+        />
+      )}
 
       {/* ─── Guida MT5 per Chi Non Ce L'Ha ─────────────── */}
       <section id="guida-mt5" className="py-24 px-4 sm:px-6 lg:px-8">
@@ -1320,13 +1325,15 @@ export default function LandingPage() {
                 </div>
 
                 {/* Trustpilot footer badge */}
-                <div className="mt-4">
-                  <TrustpilotFooterBadge
-                    ratingLabel={t.trustpilot.footerRating}
-                    reviewsLabel={t.trustpilot.footerReviews}
-                    ctaLabel={t.trustpilot.footerCta}
-                  />
-                </div>
+                {TRUSTPILOT_ENABLED && (
+                  <div className="mt-4">
+                    <TrustpilotFooterBadge
+                      ratingLabel={t.trustpilot.footerRating}
+                      reviewsLabel={t.trustpilot.footerReviews}
+                      ctaLabel={t.trustpilot.footerCta}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
