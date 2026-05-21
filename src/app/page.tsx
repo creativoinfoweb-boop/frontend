@@ -31,6 +31,8 @@ import {
 import { PricingPlanCard } from '@/components/pricing/PricingPlanCard'
 import ThemeOnboardingModal from '@/components/ThemeOnboardingModal'
 import CookieConsent from '@/components/CookieConsent'
+import { TrustpilotHeroWidget, TrustpilotFooterBadge } from '@/components/trustpilot/TrustpilotStars'
+import { TrustpilotCarousel } from '@/components/trustpilot/TrustpilotCarousel'
 
 /* ─── Animated counter ─────────────────────────────────── */
 function AnimatedCounter({ to, suffix = '', duration = 1500 }: { to: number; suffix?: string; duration?: number }) {
@@ -589,6 +591,14 @@ export default function LandingPage() {
                 </div>
               ))}
             </div>
+
+            {/* Trustpilot mini widget */}
+            <div className="mt-4 flex justify-center sm:justify-start">
+              <TrustpilotHeroWidget
+                label={t.trustpilot.footerRating}
+                reviewsLabel={t.trustpilot.heroReviews}
+              />
+            </div>
           </div>
         </div>
 
@@ -1059,6 +1069,14 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ─── Trustpilot Reviews Carousel ─────────────────── */}
+      <TrustpilotCarousel
+        sectionLabel={t.trustpilot.sectionLabel}
+        title={t.trustpilot.sectionTitle}
+        subtitle={t.trustpilot.sectionSubtitle}
+        ctaText={t.trustpilot.ctaAll}
+      />
+
       {/* ─── Guida MT5 per Chi Non Ce L'Ha ─────────────── */}
       <section id="guida-mt5" className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
@@ -1255,6 +1273,15 @@ export default function LandingPage() {
                 <div className="mt-4 p-3 rounded-xl" style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}>
                   <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>{t.support.responseLabel}</p>
                   <p className="text-sm font-semibold mt-1" style={{ color: 'var(--accent)' }}>{t.support.responseTime}</p>
+                </div>
+
+                {/* Trustpilot footer badge */}
+                <div className="mt-4">
+                  <TrustpilotFooterBadge
+                    ratingLabel={t.trustpilot.footerRating}
+                    reviewsLabel={t.trustpilot.footerReviews}
+                    ctaLabel={t.trustpilot.footerCta}
+                  />
                 </div>
               </div>
             </div>

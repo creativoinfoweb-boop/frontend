@@ -353,6 +353,7 @@ export default function ChiSiamoPage() {
           <Link href="/dashboard/learn" className="hover:opacity-70 transition-opacity">Corso Gratuito</Link>
           <Link href="/auth/register" className="hover:opacity-70 transition-opacity">Registrati</Link>
           <Link href="/legal/terms" className="hover:opacity-70 transition-opacity">Termini</Link>
+          <a href="https://www.trustpilot.com/review/valoroxai.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity" style={{ color: '#00B67A' }}>Trustpilot</a>
         </div>
         <p className="text-xs mt-4" style={{ color: 'var(--text-muted)' }}>
           © 2025 Valorox · Non forniamo consulenza finanziaria · Il trading comporta rischi

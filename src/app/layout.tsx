@@ -6,6 +6,7 @@ import './globals.css'
 import { Providers } from './providers'
 import ClerkWrapper from '@/components/ClerkWrapper'
 import { PRICING } from '@/data/pricing'
+import { TRUSTPILOT_CONFIG } from '@/lib/trustpilot-config'
 
 const braveEightyone = localFont({
   src: './fonts/BRAVEEightyone-Regular.ttf',
@@ -157,6 +158,17 @@ const organizationSchema = {
   },
   foundingDate: '2024',
   inLanguage: 'it-IT',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: String(TRUSTPILOT_CONFIG.rating),
+    bestRating: '5',
+    worstRating: '1',
+    ratingCount: String(TRUSTPILOT_CONFIG.totalReviews),
+    reviewCount: String(TRUSTPILOT_CONFIG.totalReviews),
+  },
+  sameAs: [
+    TRUSTPILOT_CONFIG.profileUrl,
+  ],
 }
 
 const websiteSchema = {
@@ -302,6 +314,12 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {/* Trustpilot TrustBox widget bootstrap — activates official widgets when Business Unit ID is configured */}
+        <script
+          type="text/javascript"
+          src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+          async
         />
       </head>
       <body

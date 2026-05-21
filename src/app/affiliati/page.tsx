@@ -406,6 +406,7 @@ export default function AffiliatiPage() {
             <Link href="/metodo" className="hover:opacity-70 transition-opacity">{t.nav.method}</Link>
             <Link href="/chi-siamo" className="hover:opacity-70 transition-opacity">{t.nav.about}</Link>
             <Link href="/legal/terms" className="hover:opacity-70 transition-opacity">{a.footerTerms}</Link>
+            <a href="https://www.trustpilot.com/review/valoroxai.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity" style={{ color: '#00B67A' }}>Trustpilot</a>
           </div>
           <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{a.footerCopy}</p>
         </div>

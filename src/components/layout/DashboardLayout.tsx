@@ -6,6 +6,7 @@ import { useAuthStore } from '@/store/auth'
 import { useWebSocket } from '@/hooks/useWebSocket'
 import { Sidebar } from './Sidebar'
 import { TopBar } from './TopBar'
+import { TrustpilotPrompt } from '@/components/trustpilot/TrustpilotPrompt'
 
 interface DashboardLayoutProps {
   children: ReactNode
@@ -14,6 +15,7 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const router = useRouter()
   const isAuthenticated = useAuthStore(s => s.isAuthenticated)
+  const userCreatedAt = useAuthStore(s => s.user?.created_at)
   const initialize = useAuthStore(s => s.initialize)
   const { showReconnectBanner } = useWebSocket()
   const [mounted, setMounted] = useState(false)
@@ -76,6 +78,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
         <main className="flex-1 overflow-y-auto scrollbar-thin">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <TrustpilotPrompt registeredAt={userCreatedAt} />
             {children}
           </div>
         </main>
