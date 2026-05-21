@@ -557,7 +557,7 @@ export default function LandingPage() {
               {t.hero.description}
             </p>
 
-            <div className="valorox-hero-ctas">
+            <div className="valorox-hero-ctas" style={!isAuthenticated ? { alignItems: 'flex-start' } : {}}>
               {isAuthenticated ? (
                 <Link href="/dashboard" className="btn-valorox btn-valorox-primary btn-valorox-slim">
                   <LayoutDashboard className="w-4 h-4" />
