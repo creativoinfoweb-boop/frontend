@@ -6,5 +6,20 @@
       "destination": "https://valoroxai.com/:path*",
       "permanent": true
     }
+  ],
+  "headers": [
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noarchive" },
+        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=3600" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    }
   ]
 }
