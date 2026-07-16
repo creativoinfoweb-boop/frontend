@@ -2,7 +2,23 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.valoroxai.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.valoroxai.com"
+        }
+      ],
+      "destination": "https://valoroxai.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "frontend-wheat-xi-90.vercel.app"
+        }
+      ],
       "destination": "https://valoroxai.com/:path*",
       "permanent": true
     }
@@ -11,14 +27,23 @@
     {
       "source": "/sitemap.xml",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noarchive" },
-        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=3600" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noarchive"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600"
+        }
       ]
     },
     {
       "source": "/robots.txt",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     }
   ]
