@@ -7,7 +7,7 @@ import { mod07lessons } from './mod07'
 import { mod08lessons } from './mod08'
 
 export type QuizQuestion = { id: string; question: string; options: string[]; correctIndex: number; explanation: string }
-export type DiagramKey = 'liquidity-sweep' | 'bos-mss' | 'order-block' | 'fvg' | 'premium-discount' | 'sessions' | 'risk-reward' | 'take-profit' | 'kill-zone' | 'structure' | 'crt-structure' | 'crt-amd' | 'crt-bullish' | 'crt-bearish'
+export type DiagramKey = 'liquidity-sweep' | 'bos-mss' | 'order-block' | 'fvg' | 'premium-discount' | 'sessions' | 'risk-reward' | 'take-profit' | 'kill-zone' | 'structure' | 'crt-structure' | 'crt-amd' | 'crt-bullish' | 'crt-bearish' | 'anim-po3' | 'anim-turtle-model1' | 'anim-kiss-of-death' | 'anim-order-block' | 'anim-fvg'
 export type LessonBlock = { type: 'heading'; text: string } | { type: 'paragraph'; text: string } | { type: 'list'; items: string[] } | { type: 'callout'; variant: 'info' | 'warning' | 'success'; text: string } | { type: 'diagram'; key: DiagramKey; caption?: string } | { type: 'example'; title: string; body: string }
 export type Lesson = { id: string; moduleId: string; order: number; title: string; summary: string; estimatedMinutes: number; blocks: LessonBlock[]; quiz: QuizQuestion[] }
 export type CourseModule = { id: string; slug: string; order: number; title: string; description: string; level: 'Principiante' | 'Intermedio' | 'Avanzato' | 'Pratica'; isPremium: boolean; lessons: Lesson[] }

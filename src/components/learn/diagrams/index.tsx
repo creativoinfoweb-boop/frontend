@@ -709,7 +709,22 @@ function CrtBearishDiagram() {
   )
 }
 
+import AnimatedStrategyChart from '@/components/charts/AnimatedStrategyChart'
+import { useLanguage } from '@/i18n/LanguageContext'
+
+function makeAnimated(scenario: 'po3' | 'turtle-model1' | 'kiss-of-death' | 'order-block' | 'fvg'): React.FC {
+  return function AnimatedDiagram() {
+    const { lang } = useLanguage()
+    return <AnimatedStrategyChart scenario={scenario} lang={lang} />
+  }
+}
+
 const DIAGRAMS: Record<DiagramKey, React.FC> = {
+  'anim-po3': makeAnimated('po3'),
+  'anim-turtle-model1': makeAnimated('turtle-model1'),
+  'anim-kiss-of-death': makeAnimated('kiss-of-death'),
+  'anim-order-block': makeAnimated('order-block'),
+  'anim-fvg': makeAnimated('fvg'),
   'sessions': SessionsDiagram,
   'liquidity-sweep': LiquiditySweepDiagram,
   'risk-reward': RiskRewardDiagram,

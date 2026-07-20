@@ -24,7 +24,7 @@ export const mod03lessons: Lesson[] = [
       { type: 'paragraph', text: 'L\'Order Block (OB) è l\'ultima candela nella direzione opposta prima di un movimento impulsivo. È la zona dove gli istituzionali hanno caricato la loro posizione.' },
       { type: 'heading', text: 'Come identificarlo' },
       { type: 'list', items: ['Trova un\'expansion (movimento impulsivo)', 'Torna indietro: l\'ultima candela bearish prima dell\'expansion rialzista = Bullish OB', 'L\'ultima candela bullish prima dell\'expansion ribassista = Bearish OB', 'La zona OB = dal low al high di quella candela'] },
-      { type: 'diagram', key: 'order-block', caption: 'Order Block: ultima candela opposta prima del movimento impulsivo.' },
+      { type: 'diagram', key: 'anim-order-block', caption: 'Order Block animato: nasce, il prezzo torna a mitigarlo, respinge' }, { type: 'diagram', key: 'order-block', caption: 'Order Block: ultima candela opposta prima del movimento impulsivo.' },
       { type: 'example', title: 'Bullish OB', body: 'Tre candele verdi in expansion. Prima di esse: una candela rossa. La zona rossa = Bullish OB. Quando il prezzo ritorna in quella zona → entry long.' },
       { type: 'callout', variant: 'success', text: 'L\'OB è la zona dove stai "comprando insieme" agli istituzionali. Edge statistico alto.' }
     ],
@@ -83,7 +83,7 @@ export const mod03lessons: Lesson[] = [
     blocks: [
       { type: 'heading', text: 'Cos\'è il Fair Value Gap' },
       { type: 'paragraph', text: 'FVG = una zona tra 3 candele consecutive dove il wick della prima e il wick della terza non si sovrappongono. Indica uno squilibrio — il prezzo tende a tornarci per colmarlo.' },
-      { type: 'diagram', key: 'fvg', caption: 'FVG: gap tra wick C1 e wick C3 nelle 3 candele consecutive.' },
+      { type: 'diagram', key: 'anim-fvg', caption: 'FVG animato: l\'impulso crea il gap, il prezzo lo ribilancia e riparte' }, { type: 'diagram', key: 'fvg', caption: 'FVG: gap tra wick C1 e wick C3 nelle 3 candele consecutive.' },
       { type: 'list', items: ['Bullish FVG: gap verso l\'alto — supporto per retracement', 'Bearish FVG: gap verso il basso — resistenza per retracement', 'FVG + OB nella stessa zona = confluenza potentissima', '50% del FVG è il punto d\'entry ottimale'] },
       { type: 'callout', variant: 'success', text: 'FVG + OB = la confluenza più affidabile del metodo. Cerca overlap tra le due zone.' }
     ],

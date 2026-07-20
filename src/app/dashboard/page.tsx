@@ -28,6 +28,7 @@ import {
   Link2,
 } from 'lucide-react'
 import Link from 'next/link'
+import EbookCard from '@/components/ebook/EbookCard'
 
 const n = (v: any, fallback = 0): number => parseFloat(String(v ?? fallback)) || fallback
 
@@ -310,6 +311,9 @@ export default function DashboardPage() {
           body="Collega il tuo account MetaTrader 5 per applicare la strategia sul tuo conto."
           cta="Setup Guide" href="/dashboard/setup-guide" />
       )}
+
+      {/* eBook riservato — appare solo con piano attivo (trial incluso) */}
+      <EbookCard variant="dashboard" />
 
       {/* KPI Cards */}
       <div className="grid grid-cols-3 gap-3">

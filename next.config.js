@@ -17,8 +17,12 @@ const nextConfig = {
     ],
   },
   // Aumenta timeout per il proxy verso backend VPS
+  // outputFileTracingIncludes: bundle degli ebook privati nella route /api/ebook su Vercel
   experimental: {
     proxyTimeout: 60000,
+    outputFileTracingIncludes: {
+      '/api/ebook': ['./private/ebook/**'],
+    },
   },
 }
 

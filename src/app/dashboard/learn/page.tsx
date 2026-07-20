@@ -4,11 +4,57 @@ import Link from 'next/link'
 import { COURSE } from '@/data/course'
 import { useLearnStore } from '@/store/learn'
 import { useHasActiveSubscription } from '@/hooks/useSubscription'
+import { useLanguage } from '@/i18n/LanguageContext'
+import EbookCard from '@/components/ebook/EbookCard'
+import AnimatedStrategyChart, { ScenarioKey } from '@/components/charts/AnimatedStrategyChart'
 import { Lock, Play, Zap, Award } from 'lucide-react'
+import { useState } from 'react'
+
+const SCENARIOS: Array<{ key: ScenarioKey; it: string; en: string }> = [
+  { key: 'po3', it: 'Power of Three', en: 'Power of Three' },
+  { key: 'turtle-model1', it: 'Turtle Soup → Model #1', en: 'Turtle Soup → Model #1' },
+  { key: 'kiss-of-death', it: 'Kiss of Death', en: 'Kiss of Death' },
+  { key: 'order-block', it: 'Order Block', en: 'Order Block' },
+  { key: 'fvg', it: 'Fair Value Gap', en: 'Fair Value Gap' },
+]
+
+function StrategyLab({ lang }: { lang: string }) {
+  const [active, setActive] = useState<ScenarioKey>('po3')
+  const en = lang === 'en'
+  return (
+    <div className="mb-12 animate-fade-in-up">
+      <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
+        <div>
+          <h2 className="text-xl font-black" style={{ color: 'var(--text-primary)' }}>
+            {en ? 'The strategy, live' : 'La strategia, dal vivo'}
+          </h2>
+          <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
+            {en
+              ? 'Watch each concept draw itself on the chart, candle by candle.'
+              : 'Guarda ogni concetto disegnarsi sul grafico, candela dopo candela.'}
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {SCENARIOS.map(s => (
+            <button key={s.key} onClick={() => setActive(s.key)}
+              className="px-3 py-1.5 rounded-full text-[11px] font-bold transition-all"
+              style={active === s.key
+                ? { background: 'var(--gold)', color: '#0A0A14' }
+                : { background: 'var(--glass-bg)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
+              {en ? s.en : s.it}
+            </button>
+          ))}
+        </div>
+      </div>
+      <AnimatedStrategyChart key={active} scenario={active} lang={lang} />
+    </div>
+  )
+}
 
 export default function LearnHub() {
   const store = useLearnStore()
   const { hasActive } = useHasActiveSubscription()
+  const { lang } = useLanguage()
 
   return (
     <div className="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -37,6 +83,14 @@ export default function LearnHub() {
               <div className="text-2xl font-black font-mono" style={{ color: stat.color }}>{stat.value}</div>
             </div>
           ))}
+        </div>
+
+        {/* Laboratorio strategia — grafici animati */}
+        <StrategyLab lang={lang} />
+
+        {/* eBook CRT Secrets — sbloccato solo con piano attivo */}
+        <div className="mb-12">
+          <EbookCard variant="learn" />
         </div>
 
         {/* Moduli Grid */}

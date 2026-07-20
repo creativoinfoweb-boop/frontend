@@ -410,6 +410,25 @@ input:-webkit-autofill:focus {
    UTILITY ANIMATION CLASSES
 ═══════════════════════════════════════════════════════════ */
 
+/* ── AnimatedStrategyChart: candele, livelli e pill che appaiono ── */
+@keyframes vxCandleIn {
+  from { transform: translateY(10px) scaleY(0.55); opacity: 0; }
+  to   { transform: translateY(0)    scaleY(1);    opacity: 1; }
+}
+@keyframes vxPopIn {
+  0%   { transform: scale(0.4); opacity: 0; }
+  70%  { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes vxDrawIn {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+.vx-candle { animation: vxCandleIn 0.32s cubic-bezier(0.16,1,0.3,1) both; transform-box: fill-box; transform-origin: center bottom; }
+.vx-pop    { animation: vxPopIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both; transform-box: fill-box; transform-origin: center; }
+.vx-draw   { animation: vxDrawIn 0.6s ease-out both; transform-box: fill-box; transform-origin: left center; }
+.vx-fade   { animation: fadeIn 0.45s ease-out both; }
+
 .animate-fade-in       { animation: fadeIn 0.4s ease-out both; }
 .animate-fade-in-up    { animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) both; }
 .animate-fade-in-down  { animation: fadeInDown 0.4s ease-out both; }

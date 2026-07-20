@@ -15,7 +15,7 @@ export const mod08lessons: Lesson[] = [
         'Il body della candela = zona di equilibrio (fair value)',
         'I wick = prove di sweep di liquidità già avvenute',
       ] },
-      { type: 'diagram', key: 'crt-structure', caption: 'Anatomia del range CRT: High e Low diventano livelli di liquidità' },
+      { type: 'diagram', key: 'crt-structure', caption: 'Anatomia del range CRT: High e Low diventano livelli di liquidità' }, { type: 'diagram', key: 'anim-po3', caption: 'Il Power of Three in movimento: range → manipolazione → espansione' },
       { type: 'callout', variant: 'info', text: 'CRT non è un indicatore nuovo — è l\'applicazione pratica di ciò che ICT/SMC insegna sulle sessioni e la liquidità, applicata al range di una singola candela.' },
       { type: 'paragraph', text: 'Perché funziona? Perché gli algoritmi istituzionali usano il High e il Low della candela precedente come target per raccogliere liquidità (stop loss dei retail) prima di muoversi nella direzione reale.' },
     ],
@@ -33,7 +33,7 @@ export const mod08lessons: Lesson[] = [
     blocks: [
       { type: 'heading', text: 'AMD: il cuore del CRT' },
       { type: 'paragraph', text: 'Ogni setup CRT segue invariabilmente tre fasi: Accumulation (gli istituzionali costruiscono la posizione in silenzio), Manipulation (falso breakout per raccogliere liquidità retail), Distribution (il vero movimento nella direzione istituzionale).' },
-      { type: 'diagram', key: 'crt-amd', caption: 'Le 3 fasi AMD in un setup CRT completo' },
+      { type: 'diagram', key: 'crt-amd', caption: 'Le 3 fasi AMD in un setup CRT completo' }, { type: 'diagram', key: 'anim-kiss-of-death', caption: 'Kiss of Death animato: doppio massimo, rottura e ritest che respinge' },
       { type: 'list', items: [
         'ACCUMULATION: candele strette e laterali — istituzionali accumulano senza mostrare la direzione',
         'MANIPULATION: candela con wick lungo che buca il CRT-High o CRT-Low — raccoglie liquidità (stop loss retail)',
@@ -56,7 +56,7 @@ export const mod08lessons: Lesson[] = [
     blocks: [
       { type: 'heading', text: 'Il setup bullish in 3 candele' },
       { type: 'paragraph', text: 'Il CRT bullish si forma quando il prezzo è posizionato su un livello di supporto rilevante (Order Block, FVG, livello HTF) e segue il pattern AMD con sweep del Low (SSL).' },
-      { type: 'diagram', key: 'crt-bullish', caption: 'CRT Bullish: Sweep SSL → chiusura sopra → candela distribution long' },
+      { type: 'diagram', key: 'crt-bullish', caption: 'CRT Bullish: Sweep SSL → chiusura sopra → candela distribution long' }, { type: 'diagram', key: 'anim-turtle-model1', caption: 'La sequenza completa animata: Turtle Soup su H4 → Model #1 su M15' },
       { type: 'list', items: [
         '① CANDELA DI RIFERIMENTO: si chiude su una zona di supporto (OB/FVG). Marca CRT-High e CRT-Low.',
         '② CANDELA DI MANIPOLAZIONE: wick scende SOTTO il CRT-Low (sweep SSL) ma si CHIUDE sopra il CRT-Low → retail vendono, istituzionali comprano.',

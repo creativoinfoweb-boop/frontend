@@ -34,6 +34,7 @@ import CookieConsent from '@/components/CookieConsent'
 import { TrustpilotHeroWidget, TrustpilotFooterBadge } from '@/components/trustpilot/TrustpilotStars'
 import { TrustpilotCarousel } from '@/components/trustpilot/TrustpilotCarousel'
 import { TRUSTPILOT_ENABLED } from '@/lib/trustpilot-config'
+import AnimatedStrategyChart from '@/components/charts/AnimatedStrategyChart'
 
 /* ─── Animated counter ─────────────────────────────────── */
 function AnimatedCounter({ to, suffix = '', duration = 1500 }: { to: number; suffix?: string; duration?: number }) {
@@ -876,6 +877,35 @@ export default function LandingPage() {
               className="inline-flex items-center gap-2 text-sm font-bold transition-opacity hover:opacity-80"
               style={{ color: 'var(--accent)' }}>
               {t.problem.cta}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Il mercato ha un copione — grafico CRT animato ── */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 relative">
+        <div className="relative max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="section-label mb-3">
+              {lang === 'en' ? 'HOW THE MARKET MOVES' : 'COME SI MUOVE IL MERCATO'}
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-gradient-white mb-4">
+              {lang === 'en' ? 'The market has a script.' : 'Il mercato ha un copione.'}
+            </h2>
+            <p className="max-w-xl mx-auto text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              {lang === 'en'
+                ? 'Range, manipulation, expansion — the Power of Three repeats every day, on every chart. Watch it draw itself: this is the structure our system reads and executes without emotion.'
+                : 'Range, manipolazione, espansione — il Power of Three si ripete ogni giorno, su ogni grafico. Guardalo disegnarsi da solo: è la struttura che il nostro sistema legge ed esegue senza emozioni.'}
+            </p>
+          </div>
+          <div className="max-w-3xl mx-auto animate-fade-in-up">
+            <AnimatedStrategyChart scenario="po3" lang={lang} />
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/metodo"
+              className="inline-flex items-center gap-2 text-sm font-bold transition-opacity hover:opacity-80"
+              style={{ color: 'var(--accent)' }}>
+              {lang === 'en' ? 'Discover the full method' : 'Scopri il metodo completo'} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
