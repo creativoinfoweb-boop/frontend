@@ -911,6 +911,39 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ─── eBook Banner ───────────────────────────────── */}
+      <section className="py-10 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto card-premium relative overflow-hidden animate-fade-in-up"
+          style={{ border: '1px solid var(--border-gold)' }}>
+          <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full blur-3xl pointer-events-none opacity-15"
+            style={{ background: 'var(--gold)' }} />
+          <div className="relative flex flex-col sm:flex-row items-center gap-6 p-6 sm:p-8">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={lang === 'en' ? '/ebook-cover-en.jpg' : '/ebook-cover-it.jpg'}
+              alt="CRT Secrets"
+              className="w-28 sm:w-32 rounded-lg flex-shrink-0"
+              style={{ boxShadow: '0 12px 40px rgba(0,0,0,0.5), 0 0 30px color-mix(in srgb, var(--gold) 20%, transparent)' }}
+            />
+            <div className="flex-1 text-center sm:text-left">
+              <div className="section-label mb-2">{lang === 'en' ? 'Free eBook' : 'eBook gratuito'}</div>
+              <h3 className="text-xl sm:text-2xl font-black mb-2" style={{ color: 'var(--text-primary)' }}>
+                CRT Secrets — {lang === 'en' ? 'our complete guide' : 'la nostra guida completa'}
+              </h3>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                {lang === 'en'
+                  ? 'Power of Three, liquidity, sessions: 50+ pages with charts and diagrams. A gift for everyone who activates a plan — the free trial counts, no payment needed.'
+                  : 'Power of Three, liquidità, sessioni: 50+ pagine con grafici e diagrammi. In omaggio per chi attiva un piano — vale anche il trial gratuito, nessun pagamento richiesto.'}
+              </p>
+            </div>
+            <Link href="/auth/register"
+              className="btn-gold px-8 py-3 rounded-xl text-sm font-bold whitespace-nowrap flex-shrink-0">
+              {lang === 'en' ? 'Get it now' : 'Ottienilo ora'}
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ─── Stats Section ──────────────────────────────── */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
