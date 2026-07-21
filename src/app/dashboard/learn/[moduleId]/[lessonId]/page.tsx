@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation'
 import { getLesson, getNextLesson, getModule } from '@/data/course'
 import { useLearnStore } from '@/store/learn'
 import { ChevronRight, ChevronLeft, Check } from 'lucide-react'
+import { Diagram } from '@/components/learn/diagrams'
 
 export default function LessonPage() {
   const params = useParams()
@@ -77,6 +78,9 @@ export default function LessonPage() {
             if (block.type === 'example') return <div key={i} className="p-4 rounded-lg" style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)' }}>
               <p className="text-xs font-bold mb-1" style={{ color: 'var(--gold)' }}>{block.title}</p>
               <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>{block.body}</p>
+            </div>
+            if (block.type === 'diagram') return <div key={i} className="my-2">
+              <Diagram dKey={block.key} caption={block.caption} />
             </div>
             return null
           })}

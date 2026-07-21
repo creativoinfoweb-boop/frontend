@@ -35,6 +35,7 @@ import { TrustpilotHeroWidget, TrustpilotFooterBadge } from '@/components/trustp
 import { TrustpilotCarousel } from '@/components/trustpilot/TrustpilotCarousel'
 import { TRUSTPILOT_ENABLED } from '@/lib/trustpilot-config'
 import AnimatedStrategyChart from '@/components/charts/AnimatedStrategyChart'
+import CRTPillars from '@/components/charts/CRTPillars'
 
 /* ─── Animated counter ─────────────────────────────────── */
 function AnimatedCounter({ to, suffix = '', duration = 1500 }: { to: number; suffix?: string; duration?: number }) {
@@ -901,7 +902,11 @@ export default function LandingPage() {
           <div className="max-w-3xl mx-auto animate-fade-in-up">
             <AnimatedStrategyChart scenario="turtle-model1" lang={lang} />
           </div>
-          <div className="text-center mt-8">
+
+          {/* Panoramica completa della strategia CRT */}
+          <CRTPillars lang={lang} />
+
+          <div className="text-center mt-10">
             <Link href="/metodo"
               className="inline-flex items-center gap-2 text-sm font-bold transition-opacity hover:opacity-80"
               style={{ color: 'var(--accent)' }}>
