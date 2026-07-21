@@ -894,12 +894,12 @@ export default function LandingPage() {
             </h2>
             <p className="max-w-xl mx-auto text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
               {lang === 'en'
-                ? 'Range, manipulation, expansion — the Power of Three repeats every day, on every chart. Watch it draw itself: this is the structure our system reads and executes without emotion.'
-                : 'Range, manipolazione, espansione — il Power of Three si ripete ogni giorno, su ogni grafico. Guardalo disegnarsi da solo: è la struttura che il nostro sistema legge ed esegue senza emozioni.'}
+                ? 'From the H4 range to the M15 entry: turtle soup, structure shift, FVG, target. Watch the full sequence draw itself — this is what our system reads and executes without emotion.'
+                : 'Dal range H4 all\'entry su M15: turtle soup, cambio di struttura, FVG, target. Guarda la sequenza completa disegnarsi da sola — è ciò che il nostro sistema legge ed esegue senza emozioni.'}
             </p>
           </div>
           <div className="max-w-3xl mx-auto animate-fade-in-up">
-            <AnimatedStrategyChart scenario="po3" lang={lang} />
+            <AnimatedStrategyChart scenario="turtle-model1" lang={lang} />
           </div>
           <div className="text-center mt-8">
             <Link href="/metodo"

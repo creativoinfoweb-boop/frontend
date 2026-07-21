@@ -122,7 +122,7 @@ function buildScenario(key: ScenarioKey, en: boolean): Scenario {
       ],
       pills: [
         { x: 300, p: 84, text: 'TURTLE SOUP', color: RED, at: 3.2 },
-        { x: 560, p: 78, text: 'MODEL #1 ENTRY', color: GOLD, at: 7.2 },
+        { x: 560, p: 78, text: en ? 'MODEL 2 \u00b7 FVG' : 'MODELLO 2 \u00b7 FVG', color: GOLD, at: 7.2 },
       ],
       badges: [
         { x: 60, text: 'H4', at: 0.4 },
@@ -130,11 +130,12 @@ function buildScenario(key: ScenarioKey, en: boolean): Scenario {
       ],
       captions: [
         { at: 0.4, text: en ? 'H4: the candle range is marked — CRT High / CRT Low' : 'H4: si marca il range della candela — CRT High / CRT Low' },
-        { at: 2.4, text: en ? 'Sweep below CRT Low with rejection: Turtle Soup' : 'Sweep sotto il CRT Low con rigetto: Turtle Soup' },
+        { at: 2.4, text: en ? 'Wick below the CRT Low, close back above: Turtle Soup' : 'Wick sotto il CRT Low, richiusura sopra: Turtle Soup' },
         { at: 4.4, text: en ? 'Drop to M15: shift in structure, FVG left behind' : 'Si scende su M15: cambio di struttura, resta un FVG' },
-        { at: 6.8, text: en ? 'Model #1: entry on the FVG retest, target the opposite side' : 'Model #1: entry sul ritest del FVG, target il lato opposto' },
+        { at: 6.8, text: en ? 'Model 2: entry on the FVG left after the turtle soup' : 'Modello 2: entry sull\u2019FVG nato dopo il turtle soup' },
+        { at: 8.4, text: en ? 'Target: the opposite side of the range \u2014 the CRT High' : 'Target: il lato opposto del range \u2014 il CRT High' },
       ],
-      pmin: 62, pmax: 158, total: 10,
+      pmin: 62, pmax: 158, total: 11.5,
       divider: 385,
     }
   }
