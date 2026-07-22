@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
+import { markThemeUserChoice } from '@/lib/theme'
 import { Sun, Moon, X, ArrowUpRight } from 'lucide-react'
 
 const STORAGE_KEY = 'valorox-onboarding-v1'
@@ -196,7 +197,7 @@ export default function ThemeOnboardingModal() {
             </div>
             <button
               className="theme-toggle"
-              onClick={() => setTheme(isDark ? 'light' : 'dark')}
+              onClick={() => { markThemeUserChoice(); setTheme(isDark ? 'light' : 'dark') }}
               title="Prova qui"
             >
               {isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}

@@ -26,6 +26,7 @@
 :root {
   /* Backgrounds */
   --bg:             #040408;
+  --bg-primary:     var(--bg);   /* alias theme-aware (usato da grafici e pagine) */
   --surface:        #08080F;
   --surface-2:      #0D0D18;
   --surface-3:      #121220;
@@ -118,9 +119,9 @@ body {
   --border-gold-hover: rgba(180,130,20,0.40);
 
   /* Text */
-  --text-primary:   #18120A;
-  --text-secondary: #6A5030;
-  --text-muted:     #A08060;
+  --text-primary:   #17120A;
+  --text-secondary: #574021;
+  --text-muted:     #7C6238;
   --text-inverse:   #F0F0F8;
 
   /* Brand Colors */

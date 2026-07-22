@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useClerk } from '@clerk/nextjs'
 import { useQueryClient } from '@tanstack/react-query'
 import { useTheme } from 'next-themes'
+import { markThemeUserChoice } from '@/lib/theme'
 import { useTradingStore } from '@/store/trading'
 import { useAuthStore } from '@/store/auth'
 import { performAppLogout } from '@/lib/logout'
@@ -135,7 +136,7 @@ export function TopBar() {
 
           {/* Theme Toggle */}
           <button
-            onClick={() => setTheme(isDark ? 'light' : 'dark')}
+            onClick={() => { markThemeUserChoice(); setTheme(isDark ? 'light' : 'dark') }}
             className="theme-toggle"
             title={isDark ? 'Modalità chiara' : 'Modalità scura'}
           >

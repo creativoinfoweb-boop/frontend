@@ -335,9 +335,9 @@ export default function AnimatedStrategyChart({
         {cap && (
           <g key={cap.at} className="vx-fade">
             <rect x={26} y={H - 52} width={W - 52} height={36} rx={10}
-              fill="color-mix(in srgb, var(--bg-primary, #0A0A14) 78%, transparent)"
-              stroke="color-mix(in srgb, var(--gold) 30%, transparent)" />
-            <text x={44} y={H - 29} fontSize="13.5" fill="var(--text-primary)" fontWeight="600">{cap.text}</text>
+              fill="color-mix(in srgb, var(--surface) 94%, transparent)"
+              stroke="color-mix(in srgb, var(--gold) 45%, transparent)" />
+            <text x={44} y={H - 29} fontSize="13.5" fill="var(--text-primary)" fontWeight="700">{cap.text}</text>
           </g>
         )}
 

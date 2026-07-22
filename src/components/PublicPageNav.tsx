@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft, ChevronDown, Sun, Moon } from 'lucide-react'
 import { useLanguage, LANGUAGES, LangCode } from '@/i18n/LanguageContext'
 import { useTheme } from 'next-themes'
+import { markThemeUserChoice } from '@/lib/theme'
 
 interface PublicPageNavProps {
   showMethod?: boolean
@@ -43,7 +44,7 @@ export default function PublicPageNav({ showMethod = true, showAbout = false }: 
 
         {/* Theme toggle */}
         <button
-          onClick={() => setTheme(isDark ? 'light' : 'dark')}
+          onClick={() => { markThemeUserChoice(); setTheme(isDark ? 'light' : 'dark') }}
           className="theme-toggle inline-flex"
           title={isDark ? 'Light mode' : 'Dark mode'}
         >
