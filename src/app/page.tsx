@@ -1367,6 +1367,47 @@ export default function LandingPage() {
                 <div className="live-dot" />
                 <span className="text-xs font-medium" style={{ color: 'var(--green)' }}>{t.systemActive}</span>
               </div>
+
+              {/* Social */}
+              <div className="flex items-center gap-3 mt-6">
+                {[
+                  {
+                    label: 'Instagram', href: 'https://www.instagram.com/valoroxai_trading/',
+                    icon: (
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
+                        <circle cx="12" cy="12" r="4.2" />
+                        <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    label: 'X', href: 'https://x.com/Valoroxai',
+                    icon: (
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <path d="M18.9 2H22l-7.55 8.63L23.3 22h-6.83l-5.35-6.99L4.99 22H1.86l8.08-9.23L1 2h7l4.84 6.4L18.9 2Zm-1.2 18h1.9L7.4 3.9H5.36L17.7 20Z" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    label: 'TikTok', href: 'https://www.tiktok.com/@valoroxai',
+                    icon: (
+                      <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+                        <path d="M16.6 3c.3 2.1 1.48 3.53 3.5 3.66v2.55c-1.17.11-2.2-.27-3.4-1v6.28c0 3.2-2.62 5.51-5.66 5.51-2.9 0-5.24-2.15-5.24-5.02 0-2.98 2.5-5.36 5.86-5.02v2.62c-.32-.1-.66-.15-1-.15-1.44 0-2.62 1.12-2.62 2.55s1.18 2.6 2.62 2.6c1.5 0 2.72-1.14 2.72-2.66V3h3.22Z" />
+                      </svg>
+                    ),
+                  },
+                ].map(s => (
+                  <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} title={s.label}
+                    className="w-10 h-10 rounded-xl flex items-center justify-center transition-all"
+                    style={{ background: 'var(--glass-bg)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
+                    onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = 'var(--gold)'; el.style.borderColor = 'var(--border-gold)'; el.style.background = 'var(--gold-subtle)'; el.style.transform = 'translateY(-2px)' }}
+                    onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = 'var(--text-secondary)'; el.style.borderColor = 'var(--border)'; el.style.background = 'var(--glass-bg)'; el.style.transform = 'translateY(0)' }}
+                  >
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
             </div>
 
             <div>
